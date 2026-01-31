@@ -1,26 +1,5 @@
 [
   {
-    "objectID": "modules.html",
-    "href": "modules.html",
-    "title": "Modules",
-    "section": "",
-    "text": "Here is a list of the course modules."
-  },
-  {
-    "objectID": "modules.html#module-1",
-    "href": "modules.html#module-1",
-    "title": "Modules",
-    "section": "Module 1",
-    "text": "Module 1\n\nSequencing Technologies"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Welcome to TRGN 515",
-    "section": "",
-    "text": "This is the central hub for TRGN 515: Next Generation Sequencing.\nPlease select a module from the sidebar to begin."
-  },
-  {
     "objectID": "modules/1_sequencing_techs/1_sequencing_techs.html",
     "href": "modules/1_sequencing_techs/1_sequencing_techs.html",
     "title": "Assignment 1: Next Generation Sequencing Technologies",
@@ -115,5 +94,26 @@
       "Module 1: Sequencing technologies",
       "Assignment 1: Next Generation Sequencing Technologies"
     ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Welcome to TRGN 515",
+    "section": "",
+    "text": "This is the central hub for TRGN 515: Next Generation Sequencing.\nPlease select a module from the sidebar to begin."
+  },
+  {
+    "objectID": "modules.html",
+    "href": "modules.html",
+    "title": "Modules",
+    "section": "",
+    "text": "Here is a list of the course modules."
+  },
+  {
+    "objectID": "modules.html#module-1",
+    "href": "modules.html#module-1",
+    "title": "Modules",
+    "section": "Module 1",
+    "text": "Module 1\n\nSequencing Technologies"
   }
 ]
