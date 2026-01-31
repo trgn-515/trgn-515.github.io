@@ -4,7 +4,6 @@
 \usepackage{tcolorbox}
 \usepackage{xcolor}
 \usepackage{fvextra} 
-\usepackage{etoolbox}
 \tcbuselibrary{skins, breakable}
 
 % FIX: Force code wrapping globally
@@ -33,12 +32,13 @@
 \definecolor{codeborder}{HTML}{E0E0E0}
 
 % =======================================================
-% 3. THE FIX: AtEndPreamble HOOK
+% 3. THE "RACE WINNER" HOOK
 % =======================================================
-% This runs AFTER Quarto defines its boxes, effectively overwriting them.
-\AtEndPreamble{
+% We use this hook to ensure our code runs AFTER Quarto's setup
+\AddToHook{begindocument/end}{
 
   % --- CODE BLOCKS ---
+  % We check if Shaded exists (it should by now), and overwrite it
   \ifdefined\Shaded
     \renewenvironment{Shaded}{
       \begin{tcolorbox}[
@@ -51,7 +51,11 @@
     }{\end{tcolorbox}}
   \fi
 
-  % --- CALLOUT: NOTE ---
+  % --- CALLOUTS ---
+  % We overwrite Quarto's boxes with our style.
+  % We use \renewtcolorbox assuming Quarto created them.
+  % If Quarto didn't create them (e.g. unused in doc), we skip to avoid errors.
+
   \ifcsdef{callout-note}{
     \renewtcolorbox{callout-note}[1]{
       enhanced jigsaw, breakable,
@@ -64,7 +68,6 @@
     }
   }{}
 
-  % --- CALLOUT: WARNING ---
   \ifcsdef{callout-warning}{
     \renewtcolorbox{callout-warning}[1]{
       enhanced jigsaw, breakable,
@@ -77,7 +80,6 @@
     }
   }{}
 
-  % --- CALLOUT: IMPORTANT ---
   \ifcsdef{callout-important}{
     \renewtcolorbox{callout-important}[1]{
       enhanced jigsaw, breakable,
