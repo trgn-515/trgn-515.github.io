@@ -1,0 +1,95 @@
+/* ==========================================================================
+   Clean, Flat Callout Boxes (Thicker Borders)
+   ========================================================================== */
+
+div.callout {
+  border-radius: 4px; /* Slight rounded corners */
+}
+
+/* --------------------------------------------------------------------------
+   NOTE / TASK BOX (Blue)
+   -------------------------------------------------------------------------- */
+div.callout-note {
+  border-left: none !important;
+  /* INCREASED BORDER THICKNESS HERE (1px -> 2px) */
+  border: 3px solid #59879b !important;    
+  background-color: #f3f9fb !important;
+  /* border: 3px solid #b8daff !important;    
+  background-color: #f0f7ff !important; */
+
+}
+
+div.callout-note .callout-header {
+  background-color: transparent !important;
+  color: #007bff !important;
+  font-weight: bold;
+  border-bottom: none !important;
+}
+
+div.callout-note .callout-icon {
+  display: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   WARNING BOX (Orange)
+   -------------------------------------------------------------------------- */
+div.callout-warning {
+  border-left: none !important;
+  /* INCREASED BORDER THICKNESS HERE (1px -> 2px) */
+  border: 3px solid #ffeeba !important;
+  background-color: #fff3cd !important;
+}
+
+div.callout-warning .callout-header {
+  background-color: transparent !important;
+  color: #856404 !important;
+  font-weight: bold;
+  border-bottom: none !important;
+}
+
+div.callout-warning .callout-icon {
+  display: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   IMPORTANT / ERROR BOX (Red)
+   -------------------------------------------------------------------------- */
+div.callout-important {
+  border-left: none !important;
+  /* INCREASED BORDER THICKNESS HERE (1px -> 2px) */
+  border: 3px solid #f5c6cb !important;
+  background-color: #f8d7da !important;
+}
+
+div.callout-important .callout-header {
+  background-color: transparent !important;
+  color: #721c24 !important;
+  font-weight: bold;
+  border-bottom: none !important;
+}
+
+div.callout-important .callout-icon {
+  display: none !important;
+}
+
+
+/* ==========================================================================
+   Pandoc-Style Code Blocks
+   ========================================================================== */
+
+/* Target the container for code blocks */
+div.sourceCode {
+  background-color: #f8f9fa !important;  /* Light gray background */
+  border: 2px solid #e0e0e0 !important;  /* Distinct gray border */
+  border-radius: 4px;                    /* Match your callout corners */
+  padding: 0.5em 1em;                    /* Add breathing room inside the box */
+  margin-bottom: 1em;
+}
+
+/* Ensure the inner 'pre' tag doesn't double-draw backgrounds */
+pre.sourceCode {
+  background-color: transparent !important;
+  border: none !important;
+  margin: 0;
+  padding: 0;
+}

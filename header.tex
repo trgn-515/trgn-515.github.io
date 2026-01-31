@@ -1,0 +1,128 @@
+% =======================================================
+% 1. PACKAGES
+% =======================================================
+\usepackage{tcolorbox}
+\usepackage{xcolor}
+\usepackage{fvextra} % REQUIRED for code wrapping
+\tcbuselibrary{skins, breakable}
+
+% FIX: Force code wrapping globally
+\fvset{breaklines=true, breakanywhere=true}
+
+% =======================================================
+% 2. DEFINE COLORS (MATCHING YOUR HTML/CSS)
+% =======================================================
+% Note (Blue)
+\definecolor{note-bg}{HTML}{f0f7ff}
+\definecolor{note-border}{HTML}{b8daff}
+\definecolor{note-text}{HTML}{007bff}
+
+% Warning (Orange)
+\definecolor{warn-bg}{HTML}{fff3cd}
+\definecolor{warn-border}{HTML}{ffeeba}
+\definecolor{warn-text}{HTML}{856404}
+
+% Important (Red)
+\definecolor{imp-bg}{HTML}{f8d7da}
+\definecolor{imp-border}{HTML}{f5c6cb}
+\definecolor{imp-text}{HTML}{721c24}
+
+% Code Block Colors
+\definecolor{codebg}{HTML}{F8F9FA}
+\definecolor{codeborder}{HTML}{E0E0E0}
+
+% =======================================================
+% 3. ROBUST ENVIRONMENT OVERRIDES
+% =======================================================
+\AtBeginDocument{
+
+  % --- CODE BLOCKS ---
+  % Safely redefine Shaded
+  \ifdefined\Shaded
+    \renewenvironment{Shaded}{
+      \begin{tcolorbox}[
+        enhanced jigsaw, breakable,
+        colback=codebg, colframe=codeborder,
+        boxrule=1pt, arc=3pt,
+        left=6pt, right=6pt, top=6pt, bottom=6pt,
+        sharp corners=all
+      ]
+    }{\end{tcolorbox}}
+  \fi
+
+  % --- CALLOUT: NOTE (BLUE) ---
+  % Check if 'callout-note' exists. Renew if yes, New if no.
+  \ifcsname callout-note\endcsname
+    \renewtcolorbox{callout-note}[1]{
+      enhanced jigsaw, breakable,
+      colback=note-bg, colframe=note-border, coltitle=note-text,
+      boxrule=2pt, leftrule=2pt, rightrule=2pt, toprule=2pt, bottomrule=2pt,
+      arc=3pt,
+      left=10pt, right=10pt, top=8pt, bottom=8pt,
+      toptitle=2pt, bottomtitle=5pt,
+      title={#1}, fonttitle=\bfseries,
+      sharp corners=all, detach title, before upper={\tcbtitle\par\medskip}
+    }
+  \else
+    \newtcolorbox{callout-note}[1]{
+      enhanced jigsaw, breakable,
+      colback=note-bg, colframe=note-border, coltitle=note-text,
+      boxrule=2pt, leftrule=2pt, rightrule=2pt, toprule=2pt, bottomrule=2pt,
+      arc=3pt,
+      left=10pt, right=10pt, top=8pt, bottom=8pt,
+      toptitle=2pt, bottomtitle=5pt,
+      title={#1}, fonttitle=\bfseries,
+      sharp corners=all, detach title, before upper={\tcbtitle\par\medskip}
+    }
+  \fi
+
+  % --- CALLOUT: WARNING (ORANGE) ---
+  \ifcsname callout-warning\endcsname
+    \renewtcolorbox{callout-warning}[1]{
+      enhanced jigsaw, breakable,
+      colback=warn-bg, colframe=warn-border, coltitle=warn-text,
+      boxrule=2pt, leftrule=2pt, rightrule=2pt, toprule=2pt, bottomrule=2pt,
+      arc=3pt,
+      left=10pt, right=10pt, top=8pt, bottom=8pt,
+      toptitle=2pt, bottomtitle=5pt,
+      title={#1}, fonttitle=\bfseries,
+      sharp corners=all, detach title, before upper={\tcbtitle\par\medskip}
+    }
+  \else
+    \newtcolorbox{callout-warning}[1]{
+      enhanced jigsaw, breakable,
+      colback=warn-bg, colframe=warn-border, coltitle=warn-text,
+      boxrule=2pt, leftrule=2pt, rightrule=2pt, toprule=2pt, bottomrule=2pt,
+      arc=3pt,
+      left=10pt, right=10pt, top=8pt, bottom=8pt,
+      toptitle=2pt, bottomtitle=5pt,
+      title={#1}, fonttitle=\bfseries,
+      sharp corners=all, detach title, before upper={\tcbtitle\par\medskip}
+    }
+  \fi
+
+  % --- CALLOUT: IMPORTANT (RED) ---
+  \ifcsname callout-important\endcsname
+    \renewtcolorbox{callout-important}[1]{
+      enhanced jigsaw, breakable,
+      colback=imp-bg, colframe=imp-border, coltitle=imp-text,
+      boxrule=2pt, leftrule=2pt, rightrule=2pt, toprule=2pt, bottomrule=2pt,
+      arc=3pt,
+      left=10pt, right=10pt, top=8pt, bottom=8pt,
+      toptitle=2pt, bottomtitle=5pt,
+      title={#1}, fonttitle=\bfseries,
+      sharp corners=all, detach title, before upper={\tcbtitle\par\medskip}
+    }
+  \else
+    \newtcolorbox{callout-important}[1]{
+      enhanced jigsaw, breakable,
+      colback=imp-bg, colframe=imp-border, coltitle=imp-text,
+      boxrule=2pt, leftrule=2pt, rightrule=2pt, toprule=2pt, bottomrule=2pt,
+      arc=3pt,
+      left=10pt, right=10pt, top=8pt, bottom=8pt,
+      toptitle=2pt, bottomtitle=5pt,
+      title={#1}, fonttitle=\bfseries,
+      sharp corners=all, detach title, before upper={\tcbtitle\par\medskip}
+    }
+  \fi
+}

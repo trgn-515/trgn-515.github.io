@@ -9,12 +9,14 @@ format:
     theme: cosmo
     highlight-style: github
   pdf:
+    include-in-header: ../../header.tex
+    callout-icon: false
+    callout-appearance: default
     geometry:
       - top=30mm
       - left=20mm
 ---
 
-# Assignment 1: 3rd Generation Sequencing Technologies
 
 > Due date: February 12th 2026
 
