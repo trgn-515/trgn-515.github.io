@@ -1,0 +1,1297 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Arturo Torres Ortiz">
+<meta name="dcterms.date" content="2026-01-13">
+
+<title>Assignment 1: Next Generation Sequencing Technologies – TRGN 515</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-8b4baf804e461d9b72633f0de59a0cac.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-a53c0e355896b640b2084972ad579721.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">TRGN 515</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../modules.html"> 
+<span class="menu-text">Modules</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/trgn-515"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../modules/1_sequencing_techs/1_sequencing_techs.html">Module 1: Sequencing technologies</a></li><li class="breadcrumb-item"><a href="../../modules/1_sequencing_techs/1_sequencing_techs.html">Assignment 1: Next Generation Sequencing Technologies</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Module 1: Sequencing technologies</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../modules/1_sequencing_techs/1_sequencing_techs.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Assignment 1: Next Generation Sequencing Technologies</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#assignment-1-3rd-generation-sequencing-technologies" id="toc-assignment-1-3rd-generation-sequencing-technologies" class="nav-link active" data-scroll-target="#assignment-1-3rd-generation-sequencing-technologies">Assignment 1: 3rd Generation Sequencing Technologies</a></li>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives">Learning objectives</a></li>
+  <li><a href="#input-and-outputs" id="toc-input-and-outputs" class="nav-link" data-scroll-target="#input-and-outputs">Input and outputs</a></li>
+  <li><a href="#required-software" id="toc-required-software" class="nav-link" data-scroll-target="#required-software">Required software</a></li>
+  <li><a href="#manipulating-fastq-files" id="toc-manipulating-fastq-files" class="nav-link" data-scroll-target="#manipulating-fastq-files">Manipulating Fastq files</a></li>
+  <li><a href="#oxford-nanopore-output-files" id="toc-oxford-nanopore-output-files" class="nav-link" data-scroll-target="#oxford-nanopore-output-files">Oxford Nanopore output files</a></li>
+  <li><a href="#quality-check" id="toc-quality-check" class="nav-link" data-scroll-target="#quality-check">Quality Check</a>
+  <ul class="collapse">
+  <li><a href="#quality-check-for-short-reads---fastqc" id="toc-quality-check-for-short-reads---fastqc" class="nav-link" data-scroll-target="#quality-check-for-short-reads---fastqc">Quality check for short-reads - FastQC</a></li>
+  <li><a href="#quality-check-for-long-reads" id="toc-quality-check-for-long-reads" class="nav-link" data-scroll-target="#quality-check-for-long-reads">Quality check for long-reads</a></li>
+  </ul></li>
+  <li><a href="#quality-control-qc" id="toc-quality-control-qc" class="nav-link" data-scroll-target="#quality-control-qc">Quality Control (QC)</a>
+  <ul class="collapse">
+  <li><a href="#qc-for-short-reads---trimmomatic" id="toc-qc-for-short-reads---trimmomatic" class="nav-link" data-scroll-target="#qc-for-short-reads---trimmomatic">QC for short-reads - Trimmomatic</a></li>
+  </ul></li>
+  <li><a href="#qc-of-long-reads" id="toc-qc-of-long-reads" class="nav-link" data-scroll-target="#qc-of-long-reads">QC of long reads</a></li>
+  <li><a href="#read-mapping-to-a-reference-genome" id="toc-read-mapping-to-a-reference-genome" class="nav-link" data-scroll-target="#read-mapping-to-a-reference-genome">Read mapping to a reference genome</a>
+  <ul class="collapse">
+  <li><a href="#short-read-mapping" id="toc-short-read-mapping" class="nav-link" data-scroll-target="#short-read-mapping">Short-read mapping</a>
+  <ul class="collapse">
+  <li><a href="#bwa" id="toc-bwa" class="nav-link" data-scroll-target="#bwa">BWA</a></li>
+  </ul></li>
+  <li><a href="#long-read-mapping" id="toc-long-read-mapping" class="nav-link" data-scroll-target="#long-read-mapping">Long-read mapping</a></li>
+  </ul></li>
+  <li><a href="#variant-calling" id="toc-variant-calling" class="nav-link" data-scroll-target="#variant-calling">Variant calling</a>
+  <ul class="collapse">
+  <li><a href="#variant-calling-in-short-reads---bcftools" id="toc-variant-calling-in-short-reads---bcftools" class="nav-link" data-scroll-target="#variant-calling-in-short-reads---bcftools">Variant calling in short-reads - BCFtools</a></li>
+  <li><a href="#long-read-variant-calling" id="toc-long-read-variant-calling" class="nav-link" data-scroll-target="#long-read-variant-calling">Long-read variant calling</a></li>
+  </ul></li>
+  <li><a href="#benchmarking" id="toc-benchmarking" class="nav-link" data-scroll-target="#benchmarking">Benchmarking</a></li>
+  <li><a href="#vcf-comparison" id="toc-vcf-comparison" class="nav-link" data-scroll-target="#vcf-comparison">VCF comparison</a></li>
+  <li><a href="#genome-wide-assessment-using-genomic-windows" id="toc-genome-wide-assessment-using-genomic-windows" class="nav-link" data-scroll-target="#genome-wide-assessment-using-genomic-windows">Genome-wide assessment using genomic windows</a></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="1_sequencing_techs.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../modules/1_sequencing_techs/1_sequencing_techs.html">Module 1: Sequencing technologies</a></li><li class="breadcrumb-item"><a href="../../modules/1_sequencing_techs/1_sequencing_techs.html">Assignment 1: Next Generation Sequencing Technologies</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Assignment 1: Next Generation Sequencing Technologies</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Arturo Torres Ortiz </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">January 13, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="assignment-1-3rd-generation-sequencing-technologies" class="level1">
+<h1>Assignment 1: 3rd Generation Sequencing Technologies</h1>
+<blockquote class="blockquote">
+<p>Due date: February 12th 2026</p>
+</blockquote>
+<p>DNA sequencing can be broadly defined as the determination of the identity and order of nucleic acid residues in biological samples. Bioinformatic analysis and sequencing results are greatly affected by the choice of sequencing technology. Sequencing technologies can be broadly categorized in three groups:</p>
+<ol type="1">
+<li><strong>First-Generation Sequencing</strong>
+<ul>
+<li>First-generation sequencing methods, mostly notably Sanger sequencing, relied on using radio- or fluorescently-labelled dNTPs or oligonucleotides before electrophoretic analysis.</li>
+</ul></li>
+<li><strong>Second-Generation Sequencing</strong>
+<ul>
+<li>Second-generation sequencing is characterized by its high throughput due to the parallelisation of a large number of reactions, sequencing thousands to millions of DNA fragments. Second-Generation sequencing includes the current sequencing leader, Illumina.</li>
+</ul></li>
+<li><strong>Third-Generation Sequencing</strong>
+<ul>
+<li>Third-generation sequencing technologies include those capable of sequencing single molecules, so they don’t require DNA amplification. The two most common third-generation sequencing technologies include PacBio (Pacific Biosciences) and ONT (Oxford Nanopore).</li>
+</ul></li>
+</ol>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Generation</th>
+<th style="text-align: left;">Sequencing Technology</th>
+<th style="text-align: left;">Year</th>
+<th style="text-align: left;">Company</th>
+<th style="text-align: left;">Avg Read Length</th>
+<th style="text-align: left;">Cost per Gigabase</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>First Generation</strong></td>
+<td style="text-align: left;">Sanger Sequencing</td>
+<td style="text-align: left;">1977</td>
+<td style="text-align: left;">Frederick Sanger</td>
+<td style="text-align: left;">~800 bp</td>
+<td style="text-align: left;">Very High (&gt;$1000)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Second Generation</strong></td>
+<td style="text-align: left;">454 Sequencing</td>
+<td style="text-align: left;">2005</td>
+<td style="text-align: left;">Roche</td>
+<td style="text-align: left;">~400 bp</td>
+<td style="text-align: left;">High ($100 - $500)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Illumina (Solexa)</td>
+<td style="text-align: left;">2006</td>
+<td style="text-align: left;">Illumina</td>
+<td style="text-align: left;">~150-300 bp</td>
+<td style="text-align: left;">Low ($1 - $10)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Ion Torrent</td>
+<td style="text-align: left;">2010</td>
+<td style="text-align: left;">Thermo Fisher</td>
+<td style="text-align: left;">~200 bp</td>
+<td style="text-align: left;">Medium ($10 - $50)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Third Generation</strong></td>
+<td style="text-align: left;">PacBio SMRT</td>
+<td style="text-align: left;">2009</td>
+<td style="text-align: left;">Pacific Biosciences</td>
+<td style="text-align: left;">10,000+ bp</td>
+<td style="text-align: left;">High ($50 - $200)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Oxford Nanopore</td>
+<td style="text-align: left;">2014</td>
+<td style="text-align: left;">ONT</td>
+<td style="text-align: left;">10,000+ bp</td>
+<td style="text-align: left;">Medium-High ($10-$100)</td>
+</tr>
+</tbody>
+</table>
+<p>We will use a human genome standard (HG002) that has been extremely well-characterized as our gold standard. The HG002 genome assembly is part of an effort hosted by NIST that includes The Telomere-to-Telomere Consortium, the Human Pangenome Reference Consortium and the Genome in a Bottle Consortium, to sequence, assemble and polish the HG002 (also known as GM24385 and huAA53E0) cell line.</p>
+<p>Some reference papers regarding this dataset:</p>
+<ul>
+<li>Zook, J., Catoe, D., McDaniel, J. et al.&nbsp;Extensive sequencing of seven human genomes to characterize benchmark reference materials. Sci Data 3, 160025 (2016). https://doi.org/10.1038/sdata.2016.25</li>
+<li>Zook, J.M., McDaniel, J., Olson, N.D. et al.&nbsp;An open resource for accurately benchmarking small variant and reference calls. Nat Biotechnol 37, 561–566 (2019). https://doi.org/10.1038/s41587-019-0074-6</li>
+</ul>
+<p>We will compare the characteristics and SNP calls for three sequencing technologies: Illumina, PacBio HiFi, and Nanopore.</p>
+</section>
+<section id="learning-objectives" class="level1">
+<h1>Learning objectives</h1>
+<p>At the end of this week’s assignment you will be able to:</p>
+<ol type="1">
+<li>Understand the principles behind the different sequencing technologies</li>
+<li>Library preparation methods and their effect on the data</li>
+<li>Understand the notion of a resequencing experiment and a reference genome</li>
+<li>Perform quality check and control (QC) on Illumina short-read data</li>
+<li>Perform quality check and control on long-read sequencing data</li>
+<li>Align short-reads to a reference genome</li>
+<li>Align long-reads to a reference genome</li>
+<li>Understand the SAM and BAM format</li>
+<li>Call SNPs against a reference genome in short-read data</li>
+<li>Call SNPs against a reference genome in long-read sequencing data</li>
+<li>Understand the VCF format</li>
+<li>Analyze differences between sequencing technologies</li>
+<li>Use common benchmarking metrics</li>
+</ol>
+</section>
+<section id="input-and-outputs" class="level1">
+<h1>Input and outputs</h1>
+<p>The input for this assignment are the fastq files generated by Illumina, PacBio HiFi and ONT of the standard human genome HG002. Each student will be given a chromosome to work with.</p>
+<blockquote class="blockquote">
+<p>Illumina files: <code>/project2/msalomon_1816/trgn_515/1_seq_techs/illumina/fastq</code></p>
+<p>PacBio files: <code>/project2/msalomon_1816/trgn_515/1_seq_techs/pacbio/fastq</code></p>
+<p>Nanopore files: <code>/project2/msalomon_1816/trgn_515/1_seq_techs/ont/fastq</code></p>
+<p>Benchmarking file: <code>/project2/msalomon_1816/trgn_515/1_seq_techs/benchmark/HG002_GRCh38_1_22_v4.2.1_benchmark.vcf.gz</code></p>
+<p>Human Reference Genome GRCh38: <code>/project2/biodb/genomes/Homo_sapiens/NCBI/GRCh38/Sequence/BWAIndex/genome.fa</code></p>
+</blockquote>
+<blockquote class="blockquote">
+<p>The final output will be a list of SNPs and statistics for each sequencing technology.</p>
+</blockquote>
+</section>
+<section id="required-software" class="level1">
+<h1>Required software</h1>
+<p>In order to complete the assignment, the following tools need to be installed:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mamba</span> install bioconda::filtlong</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">mamba</span> install bioconda::minimap2</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">mamba</span> install bioconda::seqtk</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">mamba</span> install bioconda::seqkit</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load bwa</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load htslib</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load bcftools</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load samtools</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load fastqc</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load gcc/13.3.0</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load bedtools2/2.31.1</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load gatk/4.5.0.0</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>You can also use a conda environment I provide here:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate /scratch1/atortiz/1_seq_techs/conda_env/1_seq_techs</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="manipulating-fastq-files" class="level1">
+<h1>Manipulating Fastq files</h1>
+<p>Fastq files are simply text files with a specific and constant format, so you can always parse them using <code>bash</code> or any scripting language. For instance, since you know the read sequence is on the 2nd line and the quality sequence is on the 4th line, to get read length for every read you can simply do:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">awk</span> <span class="st">'NR==4 {print length}'</span> <span class="op">&lt;</span>fastq_file.fq<span class="op">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>However, for reproducibility and consistency (and to save us time), there are already well-established software to parse and manipulate fastq files efficiently. Some widely used tools are:</p>
+<ol type="1">
+<li><code>seqtk</code> - https://github.com/lh3/seqtk</li>
+<li><code>seqkit</code> - https://bioinf.shenwei.me/seqkit/</li>
+<li><code>bioawk</code> - https://github.com/lh3/bioawk</li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled" title="Task 1: Compare raw read statistics between sequencing technologies">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Task 1: Compare raw read statistics between sequencing technologies
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For this first task, let’s extract some basic metrics from the raw fastq files and compare between sequencing technologies. To be efficient, let’s take a random sample of 200,000 reads per sequencing technology.</p>
+<p>The metrics we will report are:</p>
+<ul>
+<li>Read length</li>
+<li>Average Base quality per read</li>
+<li>GC content per read</li>
+</ul>
+<p>One way to do it using one of the previously shown software is:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">seqtk</span> sample <span class="at">-s</span> 100 <span class="co"># random seed</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>fastq_file<span class="op">&gt;</span> <span class="co"># Input fastq file</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>n_reads<span class="op">&gt;</span> <span class="co"># Number of reads to downselect</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="kw">|</span> <span class="ex">seqkit</span> fx2tab <span class="co"># Main seqkit function to get read stats</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="ex">-q</span> <span class="co"># Get average read quality</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="ex">-l</span> <span class="co"># Get read length</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="ex">-g</span> <span class="co"># Get GC content</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="ex">-n</span> <span class="co"># Only print read name</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="ex">-</span> <span class="op">&gt;</span> <span class="op">&lt;</span>output_file.txt<span class="op">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ol type="1">
+<li>Plot a histogram of each of the three metrics. Plot all illumina, ont and pacbio together. <strong>(10pts)</strong></li>
+<li>Describe briefly the differences in read length, base quality and GC content per sequencing platform <strong>(10pts)</strong></li>
+</ol>
+</div>
+</div>
+</section>
+<section id="oxford-nanopore-output-files" class="level1">
+<h1>Oxford Nanopore output files</h1>
+<p>All sequencing technologies reviewed during this assignment output reads either in Fastq or BAM format (unaligned BAM or aligned if a reference genome is provided). However, ONT also output a special type of file. The output of Nanopore sequencing is in the Pod5 file format.</p>
+<p>You can use <code>dorado</code> to basecall and demultiplex:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">dorado</span> basecaller <span class="co"># Basecalling algorithm</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">-r</span> <span class="co"># Recursively scan through folders and files</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">--kit-name</span> <span class="co"># ONT Nanopore kit (eg: SQK-NBD114-24)</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>model<span class="op">&gt;</span> <span class="co"># Model for basecalling: fast, hac, sup</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>input_directory<span class="op">&gt;</span> <span class="co"># Input directory with Pod5 files</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="kw">|</span> <span class="ex">dorado</span> demux <span class="co"># Demultiplexing algorithm</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="ex">--threads</span> <span class="op">&lt;</span>n<span class="op">&gt;</span> <span class="co"># Number of threads</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="ex">--no-classify</span> <span class="co"># Skip barcode classification</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="ex">--emit-fastq</span> <span class="co"># Output fastq</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="ex">--output-dir</span> <span class="op">&lt;</span>out_dir<span class="op">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="quality-check" class="level1">
+<h1>Quality Check</h1>
+<p>Most quality control depends on base qualities. Sequencers attempt to read the “sequence” of DNA letters. For each base they read, they assign a quality score that serves as a measure of confidence in that base, called a Phred quality score.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Phred Quality Score</th>
+<th style="text-align: center;">Probability of incorrect basecall</th>
+<th style="text-align: center;">Basecall accuracy</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">10</td>
+<td style="text-align: center;">1 in 10</td>
+<td style="text-align: center;">90%</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">20</td>
+<td style="text-align: center;">1 in 100</td>
+<td style="text-align: center;">99%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">30</td>
+<td style="text-align: center;">1 in 1000</td>
+<td style="text-align: center;">99.9%</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">40</td>
+<td style="text-align: center;">1 in 10,000</td>
+<td style="text-align: center;">99.99%</td>
+</tr>
+</tbody>
+</table>
+<section id="quality-check-for-short-reads---fastqc" class="level2">
+<h2 class="anchored" data-anchor-id="quality-check-for-short-reads---fastqc">Quality check for short-reads - FastQC</h2>
+<p>The most widely used tool for visually evaluating fastq data is FastQC.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">fastqc</span> <span class="co"># The main command call</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">--extract</span> <span class="co"># Extract files from output</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ex">-o</span> <span class="op">&lt;</span>output_dir<span class="op">&gt;</span> <span class="co"># Directory for output files</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="ex">-d</span> <span class="op">&lt;</span>temporary_dir<span class="op">&gt;</span> <span class="co"># Directory for temporary files</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>input.fq<span class="op">&gt;</span> <span class="co"># Input fasta file</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="quality-check-for-long-reads" class="level2">
+<h2 class="anchored" data-anchor-id="quality-check-for-long-reads">Quality check for long-reads</h2>
+<p>You can visualize the quality of your long reads using FastQC, but there’s also specific software built for long-reads like <code>NanoPlot</code>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">NanoPlot</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">--fastq</span> <span class="op">&lt;</span>input.fq<span class="op">&gt;</span> <span class="co"># Input in fastq file</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="ex">-o</span> <span class="op">&lt;</span>output_dir<span class="op">&gt;</span> <span class="co"># Output directory</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="ex">--loglength</span> <span class="co"># Set up for log read length in the plots</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-note callout-titled" title="Task 2: Run FastQC on Illumina reads">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Task 2: Run FastQC on Illumina reads
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Run FastqQC on the Illumina reads and answer the questions. Focus only on the following figures:</p>
+<ul>
+<li>Per base sequence quality</li>
+<li>Per sequence quality scores</li>
+<li>Per base sequence content</li>
+<li>Per sequence GC content</li>
+<li>Per base N content</li>
+<li>Sequence Length Distribution</li>
+<li>Overrepresented sequences</li>
+<li>Adapter Content</li>
+</ul>
+<p>Answer the following questions for each plot:</p>
+<ol type="1">
+<li>What is the plot representing? <strong>(10pts)</strong></li>
+<li>What quality issue (if any) is the plot showing? <strong>(10pts)</strong></li>
+<li>How would you solve the issue (if any) represented in the plot? <strong>(10pts)</strong></li>
+</ol>
+<p>Answer the questions for the forward reads only.</p>
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+</section>
+</section>
+<section id="quality-control-qc" class="level1">
+<h1>Quality Control (QC)</h1>
+<p>Now that we have visualized the raw fastq files, we may want to filter some reads.</p>
+<section id="qc-for-short-reads---trimmomatic" class="level2">
+<h2 class="anchored" data-anchor-id="qc-for-short-reads---trimmomatic">QC for short-reads - Trimmomatic</h2>
+<p>We will use <code>Trimmomatic</code> for this.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">trimmomatic</span> PE <span class="co"># Main trimmomatic function for paired-ends reads</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>input_1.fastq.gz<span class="op">&gt;</span> <span class="co"># Forward reads</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>input_2.fastq.gz<span class="op">&gt;</span> <span class="co"># Reverse reads</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>output_1.fastq.gz<span class="op">&gt;</span> <span class="co"># Output forward reads</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>output_unclassified_1.fastq.gz<span class="op">&gt;</span> <span class="co"># Output unclassified reads from forward file</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>output_2.fastq.gz<span class="op">&gt;</span> <span class="co"># Output reverse reads</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>output_unclassified_2.fastq.gz<span class="op">&gt;</span> <span class="co"># Output unclassified reads from reverse file</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="ex">SLIDINGWINDOW:</span><span class="op">&lt;</span>window_size<span class="op">&gt;</span>:<span class="op">&lt;</span>quality<span class="op">&gt;</span> </span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="ex">LEADING:</span><span class="op">&lt;</span>quality<span class="op">&gt;</span> </span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="ex">TRAILING:</span><span class="op">&lt;</span>quality<span class="op">&gt;</span> </span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="ex">AVGQUAL:</span><span class="op">&lt;</span>quality<span class="op">&gt;</span> </span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="ex">MINLEN:</span><span class="op">&lt;</span>length<span class="op">&gt;</span> </span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="ex">ILLUMINACLIP:</span><span class="op">&lt;</span>/path/to/adapter_file.fa<span class="op">&gt;</span>:<span class="op">&lt;</span>seed_mismatches<span class="op">&gt;</span>:palindrome_clip_threshold<span class="op">&gt;</span>:<span class="op">&lt;</span>simple_clip_threshold<span class="op">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-note callout-titled" title="Task 3: Run FastQC after running Trimmomatic">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Task 3: Run FastQC after running Trimmomatic
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Compare the FastqQC plots before and after.</p>
+<p>Answer the following questions for each plot:</p>
+<ol type="1">
+<li>What has changed after running trimmomatic? <strong>(10pts)</strong></li>
+<li>Why did the change happen? <strong>(10pts)</strong></li>
+</ol>
+</div>
+</div>
+</section>
+</section>
+<section id="qc-of-long-reads" class="level1">
+<h1>QC of long reads</h1>
+<p>The QC for long reads is very similar to that of short-reads. <code>filtlong</code> is an interesting tool where you can keep the best x% reads, rather than hard filtering.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">filtlong</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">--min_length</span> <span class="op">&lt;</span>n<span class="op">&gt;</span> <span class="co"># Minimum read length</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="ex">--min_mean_q</span> <span class="op">&lt;</span>n<span class="op">&gt;</span> <span class="co"># Minimum mean base quality</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="ex">--keep_percent</span> <span class="op">&lt;</span>n<span class="op">&gt;</span> <span class="co"># Keep the best n% of reads</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>input_reads<span class="op">&gt;</span> <span class="kw">|</span> </span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="fu">gzip</span> <span class="op">&gt;</span> <span class="op">&lt;</span>output_reads<span class="op">&gt;</span>.gz</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-note callout-titled" title="Task 4: Long read QC">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Task 4: Long read QC
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Filter raw reads for the nanopore and pacbio datasets. Use <code>filtlong</code>. Keep the best 95% of reads.</p>
+<p>Choose minimum read length and base quality based on the data from the first time you ran NanoPlot.</p>
+<ol type="1">
+<li>What changes in the statistics and plots can you observe after running filtlong? <strong>(10pts)</strong></li>
+</ol>
+</div>
+</div>
+</section>
+<section id="read-mapping-to-a-reference-genome" class="level1">
+<h1>Read mapping to a reference genome</h1>
+<section id="short-read-mapping" class="level2">
+<h2 class="anchored" data-anchor-id="short-read-mapping">Short-read mapping</h2>
+<section id="bwa" class="level3">
+<h3 class="anchored" data-anchor-id="bwa">BWA</h3>
+<p>To run BWA:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bwa</span> mem <span class="co"># Main call for the mem algorithm within BWA</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>reference_genome<span class="op">&gt;</span> <span class="co"># Reference genome</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>fastq1<span class="op">&gt;</span> <span class="co"># Forward reads</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>fastq2<span class="op">&gt;</span> <span class="co"># Reverse reads</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>To add read groups on <code>bwa mem</code>, use the <code>-R</code> flag.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bwa</span> mem <span class="at">-R</span> <span class="st">"@RG\tID:</span><span class="va">$rg_id</span><span class="st">\tPU:</span><span class="va">$pu</span><span class="st">\tPL:</span><span class="va">$pl</span><span class="st">\tSM:</span><span class="va">$sample</span><span class="st">"</span> </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>We can combine everything into one command using bash pipes:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bwa</span> mem <span class="op">&lt;</span>reference_genome<span class="op">&gt;</span> <span class="op">&lt;</span>fastq1_path<span class="op">&gt;</span> <span class="op">&lt;</span>fastq2_path<span class="op">&gt;</span> <span class="kw">|</span> <span class="ex">samtools</span> view <span class="at">-bS</span> <span class="at">-</span> <span class="kw">|</span> <span class="ex">samtools</span> sort <span class="at">-@</span> <span class="op">&lt;</span>n<span class="op">&gt;</span> -T <span class="op">&lt;</span>path<span class="op">&gt;</span> -O bam <span class="at">-o</span> <span class="op">&lt;</span>out_bam_path<span class="op">&gt;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> index <span class="op">&lt;</span>out_bam_path<span class="op">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-note callout-titled" title="Task 5: Complete the for loop to do the alignment">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Task 5: Complete the for loop to do the alignment
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> _ <span class="kw">in</span> _<span class="kw">;</span> <span class="cf">do</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># code</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ol type="1">
+<li>Attach the completed loop into your assignment. <strong>(5pts)</strong></li>
+</ol>
+</div>
+</div>
+</section>
+</section>
+<section id="long-read-mapping" class="level2">
+<h2 class="anchored" data-anchor-id="long-read-mapping">Long-read mapping</h2>
+<p>The most widely used long-read mapper is <code>minimap2</code>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">minimap2</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>reference_genome<span class="op">&gt;</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>long_reads.fastq.gz<span class="op">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-note callout-titled" title="Task 6: Map reads to the reference genome">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Task 6: Map reads to the reference genome
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Use <code>bwa mem</code> for short reads and <code>minimap2</code> for long-reads. For <code>minimap2</code>, choose the appropriate platform in the presets.</p>
+<p>In both cases, create a pipe with the output of the mapper and samtools for coordinate sorting.</p>
+<p>For the final output, any read that maps to chromosomes other than the chromosome you are working with should be considered ambiguous. Use the right command to keep only reads that mapped to your chromosome of interest.</p>
+<ol type="1">
+<li>Create a slurm array job to run the previous code. Attach your code to the assignment <strong>(10pts)</strong></li>
+</ol>
+</div>
+</div>
+</section>
+</section>
+<section id="variant-calling" class="level1">
+<h1>Variant calling</h1>
+<section id="variant-calling-in-short-reads---bcftools" class="level2">
+<h2 class="anchored" data-anchor-id="variant-calling-in-short-reads---bcftools">Variant calling in short-reads - BCFtools</h2>
+<p>For Illumina reads, we will use BCFtools for SNP calling.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bcftools</span> mpileup <span class="co"># Pileup function</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="ex">-f</span> <span class="op">&lt;</span>reference_genome<span class="op">&gt;</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="ex">-a</span> AD,INFO/AD,ADF,INFO/ADF,ADR,INFO/ADR,DP,SP <span class="co"># Add tags useful for filtering</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="ex">-q</span> <span class="op">&lt;</span>n<span class="op">&gt;</span> <span class="co"># Skip reads with read quality below n</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="ex">-Q</span> <span class="op">&lt;</span>n<span class="op">&gt;</span> <span class="co"># Skip bases with base quality below n</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="ex">-Ou</span> <span class="co"># Uncompressed output</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>input_bam<span class="op">&gt;</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>output_vcf<span class="op">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bcftools</span> call <span class="co"># Main bcftools call function</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="ex">-m</span> <span class="co"># Multiallelic calling method</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="ex">-Oz</span> <span class="co"># Output in compressed format</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>output.vcf.gz<span class="op">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-note callout-titled" title="Task 7: Complete the Variant Calling command">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Task 7: Complete the Variant Calling command
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Pipe the commands <code>mpileup</code>, <code>call</code>, <code>norm</code> and <code>filter</code> into one command to stream from the input bam file to the final VCF output.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bcftools</span> mpileup <span class="kw">|</span> <span class="ex">...</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Use the commands following these instructions. You will have to look at the help for each command:</p>
+<ul>
+<li>For <code>bcftools mpileup</code>:
+<ul>
+<li>Use all reads regardless of mapping quality</li>
+<li>Keep only bases with base quality higher or equal than 20</li>
+</ul></li>
+<li>For <code>bcftools call</code>:
+<ul>
+<li>Print variant sites only</li>
+<li>Do not report indels</li>
+<li>Keep all alternate alleles</li>
+</ul></li>
+</ul>
+<p>Apply the following filter tags in <code>bcftools filter</code>:</p>
+<ul>
+<li>‘MinMQ’ for MQ lower than 20</li>
+<li>‘QUAL’ for QUAL lower than 20</li>
+<li>‘minAD’ for allele depth lower than 20</li>
+<li>‘minADF’ for allele forward depth lower than 5</li>
+<li>‘minADR’ for allele reverse depth lower than 5</li>
+<li>‘MinDP’ for total depth lower than 50</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="long-read-variant-calling" class="level2">
+<h2 class="anchored" data-anchor-id="long-read-variant-calling">Long-read variant calling</h2>
+<div class="callout callout-style-default callout-note callout-titled" title="Task 8: Call SNPs against the human reference genome">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Task 8: Call SNPs against the human reference genome
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>To be consistent between sequencing platforms, use a variant caller that’s platform agnostic (i.e: it’s not optimized for any specific sequencing technology or read type). This includes: BCFtools, GATK, FreeBayes or DeepVariant.</p>
+<p>You can choose any variant caller you prefer, but run the same caller for all three sequencing technologies (Illumina, PacBio HiFi, ONT). Use any filters you see necessary.</p>
+<p>For this task, report your variant calling command and your choice of options and filters.</p>
+<ol type="1">
+<li>Create a slurm array job to run the SNP calling code. <strong>Call only SNPs.</strong> Attach your code to the assignment <strong>(5pts)</strong></li>
+</ol>
+</div>
+</div>
+</section>
+</section>
+<section id="benchmarking" class="level1">
+<h1>Benchmarking</h1>
+<p>For our benchmarking, we are mostly interested in TP, FP and FN.</p>
+<p><span class="math display">\[TPR = \frac{TP}{\text{Actual Positive}} = \frac{TP}{TP + FN}\]</span> <span class="math display">\[FNR = \frac{FN}{\text{Actual Positive}} = \frac{FN}{TP + FN}\]</span></p>
+<p>Another common metric used is the F1 score.</p>
+<p><span class="math display">\[F_1 = \frac{2}{\text{recall}^{-1} + \text{precision}^{-1}} = 2 \cdot \frac{\text{precision} \cdot \text{recall}}{\text{precision} + \text{recall}} = \frac{2TP}{2TP + FP + FN}\]</span></p>
+</section>
+<section id="vcf-comparison" class="level1">
+<h1>VCF comparison</h1>
+<div class="callout callout-style-default callout-note callout-titled" title="Task 9: Benchmarking metrics from VCF file">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Task 9: Benchmarking metrics from VCF file
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Match the definitions in the intersections column with the possible benchmarking metrics <strong>(5pts)</strong>.</p>
+<ul>
+<li>The intersections are between your sample VCF (Va) and the benchmarking VCF (Vb).</li>
+<li>The possible metrics are False Positive, False Negative, True Positive, and True Negative</li>
+</ul>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>VCF intersection</th>
+<th>Benchmark metric</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Va and Vb</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>not Va and not Vb</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Va and not Vb</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>not Va and Vb</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="genome-wide-assessment-using-genomic-windows" class="level1">
+<h1>Genome-wide assessment using genomic windows</h1>
+<p>A common way to represent genomic events is using genomic windows.</p>
+<ol type="1">
+<li>Get your FP or FN into bed format.</li>
+<li>Make genomic windows.</li>
+<li>Counting the overlaps.</li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled" title="Task 10: Benchmarking of different sequencing technologies for SNP calling">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Task 10: Benchmarking of different sequencing technologies for SNP calling
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The latest task consists of a comparison between the variant calls you obtained and the gold standard.</p>
+<ol type="1">
+<li>How many variants are called using each sequencing technology and how many are in the gold standard? <strong>(5pts)</strong></li>
+<li>How many true positive, false positive and false negative variants are present from using the different sequencing technology? <strong>(5pts)</strong></li>
+<li>Calculate the precision and recall for each sequencing technology <strong>(5pts)</strong></li>
+<li>Calculate the F1 score for each sequencing technology <strong>(5pts)</strong></li>
+<li>Make a grouped barplot of each metric and each sequencing technology. Group bars by sequencing technology. Make one plot for TP, FP, FN; and another plot for precision, recall and F1 score (in percentage) <strong>(10pts)</strong></li>
+<li>Look at the distribution of false negatives and false positives along the genome per sequencing technology using a genomic window of 10kbp. Make a density plot or a histogram of FP and FN along the genome. X-axis is genome position as determined by the beginning of the window. Y-axis is the number of FP or FN. Is there any pattern in the distribution? Are there any areas with high FP and FN? Calculate recall, precision and F1 for each genomic window. Are there any areas with low recall/precision/F1? Give approximate genomic coordinates <strong>(20pts)</strong></li>
+<li>Repeat the analysis using genomic windows of 10kpb and a 5000bp window overlap. You can find this in the <code>bedtools makewindows</code> command help. Repeat the plot of the previous question. How has the plot change? Is there any pattern in the distribution? Are there any areas with high FP and FN? Calculate recall, precision and F1 for each genomic window. Are there any areas with low recall/precision/F1? Give approximate genomic coordinates <strong>(20pts)</strong></li>
+</ol>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/trgn-515\.github\.io\/course-website\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

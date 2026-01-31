@@ -1,0 +1,119 @@
+[
+  {
+    "objectID": "modules.html",
+    "href": "modules.html",
+    "title": "Modules",
+    "section": "",
+    "text": "Here is a list of the course modules."
+  },
+  {
+    "objectID": "modules.html#module-1",
+    "href": "modules.html#module-1",
+    "title": "Modules",
+    "section": "Module 1",
+    "text": "Module 1\n\nSequencing Technologies"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Welcome to TRGN 515",
+    "section": "",
+    "text": "This is the central hub for TRGN 515: Next Generation Sequencing.\nPlease select a module from the sidebar to begin."
+  },
+  {
+    "objectID": "modules/1_sequencing_techs/1_sequencing_techs.html",
+    "href": "modules/1_sequencing_techs/1_sequencing_techs.html",
+    "title": "Assignment 1: Next Generation Sequencing Technologies",
+    "section": "",
+    "text": "Due date: February 12th 2026\n\nDNA sequencing can be broadly defined as the determination of the identity and order of nucleic acid residues in biological samples. Bioinformatic analysis and sequencing results are greatly affected by the choice of sequencing technology. Sequencing technologies can be broadly categorized in three groups:\n\nFirst-Generation Sequencing\n\nFirst-generation sequencing methods, mostly notably Sanger sequencing, relied on using radio- or fluorescently-labelled dNTPs or oligonucleotides before electrophoretic analysis.\n\nSecond-Generation Sequencing\n\nSecond-generation sequencing is characterized by its high throughput due to the parallelisation of a large number of reactions, sequencing thousands to millions of DNA fragments. Second-Generation sequencing includes the current sequencing leader, Illumina.\n\nThird-Generation Sequencing\n\nThird-generation sequencing technologies include those capable of sequencing single molecules, so they don’t require DNA amplification. The two most common third-generation sequencing technologies include PacBio (Pacific Biosciences) and ONT (Oxford Nanopore).\n\n\n\n\n\n\n\n\n\n\n\n\n\nGeneration\nSequencing Technology\nYear\nCompany\nAvg Read Length\nCost per Gigabase\n\n\n\n\nFirst Generation\nSanger Sequencing\n1977\nFrederick Sanger\n~800 bp\nVery High (&gt;$1000)\n\n\nSecond Generation\n454 Sequencing\n2005\nRoche\n~400 bp\nHigh ($100 - $500)\n\n\n\nIllumina (Solexa)\n2006\nIllumina\n~150-300 bp\nLow ($1 - $10)\n\n\n\nIon Torrent\n2010\nThermo Fisher\n~200 bp\nMedium ($10 - $50)\n\n\nThird Generation\nPacBio SMRT\n2009\nPacific Biosciences\n10,000+ bp\nHigh ($50 - $200)\n\n\n\nOxford Nanopore\n2014\nONT\n10,000+ bp\nMedium-High ($10-$100)\n\n\n\nWe will use a human genome standard (HG002) that has been extremely well-characterized as our gold standard. The HG002 genome assembly is part of an effort hosted by NIST that includes The Telomere-to-Telomere Consortium, the Human Pangenome Reference Consortium and the Genome in a Bottle Consortium, to sequence, assemble and polish the HG002 (also known as GM24385 and huAA53E0) cell line.\nSome reference papers regarding this dataset:\n\nZook, J., Catoe, D., McDaniel, J. et al. Extensive sequencing of seven human genomes to characterize benchmark reference materials. Sci Data 3, 160025 (2016). https://doi.org/10.1038/sdata.2016.25\nZook, J.M., McDaniel, J., Olson, N.D. et al. An open resource for accurately benchmarking small variant and reference calls. Nat Biotechnol 37, 561–566 (2019). https://doi.org/10.1038/s41587-019-0074-6\n\nWe will compare the characteristics and SNP calls for three sequencing technologies: Illumina, PacBio HiFi, and Nanopore.",
+    "crumbs": [
+      "Home",
+      "Module 1: Sequencing technologies",
+      "Assignment 1: Next Generation Sequencing Technologies"
+    ]
+  },
+  {
+    "objectID": "modules/1_sequencing_techs/1_sequencing_techs.html#quality-check-for-short-reads---fastqc",
+    "href": "modules/1_sequencing_techs/1_sequencing_techs.html#quality-check-for-short-reads---fastqc",
+    "title": "Assignment 1: Next Generation Sequencing Technologies",
+    "section": "Quality check for short-reads - FastQC",
+    "text": "Quality check for short-reads - FastQC\nThe most widely used tool for visually evaluating fastq data is FastQC.\nfastqc # The main command call\n--extract # Extract files from output\n-o &lt;output_dir&gt; # Directory for output files\n-d &lt;temporary_dir&gt; # Directory for temporary files\n&lt;input.fq&gt; # Input fasta file",
+    "crumbs": [
+      "Home",
+      "Module 1: Sequencing technologies",
+      "Assignment 1: Next Generation Sequencing Technologies"
+    ]
+  },
+  {
+    "objectID": "modules/1_sequencing_techs/1_sequencing_techs.html#quality-check-for-long-reads",
+    "href": "modules/1_sequencing_techs/1_sequencing_techs.html#quality-check-for-long-reads",
+    "title": "Assignment 1: Next Generation Sequencing Technologies",
+    "section": "Quality check for long-reads",
+    "text": "Quality check for long-reads\nYou can visualize the quality of your long reads using FastQC, but there’s also specific software built for long-reads like NanoPlot.\nNanoPlot\n--fastq &lt;input.fq&gt; # Input in fastq file\n-o &lt;output_dir&gt; # Output directory\n--loglength # Set up for log read length in the plots\n\n\n\n\n\n\nNoteTask 2: Run FastQC on Illumina reads\n\n\n\nRun FastqQC on the Illumina reads and answer the questions. Focus only on the following figures:\n\nPer base sequence quality\nPer sequence quality scores\nPer base sequence content\nPer sequence GC content\nPer base N content\nSequence Length Distribution\nOverrepresented sequences\nAdapter Content\n\nAnswer the following questions for each plot:\n\nWhat is the plot representing? (10pts)\nWhat quality issue (if any) is the plot showing? (10pts)\nHow would you solve the issue (if any) represented in the plot? (10pts)\n\nAnswer the questions for the forward reads only.",
+    "crumbs": [
+      "Home",
+      "Module 1: Sequencing technologies",
+      "Assignment 1: Next Generation Sequencing Technologies"
+    ]
+  },
+  {
+    "objectID": "modules/1_sequencing_techs/1_sequencing_techs.html#qc-for-short-reads---trimmomatic",
+    "href": "modules/1_sequencing_techs/1_sequencing_techs.html#qc-for-short-reads---trimmomatic",
+    "title": "Assignment 1: Next Generation Sequencing Technologies",
+    "section": "QC for short-reads - Trimmomatic",
+    "text": "QC for short-reads - Trimmomatic\nWe will use Trimmomatic for this.\ntrimmomatic PE # Main trimmomatic function for paired-ends reads\n&lt;input_1.fastq.gz&gt; # Forward reads\n&lt;input_2.fastq.gz&gt; # Reverse reads\n&lt;output_1.fastq.gz&gt; # Output forward reads\n&lt;output_unclassified_1.fastq.gz&gt; # Output unclassified reads from forward file\n&lt;output_2.fastq.gz&gt; # Output reverse reads\n&lt;output_unclassified_2.fastq.gz&gt; # Output unclassified reads from reverse file\nSLIDINGWINDOW:&lt;window_size&gt;:&lt;quality&gt; \nLEADING:&lt;quality&gt; \nTRAILING:&lt;quality&gt; \nAVGQUAL:&lt;quality&gt; \nMINLEN:&lt;length&gt; \nILLUMINACLIP:&lt;/path/to/adapter_file.fa&gt;:&lt;seed_mismatches&gt;:palindrome_clip_threshold&gt;:&lt;simple_clip_threshold&gt;\n\n\n\n\n\n\nNoteTask 3: Run FastQC after running Trimmomatic\n\n\n\nCompare the FastqQC plots before and after.\nAnswer the following questions for each plot:\n\nWhat has changed after running trimmomatic? (10pts)\nWhy did the change happen? (10pts)",
+    "crumbs": [
+      "Home",
+      "Module 1: Sequencing technologies",
+      "Assignment 1: Next Generation Sequencing Technologies"
+    ]
+  },
+  {
+    "objectID": "modules/1_sequencing_techs/1_sequencing_techs.html#short-read-mapping",
+    "href": "modules/1_sequencing_techs/1_sequencing_techs.html#short-read-mapping",
+    "title": "Assignment 1: Next Generation Sequencing Technologies",
+    "section": "Short-read mapping",
+    "text": "Short-read mapping\n\nBWA\nTo run BWA:\nbwa mem # Main call for the mem algorithm within BWA\n&lt;reference_genome&gt; # Reference genome\n&lt;fastq1&gt; # Forward reads\n&lt;fastq2&gt; # Reverse reads\nTo add read groups on bwa mem, use the -R flag.\nbwa mem -R \"@RG\\tID:$rg_id\\tPU:$pu\\tPL:$pl\\tSM:$sample\" \nWe can combine everything into one command using bash pipes:\nbwa mem &lt;reference_genome&gt; &lt;fastq1_path&gt; &lt;fastq2_path&gt; | samtools view -bS - | samtools sort -@ &lt;n&gt; -T &lt;path&gt; -O bam -o &lt;out_bam_path&gt;\n\nsamtools index &lt;out_bam_path&gt;\n\n\n\n\n\n\nNoteTask 5: Complete the for loop to do the alignment\n\n\n\nfor _ in _; do\n    # code\ndone\n\nAttach the completed loop into your assignment. (5pts)",
+    "crumbs": [
+      "Home",
+      "Module 1: Sequencing technologies",
+      "Assignment 1: Next Generation Sequencing Technologies"
+    ]
+  },
+  {
+    "objectID": "modules/1_sequencing_techs/1_sequencing_techs.html#long-read-mapping",
+    "href": "modules/1_sequencing_techs/1_sequencing_techs.html#long-read-mapping",
+    "title": "Assignment 1: Next Generation Sequencing Technologies",
+    "section": "Long-read mapping",
+    "text": "Long-read mapping\nThe most widely used long-read mapper is minimap2.\nminimap2\n&lt;reference_genome&gt;\n&lt;long_reads.fastq.gz&gt;\n\n\n\n\n\n\nNoteTask 6: Map reads to the reference genome\n\n\n\nUse bwa mem for short reads and minimap2 for long-reads. For minimap2, choose the appropriate platform in the presets.\nIn both cases, create a pipe with the output of the mapper and samtools for coordinate sorting.\nFor the final output, any read that maps to chromosomes other than the chromosome you are working with should be considered ambiguous. Use the right command to keep only reads that mapped to your chromosome of interest.\n\nCreate a slurm array job to run the previous code. Attach your code to the assignment (10pts)",
+    "crumbs": [
+      "Home",
+      "Module 1: Sequencing technologies",
+      "Assignment 1: Next Generation Sequencing Technologies"
+    ]
+  },
+  {
+    "objectID": "modules/1_sequencing_techs/1_sequencing_techs.html#variant-calling-in-short-reads---bcftools",
+    "href": "modules/1_sequencing_techs/1_sequencing_techs.html#variant-calling-in-short-reads---bcftools",
+    "title": "Assignment 1: Next Generation Sequencing Technologies",
+    "section": "Variant calling in short-reads - BCFtools",
+    "text": "Variant calling in short-reads - BCFtools\nFor Illumina reads, we will use BCFtools for SNP calling.\nbcftools mpileup # Pileup function\n-f &lt;reference_genome&gt;\n-a AD,INFO/AD,ADF,INFO/ADF,ADR,INFO/ADR,DP,SP # Add tags useful for filtering\n-q &lt;n&gt; # Skip reads with read quality below n\n-Q &lt;n&gt; # Skip bases with base quality below n\n-Ou # Uncompressed output\n&lt;input_bam&gt;\n&lt;output_vcf&gt;\nbcftools call # Main bcftools call function\n-m # Multiallelic calling method\n-Oz # Output in compressed format\n&lt;output.vcf.gz&gt;\n\n\n\n\n\n\nNoteTask 7: Complete the Variant Calling command\n\n\n\nPipe the commands mpileup, call, norm and filter into one command to stream from the input bam file to the final VCF output.\nbcftools mpileup | ...\nUse the commands following these instructions. You will have to look at the help for each command:\n\nFor bcftools mpileup:\n\nUse all reads regardless of mapping quality\nKeep only bases with base quality higher or equal than 20\n\nFor bcftools call:\n\nPrint variant sites only\nDo not report indels\nKeep all alternate alleles\n\n\nApply the following filter tags in bcftools filter:\n\n‘MinMQ’ for MQ lower than 20\n‘QUAL’ for QUAL lower than 20\n‘minAD’ for allele depth lower than 20\n‘minADF’ for allele forward depth lower than 5\n‘minADR’ for allele reverse depth lower than 5\n‘MinDP’ for total depth lower than 50",
+    "crumbs": [
+      "Home",
+      "Module 1: Sequencing technologies",
+      "Assignment 1: Next Generation Sequencing Technologies"
+    ]
+  },
+  {
+    "objectID": "modules/1_sequencing_techs/1_sequencing_techs.html#long-read-variant-calling",
+    "href": "modules/1_sequencing_techs/1_sequencing_techs.html#long-read-variant-calling",
+    "title": "Assignment 1: Next Generation Sequencing Technologies",
+    "section": "Long-read variant calling",
+    "text": "Long-read variant calling\n\n\n\n\n\n\nNoteTask 8: Call SNPs against the human reference genome\n\n\n\nTo be consistent between sequencing platforms, use a variant caller that’s platform agnostic (i.e: it’s not optimized for any specific sequencing technology or read type). This includes: BCFtools, GATK, FreeBayes or DeepVariant.\nYou can choose any variant caller you prefer, but run the same caller for all three sequencing technologies (Illumina, PacBio HiFi, ONT). Use any filters you see necessary.\nFor this task, report your variant calling command and your choice of options and filters.\n\nCreate a slurm array job to run the SNP calling code. Call only SNPs. Attach your code to the assignment (5pts)",
+    "crumbs": [
+      "Home",
+      "Module 1: Sequencing technologies",
+      "Assignment 1: Next Generation Sequencing Technologies"
+    ]
+  }
+]

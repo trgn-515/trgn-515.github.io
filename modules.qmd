@@ -1,0 +1,8 @@
+---
+title: "Modules"
+---
+
+Here is a list of the course modules.
+
+## Module 1
+* [Sequencing Technologies](modules/1_sequencing_techs/1_sequencing_techs.qmd)
