@@ -15,7 +15,7 @@ website:
         text: Modules
     right:
       - icon: github
-        href: https://github.com/TRGN-515-2026
+        href: https://github.com/trgn-515
         aria-label: GitHub
 
   # The side navigation menu
