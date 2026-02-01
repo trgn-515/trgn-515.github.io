@@ -41,6 +41,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-29a19b5acbeac218a8c860e48340d4df.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/quarto-contrib/fontawesome6-6.7.2/all.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/fontawesome6-6.7.2/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -160,7 +162,7 @@ ul.task-list li input[type="checkbox"] {
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content page-columns page-full" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -182,11 +184,10 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="course-content" class="level2 page-columns page-full">
+<section id="course-content" class="level2">
 <h2 class="anchored" data-anchor-id="course-content">Course content</h2>
 <p>Below is the schedule of modules, slides, and assignments for the semester. Links will be updated as we progress through the course.</p>
-<div class="column-page">
-<table class="table table-striped table-hover caption-top">
+<table class="table table-hover caption-top">
 <colgroup>
 <col style="width: 40%">
 <col style="width: 15%">
@@ -204,25 +205,54 @@ ul.task-list li input[type="checkbox"] {
 <tbody>
 <tr class="odd">
 <td style="text-align: left;"><strong>Module 1: Sequencing Technologies</strong><br>Overview of NGS, Nanopore, and PacBio.</td>
-<td style="text-align: center;"><a href="slides/01_sequencing.html">{{&lt; fa tv &gt;}} HTML</a><br><a href="slides/01_sequencing.pdf">{{&lt; fa file-pdf &gt;}} PDF</a></td>
-<td style="text-align: center;"><a href="./modules/1_sequencing_techs/1_sequencing_techs.html">{{&lt; fa pen-to-square &gt;}} Assignment 1</a></td>
-<td style="text-align: left;"><strong>Feb 12</strong></td>
+<td style="text-align: center;"><a href="slides/01_sequencing.html"><i class="fa-solid fa-tv" aria-label="tv"></i> HTML</a><br><a href="slides/01_sequencing.pdf"><i class="fa-solid fa-file-pdf" aria-label="file-pdf"></i> PDF</a></td>
+<td style="text-align: center;"><a href="./modules/1_sequencing_techs/1_sequencing_techs.html"><i class="fa-solid fa-pen-to-square" aria-label="pen-to-square"></i> Assignment 1</a></td>
+<td style="text-align: left;"><strong>Feb 5</strong></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><strong>Module 2: Alignment</strong><br>BWA, Minimap2, and SAM/BAM formats.</td>
-<td style="text-align: center;"><a href="#">{{&lt; fa tv &gt;}} HTML</a></td>
-<td style="text-align: center;"><a href="#">{{&lt; fa pen-to-square &gt;}} Assignment 2</a></td>
-<td style="text-align: left;">TBD</td>
+<td style="text-align: left;"><strong>Module 2: Structural Variant Detection</strong><br>Definition and types of structural variants (SV), detection of indels and SV.</td>
+<td style="text-align: center;"><a href="#"><i class="fa-solid fa-tv" aria-label="tv"></i> HTML</a><br><a href="#"><i class="fa-solid fa-file-pdf" aria-label="file-pdf"></i> PDF</a></td>
+<td style="text-align: center;"><a href="#"><i class="fa-solid fa-pen-to-square" aria-label="pen-to-square"></i> Assignment 2</a></td>
+<td style="text-align: left;"><strong>Feb 19</strong></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><strong>Module 3: Variant Calling</strong><br>GATK, DeepVariant, and VCF files.</td>
-<td style="text-align: center;"><a href="#">{{&lt; fa tv &gt;}} HTML</a></td>
-<td style="text-align: center;"><a href="#">{{&lt; fa pen-to-square &gt;}} Assignment 3</a></td>
-<td style="text-align: left;">TBD</td>
+<td style="text-align: left;"><strong>Module 3: Variant Functional Annotation</strong><br>Variant effect prediction, linear and logistic regression.</td>
+<td style="text-align: center;"><a href="#"><i class="fa-solid fa-tv" aria-label="tv"></i> HTML</a><br><a href="#"><i class="fa-solid fa-file-pdf" aria-label="file-pdf"></i> PDF</a></td>
+<td style="text-align: center;"><a href="#"><i class="fa-solid fa-pen-to-square" aria-label="pen-to-square"></i> Assignment 3</a></td>
+<td style="text-align: left;"><strong>Mar 5</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Module 4: Genome Assembly</strong><br>Introduction to genome assembly, QC, and hybrid-assembly.</td>
+<td style="text-align: center;"><a href="#"><i class="fa-solid fa-tv" aria-label="tv"></i> HTML</a><br><a href="#"><i class="fa-solid fa-file-pdf" aria-label="file-pdf"></i> PDF</a></td>
+<td style="text-align: center;"><a href="#"><i class="fa-solid fa-pen-to-square" aria-label="pen-to-square"></i> Assignment 4</a></td>
+<td style="text-align: left;"><strong>Mar 26</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Module 5: GWAS</strong><br>Introduction to GWAS, population structure, and linkage disequilibrium.</td>
+<td style="text-align: center;"><a href="#"><i class="fa-solid fa-tv" aria-label="tv"></i> HTML</a><br><a href="#"><i class="fa-solid fa-file-pdf" aria-label="file-pdf"></i> PDF</a></td>
+<td style="text-align: center;"><a href="#"><i class="fa-solid fa-pen-to-square" aria-label="pen-to-square"></i> Assignment 5</a></td>
+<td style="text-align: left;"><strong>Apr 9</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Module 6: Epigenetics - Methylation</strong><br>Methylation detection with 3rd Generation sequencing.</td>
+<td style="text-align: center;"><a href="#"><i class="fa-solid fa-tv" aria-label="tv"></i> HTML</a><br><a href="#"><i class="fa-solid fa-file-pdf" aria-label="file-pdf"></i> PDF</a></td>
+<td style="text-align: center;"><a href="#"><i class="fa-solid fa-pen-to-square" aria-label="pen-to-square"></i> Assignment 6</a></td>
+<td style="text-align: left;"><strong>Apr 23</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Module 7: Metagenomics I</strong><br>Introduction to metagenomics, 16S amplification, and taxonomy.</td>
+<td style="text-align: center;"><a href="#"><i class="fa-solid fa-tv" aria-label="tv"></i> HTML</a><br><a href="#"><i class="fa-solid fa-file-pdf" aria-label="file-pdf"></i> PDF</a></td>
+<td style="text-align: center;"><a href="#"><i class="fa-solid fa-pen-to-square" aria-label="pen-to-square"></i> Assignment 7</a></td>
+<td style="text-align: left;"><strong>Apr 30</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Module 8: Metagenomics II</strong><br>Whole-genome amplification, MAGs, and functional analysis.</td>
+<td style="text-align: center;"><a href="#"><i class="fa-solid fa-tv" aria-label="tv"></i> HTML</a><br><a href="#"><i class="fa-solid fa-file-pdf" aria-label="file-pdf"></i> PDF</a></td>
+<td style="text-align: center;"><a href="#"><i class="fa-solid fa-pen-to-square" aria-label="pen-to-square"></i> Assignment 8</a></td>
+<td style="text-align: left;"><strong>Apr 30</strong></td>
 </tr>
 </tbody>
 </table>
-</div>
 
 
 </section>
