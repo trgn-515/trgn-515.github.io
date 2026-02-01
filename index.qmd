@@ -11,14 +11,15 @@ format:
 Below is the schedule of modules, slides, and assignments for the semester. 
 Links will be updated as we progress through the course.
 
-::: {.column-page}
-
 | Module | Slides | Assignment | Due Date |
 |:---|:---:|:---:|:---|
-| **Module 1: Sequencing Technologies**<br>Overview of NGS, Nanopore, and PacBio. | [{{< fa tv >}} HTML](slides/01_sequencing.html)<br>[{{< fa file-pdf >}} PDF](slides/01_sequencing.pdf) | [{{< fa pen-to-square >}} Assignment 1](modules/1_sequencing_techs/1_sequencing_techs.qmd) | **Feb 12** |
-| **Module 2: Alignment**<br>BWA, Minimap2, and SAM/BAM formats. | [{{< fa tv >}} HTML](#) | [{{< fa pen-to-square >}} Assignment 2](#) | TBD |
-| **Module 3: Variant Calling**<br>GATK, DeepVariant, and VCF files. | [{{< fa tv >}} HTML](#) | [{{< fa pen-to-square >}} Assignment 3](#) | TBD |
+| **Module 1: Sequencing Technologies**<br>Overview of NGS, Nanopore, and PacBio. | [{{< fa tv >}} HTML](slides/01_sequencing.html)<br>[{{< fa file-pdf >}} PDF](slides/01_sequencing.pdf) | [{{< fa pen-to-square >}} Assignment 1](modules/1_sequencing_techs/1_sequencing_techs.qmd) | **Feb 5** |
+| **Module 2: Structural Variant Detection**<br>Definition and types of structural variants (SV), detection of indels and SV. | [{{< fa tv >}} HTML](#)<br>[{{< fa file-pdf >}} PDF](#) | [{{< fa pen-to-square >}} Assignment 2](#) | **Feb 19** |
+| **Module 3: Variant Functional Annotation**<br>Variant effect prediction, linear and logistic regression. | [{{< fa tv >}} HTML](#)<br>[{{< fa file-pdf >}} PDF](#) | [{{< fa pen-to-square >}} Assignment 3](#) | **Mar 5** |
+| **Module 4: Genome Assembly**<br>Introduction to genome assembly, QC, and hybrid-assembly. | [{{< fa tv >}} HTML](#)<br>[{{< fa file-pdf >}} PDF](#) | [{{< fa pen-to-square >}} Assignment 4](#) | **Mar 26** |
+| **Module 5: GWAS**<br>Introduction to GWAS, population structure, and linkage disequilibrium. | [{{< fa tv >}} HTML](#)<br>[{{< fa file-pdf >}} PDF](#) | [{{< fa pen-to-square >}} Assignment 5](#) | **Apr 9** |
+| **Module 6: Epigenetics - Methylation**<br>Methylation detection with 3rd Generation sequencing. | [{{< fa tv >}} HTML](#)<br>[{{< fa file-pdf >}} PDF](#) | [{{< fa pen-to-square >}} Assignment 6](#) | **Apr 23** |
+| **Module 7: Metagenomics I**<br>Introduction to metagenomics, 16S amplification, and taxonomy. | [{{< fa tv >}} HTML](#)<br>[{{< fa file-pdf >}} PDF](#) | [{{< fa pen-to-square >}} Assignment 7](#) | **Apr 30** |
+| **Module 8: Metagenomics II**<br>Whole-genome amplification, MAGs, and functional analysis. | [{{< fa tv >}} HTML](#)<br>[{{< fa file-pdf >}} PDF](#) | [{{< fa pen-to-square >}} Assignment 8](#) | **Apr 30** |
 
-: {tbl-colwidths="[40,15,20,25]" .table .table-striped .table-hover}
-
-:::
+: {tbl-colwidths="[40,15,20,25]" .table .table-hover}
