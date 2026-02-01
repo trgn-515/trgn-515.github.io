@@ -1,7 +1,24 @@
 ---
-title: "Welcome to TRGN 515"
+title: "TRGN 515: Advanced Human Genomic Analysis Methods"
+subtitle: "Spring 2026 | University of Southern California"
+format:
+  html:
+    toc: false
 ---
 
-This is the central hub for TRGN 515: Next Generation Sequencing.
+## Course content
 
-Please select a module from the sidebar to begin.
+Below is the schedule of modules, slides, and assignments for the semester. 
+Links will be updated as we progress through the course.
+
+::: {.column-page}
+
+| Module | Slides | Assignment | Due Date |
+|:---|:---:|:---:|:---|
+| **Module 1: Sequencing Technologies**<br>Overview of NGS, Nanopore, and PacBio. | [{{< fa tv >}} HTML](slides/01_sequencing.html)<br>[{{< fa file-pdf >}} PDF](slides/01_sequencing.pdf) | [{{< fa pen-to-square >}} Assignment 1](modules/1_sequencing_techs/1_sequencing_techs.qmd) | **Feb 12** |
+| **Module 2: Alignment**<br>BWA, Minimap2, and SAM/BAM formats. | [{{< fa tv >}} HTML](#) | [{{< fa pen-to-square >}} Assignment 2](#) | TBD |
+| **Module 3: Variant Calling**<br>GATK, DeepVariant, and VCF files. | [{{< fa tv >}} HTML](#) | [{{< fa pen-to-square >}} Assignment 3](#) | TBD |
+
+: {tbl-colwidths="[40,15,20,25]" .table .table-striped .table-hover}
+
+:::
