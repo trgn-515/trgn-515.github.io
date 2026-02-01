@@ -33,6 +33,7 @@ website:
 format:
   html:
     theme: cosmo
+    highlight-style: arrow
     css: styles.css
     toc: true
     toc-depth: 3

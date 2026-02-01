@@ -127,3 +127,22 @@ h3 + .callout-note {
 h3 + .callout-note .callout-header {
   display: none !important;
 }
+
+/* ==========================================================================
+   Syntax Highlighting Overrides (Fixing the "Ugly Red")
+   ========================================================================== */
+
+/* Change Strings ("...") from Red to Teal */
+code span.st {
+  color: #20b2aa !important; /* Light Sea Green */
+}
+
+/* Change Variables ($HOME) from Red/Dark to Blue */
+code span.va {
+  color: #007bff !important; /* Standard Bootstrap Blue */
+}
+
+/* Optional: Change Keywords (function, if, then) to Purple */
+code span.kw {
+  color: #6f42c1 !important;
+}
