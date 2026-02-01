@@ -12,7 +12,7 @@ div.callout {
 div.callout-note {
   border-left: none !important;
   /* INCREASED BORDER THICKNESS HERE (1px -> 2px) */
-  border: 3px solid #59879b !important;    
+  border: 3px solid #59879B !important;    
   background-color: #f3f9fb !important;
   /* border: 3px solid #b8daff !important;    
   background-color: #f0f7ff !important; */
@@ -92,4 +92,38 @@ pre.sourceCode {
   border: none !important;
   margin: 0;
   padding: 0;
+}
+
+
+/* 1. Style the H3 (Exercise Title) to look like the top of the box */
+h3 {
+  /* Match the box styling */
+  background-color: #f0f7ff; /* Match Note Background */
+  border: 3px solid #59879B; /* Match Note Border */
+  border-bottom: none;       /* Remove bottom border to merge */
+  color: #4C7485;            /* Blue Text */
+  /* color: #007bff;            Blue Text */
+  
+  /* Shaping */
+  padding: 10px 15px;        /* Add padding inside the header */
+  margin-bottom: 0px !important; /* Touch the box below */
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  
+  /* Font */
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+/* 2. Style the Box to look like the bottom of the header */
+h3 + .callout-note {
+  margin-top: 0px !important;    /* Ensure it touches the header */
+  border-top: none !important;   /* Remove top border to complete merge */
+  border-top-left-radius: 0px;   /* Flatten top corners */
+  border-top-right-radius: 0px;
+}
+
+/* 3. Hide the internal "Note" header when merged */
+h3 + .callout-note .callout-header {
+  display: none !important;
 }
