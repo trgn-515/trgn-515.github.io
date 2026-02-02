@@ -221,19 +221,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#why-version-control" id="toc-why-version-control" class="nav-link" data-scroll-target="#why-version-control">1. Why version control?</a></li>
   <li><a href="#setting-up-git" id="toc-setting-up-git" class="nav-link" data-scroll-target="#setting-up-git">2. Setting up Git</a></li>
   <li><a href="#the-git-workflow-clone-edit-commit-push" id="toc-the-git-workflow-clone-edit-commit-push" class="nav-link" data-scroll-target="#the-git-workflow-clone-edit-commit-push">3. The git workflow: clone, edit, commit, push</a>
-  <ul class="collapse">
+  <ul>
   <li><a href="#step-1-connect-git-repository-to-the-cluster." id="toc-step-1-connect-git-repository-to-the-cluster." class="nav-link" data-scroll-target="#step-1-connect-git-repository-to-the-cluster.">Step 1: Connect git repository to the cluster.</a>
   <ul class="collapse">
-  <li><a href="#option-1-clone" id="toc-option-1-clone" class="nav-link" data-scroll-target="#option-1-clone">Option 1: Clone</a></li>
-  <li><a href="#option-2-initiate-existing-folder" id="toc-option-2-initiate-existing-folder" class="nav-link" data-scroll-target="#option-2-initiate-existing-folder">Option 2: Initiate existing Folder</a></li>
+  <li><a href="#option-1-clone" id="toc-option-1-clone" class="nav-link" data-scroll-target="#option-1-clone"><strong>Option 1: Clone</strong></a></li>
+  <li><a href="#option-2-initiate-existing-folder" id="toc-option-2-initiate-existing-folder" class="nav-link" data-scroll-target="#option-2-initiate-existing-folder"><strong>Option 2: Initiate existing Folder</strong></a></li>
   </ul></li>
   <li><a href="#step-2-edit-code" id="toc-step-2-edit-code" class="nav-link" data-scroll-target="#step-2-edit-code">Step 2: Edit code</a></li>
   <li><a href="#step-3-stage-and-commit-save" id="toc-step-3-stage-and-commit-save" class="nav-link" data-scroll-target="#step-3-stage-and-commit-save">Step 3: Stage and Commit (Save)</a></li>
   <li><a href="#step-4-push-upload" id="toc-step-4-push-upload" class="nav-link" data-scroll-target="#step-4-push-upload">Step 4: Push (Upload)</a></li>
   </ul></li>
   <li><a href="#setting-up-assignment-1" id="toc-setting-up-assignment-1" class="nav-link" data-scroll-target="#setting-up-assignment-1">Setting Up Assignment 1</a>
-  <ul class="collapse">
+  <ul>
   <li><a href="#task-1-create-the-directory-structure" id="toc-task-1-create-the-directory-structure" class="nav-link" data-scroll-target="#task-1-create-the-directory-structure">Task 1: Create the Directory Structure</a></li>
+  <li><a href="#task-2-copy-the-template" id="toc-task-2-copy-the-template" class="nav-link" data-scroll-target="#task-2-copy-the-template">Task 2: Copy the Template</a></li>
+  <li><a href="#task-3-render-and-submit" id="toc-task-3-render-and-submit" class="nav-link" data-scroll-target="#task-3-render-and-submit">Task 3: Render and Submit</a></li>
   </ul></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="0_intro_git.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
@@ -311,24 +313,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>To submit an assignment in this class, you need to follow these four steps.</p>
 <p>Before starting, you need to accept the assignment via GitHub Classroom using the following link:</p>
 <pre><code>https://classroom.github.com/a/nMEEuL7F</code></pre>
-<p>If you already have a github account, you can link it. Otherwise, you need to create one. Once you accept the link, you have to select your name from the roster. Your repository will be automatically created.</p>
+<p>If you already have a github account, you can link it.</p>
+<p>If you don’t have a github account, you need to create one. Clicking the link will direct you to log in or create an account. Once you create your account, verify your account using the code sent to your email.</p>
+<p>Once you accept the link, authorize GitHub classroom.</p>
+<p>Finally, you have to select your username from the roster. Accept the assignment. Your repository will be automatically created.</p>
+<p>You now have a repository on our github classroom. To change the name of this repository: 1) click on your repository; 2) Settings &gt; Repository name; 3) Change and click “Rename” twice.</p>
 <section id="step-1-connect-git-repository-to-the-cluster." class="level2">
 <h2 class="anchored" data-anchor-id="step-1-connect-git-repository-to-the-cluster.">Step 1: Connect git repository to the cluster.</h2>
 <p>You only need do this once per assignment. It downloads the repository from GitHub to your local machine or, if the directory already exists in your local machine, it links it to the github remote repository.</p>
-<section id="option-1-clone" class="level3">
-<h3 class="anchored" data-anchor-id="option-1-clone">Option 1: Clone</h3>
+<section id="option-1-clone" class="level4">
+<h4 class="anchored" data-anchor-id="option-1-clone"><strong>Option 1: Clone</strong></h4>
 <p>Use this option if you are starting fresh and you don’t have an existing local repository. You already have a folder in the USC server so we don’t need to do this.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Navigate to where you want to keep your coursework</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /scratch1/username</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Clone your specific repository (replace URL with your classroom repo link)</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/trgn-515-2026/student-repo-USERNAME.git</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/trgn-515-2026/USERNAME.git</span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Enter the directory</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> student-repo-YOURNAME</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> USERNAME</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="option-2-initiate-existing-folder" class="level3">
-<h3 class="anchored" data-anchor-id="option-2-initiate-existing-folder">Option 2: Initiate existing Folder</h3>
+<section id="option-2-initiate-existing-folder" class="level4">
+<h4 class="anchored" data-anchor-id="option-2-initiate-existing-folder"><strong>Option 2: Initiate existing Folder</strong></h4>
 <p>Since you already have a folder for your user on the cluster, we don’t need to “clode” one from github. However, you need to turn your normal folder into a git repository.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Enter your folder</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /scratch1/username</span>
@@ -338,7 +344,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> branch <span class="at">-M</span> main</span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Link to GitHub (Replace URL with your repo link)</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote add origin https://github.com/TRGN-515-2026/student-repo-USERNAME.git</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote add origin https://github.com/TRGN-515-2026/USERNAME.git</span>
 <span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Pull any existing files (like the README) from GitHub</span></span>
 <span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull origin main <span class="at">--allow-unrelated-histories</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -358,11 +364,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check which files have changed</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a specific file...</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add my_script.py</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Add everything in the current folder</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .</span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># ...OR add everything in the current folder</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># or add a specific file</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add my_script.py</span>
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the snapshot with a message</span></span>
 <span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Completed exercise 1"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -392,6 +398,9 @@ Note
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> 1_sequencing_techs</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
+</section>
+<section id="task-2-copy-the-template" class="level3">
+<h3 class="anchored" data-anchor-id="task-2-copy-the-template">Task 2: Copy the Template</h3>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -402,9 +411,15 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Task 2: Copy the Template Download the assignment_template.qmd file provided in Canvas (or copy it from the section below).</p>
-<p>Save it inside modules/1_sequencing_techs/.</p>
-<p>Rename the file to 1_sequencing_techs.qmd. :::</p>
+<p>Download the assignment_template.md file from:</p>
+<p><code>https://github.com/trgn-515/trgn-515.github.io/blob/main/modules/0_intro_git/assignment_template.qmd</code></p>
+<p>Save it inside <code>1_sequencing_techs</code></p>
+<p>Rename the file to 1_sequencing_techs.md.</p>
+</div>
+</div>
+</section>
+<section id="task-3-render-and-submit" class="level3">
+<h3 class="anchored" data-anchor-id="task-3-render-and-submit">Task 3: Render and Submit</h3>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -415,29 +430,26 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Task 3: Render and Submit Open 1_sequencing_techs.qmd in RStudio or VS Code.</p>
+<p>Open 1_sequencing_techs.md in RStudio or VS Code.</p>
 <p>Change the author field to your name.</p>
 <p>Render the file to PDF.</p>
-<p>Use Git to push both the .qmd file and the generated .pdf to GitHub. :::</p>
-<p>The Commands You Will Use ```bash # 1. Check that Git sees your new files git status</p>
-<section id="add-the-new-folder-and-files" class="level1">
-<h1>2. Add the new folder and files</h1>
-<p>git add modules/1_sequencing_techs/</p>
-</section>
-<section id="commit-the-changes" class="level1">
-<h1>3. Commit the changes</h1>
-<p>git commit -m “Setup assignment 1 structure”</p>
-</section>
-<section id="submit" class="level1">
-<h1>4. Submit</h1>
-<p>git push origin main Once you have pushed, go to your GitHub repository URL in your browser. If you see the modules folder and your PDF, you have successfully submitted Assignment 0!</p>
-</section>
+<p>Use Git to push both the qmd file and the generated .pdf to GitHub.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Check that Git sees your new files</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Add the new folder and files</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add modules/1_sequencing_techs/</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Commit the changes</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Setup assignment 1 structure"</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Submit</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin main</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
+<p>Once you have pushed, go to your GitHub repository URL in your browser. If you see the modules folder and your PDF, you have successfully submitted Assignment 0!</p>
 
 
-</div>
-</div>
 </section>
 </section>
 

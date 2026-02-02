@@ -214,7 +214,7 @@
     "href": "modules/0_intro_git/0_intro_git.html#step-1-connect-git-repository-to-the-cluster.",
     "title": "Module 0: Git and GitHub",
     "section": "Step 1: Connect git repository to the cluster.",
-    "text": "Step 1: Connect git repository to the cluster.\nYou only need do this once per assignment. It downloads the repository from GitHub to your local machine or, if the directory already exists in your local machine, it links it to the github remote repository.\n\nOption 1: Clone\nUse this option if you are starting fresh and you don’t have an existing local repository. You already have a folder in the USC server so we don’t need to do this.\n# Navigate to where you want to keep your coursework\ncd /scratch1/username\n\n# Clone your specific repository (replace URL with your classroom repo link)\ngit clone https://github.com/trgn-515-2026/student-repo-USERNAME.git\n\n# Enter the directory\ncd student-repo-YOURNAME\n\n\nOption 2: Initiate existing Folder\nSince you already have a folder for your user on the cluster, we don’t need to “clode” one from github. However, you need to turn your normal folder into a git repository.\n# 1. Enter your folder\ncd /scratch1/username\n\n# 2. Initialize Git\ngit init\ngit branch -M main\n\n# 3. Link to GitHub (Replace URL with your repo link)\ngit remote add origin https://github.com/TRGN-515-2026/student-repo-USERNAME.git\n\n# 4. Pull any existing files (like the README) from GitHub\ngit pull origin main --allow-unrelated-histories",
+    "text": "Step 1: Connect git repository to the cluster.\nYou only need do this once per assignment. It downloads the repository from GitHub to your local machine or, if the directory already exists in your local machine, it links it to the github remote repository.\n\nOption 1: Clone\nUse this option if you are starting fresh and you don’t have an existing local repository. You already have a folder in the USC server so we don’t need to do this.\n# Navigate to where you want to keep your coursework\ncd /scratch1/username\n\n# Clone your specific repository (replace URL with your classroom repo link)\ngit clone https://github.com/trgn-515-2026/USERNAME.git\n\n# Enter the directory\ncd USERNAME\n\n\nOption 2: Initiate existing Folder\nSince you already have a folder for your user on the cluster, we don’t need to “clode” one from github. However, you need to turn your normal folder into a git repository.\n# 1. Enter your folder\ncd /scratch1/username\n\n# 2. Initialize Git\ngit init\ngit branch -M main\n\n# 3. Link to GitHub (Replace URL with your repo link)\ngit remote add origin https://github.com/TRGN-515-2026/USERNAME.git\n\n# 4. Pull any existing files (like the README) from GitHub\ngit pull origin main --allow-unrelated-histories",
     "crumbs": [
       "Home",
       "Module 0: Sequencing technologies",
@@ -238,7 +238,7 @@
     "href": "modules/0_intro_git/0_intro_git.html#step-3-stage-and-commit-save",
     "title": "Module 0: Git and GitHub",
     "section": "Step 3: Stage and Commit (Save)",
-    "text": "Step 3: Stage and Commit (Save)\nGit has a two-step saving process.\n\nAdd (Stage): Select which files you want to save.\nCommit: Actually save them with a message describing what you did.\n\n# Check which files have changed\ngit status\n\n# Add a specific file...\ngit add my_script.py\n\n# ...OR add everything in the current folder\ngit add .\n\n# Save the snapshot with a message\ngit commit -m \"Completed exercise 1\"",
+    "text": "Step 3: Stage and Commit (Save)\nGit has a two-step saving process.\n\nAdd (Stage): Select which files you want to save.\nCommit: Actually save them with a message describing what you did.\n\n# Check which files have changed\ngit status\n\n# Add everything in the current folder\ngit add .\n\n# or add a specific file\ngit add my_script.py\n\n# Save the snapshot with a message\ngit commit -m \"Completed exercise 1\"",
     "crumbs": [
       "Home",
       "Module 0: Sequencing technologies",
@@ -263,5 +263,29 @@
     "title": "Calculate read coverage",
     "section": "",
     "text": "title: “Assignment X: [Topic Name]” author: “[Your Name Here]” date: last-modified format: html: toc: true code-copy: true theme: cosmo css: ../../styles.css pdf: include-in-header: ../../header.tex callout-icon: false callout-appearance: default geometry: - top=30mm - left=20mm\n\nQuestion 1: [Short Title]\n\n\n\n\n\n\nNote\n\n\n\nWrite your answer here. You can use standard Markdown formatting.\nBullet point 1\nBullet point 2\n\n\nPart A: Code Implementation\nIf the question requires code, use a code block like the one below:\n\nCalculate read coverage\nsamtools depth input.bam | awk ‘{sum+=$3} END { print “Average =”,sum/NR}’\nPart B: Images\nIf you need to include a plot or screenshot, save the image in your folder and link it like this:\n{width=80%}\n\n\nQuestion 2: [Short Title]\n\n\n\n\n\n\nNote\n\n\n\nStart your answer to Question 2 here. This ensures that when the TAs grade your PDF, this question appears at the top of a fresh page.\n\n\nimport pandas as pd\ndef calculate_n50(lengths): ““” Example python function block ““” pass\n\nQuestion 3: [Short Title]\n\n\n\n\n\n\nNote\n\n\n\n(Continue this pattern for all questions…)"
+  },
+  {
+    "objectID": "modules/0_intro_git/0_intro_git.html#option-1-clone",
+    "href": "modules/0_intro_git/0_intro_git.html#option-1-clone",
+    "title": "Module 0: Git and GitHub",
+    "section": "Option 1: Clone",
+    "text": "Option 1: Clone\nUse this option if you are starting fresh and you don’t have an existing local repository. You already have a folder in the USC server so we don’t need to do this.\n# Navigate to where you want to keep your coursework\ncd /scratch1/username\n\n# Clone your specific repository (replace URL with your classroom repo link)\ngit clone https://github.com/trgn-515-2026/student-repo-USERNAME.git\n\n# Enter the directory\ncd student-repo-YOURNAME",
+    "crumbs": [
+      "Home",
+      "Module 0: Sequencing technologies",
+      "Module 0: Git and GitHub"
+    ]
+  },
+  {
+    "objectID": "modules/0_intro_git/0_intro_git.html#option-2-initiate-existing-folder",
+    "href": "modules/0_intro_git/0_intro_git.html#option-2-initiate-existing-folder",
+    "title": "Module 0: Git and GitHub",
+    "section": "Option 2: Initiate existing Folder",
+    "text": "Option 2: Initiate existing Folder\nSince you already have a folder for your user on the cluster, we don’t need to “clode” one from github. However, you need to turn your normal folder into a git repository.\n# 1. Enter your folder\ncd /scratch1/username\n\n# 2. Initialize Git\ngit init\ngit branch -M main\n\n# 3. Link to GitHub (Replace URL with your repo link)\ngit remote add origin https://github.com/TRGN-515-2026/student-repo-USERNAME.git\n\n# 4. Pull any existing files (like the README) from GitHub\ngit pull origin main --allow-unrelated-histories",
+    "crumbs": [
+      "Home",
+      "Module 0: Sequencing technologies",
+      "Module 0: Git and GitHub"
+    ]
   }
 ]
