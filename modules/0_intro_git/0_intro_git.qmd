@@ -231,7 +231,7 @@ mkdir -p 1_sequencing_techs
 ::: {.callout-note}
 Download the assignment_template.md file from:
 
-```https://github.com/trgn-515/trgn-515.github.io/blob/main/modules/0_intro_git/assignment_template.qmd```
+```https://github.com/trgn-515/trgn-515.github.io/blob/main/modules/0_intro_git/assignment_template.md```
 
 Save it inside ```1_sequencing_techs```
 
