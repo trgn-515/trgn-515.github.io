@@ -365,5 +365,29 @@
     "title": "Assignment X: Topic Name",
     "section": "Adding tables",
     "text": "Adding tables\nIf you need to include a table, you can do it like this:\n\n\n\nColumn 1\nColumn 2\n\n\n\n\nText 1\nText 2\n\n\nText 3\nText 4\n\n\n\nMaking tables can be tedius. My favority online software to turn .csv or excel tables into markdown or latex is https://www.tablesgenerator.com/markdown_tables"
+  },
+  {
+    "objectID": "modules/0_intro_git/0_intro_git.html#step-1-join-the-trgn-515-classroom",
+    "href": "modules/0_intro_git/0_intro_git.html#step-1-join-the-trgn-515-classroom",
+    "title": "Module 0: Git and GitHub",
+    "section": "Step 1: Join the TRGN-515 classroom",
+    "text": "Step 1: Join the TRGN-515 classroom\nBefore starting, you need to accept the assignment via GitHub Classroom using the following link:\nhttps://classroom.github.com/a/nMEEuL7F\nIf you already have a github account, you can link it.\nIf you don’t have a github account, you need to create one. Clicking the link will direct you to log in or create an account. Once you create your account, verify your account using the code sent to your email.\nOnce you accept the link, authorize GitHub classroom.\nFinally, you have to select your username from the roster. Accept the assignment. Your repository will be automatically created.\nYou now have a repository on our github classroom. To change the name of this repository: 1) click on your repository; 2) Settings &gt; Repository name; 3) Change and click “Rename” twice.",
+    "crumbs": [
+      "Home",
+      "Module 0: Sequencing technologies",
+      "Module 0: Git and GitHub"
+    ]
+  },
+  {
+    "objectID": "modules/0_intro_git/0_intro_git.html#step-2-connect-git-repository-to-the-cluster",
+    "href": "modules/0_intro_git/0_intro_git.html#step-2-connect-git-repository-to-the-cluster",
+    "title": "Module 0: Git and GitHub",
+    "section": "Step 2: Connect git repository to the cluster",
+    "text": "Step 2: Connect git repository to the cluster\nYou only need do this once. It downloads the repository from GitHub to your local machine or, if the directory already exists in your local machine, it links it to the github remote repository.\n\nOption 1: Clone\nUse this option if you are starting fresh and you don’t have an existing local repository. You already have a folder in the USC server so we don’t need to do this.\n# Navigate to where you want to keep your coursework\ncd /scratch1/username\n\n# Clone your specific repository (replace URL with your classroom repo link)\ngit clone https://github.com/trgn-515-2026/USERNAME.git\n\n# Enter the directory\ncd USERNAME\n\n\nOption 2: Initiate existing folder\nSince you already have a folder for your user on the cluster, we don’t need to “clone” one from github. However, you need to turn your normal folder into a git repository.\n# 1. Enter your folder\ncd /scratch1/username\n\n# 2. Initialize Git\ngit init\ngit branch -M main\n\n# 3. Link to GitHub (Replace URL with your repo link)\ngit remote add origin https://github.com/TRGN-515-2026/USERNAME.git\n\n# 4. Pull any existing files (like the README) from GitHub\ngit pull origin main --allow-unrelated-histories",
+    "crumbs": [
+      "Home",
+      "Module 0: Sequencing technologies",
+      "Module 0: Git and GitHub"
+    ]
   }
 ]

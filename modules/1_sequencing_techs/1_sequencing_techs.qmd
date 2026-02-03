@@ -655,7 +655,7 @@ Many tools will require the VCF file to be indexed. This can be done as follows:
 tabix -p vcf <vcf_file>
 ```
 
-### Task 6: Complete the Variant Calling command:**
+### Task 6: Complete the Variant Calling command:
 ::: {.callout-note}
 
 Pipe the commands `mpileup`, `call`, `norm` and `filter` into one command to stream from the input bam file to the final VCF output.
