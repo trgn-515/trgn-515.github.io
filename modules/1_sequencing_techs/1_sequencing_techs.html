@@ -277,11 +277,11 @@ window.Quarto = {
   <ul>
   <li><a href="#short-read-mapping" id="toc-short-read-mapping" class="nav-link" data-scroll-target="#short-read-mapping">Short-read mapping</a>
   <ul class="collapse">
-  <li><a href="#bwa" id="toc-bwa" class="nav-link" data-scroll-target="#bwa">BWA</a></li>
+  <li><a href="#bwa" id="toc-bwa" class="nav-link" data-scroll-target="#bwa"><strong>BWA</strong></a></li>
   </ul></li>
   <li><a href="#marking-duplicates" id="toc-marking-duplicates" class="nav-link" data-scroll-target="#marking-duplicates">Marking Duplicates</a>
   <ul class="collapse">
-  <li><a href="#sambamba" id="toc-sambamba" class="nav-link" data-scroll-target="#sambamba">Sambamba</a></li>
+  <li><a href="#sambamba" id="toc-sambamba" class="nav-link" data-scroll-target="#sambamba"><strong>Sambamba</strong></a></li>
   </ul></li>
   <li><a href="#long-read-mapping" id="toc-long-read-mapping" class="nav-link" data-scroll-target="#long-read-mapping">Long-read mapping</a>
   <ul class="collapse">
@@ -829,8 +829,8 @@ Note
 <h1>Read mapping to a reference genome</h1>
 <section id="short-read-mapping" class="level2">
 <h2 class="anchored" data-anchor-id="short-read-mapping">Short-read mapping</h2>
-<section id="bwa" class="level3">
-<h3 class="anchored" data-anchor-id="bwa">BWA</h3>
+<section id="bwa" class="level4">
+<h4 class="anchored" data-anchor-id="bwa"><strong>BWA</strong></h4>
 <p>To run any read mapping software, we first need a reference genome. We will use the Human Reference Genome version GRCh38. You can find the CARC location for this file at the beginning of this document.</p>
 <p>Most modern mappers require building an index to easily parse the reference genome during mapping. In fact, some of the biggest speed and memory improvements over early mappers was thanks to improved indexing methods. If they don’t require an index file, it’s because they index the reference genome on the fly. BWA, for instance, is based on the Burrows-wheeler Transform for powerful indexing to quickly locate where a read might align within the reference genome. The indexing for BWA can be done with the following command:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bwa</span> index <span class="va">$ref_genome</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -899,8 +899,8 @@ Warning
 </div>
 <p>Most tools for marking duplicates from BAM files use the 5’ coordinates and mapping orientations of each read (or read pair), including any clipping, gaps or insertions, finding all reads that share exact genomic coordinates. It then keeps the read with the highest quality, marking the rest as duplicates. Note that often reads are not removed, but a flag is added. That’s why we call it marking duplicates!</p>
 <p>The most commonly used software for marking duplicates is Picard (also implemented within GATK). However, this tool requires a lot of memory and time. I prefer another implementation of the same algorithm within the software <code>Sambamba</code>.</p>
-<section id="sambamba" class="level3">
-<h3 class="anchored" data-anchor-id="sambamba">Sambamba</h3>
+<section id="sambamba" class="level4">
+<h4 class="anchored" data-anchor-id="sambamba"><strong>Sambamba</strong></h4>
 <p>Sambamba takes a bam file as input and outputs a bam file where the read flag has been changed in some reads to reflect they are a duplicate. You can run sambamba as:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sambamba</span> markdup <span class="co"># Main call to the duplicate marking function</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="ex">--tmpdir=</span><span class="op">&lt;</span>temp_dir<span class="op">&gt;</span></span>
