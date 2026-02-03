@@ -260,9 +260,9 @@
   {
     "objectID": "modules/0_intro_git/assignment_template.html",
     "href": "modules/0_intro_git/assignment_template.html",
-    "title": "Module X: Module title",
+    "title": "Assignment X: Topic Name",
     "section": "",
-    "text": "title: “Assignment X: [Topic Name]” author: “[Your Name Here]” date: last-modified format: html: toc: true code-copy: true theme: cosmo css: ../../styles.css pdf: include-in-header: ../../header.tex callout-icon: false callout-appearance: default geometry: - top=30mm - left=20mm\n\nQuestion 1: [Short Title]\n\n\n\n\n\n\nNote\n\n\n\nWrite your answer here. You can use standard Markdown formatting.\nBullet point 1\nBullet point 2\n\n\nPart A: Code Implementation\nIf the question requires code, use a code block like the one below:\n\nCalculate read coverage\nsamtools depth input.bam | awk ‘{sum+=$3} END { print “Average =”,sum/NR}’\nPart B: Images\nIf you need to include a plot or screenshot, save the image in your folder and link it like this:\n{width=80%}\n\n\nQuestion 2: [Short Title]\n\n\n\n\n\n\nNote\n\n\n\nStart your answer to Question 2 here. This ensures that when the TAs grade your PDF, this question appears at the top of a fresh page.\n\n\nimport pandas as pd\ndef calculate_n50(lengths): ““” Example python function block ““” pass\n\nQuestion 3: [Short Title]\n\n\n\n\n\n\nNote\n\n\n\n(Continue this pattern for all questions…)"
+    "text": "Markdown is a lightweight markup language that allows you to format text using plain text symbols. It is the industry standard for documentation in bioinformatics and data science. It is widely used primarily due to the following characteristics:\n\nCode-Friendly: It handles code blocks and syntax highlighting natively.\nGit-Friendly: Since it is plain text, Git can track changes line-by-line (unlike Word documents).\nUniversal: It renders automatically on GitHub and converts easily to PDF or HTML."
   },
   {
     "objectID": "modules/0_intro_git/0_intro_git.html#option-1-clone",
@@ -323,5 +323,47 @@
       "Module 0: Sequencing technologies",
       "Module 0: Git and GitHub"
     ]
+  },
+  {
+    "objectID": "modules/0_intro_git/assignment_template.html#date-last-modified",
+    "href": "modules/0_intro_git/assignment_template.html#date-last-modified",
+    "title": "Assignment X: Topic Name",
+    "section": "",
+    "text": "Markdown is a lightweight markup language that allows you to format text using plain text symbols. It is the industry standard for documentation in bioinformatics and data science. It is widely used primarily due to the following characteristics:\n\nCode-Friendly: It handles code blocks and syntax highlighting natively.\nGit-Friendly: Since it is plain text, Git can track changes line-by-line (unlike Word documents).\nUniversal: It renders automatically on GitHub and converts easily to PDF or HTML."
+  },
+  {
+    "objectID": "modules/0_intro_git/assignment_template.html#this-is-a-subheader",
+    "href": "modules/0_intro_git/assignment_template.html#this-is-a-subheader",
+    "title": "Assignment X: Topic Name",
+    "section": "This is a subheader",
+    "text": "This is a subheader\nStart each answer pasting the question as given in the pdf. After that, you can add your answer."
+  },
+  {
+    "objectID": "modules/0_intro_git/assignment_template.html#writing-code",
+    "href": "modules/0_intro_git/assignment_template.html#writing-code",
+    "title": "Assignment X: Topic Name",
+    "section": "Writing code",
+    "text": "Writing code\nIf the answer requires code, use a code block starting and ending with single quotation marks like the one below:\n# Write your code here\nYou can add language specific code blocks by using the language’s name:\n# Write your BASH code here\nsamtools view ...\n# Write your R code here\nm1 = glm(...)\n# Write your Python code here\nimport pandas"
+  },
+  {
+    "objectID": "modules/0_intro_git/assignment_template.html#adding-images",
+    "href": "modules/0_intro_git/assignment_template.html#adding-images",
+    "title": "Assignment X: Topic Name",
+    "section": "Adding images",
+    "text": "Adding images\nTo add an image or plot to your answer, save the image in your folder and use the following code:\n\nTo add a caption to your image:\n\n\n\nCaption text\n\n\nIf the image is not in the same folder as your markdown file, you need to put the whole path:\n\nThe square brackets are used to give the image a specific format. For instance:"
+  },
+  {
+    "objectID": "modules/0_intro_git/assignment_template.html#other-important-syntax",
+    "href": "modules/0_intro_git/assignment_template.html#other-important-syntax",
+    "title": "Assignment X: Topic Name",
+    "section": "Other important syntax",
+    "text": "Other important syntax\nYour answer can also include lists. You can start a list with the “*” symbol for a bulleted list or with numbers for a numbered list.\n\nItem 1\nItem 2\n\nOr\n\nItem 1\nItem 2\n\nYou can also make a word italic or bold.\nOnce you finish an answer, put the next question on a different page:"
+  },
+  {
+    "objectID": "modules/0_intro_git/assignment_template.html#adding-tables",
+    "href": "modules/0_intro_git/assignment_template.html#adding-tables",
+    "title": "Assignment X: Topic Name",
+    "section": "Adding tables",
+    "text": "Adding tables\nIf you need to include a table, you can do it like this:\n\n\n\nColumn 1\nColumn 2\n\n\n\n\nText 1\nText 2\n\n\nText 3\nText 4\n\n\n\nMaking tables can be tedius. My favority online software to turn .csv or excel tables into markdown or latex is https://www.tablesgenerator.com/markdown_tables"
   }
 ]

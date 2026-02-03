@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Your name">
-<meta name="dcterms.date" content="2026-01-13">
 
-<title>Module X: Module title – TRGN-515</title>
+<title>assignment_template – TRGN-515</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,6 +19,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -39,10 +72,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-8b4baf804e461d9b72633f0de59a0cac.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-a53c0e355896b640b2084972ad579721.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-b337f537912f5ab074b938eebad4c5d7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -118,7 +151,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Module X: Module title</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -182,110 +215,139 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#calculate-read-coverage" id="toc-calculate-read-coverage" class="nav-link active" data-scroll-target="#calculate-read-coverage">Calculate read coverage</a></li>
+  <li><a href="#assignment-x-topic-name" id="toc-assignment-x-topic-name" class="nav-link active" data-scroll-target="#assignment-x-topic-name">Assignment X: Topic Name</a>
+  <ul>
+  <li><a href="#author-your-name-here" id="toc-author-your-name-here" class="nav-link" data-scroll-target="#author-your-name-here">Author: Your Name Here</a></li>
+  <li><a href="#date-last-modified" id="toc-date-last-modified" class="nav-link" data-scroll-target="#date-last-modified">Date: last-modified</a></li>
+  </ul></li>
+  <li><a href="#task-1-short-title" id="toc-task-1-short-title" class="nav-link" data-scroll-target="#task-1-short-title">Task 1: [Short Title]</a>
+  <ul>
+  <li><a href="#this-is-a-subheader" id="toc-this-is-a-subheader" class="nav-link" data-scroll-target="#this-is-a-subheader">This is a subheader</a></li>
+  <li><a href="#writing-code" id="toc-writing-code" class="nav-link" data-scroll-target="#writing-code">Writing code</a></li>
+  <li><a href="#adding-images" id="toc-adding-images" class="nav-link" data-scroll-target="#adding-images">Adding images</a></li>
+  <li><a href="#other-important-syntax" id="toc-other-important-syntax" class="nav-link" data-scroll-target="#other-important-syntax">Other important syntax</a></li>
+  </ul></li>
+  <li><a href="#question-2-short-title" id="toc-question-2-short-title" class="nav-link" data-scroll-target="#question-2-short-title">Question 2: [Short Title]</a>
+  <ul>
+  <li><a href="#adding-tables" id="toc-adding-tables" class="nav-link" data-scroll-target="#adding-tables">Adding tables</a></li>
+  </ul></li>
   </ul>
-<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="assignment_template.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+</nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Module X: Module title</h1>
-</div>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
 
 
 
-<div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Your name </p>
-          </div>
-  </div>
-    
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">January 13, 2026</p>
-    </div>
-  </div>
-  
-    
-  </div>
-  
-
-
-</header>
-
-
-<p>title: “Assignment X: [Topic Name]” author: “[Your Name Here]” date: last-modified format: html: toc: true code-copy: true theme: cosmo css: ../../styles.css pdf: include-in-header: ../../header.tex callout-icon: false callout-appearance: default geometry: - top=30mm - left=20mm</p>
-<!-- INSTRUCTIONS FOR STUDENTS:
-1. Rename this file to match the assignment (e.g., 1_sequencing_techs.qmd).
-2. Update the 'title' and 'author' in the YAML header above.
-3. Write your answers below each Question header.
-4. Ensure you Render to PDF before submitting.
+<section id="assignment-x-topic-name" class="level1">
+<h1>Assignment X: Topic Name</h1>
+<section id="author-your-name-here" class="level2">
+<h2 class="anchored" data-anchor-id="author-your-name-here">Author: Your Name Here</h2>
+</section>
+<section id="date-last-modified" class="level2">
+<h2 class="anchored" data-anchor-id="date-last-modified">Date: last-modified</h2>
+<!-- INSTRUCTIONS:
+1. Rename this file to match the assignment (e.g 1_sequencing_techs.md).
+2. Move the file to the correct folder (e.g 1_sequencing_techs/).
+3. Update the 'title' and 'author' in the YAML header above.
+4. Write your answers below each Question header.
+5. Install the dependency Markdown PDF
+6. Export to PDF before submitting to GitHub (VS Code: Right Click -> Markdown PDF: Export).
 -->
-<p>Question 1: [Short Title]</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<p>Markdown is a lightweight markup language that allows you to format text using plain text symbols. It is the industry standard for documentation in bioinformatics and data science. It is widely used primarily due to the following characteristics:</p>
+<ul>
+<li>Code-Friendly: It handles code blocks and syntax highlighting natively.</li>
+<li>Git-Friendly: Since it is plain text, Git can track changes line-by-line (unlike Word documents).</li>
+<li>Universal: It renders automatically on GitHub and converts easily to PDF or HTML.</li>
+</ul>
+<div style="page-break-after: always;">
+
 </div>
-<div class="callout-title-container flex-fill">
-Note
+</section>
+</section>
+<section id="task-1-short-title" class="level1">
+<h1>Task 1: [Short Title]</h1>
+<p>In markdown, headers are specified with the hashtag symbol (“#”). For subheaders, you use two hashtags (“##”). The more hashtag you put, the smaller the header will be.</p>
+<section id="this-is-a-subheader" class="level2">
+<h2 class="anchored" data-anchor-id="this-is-a-subheader">This is a subheader</h2>
+<p>Start each answer pasting the question as given in the pdf. After that, you can add your answer.</p>
+</section>
+<section id="writing-code" class="level2">
+<h2 class="anchored" data-anchor-id="writing-code">Writing code</h2>
+<p>If the answer requires code, use a code block starting and ending with single quotation marks like the one below:</p>
+<pre><code># Write your code here</code></pre>
+<p>You can add language specific code blocks by using the language’s name:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Write your BASH code here</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> view ...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Write your R code here</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">=</span> <span class="fu">glm</span>(...)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Write your Python code here</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="adding-images" class="level2">
+<h2 class="anchored" data-anchor-id="adding-images">Adding images</h2>
+<p>To add an image or plot to your answer, save the image in your folder and use the following code:</p>
+<p><img src="image.png" class="img-fluid"></p>
+<p>To add a caption to your image:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="image.png" class="img-fluid figure-img"></p>
+<figcaption>Caption text</figcaption>
+</figure>
 </div>
+<p>If the image is not in the same folder as your markdown file, you need to put the whole path:</p>
+<p><img src="../../path/to/image.jpg" class="img-fluid"></p>
+<p>The square brackets are used to give the image a specific format. For instance:</p>
+<p><img src="../../path/to/image.jpg" class="img-fluid" style="display: block; margin: 0 auto"></p>
+</section>
+<section id="other-important-syntax" class="level2">
+<h2 class="anchored" data-anchor-id="other-important-syntax">Other important syntax</h2>
+<p>Your answer can also include lists. You can start a list with the “*” symbol for a bulleted list or with numbers for a numbered list.</p>
+<ul>
+<li>Item 1</li>
+<li>Item 2</li>
+</ul>
+<p>Or</p>
+<ol type="1">
+<li>Item 1</li>
+<li>Item 2</li>
+</ol>
+<p>You can also make a word <em>italic</em> or <strong>bold</strong>.</p>
+Once you finish an answer, put the next question on a different page: <!-- This tag forces the next question to start on a new page -->
+<div style="page-break-after: always;">
+
 </div>
-<div class="callout-body-container callout-body">
-<p>Write your answer here. You can use standard Markdown formatting.</p>
-<p>Bullet point 1</p>
-<p>Bullet point 2</p>
-</div>
-</div>
-<p>Part A: Code Implementation</p>
-<p>If the question requires code, use a code block like the one below:</p>
-<section id="calculate-read-coverage" class="level1">
-<h1>Calculate read coverage</h1>
-<p>samtools depth input.bam | awk ‘{sum+=$3} END { print “Average =”,sum/NR}’</p>
-<p>Part B: Images</p>
-<p>If you need to include a plot or screenshot, save the image in your folder and link it like this:</p>
-<p>{width=80%}</p>
-<!-- This tag forces the next question to start on a new page -->
-<div style="page-break-after: always;"></div>
-<p>Question 2: [Short Title]</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Start your answer to Question 2 here. This ensures that when the TAs grade your PDF, this question appears at the top of a fresh page.</p>
-</div>
-</div>
-<p>import pandas as pd</p>
-<p>def calculate_n50(lengths): ““” Example python function block ““” pass</p>
-<div style="page-break-after: always;"></div>
-<p>Question 3: [Short Title]</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>(Continue this pattern for all questions…)</p>
-</div>
-</div>
+</section>
+</section>
+<section id="question-2-short-title" class="level1">
+<h1>Question 2: [Short Title]</h1>
+<p>This is the second question.</p>
+<section id="adding-tables" class="level2">
+<h2 class="anchored" data-anchor-id="adding-tables">Adding tables</h2>
+<p>If you need to include a table, you can do it like this:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Column 1</th>
+<th>Column 2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Text 1</td>
+<td>Text 2</td>
+</tr>
+<tr class="even">
+<td>Text 3</td>
+<td>Text 4</td>
+</tr>
+</tbody>
+</table>
+<p>Making tables can be tedius. My favority online software to turn .csv or excel tables into markdown or latex is https://www.tablesgenerator.com/markdown_tables</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
