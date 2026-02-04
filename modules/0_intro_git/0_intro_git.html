@@ -224,7 +224,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#step-1-join-the-trgn-515-classroom" id="toc-step-1-join-the-trgn-515-classroom" class="nav-link" data-scroll-target="#step-1-join-the-trgn-515-classroom">Step 1: Join the TRGN-515 classroom</a></li>
   <li><a href="#step-2-connect-git-repository-to-the-cluster" id="toc-step-2-connect-git-repository-to-the-cluster" class="nav-link" data-scroll-target="#step-2-connect-git-repository-to-the-cluster">Step 2: Connect git repository to the cluster</a>
   <ul class="collapse">
-  <li><a href="#option-1-clone" id="toc-option-1-clone" class="nav-link" data-scroll-target="#option-1-clone"><strong>Option 1: Clone</strong></a></li>
+  <li><a href="#option-1-clone-do-not-do-this-one" id="toc-option-1-clone-do-not-do-this-one" class="nav-link" data-scroll-target="#option-1-clone-do-not-do-this-one"><strong>Option 1: Clone (Do not do this one)</strong></a></li>
   <li><a href="#option-2-initiate-existing-folder" id="toc-option-2-initiate-existing-folder" class="nav-link" data-scroll-target="#option-2-initiate-existing-folder"><strong>Option 2: Initiate existing folder</strong></a></li>
   </ul></li>
   </ul></li>
@@ -311,18 +311,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Once you accept the link, authorize GitHub classroom.</p>
 <p>Finally, you have to select your username from the roster. Accept the assignment. Your repository will be automatically created.</p>
 <p>You now have a repository on our github classroom. To change the name of this repository: 1) click on your repository; 2) Settings &gt; Repository name; 3) Change and click “Rename” twice.</p>
+<div class="callout-warn">
+<p>For security reasons, many of the github operations we will do require you to create a token. A token is like a temporary password.</p>
+<p>To create a token, go to your github account, click user (upper-right icon) &gt; Settings &gt; Developer Settings (all the way down on the left column) &gt; Personal access tokens &gt; Tokens (Classic) &gt; Generate new token &gt; Generate new token (classic)</p>
+<p>Write a name for the token, change the expiration to “No expiration” for convenience and select “repo” scopes. Click Generate token at the bottom of the page. For all GitHub operations, this token is your password. Copy this token. You can create as many tokens as you want.</p>
+</div>
 </section>
 <section id="step-2-connect-git-repository-to-the-cluster" class="level2">
 <h2 class="anchored" data-anchor-id="step-2-connect-git-repository-to-the-cluster">Step 2: Connect git repository to the cluster</h2>
 <p>You only need do this once. It downloads the repository from GitHub to your local machine or, if the directory already exists in your local machine, it links it to the github remote repository.</p>
-<section id="option-1-clone" class="level4">
-<h4 class="anchored" data-anchor-id="option-1-clone"><strong>Option 1: Clone</strong></h4>
+<section id="option-1-clone-do-not-do-this-one" class="level4">
+<h4 class="anchored" data-anchor-id="option-1-clone-do-not-do-this-one"><strong>Option 1: Clone (Do not do this one)</strong></h4>
 <p>Use this option if you are starting fresh and you don’t have an existing local repository. You already have a folder in the USC server so we don’t need to do this.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Navigate to where you want to keep your coursework</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /scratch1/username</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Clone your specific repository (replace URL with your classroom repo link)</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/trgn-515-2026/USERNAME.git</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/trgn-515/USERNAME.git</span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Enter the directory</span></span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> USERNAME</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -338,7 +343,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> branch <span class="at">-M</span> main</span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Link to GitHub (Replace URL with your repo link)</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote add origin https://github.com/TRGN-515-2026/USERNAME.git</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote add origin https://github.com/trgn-515/USERNAME.git</span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Pull any existing files (like the README) from GitHub</span></span>
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull origin main <span class="at">--allow-unrelated-histories</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -350,7 +355,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Before you can use Git, you need to tell it who you are. This information will be attached to every “save” (commit) you make.</p>
 <p>Open your terminal and run the following commands, replacing the name and email with your own:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set your name (this appears in the project history)</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.name <span class="st">"Your Name"</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.name <span class="st">"USERNAME"</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Set your email (must match your GitHub email)</span></span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.email <span class="st">"your.email@usc.edu"</span></span>
