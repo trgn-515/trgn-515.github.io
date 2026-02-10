@@ -565,7 +565,7 @@ In both cases, create a pipe with the output of the mapper and samtools for coor
 
 For the final output, any read that maps to chromosomes other than the chromosome you are working with should be considered ambiguous. Use the right command to keep only reads that mapped to your chromosome of interest.
 
-1. Create a slurm array job to run the previous code. Attach your code to the assignment **(10pts)**
+1. Create a slurm job to run the previous code. Attach your code to the assignment **(10pts)**
 :::
 
 
@@ -701,7 +701,7 @@ You can choose any variant caller you prefer, but run the same caller for all th
 
 For this task, report your variant calling command and your choice of options and filters.
 
-1. Create a slurm array job to run the SNP calling code. **Call only SNPs.** Attach your code to the assignment **(5pts)**
+1. Create a slurm job to run the SNP calling code. **Call only SNPs.** Attach your code to the assignment **(5pts)**
 :::
 
 # Benchmarking
