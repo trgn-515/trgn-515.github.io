@@ -108,6 +108,83 @@
     ]
   },
   {
+    "objectID": "modules/0_intro_git/assignment_template.html",
+    "href": "modules/0_intro_git/assignment_template.html",
+    "title": "Assignment X: Topic Name",
+    "section": "",
+    "text": "Markdown is a lightweight markup language that allows you to format text using plain text symbols. It is the industry standard for documentation in bioinformatics and data science. It is widely used primarily due to the following characteristics:\n\nCode-Friendly: It handles code blocks and syntax highlighting natively.\nGit-Friendly: Since it is plain text, Git can track changes line-by-line (unlike Word documents).\nUniversal: It renders automatically on GitHub and converts easily to PDF or HTML."
+  },
+  {
+    "objectID": "modules/0_intro_git/assignment_template.html#date-last-modified",
+    "href": "modules/0_intro_git/assignment_template.html#date-last-modified",
+    "title": "Assignment X: Topic Name",
+    "section": "",
+    "text": "Markdown is a lightweight markup language that allows you to format text using plain text symbols. It is the industry standard for documentation in bioinformatics and data science. It is widely used primarily due to the following characteristics:\n\nCode-Friendly: It handles code blocks and syntax highlighting natively.\nGit-Friendly: Since it is plain text, Git can track changes line-by-line (unlike Word documents).\nUniversal: It renders automatically on GitHub and converts easily to PDF or HTML."
+  },
+  {
+    "objectID": "modules/0_intro_git/assignment_template.html#this-is-a-subheader",
+    "href": "modules/0_intro_git/assignment_template.html#this-is-a-subheader",
+    "title": "Assignment X: Topic Name",
+    "section": "This is a subheader",
+    "text": "This is a subheader\nStart each answer pasting the question as given in the pdf. After that, you can add your answer."
+  },
+  {
+    "objectID": "modules/0_intro_git/assignment_template.html#writing-code",
+    "href": "modules/0_intro_git/assignment_template.html#writing-code",
+    "title": "Assignment X: Topic Name",
+    "section": "Writing code",
+    "text": "Writing code\nIf the answer requires code, use a code block starting and ending with single quotation marks like the one below:\n# Write your code here\nYou can add language specific code blocks by using the language’s name:\n# Write your BASH code here\nsamtools view ...\n# Write your R code here\nm1 = glm(...)\n# Write your Python code here\nimport pandas"
+  },
+  {
+    "objectID": "modules/0_intro_git/assignment_template.html#adding-images",
+    "href": "modules/0_intro_git/assignment_template.html#adding-images",
+    "title": "Assignment X: Topic Name",
+    "section": "Adding images",
+    "text": "Adding images\nTo add an image or plot to your answer, save the image in your folder and use the following code:\n\nTo add a caption to your image:\n\n\n\nCaption text\n\n\nIf the image is not in the same folder as your markdown file, you need to put the whole path:\n\nThe square brackets are used to give the image a specific format. For instance:"
+  },
+  {
+    "objectID": "modules/0_intro_git/assignment_template.html#other-important-syntax",
+    "href": "modules/0_intro_git/assignment_template.html#other-important-syntax",
+    "title": "Assignment X: Topic Name",
+    "section": "Other important syntax",
+    "text": "Other important syntax\nYour answer can also include lists. You can start a list with the “*” symbol for a bulleted list or with numbers for a numbered list.\n\nItem 1\nItem 2\n\nOr\n\nItem 1\nItem 2\n\nYou can also make a word italic or bold.\nOnce you finish an answer, put the next question on a different page:"
+  },
+  {
+    "objectID": "modules/0_intro_git/assignment_template.html#adding-tables",
+    "href": "modules/0_intro_git/assignment_template.html#adding-tables",
+    "title": "Assignment X: Topic Name",
+    "section": "Adding tables",
+    "text": "Adding tables\nIf you need to include a table, you can do it like this:\n\n\n\nColumn 1\nColumn 2\n\n\n\n\nText 1\nText 2\n\n\nText 3\nText 4\n\n\n\nMaking tables can be tedius. My favority online software to turn .csv or excel tables into markdown or latex is https://www.tablesgenerator.com/markdown_tables"
+  },
+  {
+    "objectID": "modules.html",
+    "href": "modules.html",
+    "title": "Modules",
+    "section": "",
+    "text": "Here is a list of the course modules."
+  },
+  {
+    "objectID": "modules.html#module-1",
+    "href": "modules.html#module-1",
+    "title": "Modules",
+    "section": "Module 1",
+    "text": "Module 1\n\nSequencing Technologies"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "TRGN 515: Advanced Human Genomic Analysis Methods",
+    "section": "",
+    "text": "Below is the schedule of modules, slides, and assignments for the semester. Links will be updated as we progress through the course.\n\n\n\n\n\n\n\n\n\nModule\nSlides\nAssignment\nDue Date\n\n\n\n\nModule 1: Sequencing TechnologiesOverview of NGS, Nanopore, and PacBio.\n HTML PDF\n Assignment 1\n02/27/2026\n\n\nModule 2: Structural Variant DetectionDefinition and types of structural variants (SV), detection of indels and SV.\n HTML PDF\n Assignment 2\nTBD\n\n\nModule 3: Variant Functional AnnotationVariant effect prediction, linear and logistic regression.\n HTML PDF\n Assignment 3\nTBD\n\n\nModule 4: Genome AssemblyIntroduction to genome assembly, QC, and hybrid-assembly.\n HTML PDF\n Assignment 4\nTBD\n\n\nModule 5: GWASIntroduction to GWAS, population structure, and linkage disequilibrium.\n HTML PDF\n Assignment 5\nTBD\n\n\nModule 6: Epigenetics - MethylationMethylation detection with 3rd Generation sequencing.\n HTML PDF\n Assignment 6\nTBD\n\n\nModule 7: Metagenomics IIntroduction to metagenomics, 16S amplification, and taxonomy.\n HTML PDF\n Assignment 7\nTBD\n\n\nModule 8: Metagenomics IIWhole-genome amplification, MAGs, and functional analysis.\n HTML PDF\n Assignment 8\nTBD"
+  },
+  {
+    "objectID": "index.html#course-content",
+    "href": "index.html#course-content",
+    "title": "TRGN 515: Advanced Human Genomic Analysis Methods",
+    "section": "",
+    "text": "Below is the schedule of modules, slides, and assignments for the semester. Links will be updated as we progress through the course.\n\n\n\n\n\n\n\n\n\nModule\nSlides\nAssignment\nDue Date\n\n\n\n\nModule 1: Sequencing TechnologiesOverview of NGS, Nanopore, and PacBio.\n HTML PDF\n Assignment 1\n02/27/2026\n\n\nModule 2: Structural Variant DetectionDefinition and types of structural variants (SV), detection of indels and SV.\n HTML PDF\n Assignment 2\nTBD\n\n\nModule 3: Variant Functional AnnotationVariant effect prediction, linear and logistic regression.\n HTML PDF\n Assignment 3\nTBD\n\n\nModule 4: Genome AssemblyIntroduction to genome assembly, QC, and hybrid-assembly.\n HTML PDF\n Assignment 4\nTBD\n\n\nModule 5: GWASIntroduction to GWAS, population structure, and linkage disequilibrium.\n HTML PDF\n Assignment 5\nTBD\n\n\nModule 6: Epigenetics - MethylationMethylation detection with 3rd Generation sequencing.\n HTML PDF\n Assignment 6\nTBD\n\n\nModule 7: Metagenomics IIntroduction to metagenomics, 16S amplification, and taxonomy.\n HTML PDF\n Assignment 7\nTBD\n\n\nModule 8: Metagenomics IIWhole-genome amplification, MAGs, and functional analysis.\n HTML PDF\n Assignment 8\nTBD"
+  },
+  {
     "objectID": "modules/0_intro_git/0_intro_git.html",
     "href": "modules/0_intro_git/0_intro_git.html",
     "title": "Module 0: Git and GitHub",
@@ -204,80 +281,39 @@
     ]
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "TRGN 515: Advanced Human Genomic Analysis Methods",
+    "objectID": "modules/2_sv/2_sv.html",
+    "href": "modules/2_sv/2_sv.html",
+    "title": "Assignment 2: Structural variants",
     "section": "",
-    "text": "Below is the schedule of modules, slides, and assignments for the semester. Links will be updated as we progress through the course.\n\n\n\n\n\n\n\n\n\nModule\nSlides\nAssignment\nDue Date\n\n\n\n\nModule 1: Sequencing TechnologiesOverview of NGS, Nanopore, and PacBio.\n HTML PDF\n Assignment 1\nTBD\n\n\nModule 2: Structural Variant DetectionDefinition and types of structural variants (SV), detection of indels and SV.\n HTML PDF\n Assignment 2\nTBD\n\n\nModule 3: Variant Functional AnnotationVariant effect prediction, linear and logistic regression.\n HTML PDF\n Assignment 3\nTBD\n\n\nModule 4: Genome AssemblyIntroduction to genome assembly, QC, and hybrid-assembly.\n HTML PDF\n Assignment 4\nTBD\n\n\nModule 5: GWASIntroduction to GWAS, population structure, and linkage disequilibrium.\n HTML PDF\n Assignment 5\nTBD\n\n\nModule 6: Epigenetics - MethylationMethylation detection with 3rd Generation sequencing.\n HTML PDF\n Assignment 6\nTBD\n\n\nModule 7: Metagenomics IIntroduction to metagenomics, 16S amplification, and taxonomy.\n HTML PDF\n Assignment 7\nTBD\n\n\nModule 8: Metagenomics IIWhole-genome amplification, MAGs, and functional analysis.\n HTML PDF\n Assignment 8\nTBD"
+    "text": "The first assignment focused on single-nucleotide variants (SNV or SNP), where a single nucleotide is substituted for another. For this assignment, we will detect other types of genetic variation knowns as Indels and Structural Variants:\nTraditioanlly, indels are considered to be from 1bp to 50bp. This distinction is a bit arbitrary and is mostly based on early alignment tools, which mostly extended gaps (deletions) of up to around 50bp and where thus available to variant callers that relied on alignment statistics reported in the CIGAR string within the BAM file. Biologically, indels are typically caused by Replication slippage, while structural variants are caused by more complex mechanisms, including Nonallelic homologous recombination or Non-homologous end-joining (NHEJ). In reality, there’s no real consensus of when a variant is considered an indel and when it is a large insertion or deletion. Usually, indels are detected by variant callers that also detect SNPs (using the information about the alignment) and structural variants are detected by specialized software.\nWe will again use the human genome standard (HG002) as our gold standard, and we will compare our indels and SV against the set of variants present when comparing HG002 against the reference genome. For indels, we will use the same benchmarking set of variants against the GRCh38 human assembly. For SV, however, there’s only the set of variants in reference to the GRCh37, so we have to use that assembly instead.\nSome reference papers regarding this dataset:\nWe will compare the characteristics and SNP calls for three sequencing technologies: Illumina, PacBio HiFi, and Nanopore.",
+    "crumbs": [
+      "Home",
+      "Module 2: Structural Variants",
+      "Assignment 2: Structural variants"
+    ]
   },
   {
-    "objectID": "index.html#course-content",
-    "href": "index.html#course-content",
-    "title": "TRGN 515: Advanced Human Genomic Analysis Methods",
-    "section": "",
-    "text": "Below is the schedule of modules, slides, and assignments for the semester. Links will be updated as we progress through the course.\n\n\n\n\n\n\n\n\n\nModule\nSlides\nAssignment\nDue Date\n\n\n\n\nModule 1: Sequencing TechnologiesOverview of NGS, Nanopore, and PacBio.\n HTML PDF\n Assignment 1\nTBD\n\n\nModule 2: Structural Variant DetectionDefinition and types of structural variants (SV), detection of indels and SV.\n HTML PDF\n Assignment 2\nTBD\n\n\nModule 3: Variant Functional AnnotationVariant effect prediction, linear and logistic regression.\n HTML PDF\n Assignment 3\nTBD\n\n\nModule 4: Genome AssemblyIntroduction to genome assembly, QC, and hybrid-assembly.\n HTML PDF\n Assignment 4\nTBD\n\n\nModule 5: GWASIntroduction to GWAS, population structure, and linkage disequilibrium.\n HTML PDF\n Assignment 5\nTBD\n\n\nModule 6: Epigenetics - MethylationMethylation detection with 3rd Generation sequencing.\n HTML PDF\n Assignment 6\nTBD\n\n\nModule 7: Metagenomics IIntroduction to metagenomics, 16S amplification, and taxonomy.\n HTML PDF\n Assignment 7\nTBD\n\n\nModule 8: Metagenomics IIWhole-genome amplification, MAGs, and functional analysis.\n HTML PDF\n Assignment 8\nTBD"
+    "objectID": "modules/2_sv/2_sv.html#illumina",
+    "href": "modules/2_sv/2_sv.html#illumina",
+    "title": "Assignment 2: Structural variants",
+    "section": "Illumina",
+    "text": "Illumina\nUse one of the following variant callers: BCFtools, GATK, or FreeBayes.\n# For bcftools or freebayes\nconda activate /project2/msalomon_1816/trgn_515/conda_env/trgn515\n\n# For GATK\nconda activate /project2/msalomon_1816/trgn_515/conda_env/gatk\nFilters (some of these nomenclature mary vary by caller):\n\nMQ &lt; 20\nQUAL &lt; 20\nDP &lt; 20\nAD: if homozoygous, 10 reads; if heterozygous, 5 reads\neg: ‘FMT/GT ~ “1/1” & FMT/AD[:1] &lt; 10’\nYou will have to complete the heterozygous filter on your own",
+    "crumbs": [
+      "Home",
+      "Module 2: Structural Variants",
+      "Assignment 2: Structural variants"
+    ]
   },
   {
-    "objectID": "modules.html",
-    "href": "modules.html",
-    "title": "Modules",
-    "section": "",
-    "text": "Here is a list of the course modules."
-  },
-  {
-    "objectID": "modules.html#module-1",
-    "href": "modules.html#module-1",
-    "title": "Modules",
-    "section": "Module 1",
-    "text": "Module 1\n\nSequencing Technologies"
-  },
-  {
-    "objectID": "modules/0_intro_git/assignment_template.html",
-    "href": "modules/0_intro_git/assignment_template.html",
-    "title": "Assignment X: Topic Name",
-    "section": "",
-    "text": "Markdown is a lightweight markup language that allows you to format text using plain text symbols. It is the industry standard for documentation in bioinformatics and data science. It is widely used primarily due to the following characteristics:\n\nCode-Friendly: It handles code blocks and syntax highlighting natively.\nGit-Friendly: Since it is plain text, Git can track changes line-by-line (unlike Word documents).\nUniversal: It renders automatically on GitHub and converts easily to PDF or HTML."
-  },
-  {
-    "objectID": "modules/0_intro_git/assignment_template.html#date-last-modified",
-    "href": "modules/0_intro_git/assignment_template.html#date-last-modified",
-    "title": "Assignment X: Topic Name",
-    "section": "",
-    "text": "Markdown is a lightweight markup language that allows you to format text using plain text symbols. It is the industry standard for documentation in bioinformatics and data science. It is widely used primarily due to the following characteristics:\n\nCode-Friendly: It handles code blocks and syntax highlighting natively.\nGit-Friendly: Since it is plain text, Git can track changes line-by-line (unlike Word documents).\nUniversal: It renders automatically on GitHub and converts easily to PDF or HTML."
-  },
-  {
-    "objectID": "modules/0_intro_git/assignment_template.html#this-is-a-subheader",
-    "href": "modules/0_intro_git/assignment_template.html#this-is-a-subheader",
-    "title": "Assignment X: Topic Name",
-    "section": "This is a subheader",
-    "text": "This is a subheader\nStart each answer pasting the question as given in the pdf. After that, you can add your answer."
-  },
-  {
-    "objectID": "modules/0_intro_git/assignment_template.html#writing-code",
-    "href": "modules/0_intro_git/assignment_template.html#writing-code",
-    "title": "Assignment X: Topic Name",
-    "section": "Writing code",
-    "text": "Writing code\nIf the answer requires code, use a code block starting and ending with single quotation marks like the one below:\n# Write your code here\nYou can add language specific code blocks by using the language’s name:\n# Write your BASH code here\nsamtools view ...\n# Write your R code here\nm1 = glm(...)\n# Write your Python code here\nimport pandas"
-  },
-  {
-    "objectID": "modules/0_intro_git/assignment_template.html#adding-images",
-    "href": "modules/0_intro_git/assignment_template.html#adding-images",
-    "title": "Assignment X: Topic Name",
-    "section": "Adding images",
-    "text": "Adding images\nTo add an image or plot to your answer, save the image in your folder and use the following code:\n\nTo add a caption to your image:\n\n\n\nCaption text\n\n\nIf the image is not in the same folder as your markdown file, you need to put the whole path:\n\nThe square brackets are used to give the image a specific format. For instance:"
-  },
-  {
-    "objectID": "modules/0_intro_git/assignment_template.html#other-important-syntax",
-    "href": "modules/0_intro_git/assignment_template.html#other-important-syntax",
-    "title": "Assignment X: Topic Name",
-    "section": "Other important syntax",
-    "text": "Other important syntax\nYour answer can also include lists. You can start a list with the “*” symbol for a bulleted list or with numbers for a numbered list.\n\nItem 1\nItem 2\n\nOr\n\nItem 1\nItem 2\n\nYou can also make a word italic or bold.\nOnce you finish an answer, put the next question on a different page:"
-  },
-  {
-    "objectID": "modules/0_intro_git/assignment_template.html#adding-tables",
-    "href": "modules/0_intro_git/assignment_template.html#adding-tables",
-    "title": "Assignment X: Topic Name",
-    "section": "Adding tables",
-    "text": "Adding tables\nIf you need to include a table, you can do it like this:\n\n\n\nColumn 1\nColumn 2\n\n\n\n\nText 1\nText 2\n\n\nText 3\nText 4\n\n\n\nMaking tables can be tedius. My favority online software to turn .csv or excel tables into markdown or latex is https://www.tablesgenerator.com/markdown_tables"
+    "objectID": "modules/2_sv/2_sv.html#ont-and-pacbio",
+    "href": "modules/2_sv/2_sv.html#ont-and-pacbio",
+    "title": "Assignment 2: Structural variants",
+    "section": "ONT and PacBio",
+    "text": "ONT and PacBio\nUse Nanocaller.\n# For bcftools or freebayes\nconda activate /project2/msalomon_1816/trgn_515/conda_env/nanocaller\nNanoCaller ...\nFilters (some of these nomenclature mary vary by caller):\n\nMQ &lt; 10\nDP &lt; 20\nAD: if homozoygous, 10 reads; if heterozygous, 5 reads\n\nNOTE: Use the Human GRCh38 assembly as reference genome.\n\nCreate a slurm job to run the Indel calling code. Attach your code to the assignment (5pts)",
+    "crumbs": [
+      "Home",
+      "Module 2: Structural Variants",
+      "Assignment 2: Structural variants"
+    ]
   }
 ]

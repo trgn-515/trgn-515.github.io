@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Arturo Torres Ortiz">
-<meta name="dcterms.date" content="2026-01-13">
+<meta name="dcterms.date" content="2026-02-17">
 
-<title>Module 0: Git and GitHub – TRGN-515</title>
+<title>Assignment 2: Structural variants – TRGN-515</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -153,7 +153,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../modules/0_intro_git/0_intro_git.html">Module 0: Sequencing technologies</a></li><li class="breadcrumb-item"><a href="../../modules/0_intro_git/0_intro_git.html">Module 0: Git and GitHub</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../modules/2_sv/2_sv.html">Module 2: Structural Variants</a></li><li class="breadcrumb-item"><a href="../../modules/2_sv/2_sv.html">Assignment 2: Structural variants</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -184,7 +184,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../modules/0_intro_git/0_intro_git.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../modules/0_intro_git/0_intro_git.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Module 0: Git and GitHub</span></a>
   </div>
 </li>
@@ -218,7 +218,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../modules/2_sv/2_sv.html" class="sidebar-item-text sidebar-link">
+  <a href="../../modules/2_sv/2_sv.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Assignment 2: Structural variants</span></a>
   </div>
 </li>
@@ -235,41 +235,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives">Learning objectives</a></li>
-  <li><a href="#why-version-control" id="toc-why-version-control" class="nav-link" data-scroll-target="#why-version-control">1. Why version control?</a></li>
-  <li><a href="#setting-up-the-trgn-515-classroom" id="toc-setting-up-the-trgn-515-classroom" class="nav-link" data-scroll-target="#setting-up-the-trgn-515-classroom">2. Setting up the TRGN-515 classroom</a>
+  <li><a href="#input-and-outputs" id="toc-input-and-outputs" class="nav-link" data-scroll-target="#input-and-outputs">Input and outputs</a></li>
+  <li><a href="#required-software" id="toc-required-software" class="nav-link" data-scroll-target="#required-software">Required software</a></li>
+  <li><a href="#bioinformatics-workflow" id="toc-bioinformatics-workflow" class="nav-link" data-scroll-target="#bioinformatics-workflow">Bioinformatics workflow</a></li>
+  <li><a href="#detection-of-indels" id="toc-detection-of-indels" class="nav-link" data-scroll-target="#detection-of-indels">Detection of Indels</a>
   <ul>
-  <li><a href="#step-1-join-the-trgn-515-classroom" id="toc-step-1-join-the-trgn-515-classroom" class="nav-link" data-scroll-target="#step-1-join-the-trgn-515-classroom">Step 1: Join the TRGN-515 classroom</a></li>
-  <li><a href="#step-2-connect-git-repository-to-the-cluster" id="toc-step-2-connect-git-repository-to-the-cluster" class="nav-link" data-scroll-target="#step-2-connect-git-repository-to-the-cluster">Step 2: Connect git repository to the cluster</a>
-  <ul class="collapse">
-  <li><a href="#option-1-clone-do-not-do-this-one" id="toc-option-1-clone-do-not-do-this-one" class="nav-link" data-scroll-target="#option-1-clone-do-not-do-this-one"><strong>Option 1: Clone (Do not do this one)</strong></a></li>
-  <li><a href="#option-2-initiate-existing-folder" id="toc-option-2-initiate-existing-folder" class="nav-link" data-scroll-target="#option-2-initiate-existing-folder"><strong>Option 2: Initiate existing folder</strong></a></li>
+  <li><a href="#task-1-indel-calling" id="toc-task-1-indel-calling" class="nav-link" data-scroll-target="#task-1-indel-calling">Task 1: Indel calling</a></li>
   </ul></li>
-  </ul></li>
-  <li><a href="#setting-up-git" id="toc-setting-up-git" class="nav-link" data-scroll-target="#setting-up-git">3. Setting up Git</a></li>
-  <li><a href="#the-git-workflow-clone-edit-commit-push" id="toc-the-git-workflow-clone-edit-commit-push" class="nav-link" data-scroll-target="#the-git-workflow-clone-edit-commit-push">4. The git workflow: clone, edit, commit, push</a>
+  <li><a href="#detection-of-structural-variants" id="toc-detection-of-structural-variants" class="nav-link" data-scroll-target="#detection-of-structural-variants">Detection of Structural Variants</a>
   <ul>
-  <li><a href="#step-1-pull-sync" id="toc-step-1-pull-sync" class="nav-link" data-scroll-target="#step-1-pull-sync">Step 1: Pull (Sync)</a></li>
-  <li><a href="#step-2-edit-code" id="toc-step-2-edit-code" class="nav-link" data-scroll-target="#step-2-edit-code">Step 2: Edit code</a></li>
-  <li><a href="#step-3-stage-and-commit-save" id="toc-step-3-stage-and-commit-save" class="nav-link" data-scroll-target="#step-3-stage-and-commit-save">Step 3: Stage and commit (Save)</a></li>
-  <li><a href="#step-4-push-upload" id="toc-step-4-push-upload" class="nav-link" data-scroll-target="#step-4-push-upload">Step 4: Push (upload)</a></li>
+  <li><a href="#task-2-structural-variant-calling" id="toc-task-2-structural-variant-calling" class="nav-link" data-scroll-target="#task-2-structural-variant-calling">Task 2: Structural variant calling</a></li>
   </ul></li>
-  <li><a href="#using-.gitignore-to-avoid-uploading-some-files" id="toc-using-.gitignore-to-avoid-uploading-some-files" class="nav-link" data-scroll-target="#using-.gitignore-to-avoid-uploading-some-files">5. Using .gitignore to avoid uploading some files</a></li>
-  <li><a href="#advanced-workflow-branching-merging" id="toc-advanced-workflow-branching-merging" class="nav-link" data-scroll-target="#advanced-workflow-branching-merging">6. Advanced workflow: Branching &amp; Merging</a></li>
-  <li><a href="#setting-up-assignment-1" id="toc-setting-up-assignment-1" class="nav-link" data-scroll-target="#setting-up-assignment-1">Setting Up Assignment 1</a>
+  <li><a href="#intersecting-structural-variants" id="toc-intersecting-structural-variants" class="nav-link" data-scroll-target="#intersecting-structural-variants">Intersecting Structural Variants</a>
   <ul>
-  <li><a href="#task-1-create-the-directory-structure" id="toc-task-1-create-the-directory-structure" class="nav-link" data-scroll-target="#task-1-create-the-directory-structure">Task 1: Create the Directory Structure</a></li>
-  <li><a href="#task-2-copy-the-template" id="toc-task-2-copy-the-template" class="nav-link" data-scroll-target="#task-2-copy-the-template">Task 2: Copy the Template</a></li>
-  <li><a href="#task-3-render-and-submit" id="toc-task-3-render-and-submit" class="nav-link" data-scroll-target="#task-3-render-and-submit">Task 3: Render and Submit</a></li>
+  <li><a href="#task-3-calculate-the-fp-and-fn" id="toc-task-3-calculate-the-fp-and-fn" class="nav-link" data-scroll-target="#task-3-calculate-the-fp-and-fn">Task 3: Calculate the FP and FN</a></li>
   </ul></li>
   </ul>
-<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="0_intro_git.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="2_sv.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../modules/0_intro_git/0_intro_git.html">Module 0: Sequencing technologies</a></li><li class="breadcrumb-item"><a href="../../modules/0_intro_git/0_intro_git.html">Module 0: Git and GitHub</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../modules/2_sv/2_sv.html">Module 2: Structural Variants</a></li><li class="breadcrumb-item"><a href="../../modules/2_sv/2_sv.html">Assignment 2: Structural variants</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Module 0: Git and GitHub</h1>
+<h1 class="title">Assignment 2: Structural variants</h1>
 </div>
 
 
@@ -286,7 +275,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">January 13, 2026</p>
+      <p class="date">February 17, 2026</p>
     </div>
   </div>
   
@@ -298,190 +287,237 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="learning-objectives" class="level2">
-<h2 class="anchored" data-anchor-id="learning-objectives">Learning objectives</h2>
-<p>By the end of this module, you will be able to:</p>
+<!-- \vspace{+10truemm} -->
+<p>The first assignment focused on single-nucleotide variants (SNV or SNP), where a single nucleotide is substituted for another. For this assignment, we will detect other types of genetic variation knowns as Indels and Structural Variants:</p>
 <ol type="1">
-<li>Configure your local Git environment.</li>
-<li>Clone your class repository.</li>
-<li>Use the core Git commands (<code>add</code>, <code>commit</code>, <code>push</code>) to submit an assignment.</li>
+<li><strong>Indels:</strong> Insertion/deletion polymorphisms are small additions (insertions) or loss (deletion) of one or multiple bases.</li>
+<li><strong>Structural variants (SV):</strong> Are large additions, loss, or rearrangamenets of genetic material. The most common structural variants are:</li>
+</ol>
+<ul>
+<li>Deletions</li>
+<li>Insertions</li>
+<li>Duplications</li>
+<li>Translocations</li>
+<li>Inversions</li>
+</ul>
+<p>Traditioanlly, indels are considered to be from 1bp to 50bp. This distinction is a bit arbitrary and is mostly based on early alignment tools, which mostly extended gaps (deletions) of up to around 50bp and where thus available to variant callers that relied on alignment statistics reported in the CIGAR string within the BAM file. Biologically, indels are typically caused by Replication slippage, while structural variants are caused by more complex mechanisms, including Nonallelic homologous recombination or Non-homologous end-joining (NHEJ). In reality, there’s no real consensus of when a variant is considered an indel and when it is a large insertion or deletion. Usually, indels are detected by variant callers that also detect SNPs (using the information about the alignment) and structural variants are detected by specialized software.</p>
+<p>We will again use the human genome standard (HG002) as our gold standard, and we will compare our indels and SV against the set of variants present when comparing HG002 against the reference genome. For indels, we will use the same benchmarking set of variants against the GRCh38 human assembly. For SV, however, there’s only the set of variants in reference to the GRCh37, so we have to use that assembly instead.</p>
+<p>Some reference papers regarding this dataset:</p>
+<ul>
+<li>Zook, J., Catoe, D., McDaniel, J. et al.&nbsp;Extensive sequencing of seven human genomes to characterize benchmark reference materials. Sci Data 3, 160025 (2016). https://doi.org/10.1038/sdata.2016.25</li>
+<li>Zook, J.M., McDaniel, J., Olson, N.D. et al.&nbsp;An open resource for accurately benchmarking small variant and reference calls. Nat Biotechnol 37, 561–566 (2019). https://doi.org/10.1038/s41587-019-0074-6</li>
+<li>Zook, J.M., Hansen, N.F., Olson, N.D. et al.&nbsp;A robust benchmark for detection of germline large deletions and insertions. Nat Biotechnol 38, 1347–1355 (2020). https://doi.org/10.1038/s41587-020-0538-8</li>
+<li>Liao, WW., Asri, M., Ebler, J. et al.&nbsp;A draft human pangenome reference. Nature 617, 312–324 (2023). https://doi.org/10.1038/s41586-023-05896-x</li>
+<li>Rhie, A., Nurk, S., Cechova, M. et al.&nbsp;The complete sequence of a human Y chromosome. Nature 621, 344–354 (2023). https://doi.org/10.1038/s41586-023-06457-y</li>
+</ul>
+<p>We will compare the characteristics and SNP calls for three sequencing technologies: Illumina, PacBio HiFi, and Nanopore.</p>
+<section id="learning-objectives" class="level1">
+<h1>Learning objectives</h1>
+<p>At the end of this week’s assignment you will be able to:</p>
+<ol type="1">
+<li>Understand the different types of structural variants</li>
+<li>Learn the different algorithms to detect structural variants in each sequencing technology</li>
+<li>Annotate structural variants in VCF format</li>
+<li>Visualize structural variants in IGV</li>
+<li>Merge structural variants in VCF format</li>
+<li>Benchmark structural variants</li>
 </ol>
 </section>
-<section id="why-version-control" class="level1">
-<h1>1. Why version control?</h1>
-<p><strong>Git</strong> is a version control system that tracks changes in your files over time. It allows you to:</p>
-<ol type="1">
-<li><strong>Revert</strong> to previous versions of your code if you break something.</li>
-<li><strong>Collaborate</strong> with others without overwriting their work.</li>
-<li><strong>Document</strong> <em>why</em> changes were made using commit messages.</li>
-</ol>
-<p><strong>GitHub</strong> is a cloud-hosting service for Git repositories that includes powerful tools for project management and collaboration.</p>
+<section id="input-and-outputs" class="level1">
+<h1>Input and outputs</h1>
+<p>The input for this assignment are the same fastq files generated by Illumina, PacBio HiFi and ONT of the standard human genome HG002 that we used in the previous assignment. Use the same chromosome you used in assignment 1.</p>
+<blockquote class="blockquote">
+<p>Illumina files:</p>
+<p><code>/project2/msalomon_1816/trgn_515/1_seq_techs/illumina/fastq</code></p>
+</blockquote>
+<blockquote class="blockquote">
+<p>PacBio files:</p>
+<p><code>/project2/msalomon_1816/trgn_515/1_seq_techs/pacbio/fastq</code></p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Nanopore files:</p>
+<p><code>/project2/msalomon_1816/trgn_515/1_seq_techs/ont/fastq</code></p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Benchmarking file:</p>
+<p>For indels: <code>/project2/msalomon_1816/trgn_515/1_seq_techs/benchmark/HG002_GRCh38_1_22_v4.2.1_benchmark.indels.vcf.gz</code> For SV: <code>/project2/msalomon_1816/trgn_515/1_seq_techs/benchmark/HG002_GRCh37_SVs_Tier1_v0.6.vcf.gz</code></p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Human Reference Genome GRCh38</p>
+<p><code>/project2/biodb/genomes/Homo_sapiens/NCBI/GRCh38/Sequence/BWAIndex/genome.fa</code></p>
+<p><code>/project2/biodb/genomes/Homo_sapiens/NCBI/GRCh38/Sequence/WholeGenomeFasta/genome.fa</code></p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Human Reference Genome GRCh37</p>
+<p><code>/project2/biodb/genomes/Homo_sapiens/NCBI/build37.2/Sequence/BWAIndex/genome.fa</code></p>
+<p><code>/project2/biodb/genomes/Homo_sapiens/NCBI/build37.2/Sequence/WholeGenomeFasta/genome.fa</code></p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Original data can be found at: https://ftp-trace.ncbi.nlm.nih.gov/giab/ftp/data/AshkenazimTrio/HG002_NA24385_son/ For the benchmarking: https://ftp-trace.ncbi.nlm.nih.gov/giab/ftp/release/AshkenazimTrio/HG002_NA24385_son/NISTv4.2.1/GRCh38/ For the benchmarking of SVs: https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/data/AshkenazimTrio/analysis/NIST_SVs_Integration_v0.6/</p>
+</blockquote>
+<!-- https://s3-us-west-2.amazonaws.com/human-pangenomics/index.html?prefix=NHGRI_UCSC_panel/HG002/ -->
+<!-- for n in {1..5}; do ( samtools view -hb HG002_PacBio-HiFi-Revio_20231031_48x_GRCh38-GIABv3.bam chr$n | samtools collate -Ou - | samtools fastq | gzip > ../fastq/chr$n.fastq.gz ) & done -->
+<!-- https://github.com/marbl/HG002 -->
+<!-- https://github.com/human-pangenomics/HG002_Data_Freeze_v1.0-->
+<!-- https://github.com/marbl/CHM13/tree/master -->
+<!-- https://docs.google.com/spreadsheets/d/1eUXfyTqWVy9O3bYYyZdiEoWhnztUJXIf7u8X3UE-ryg/edit?gid=1481031002#gid=1481031002 -->
+<p>The final output will be a list of indels and structural variants.</p>
 </section>
-<section id="setting-up-the-trgn-515-classroom" class="level1">
-<h1>2. Setting up the TRGN-515 classroom</h1>
-<section id="step-1-join-the-trgn-515-classroom" class="level2">
-<h2 class="anchored" data-anchor-id="step-1-join-the-trgn-515-classroom">Step 1: Join the TRGN-515 classroom</h2>
-<p>Before starting, you need to accept the assignment via GitHub Classroom using the following link:</p>
-<pre><code>https://classroom.github.com/a/nMEEuL7F</code></pre>
-<p>If you already have a github account, you can link it.</p>
-<p>If you don’t have a github account, you need to create one. Clicking the link will direct you to log in or create an account. Once you create your account, verify your account using the code sent to your email.</p>
-<p>Once you accept the link, authorize GitHub classroom.</p>
-<p>Finally, you have to select your username from the roster. Accept the assignment. Your repository will be automatically created.</p>
-<p>You now have a repository on our github classroom. You can access it with the following link:</p>
-<p><code>https://github.com/trgn-515/USERNAME</code>.</p>
-<p>To change the name of this repository: 1) click on your repository; 2) Settings &gt; Repository name; 3) Change and click “Rename” twice.</p>
-<div class="callout callout-style-default callout-important callout-titled">
+<section id="required-software" class="level1">
+<h1>Required software</h1>
+<p>In order to complete the assignment, the following tools need to be installed:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mamba</span> install bioconda::filtlong</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">mamba</span> install bioconda::minimap2</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">mamba</span> install bioconda::seqtk</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">mamba</span> install bioconda::seqkit</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">mamba</span> install install bioconda::svaba</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="ex">mamba</span> install bioconda::lumpy-sv</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="ex">mamba</span> install install bioconda::delly</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="ex">mamba</span> install bioconda::sniffles</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="ex">mamba</span> install bioconda::cutesv</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="ex">mamba</span> install bioconda::pbsv</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load bwa</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load htslib</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load bcftools</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load samtools</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load fastqc</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load gcc/13.3.0</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load bedtools2/2.31.1</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load gatk/4.5.0.0</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Some of these softwares require especific versions of Python, so you need to create environments with those versions.</p>
+<p>Alternatively, you can use this conda environments I prepared:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate /project2/msalomon_1816/trgn_515/conda_env/trgn515</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate /project2/msalomon_1816/trgn_515/conda_env/nanocaller</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="bioinformatics-workflow" class="level1">
+<h1>Bioinformatics workflow</h1>
+<p>The bioinformatic pipeline used for this assignment is very similar to the assignment 1. In fact, as you can see in Fig. 1, part of the pipeline is already done for the indel discovery section, so be careful not to repeat unnecesary steps!</p>
+<div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Important
+Warning
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>For security reasons, many of the github operations we will do require you to create a token. A token is like a temporary password.</p>
-<p>To create a token, go to your github account, click user (upper-right icon) &gt; Settings &gt; Developer Settings (all the way down on the left column) &gt; Personal access tokens &gt; Tokens (Classic) &gt; Generate new token &gt; Generate new token (classic)</p>
-<p>Write a name for the token, change the expiration to “No expiration” for convenience and select “repo” scopes. Click Generate token at the bottom of the page. For all GitHub operations, this token is your password. Copy this token. You can create as many tokens as you want.</p>
+<p>Be careful to use the right reference genome and benchmarking file for indels and for SV. GRCh37 will be used for SVs, while GRCh38 will be used for indels.</p>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center" style="display: block; margin: 0 auto">
+<figure class="figure">
+<p><img src="assignment2_pipeline.png" class="img-fluid figure-img"></p>
+<figcaption>Bioinformatic workflow for short- and long-reads</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Many of the SV callers (and some indel callers) will output a VCF format with their own tags and filters that we haven’t seen before. Look at the VCF header to see what they mean.</p>
 </div>
 </div>
 </section>
-<section id="step-2-connect-git-repository-to-the-cluster" class="level2">
-<h2 class="anchored" data-anchor-id="step-2-connect-git-repository-to-the-cluster">Step 2: Connect git repository to the cluster</h2>
-<p>You only need do this once. It downloads the repository from GitHub to your local machine or, if the directory already exists in your local machine, it links it to the github remote repository.</p>
-<section id="option-1-clone-do-not-do-this-one" class="level4">
-<h4 class="anchored" data-anchor-id="option-1-clone-do-not-do-this-one"><strong>Option 1: Clone (Do not do this one)</strong></h4>
-<p>Use this option if you are starting fresh and you don’t have an existing local repository. You already have a folder in the USC server so we don’t need to do this.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Navigate to where you want to keep your coursework</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /scratch1/username</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Clone your specific repository (replace URL with your classroom repo link)</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/trgn-515/USERNAME.git</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Enter the directory</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> USERNAME</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="option-2-initiate-existing-folder" class="level4">
-<h4 class="anchored" data-anchor-id="option-2-initiate-existing-folder"><strong>Option 2: Initiate existing folder</strong></h4>
-<p>Since you already have a folder for your user on the cluster, we don’t need to “clone” one from github. However, you need to turn your normal folder into a git repository.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Enter your folder</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /scratch1/username</span>
+<section id="detection-of-indels" class="level1">
+<h1>Detection of Indels</h1>
+<p>Indels are usually detected using the same software tools as SNPs, as small gaps and insertions are part of the alignment process and their information is annotated within the BAM file.</p>
+<p>From the list shared in the previous assignment:</p>
+<ul>
+<li>BCFtools - General variant caller, doesn’t work well for indels in long-read data</li>
+<li>GATK - General variant caller, not much benchmarking for indels in long-read data</li>
+<li>FreeBayes - General variant caller, doesn’t work well for indels in long-read data</li>
+<li>Longshot - It doesn’t call indels</li>
+<li>Medaka - Long read SNP and indel calling</li>
+<li>Clair3 - Long read SNP and indel calling</li>
+<li>Deepvariant - General variant caller, based on a machine learning model, it works well for both short- and long-read data</li>
+<li>Nanocaller - Long read SNP and indel calling</li>
+</ul>
+<p>Medaka has recently been deprecated for variant calling in diploid organisms (it’s still widely used for haploid ones), so we won’t use it on this assignment.</p>
+<section id="task-1-indel-calling" class="level3">
+<h3 class="anchored">Task 1: Indel calling</h3>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Call indels in each of the different sequencing platforms.</p>
+<p><strong>Call only Indels.</strong> <strong>Don’t forget to normalize your indels!</strong></p>
+<section id="illumina" class="level2">
+<h2 class="anchored" data-anchor-id="illumina">Illumina</h2>
+<p>Use one of the following variant callers: BCFtools, GATK, or FreeBayes.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># For bcftools or freebayes</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate /project2/msalomon_1816/trgn_515/conda_env/trgn515</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Initialize Git</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> init</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> branch <span class="at">-M</span> main</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Link to GitHub (Replace URL with your repo link)</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote add origin https://github.com/trgn-515/USERNAME.git</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Pull any existing files (like the README) from GitHub</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull origin main <span class="at">--allow-unrelated-histories</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-</section>
-</section>
-<section id="setting-up-git" class="level1">
-<h1>3. Setting up Git</h1>
-<p>Before you can use Git, you need to tell it who you are. This information will be attached to every “save” (commit) you make.</p>
-<p>Open your terminal and run the following commands, replacing the name and email with your own:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set your name (this appears in the project history)</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.name <span class="st">"USERNAME"</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Set your email (must match your GitHub email)</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.email <span class="st">"your.email@usc.edu"</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the default branch name to 'main' (standard practice)</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> init.defaultBranch main</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>To verify your setup, run:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--list</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="the-git-workflow-clone-edit-commit-push" class="level1">
-<h1>4. The git workflow: clone, edit, commit, push</h1>
-<p>To submit an assignment in this class, you need to follow these four steps. These are the basic steps you will use in any project you work on in the future.</p>
-<section id="step-1-pull-sync" class="level2">
-<h2 class="anchored" data-anchor-id="step-1-pull-sync">Step 1: Pull (Sync)</h2>
-<p>To pull in git means to syncronize with the code from a remote repository (usually the latest version of the code).</p>
-<p>Always start your work session with this. It ensures your local computer has the latest changes (e.g: you fixed a typo on the GitHub website or a collaborator merged a change).</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull origin main</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="step-2-edit-code" class="level2">
-<h2 class="anchored" data-anchor-id="step-2-edit-code">Step 2: Edit code</h2>
-<p>Create files, write code, and save your work as you normally would. For this class, you will create a new folder for each assignment within your user repository.</p>
-</section>
-<section id="step-3-stage-and-commit-save" class="level2">
-<h2 class="anchored" data-anchor-id="step-3-stage-and-commit-save">Step 3: Stage and commit (Save)</h2>
-<p>Git has a two-step saving process.</p>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># For GATK</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate /project2/msalomon_1816/trgn_515/conda_env/gatk</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Filters (some of these nomenclature mary vary by caller):</p>
 <ul>
-<li>Add (Stage): Select which files you want to save.</li>
-<li>Commit: Actually save them with a message describing what you did.</li>
+<li>MQ &lt; 20</li>
+<li>QUAL &lt; 20</li>
+<li>DP &lt; 20</li>
+<li>AD: if homozoygous, 10 reads; if heterozygous, 5 reads<br>
+eg: ‘FMT/GT ~ “1/1” &amp; FMT/AD[:1] &lt; 10’<br>
+You will have to complete the heterozygous filter on your own</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check which files have changed</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Add everything in the current folder</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># or add a specific file</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add my_script.py</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the snapshot with a message</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Completed exercise 1"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="step-4-push-upload" class="level2">
-<h2 class="anchored" data-anchor-id="step-4-push-upload">Step 4: Push (upload)</h2>
-<p>Your commits currently live only on your computer. To submit your assignment, you must upload them to GitHub.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin main</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-</section>
-<section id="using-.gitignore-to-avoid-uploading-some-files" class="level1">
-<h1>5. Using .gitignore to avoid uploading some files</h1>
-<p>In bioinformatics, we work with massive files (.bam, .fastq, .vcf) that are too large for GitHub. If you accidentally try to commit a 2GB BAM file, your push will fail and your repository may break.</p>
-<p>To prevent this, we use a file called <code>.gitignore</code>. Any filename matching a pattern in this file will be invisible to Git. Remember, a file with a ‘.’ in front of its name is a hidden file. To list all files, including hidden ones, use <code>ls -a</code>.</p>
-<p>Create a file named .gitignore in the root of your repository and add the following lines:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ignore large genomic data files</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">*.bam</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="ex">*.sam</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="ex">*.cram</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="ex">*.fastq</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="ex">*.fq</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="ex">*.fastq.gz</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="ex">*.fq.gz</span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="ex">*.vcf</span></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="ex">*.vcf.gz</span></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Ignore system files</span></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="ex">.DS_Store</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Now, even if you type git add ., Git will safely skip your massive data files and only upload your scripts and markdown.</p>
-</section>
-<section id="advanced-workflow-branching-merging" class="level1">
-<h1>6. Advanced workflow: Branching &amp; Merging</h1>
-<p>In professional software development, you rarely work directly on the main branch. Instead, you create a “branch” to experiment with changes safely.</p>
+<section id="ont-and-pacbio" class="level2">
+<h2 class="anchored" data-anchor-id="ont-and-pacbio">ONT and PacBio</h2>
+<p>Use Nanocaller.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># For bcftools or freebayes</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate /project2/msalomon_1816/trgn_515/conda_env/nanocaller</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">NanoCaller</span> ...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Filters (some of these nomenclature mary vary by caller):</p>
 <ul>
-<li><strong>Branch</strong>: A parallel version of your repository. It lets you work on a new idea or code changes without messing up the working code in main.</li>
-<li><strong>Merge</strong>: The process of taking the changes from your branch and combining them back into main.</li>
+<li>MQ &lt; 10</li>
+<li>DP &lt; 20</li>
+<li>AD: if homozoygous, 10 reads; if heterozygous, 5 reads</li>
 </ul>
-<p>Although you are not required to use branches for our assignments, understanding this concept is critical for collaboration.</p>
-<p>How to use git branches:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Create a new branch and switch to it. Here we will create a new branch called "my-new-feature".</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout <span class="at">-b</span> my-new-feature</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Make edits, add, and commit as usual.</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Testing a new idea"</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Switch back to main when you are done</span></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout main</span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Merge the changes from your feature branch into main</span></span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> merge my-new-feature</span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="co"># 5. Delete the branch if you no longer need it</span></span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> branch <span class="at">-d</span> my-new-feature</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>NOTE:</strong> Use the Human GRCh38 assembly as reference genome.</p>
+<ol type="1">
+<li>Create a slurm job to run the Indel calling code. Attach your code to the assignment <strong>(5pts)</strong></li>
+</ol>
 </section>
-<section id="setting-up-assignment-1" class="level1">
-<h1>Setting Up Assignment 1</h1>
-<p>For your first task, you will practice this workflow by setting up the directory structure for Assignment 1.</p>
-<section id="task-1-create-the-directory-structure" class="level3">
-<h3 class="anchored" data-anchor-id="task-1-create-the-directory-structure">Task 1: Create the Directory Structure</h3>
+</div>
+</div>
+</section>
+</section>
+<section id="detection-of-structural-variants" class="level1">
+<h1>Detection of Structural Variants</h1>
+<p>The world of SV detection software is a rare one. Many tools that were highly popular a few years ago (BreakDancer, Manta, etc.) are no longer supported, and many tools keep popping up, so it’s hard to keep up. Additionally, some tools are better at detecting one type of SV, so often you have to run one SV caller for each type of SV.</p>
+<p>For illumina, some common variant callers still widely used include:</p>
+<ul>
+<li>SvABA (https://github.com/walaj/svaba)</li>
+<li>LUMPY (https://github.com/arq5x/lumpy-sv)</li>
+<li>DELLY (https://github.com/dellytools/delly)</li>
+</ul>
+<p>For Long-read sequencing:</p>
+<ul>
+<li>Sniffles (https://github.com/fritzsedlazeck/Sniffles)</li>
+<li>cuteSV (https://github.com/tjiangHIT/cuteSV)</li>
+<li>NanoSV - For Oxford Nanopore (https://github.com/mroosmalen/nanosv)</li>
+<li>PBSV - For PacBio (https://github.com/PacificBiosciences/pbsv)</li>
+</ul>
+<p>To use SvABA, Delly, cuteSV, Sniffles, NanoSV, or PBSV:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate /project/msalomon_1385/TRGN_515/conda/envs/trgn515</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>To use Lumpy:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate /project/msalomon_1385/TRGN_515/conda/envs/py27</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Filtering structural variants is a bit more complicated than filtering SNPs, and more often than not the SV callers themselves will add the tags for filtering.</p>
+<section id="task-2-structural-variant-calling" class="level3">
+<h3 class="anchored" data-anchor-id="task-2-structural-variant-calling">Task 2: Structural variant calling</h3>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -492,13 +528,52 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Inside your local user repository (eg: /scratch1/username/trg515, or whatever you called it), create a folder named 1_sequencing_techs.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> 1_sequencing_techs</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Call deletions, insertions, duplications and inversions.</p>
+<p>For illumina data, use SvABA, Lumpy or Delly.</p>
+<p>For ONT and PacBio, use Sniffles or cuteSV.</p>
+<p>For filtering, see your specific SV caller. If it already adds filter tags by default, use those.</p>
+<p><strong>NOTE:</strong> Use the Human GRCh37 assembly as reference genome. You will have to rerun rerun your mapping for illumina, ONT, and PacBio.</p>
+<ol type="1">
+<li>Create a slurm array job to run the variant calling code. Attach your code to the assignment <strong>(10pts)</strong></li>
+</ol>
 </div>
 </div>
 </section>
-<section id="task-2-copy-the-template" class="level3">
-<h3 class="anchored" data-anchor-id="task-2-copy-the-template">Task 2: Copy the Template</h3>
+</section>
+<section id="intersecting-structural-variants" class="level1">
+<h1>Intersecting Structural Variants</h1>
+<p>Structural variants are more difficult to benchmark and intersect than SNPs because often the exactly start and end of a SV in not precisely known. For that reason, we are going to extend the start and end coordinates a few basepairs, and then we will intersect them without needing to match the coordinates perfectly.</p>
+<p>For the benchmarking, we will divide our VCF files into INDEL and SV, and will use BEDtools to intersect with the benchmark VCF files.</p>
+<p>For Structural Variants, the benchmarking file only has Deletions and Insertions, so we will remove any other SV from our file. You can do this using the <code>SVTYPE</code> field within the VCF file:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bcftools</span> view <span class="at">-i</span> <span class="st">'SVTYPE="DEL" | SVTYPE="INS"'</span> ...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>To perform the benchmarking, follow this steps:</p>
+<ol type="1">
+<li><p>Prepare genome files for BEDtools.<br>
+You will have to prepare one for GRCh37 and another one for GRCh38 (although you did this one in the previous assignment!)</p></li>
+<li><p>Convert the sample VCF file into BED format.<br>
+Using BEDtools, add 10bp downstream and upstream of your indel, and 100bp of your SV.</p></li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bcftools</span> query</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">-i</span> <span class="st">'FILTER="PASS"'</span> <span class="co"># Select only PASS variants</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="ex">-f</span> <span class="st">'%CHROM\t%POS0\t%END\n'</span> <span class="co"># Print Chromosome, 0-based POS, </span><span class="re">END</span><span class="co"> position</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>input.vcf<span class="op">&gt;</span> <span class="co"># Onput VCF file</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="kw">|</span> <span class="ex">bedtools</span> slop </span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="ex">-g</span> file.genome</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="ex">-b</span> <span class="op">&lt;</span>n<span class="op">&gt;</span> <span class="co"># Number of bases to add in each direction</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ol start="3" type="1">
+<li><p>Convert the benchmark VCF file into BED format.<br>
+Using BEDtools, add 10bp downstream and upstream of your indel, and 100bp of your SV.</p></li>
+<li><p>Intersect variants.<br>
+Using BEDtools, intersect indels and SVs to their respective benchmark file.<br>
+Use a <strong>50% reciprocal overlap</strong> to overlap the variants.</p></li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bedtools</span> intersect</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">-a</span> sample.bed</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="ex">-b</span> benchmark.bed</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="ex">-f</span> 0.50 <span class="co"># Fraction to overlap</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="ex">-r</span> <span class="co"># Reciprocal overlap</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="task-3-calculate-the-fp-and-fn" class="level3">
+<h3 class="anchored" data-anchor-id="task-3-calculate-the-fp-and-fn">Task 3: Calculate the FP and FN</h3>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -509,43 +584,33 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Download the assignment_template.md file from:</p>
-<p><code>https://github.com/trgn-515/trgn-515.github.io/blob/main/modules/0_intro_git/assignment_template.md</code></p>
-<p>Save it inside <code>1_sequencing_techs</code></p>
-<p>Rename the file to 1_sequencing_techs.md.</p>
+<p>The previous code will give you the <strong>True Positives</strong> (variants that overlap).</p>
+<p>Find a way to use <code>bedtools intersect</code> to also find the <strong>False Positives</strong> and the <strong>False Negatives</strong>.</p>
+<ol type="1">
+<li>Attach your code to calculate the FN and FP to the assignment. Briefly explain how the code works and why it calculates FN and FP. <strong>(10pts)</strong></li>
+</ol>
 </div>
 </div>
-</section>
-<section id="task-3-render-and-submit" class="level3">
-<h3 class="anchored" data-anchor-id="task-3-render-and-submit">Task 3: Render and Submit</h3>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<div class="info">
+<p><strong>Task 4: Benchmarking of different sequencing technologies for Indel and SV calling.</strong></p>
+<p>The latest task consists of a comparison between the variant calls you obtained and the gold standard.</p>
+<ol type="1">
+<li>How many indels are detected for each sequencing technology and how many are in the gold standard? <strong>(5pts)</strong></li>
+<li>How many large deletions are detected and how many are in the gold standard? <strong>(5pts)</strong></li>
+<li>How many large insertions are detected and how many are in the gold standard? <strong>(5pts)</strong></li>
+<li>How many true positive, false positive and false negative large deletions are present for each sequencing technology? <strong>(5pts)</strong></li>
+<li>How many true positive, false positive and false negative large insertions are present for each sequencing technology? <strong>(5pts)</strong></li>
+<li>Calculate the precision, recall and F1 score for indels for each sequencing technology <strong>(5pts)</strong></li>
+<li>Calculate the precision, recall and F1 score for large deletions for each sequencing technology <strong>(5pts)</strong></li>
+<li>Calculate the precision, recall and F1 score for large insertions for each sequencing technology <strong>(5pts)</strong></li>
+<li>Make the following grouped barplots. Group bars by metric, so for each metric you can have together the three sequencing technologies <strong>(35pts)</strong>.
+<ul>
+<li>Barplot for indels showing the precision, recall and F1 score</li>
+<li>Barplot for large deletions showing the precision, recall and F1 score</li>
+<li>Barplot for large insertions showing the precision, recall and F1 score</li>
+</ul></li>
+</ol>
 </div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Open 1_sequencing_techs.md in RStudio or VS Code.</p>
-<p>Change the author field to your name.</p>
-<p>Render the file to PDF.</p>
-<p>Use Git to push both the qmd file and the generated .pdf to GitHub.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Check that Git sees your new files</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Add the new folder and files</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add modules/1_sequencing_techs/</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Commit the changes</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Setup assignment 1 structure"</span></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Submit</span></span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin main</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</div>
-<p>Once you have pushed, go to your GitHub repository URL in your browser. If you see the modules folder and your PDF, you have successfully submitted Assignment 0!</p>
 
 
 </section>
