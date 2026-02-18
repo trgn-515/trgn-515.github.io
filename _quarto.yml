@@ -29,6 +29,9 @@ website:
       - section: "Module 1: Sequencing technologies"
         contents:
           - modules/1_sequencing_techs/1_sequencing_techs.qmd
+      - section: "Module 2: Structural Variants"
+        contents:
+          - modules/2_sv/2_sv.qmd
 
 format:
   html:
