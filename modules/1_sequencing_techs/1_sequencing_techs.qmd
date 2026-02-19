@@ -813,11 +813,15 @@ bcftools query -f '%CHROM\t%POS0\t%END\n' <input.vcf> > <output.bed>
 This are the windows that will be used for counting.
 ```sh
 bedtools makewindows -g chr_size.txt -w <window_size> > windows.bed
-
-# The -g file is a tab delimited file with the chromosome name in the first column and the chromosome size on the second column (chr\tsize). You can get this from the <ref>.fai index file. You can use the entire .fai file if you are analyzing the whole genome, but for this assignment you can just grab your chromosome of interest.
 ```
 
-3. Counting the overlaps
+::: {.callout-warning}
+The -g file is a tab delimited file with the chromosome name in the first column and the chromosome size on the second column (chr\tsize).
+You can get this from the <ref>.fai index file. You can use the entire .fai file if you are analyzing the whole genome,
+but for this assignment you can just grab your chromosome of interest.
+:::
+
+1. Counting the overlaps
 
 Then we need to count overlaps between our features (FP or FN) and the windows we created.
 

@@ -22,14 +22,14 @@ format:
 The first assignment focused on single-nucleotide variants (SNV or SNP), where a single nucleotide is substituted for another. For this assignment, we will detect other types of genetic variation knowns as Indels and Structural Variants:
 
 1. **Indels:** Insertion/deletion polymorphisms are small additions (insertions) or loss (deletion) of one or multiple bases.
-2. **Structural variants (SV):** Are large additions, loss, or rearrangamenets of genetic material. The most common structural variants are:
+2. **Structural variants (SV):** Are large additions, loss, or rearrangements of genetic material. The most common structural variants are:
   * Deletions
   * Insertions
   * Duplications
   * Translocations
   * Inversions
 
-Traditioanlly, indels are considered to be from 1bp to 50bp. This distinction is a bit arbitrary and is mostly based on early alignment tools, which mostly extended gaps (deletions) of up to around 50bp and where thus available to variant callers that relied on alignment statistics reported in the CIGAR string within the BAM file. Biologically, indels are typically caused by Replication slippage, while structural variants are caused by more complex mechanisms, including Nonallelic homologous recombination or Non-homologous end-joining (NHEJ). In reality, there's no real consensus of when a variant is considered an indel and when it is a large insertion or deletion. Usually, indels are detected by variant callers that also detect SNPs (using the information about the alignment) and structural variants are detected by specialized software.
+Traditionally, indels are considered to be from 1bp to 50bp. This distinction is a bit arbitrary and is mostly based on early alignment tools, which mostly extended gaps (deletions) of up to around 50bp and where thus available to variant callers that relied on alignment statistics reported in the CIGAR string within the BAM file. Biologically, indels are typically caused by Replication slippage, while structural variants are caused by more complex mechanisms, including Nonallelic homologous recombination or Non-homologous end-joining (NHEJ). In reality, there's no real consensus of when a variant is considered an indel and when it is a large insertion or deletion. Usually, indels are detected by variant callers that also detect SNPs (using the information about the alignment) and structural variants are detected by specialized software.
 
 We will again use the human genome standard (HG002) as our gold standard, and we will compare our indels and SV against the set of variants present when comparing HG002 against the reference genome. For indels, we will use the same benchmarking set of variants against the GRCh38 human assembly. For SV, however, there's only the set of variants in reference to the GRCh37, so we have to use that assembly instead.
 
@@ -127,7 +127,7 @@ module load bedtools2/2.31.1
 module load gatk/4.5.0.0
 ```
 
-Some of these softwares require especific versions of Python, so you need to create environments with those versions.
+Some of these softwares require specific versions of Python, so you need to create environments with those versions.
 
 Alternatively, you can use this conda environments I prepared:
 
@@ -187,7 +187,7 @@ conda activate /project2/msalomon_1816/trgn_515/conda_env/trgn515
 conda activate /project2/msalomon_1816/trgn_515/conda_env/gatk
 ```
 
-Filters (some of these nomenclature mary vary by caller):
+Filters (some of these nomenclature may vary by caller):
 
 * MQ < 20
 * QUAL < 20
@@ -233,35 +233,40 @@ For Long-read sequencing:
 * NanoSV - For Oxford Nanopore (https://github.com/mroosmalen/nanosv)
 * PBSV - For PacBio (https://github.com/PacificBiosciences/pbsv)
 
-To use SvABA, Delly, cuteSV, Sniffles, NanoSV, or PBSV:
 
-```sh
-conda activate /project/msalomon_1385/TRGN_515/conda/envs/trgn515
-```
-
-To use Lumpy:
-
-```sh
-conda activate /project/msalomon_1385/TRGN_515/conda/envs/py27
-```
-
-Filtering structural variants is a bit more complicated than filtering SNPs, and more often than not the SV callers themselves will add the tags for filtering.
+Filtering structural variants is a bit more complicated than filtering SNPs, and more often than not the SV callers themselves will do the filtering for you already.
 
 ### Task 2: Structural variant calling
 ::: {.callout-note}
 
-
 Call deletions, insertions, duplications and inversions.
 
-For illumina data, use SvABA, Lumpy or Delly.
+For illumina data use Delly.
 
-For ONT and PacBio, use Sniffles or cuteSV.
+```sh
+conda activate /project2/msalomon_1816/trgn_515/conda_env/trgn515
+delly call ...
+```
+
+For ONT and PacBio, use Sniffles2.
+
+```sh
+conda activate /project2/msalomon_1816/trgn_515/conda_env/sniffles
+delly call ...
+```
 
 For filtering, see your specific SV caller. If it already adds filter tags by default, use those.
 
 **NOTE:** Use the Human GRCh37 assembly as reference genome. You will have to rerun rerun your mapping for illumina, ONT, and PacBio.
 
-1. Create a slurm array job to run the variant calling code. Attach your code to the assignment **(10pts)**
+1. Create a slurm job to run the variant calling code. Attach your code to the assignment **(5pts)**
+2. What is the minimum and maximum deletion size for Illumina, Nanopore and PacBio? Plot a the density distributions of deletions for Illumina, Nanopore and PacBio in a single figure. **(10pts)**
+3. What is the minimum and maximum insertion size for Illumina, Nanopore and PacBio? Plot a the density distributions of deletions for Illumina, Nanopore and PacBio in a single figure. **(10pts)**
+:::
+
+### Task 3: Discussion on detection methods
+::: {.callout-note}
+1. Why can we use general variant calling software that relies on alignment statistics (eg: bcftools, GATK...) to detect small Indels, but require specialized algorithms to detect large SVs?  **(10pts)**
 :::
 
 
@@ -311,7 +316,7 @@ bedtools intersect
 ```
 
 
-### Task 3: Calculate the FP and FN
+### Task 4: Calculate the FP and FN
 ::: {.callout-note}
 The previous code will give you the **True Positives** (variants that overlap).
 
@@ -321,20 +326,20 @@ Find a way to use `bedtools intersect` to also find the **False Positives** and 
 :::
   
 
-::: info
-**Task 4: Benchmarking of different sequencing technologies for Indel and SV calling.**
 
+### Task 5: Benchmarking of different sequencing technologies for Indel and SV calling.
+::: {.callout-note}
 The latest task consists of a comparison between the variant calls you obtained and the gold standard. 
 
 1) How many indels are detected for each sequencing technology and how many are in the gold standard? **(5pts)**
 2) How many large deletions are detected and how many are in the gold standard? **(5pts)**
 3) How many large insertions are detected and how many are in the gold standard? **(5pts)**
-5) How many true positive, false positive and false negative large deletions are present for each sequencing technology? **(5pts)**
-6) How many true positive, false positive and false negative large insertions are present for each sequencing technology? **(5pts)**
-7) Calculate the precision, recall and F1 score for indels for each sequencing technology **(5pts)**
-8) Calculate the precision, recall and F1 score for large deletions for each sequencing technology **(5pts)**
-9) Calculate the precision, recall and F1 score for large insertions for each sequencing technology **(5pts)**
-10) Make the following grouped barplots. Group bars by metric, so for each metric you can have together the three sequencing technologies  **(35pts)**.    
+4) How many true positive, false positive and false negative large deletions are present for each sequencing technology? **(5pts)**
+5) How many true positive, false positive and false negative large insertions are present for each sequencing technology? **(5pts)**
+6) Calculate the precision, recall and F1 score for indels for each sequencing technology **(5pts)**
+7) Calculate the precision, recall and F1 score for large deletions for each sequencing technology **(5pts)**
+8) Calculate the precision, recall and F1 score for large insertions for each sequencing technology **(5pts)**
+9)  Make the following grouped barplots. Group bars by metric, so for each metric you can have together the three sequencing technologies  **(35pts)**.    
     * Barplot for indels showing the precision, recall and F1 score
     * Barplot for large deletions showing the precision, recall and F1 score
     * Barplot for large insertions showing the precision, recall and F1 score
