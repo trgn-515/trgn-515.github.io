@@ -14,7 +14,7 @@ Links will be updated as we progress through the course.
 | Module | Slides | Assignment | Due Date |
 |:---|:---:|:---:|:---|
 | **Module 1: Sequencing Technologies**<br>Overview of NGS, Nanopore, and PacBio. | [{{< fa tv >}} HTML](slides/1_seq_techs.html)<br>[{{< fa file-pdf >}} PDF](slides/1_seq_techs.pdf) | [{{< fa pen-to-square >}} Assignment 1](modules/1_sequencing_techs/1_sequencing_techs.qmd) | **02/27/2026** |
-| **Module 2: Structural Variant Detection**<br>Definition and types of structural variants (SV), detection of indels and SV. | [{{< fa tv >}} HTML](#)<br>[{{< fa file-pdf >}} PDF](#) | [{{< fa pen-to-square >}} Assignment 2](modules/2_sv/2_sv.qmd) | **TBD** |
+| **Module 2: Structural Variant Detection**<br>Definition and types of structural variants (SV), detection of indels and SV. | [{{< fa tv >}} HTML](slides/2_sv.html)<br>[{{< fa file-pdf >}} PDF](slides/2_sv.pdf) | [{{< fa pen-to-square >}} Assignment 2](modules/2_sv/2_sv.qmd) | **TBD** |
 | **Module 3: Variant Functional Annotation**<br>Variant effect prediction, linear and logistic regression. | [{{< fa tv >}} HTML](#)<br>[{{< fa file-pdf >}} PDF](#) | [{{< fa pen-to-square >}} Assignment 3](#) | **TBD** |
 | **Module 4: Genome Assembly**<br>Introduction to genome assembly, QC, and hybrid-assembly. | [{{< fa tv >}} HTML](#)<br>[{{< fa file-pdf >}} PDF](#) | [{{< fa pen-to-square >}} Assignment 4](#) | **TBD** |
 | **Module 5: GWAS**<br>Introduction to GWAS, population structure, and linkage disequilibrium. | [{{< fa tv >}} HTML](#)<br>[{{< fa file-pdf >}} PDF](#) | [{{< fa pen-to-square >}} Assignment 5](#) | **TBD** |
