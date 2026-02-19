@@ -1238,10 +1238,21 @@ chr1 2000 2001</p>
 <li>Make genomic windows</li>
 </ol>
 <p>This are the windows that will be used for counting.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bedtools</span> makewindows <span class="at">-g</span> chr_size.txt <span class="at">-w</span> <span class="op">&lt;</span>window_size<span class="op">&gt;</span> <span class="op">&gt;</span> windows.bed</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="co"># The -g file is a tab delimited file with the chromosome name in the first column and the chromosome size on the second column (chr\tsize). You can get this from the &lt;ref&gt;.fai index file. You can use the entire .fai file if you are analyzing the whole genome, but for this assignment you can just grab your chromosome of interest.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<ol start="3" type="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bedtools</span> makewindows <span class="at">-g</span> chr_size.txt <span class="at">-w</span> <span class="op">&lt;</span>window_size<span class="op">&gt;</span> <span class="op">&gt;</span> windows.bed</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The -g file is a tab delimited file with the chromosome name in the first column and the chromosome size on the second column (chr size). You can get this from the <ref>.fai index file. You can use the entire .fai file if you are analyzing the whole genome, but for this assignment you can just grab your chromosome of interest.</ref></p>
+</div>
+</div>
+<ol type="1">
 <li>Counting the overlaps</li>
 </ol>
 <p>Then we need to count overlaps between our features (FP or FN) and the windows we created.</p>

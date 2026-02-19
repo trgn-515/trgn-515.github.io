@@ -245,10 +245,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#detection-of-structural-variants" id="toc-detection-of-structural-variants" class="nav-link" data-scroll-target="#detection-of-structural-variants">Detection of Structural Variants</a>
   <ul>
   <li><a href="#task-2-structural-variant-calling" id="toc-task-2-structural-variant-calling" class="nav-link" data-scroll-target="#task-2-structural-variant-calling">Task 2: Structural variant calling</a></li>
+  <li><a href="#task-3-discussion-of-detection-methods" id="toc-task-3-discussion-of-detection-methods" class="nav-link" data-scroll-target="#task-3-discussion-of-detection-methods">Task 3: Discussion of detection methods</a></li>
   </ul></li>
   <li><a href="#intersecting-structural-variants" id="toc-intersecting-structural-variants" class="nav-link" data-scroll-target="#intersecting-structural-variants">Intersecting Structural Variants</a>
   <ul>
-  <li><a href="#task-3-calculate-the-fp-and-fn" id="toc-task-3-calculate-the-fp-and-fn" class="nav-link" data-scroll-target="#task-3-calculate-the-fp-and-fn">Task 3: Calculate the FP and FN</a></li>
+  <li><a href="#task-4-calculate-the-fp-and-fn" id="toc-task-4-calculate-the-fp-and-fn" class="nav-link" data-scroll-target="#task-4-calculate-the-fp-and-fn">Task 4: Calculate the FP and FN</a></li>
+  <li><a href="#task-5-benchmarking-of-different-sequencing-technologies-for-indel-and-sv-calling." id="toc-task-5-benchmarking-of-different-sequencing-technologies-for-indel-and-sv-calling." class="nav-link" data-scroll-target="#task-5-benchmarking-of-different-sequencing-technologies-for-indel-and-sv-calling.">Task 5: Benchmarking of different sequencing technologies for Indel and SV calling.</a></li>
   </ul></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="2_sv.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
@@ -291,7 +293,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The first assignment focused on single-nucleotide variants (SNV or SNP), where a single nucleotide is substituted for another. For this assignment, we will detect other types of genetic variation knowns as Indels and Structural Variants:</p>
 <ol type="1">
 <li><strong>Indels:</strong> Insertion/deletion polymorphisms are small additions (insertions) or loss (deletion) of one or multiple bases.</li>
-<li><strong>Structural variants (SV):</strong> Are large additions, loss, or rearrangamenets of genetic material. The most common structural variants are:</li>
+<li><strong>Structural variants (SV):</strong> Are large additions, loss, or rearrangements of genetic material. The most common structural variants are:</li>
 </ol>
 <ul>
 <li>Deletions</li>
@@ -300,7 +302,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Translocations</li>
 <li>Inversions</li>
 </ul>
-<p>Traditioanlly, indels are considered to be from 1bp to 50bp. This distinction is a bit arbitrary and is mostly based on early alignment tools, which mostly extended gaps (deletions) of up to around 50bp and where thus available to variant callers that relied on alignment statistics reported in the CIGAR string within the BAM file. Biologically, indels are typically caused by Replication slippage, while structural variants are caused by more complex mechanisms, including Nonallelic homologous recombination or Non-homologous end-joining (NHEJ). In reality, there’s no real consensus of when a variant is considered an indel and when it is a large insertion or deletion. Usually, indels are detected by variant callers that also detect SNPs (using the information about the alignment) and structural variants are detected by specialized software.</p>
+<p>Traditionally, indels are considered to be from 1bp to 50bp. This distinction is a bit arbitrary and is mostly based on early alignment tools, which mostly extended gaps (deletions) of up to around 50bp and where thus available to variant callers that relied on alignment statistics reported in the CIGAR string within the BAM file. Biologically, indels are typically caused by Replication slippage, while structural variants are caused by more complex mechanisms, including Nonallelic homologous recombination or Non-homologous end-joining (NHEJ). In reality, there’s no real consensus of when a variant is considered an indel and when it is a large insertion or deletion. Usually, indels are detected by variant callers that also detect SNPs (using the information about the alignment) and structural variants are detected by specialized software.</p>
 <p>We will again use the human genome standard (HG002) as our gold standard, and we will compare our indels and SV against the set of variants present when comparing HG002 against the reference genome. For indels, we will use the same benchmarking set of variants against the GRCh38 human assembly. For SV, however, there’s only the set of variants in reference to the GRCh37, so we have to use that assembly instead.</p>
 <p>Some reference papers regarding this dataset:</p>
 <ul>
@@ -386,7 +388,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load gcc/13.3.0</span>
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load bedtools2/2.31.1</span>
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load gatk/4.5.0.0</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Some of these softwares require especific versions of Python, so you need to create environments with those versions.</p>
+<p>Some of these softwares require specific versions of Python, so you need to create environments with those versions.</p>
 <p>Alternatively, you can use this conda environments I prepared:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate /project2/msalomon_1816/trgn_515/conda_env/trgn515</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate /project2/msalomon_1816/trgn_515/conda_env/nanocaller</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -464,7 +466,7 @@ Note
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># For GATK</span></span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate /project2/msalomon_1816/trgn_515/conda_env/gatk</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Filters (some of these nomenclature mary vary by caller):</p>
+<p>Filters (some of these nomenclature may vary by caller):</p>
 <ul>
 <li>MQ &lt; 20</li>
 <li>QUAL &lt; 20</li>
@@ -511,11 +513,7 @@ You will have to complete the heterozygous filter on your own</li>
 <li>NanoSV - For Oxford Nanopore (https://github.com/mroosmalen/nanosv)</li>
 <li>PBSV - For PacBio (https://github.com/PacificBiosciences/pbsv)</li>
 </ul>
-<p>To use SvABA, Delly, cuteSV, Sniffles, NanoSV, or PBSV:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate /project/msalomon_1385/TRGN_515/conda/envs/trgn515</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>To use Lumpy:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate /project/msalomon_1385/TRGN_515/conda/envs/py27</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Filtering structural variants is a bit more complicated than filtering SNPs, and more often than not the SV callers themselves will add the tags for filtering.</p>
+<p>Filtering structural variants is a bit more complicated than filtering SNPs, and more often than not the SV callers themselves will do the filtering for you already.</p>
 <section id="task-2-structural-variant-calling" class="level3">
 <h3 class="anchored" data-anchor-id="task-2-structural-variant-calling">Task 2: Structural variant calling</h3>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -529,12 +527,36 @@ Note
 </div>
 <div class="callout-body-container callout-body">
 <p>Call deletions, insertions, duplications and inversions.</p>
-<p>For illumina data, use SvABA, Lumpy or Delly.</p>
-<p>For ONT and PacBio, use Sniffles or cuteSV.</p>
+<p>For illumina data use Delly.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate /project2/msalomon_1816/trgn_515/conda_env/trgn515</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">delly</span> call ...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>For ONT and PacBio, use Sniffles2.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate /project2/msalomon_1816/trgn_515/conda_env/sniffles</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">delly</span> call ...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>For filtering, see your specific SV caller. If it already adds filter tags by default, use those.</p>
 <p><strong>NOTE:</strong> Use the Human GRCh37 assembly as reference genome. You will have to rerun rerun your mapping for illumina, ONT, and PacBio.</p>
 <ol type="1">
-<li>Create a slurm array job to run the variant calling code. Attach your code to the assignment <strong>(10pts)</strong></li>
+<li>Create a slurm job to run the variant calling code. Attach your code to the assignment <strong>(5pts)</strong></li>
+<li>What is the minimum and maximum deletion size for Illumina, Nanopore and PacBio? Plot a the density distributions of deletions for Illumina, Nanopore and PacBio in a single figure. <strong>(10pts)</strong></li>
+<li>What is the minimum and maximum insertion size for Illumina, Nanopore and PacBio? Plot a the density distributions of deletions for Illumina, Nanopore and PacBio in a single figure. <strong>(10pts)</strong></li>
+</ol>
+</div>
+</div>
+</section>
+<section id="task-3-discussion-of-detection-methods" class="level3">
+<h3 class="anchored" data-anchor-id="task-3-discussion-of-detection-methods">Task 3: Discussion of detection methods</h3>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>Why can we use general variant calling software that relies on alignment statistics (eg: bcftools, GATK…) to detect small Indels, but require specialized algorithms to detect large SVs? <strong>(10pts)</strong></li>
 </ol>
 </div>
 </div>
@@ -572,8 +594,8 @@ Use a <strong>50% reciprocal overlap</strong> to overlap the variants.</p></li>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="ex">-b</span> benchmark.bed</span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="ex">-f</span> 0.50 <span class="co"># Fraction to overlap</span></span>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="ex">-r</span> <span class="co"># Reciprocal overlap</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<section id="task-3-calculate-the-fp-and-fn" class="level3">
-<h3 class="anchored" data-anchor-id="task-3-calculate-the-fp-and-fn">Task 3: Calculate the FP and FN</h3>
+<section id="task-4-calculate-the-fp-and-fn" class="level3">
+<h3 class="anchored" data-anchor-id="task-4-calculate-the-fp-and-fn">Task 4: Calculate the FP and FN</h3>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -591,8 +613,19 @@ Note
 </ol>
 </div>
 </div>
-<div class="info">
-<p><strong>Task 4: Benchmarking of different sequencing technologies for Indel and SV calling.</strong></p>
+</section>
+<section id="task-5-benchmarking-of-different-sequencing-technologies-for-indel-and-sv-calling." class="level3">
+<h3 class="anchored" data-anchor-id="task-5-benchmarking-of-different-sequencing-technologies-for-indel-and-sv-calling.">Task 5: Benchmarking of different sequencing technologies for Indel and SV calling.</h3>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>The latest task consists of a comparison between the variant calls you obtained and the gold standard.</p>
 <ol type="1">
 <li>How many indels are detected for each sequencing technology and how many are in the gold standard? <strong>(5pts)</strong></li>
@@ -610,6 +643,7 @@ Note
 <li>Barplot for large insertions showing the precision, recall and F1 score</li>
 </ul></li>
 </ol>
+</div>
 </div>
 
 
