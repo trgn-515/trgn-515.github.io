@@ -816,9 +816,7 @@ bedtools makewindows -g chr_size.txt -w <window_size> > windows.bed
 ```
 
 ::: {.callout-warning}
-The -g file is a tab delimited file with the chromosome name in the first column and the chromosome size on the second column (chr\tsize).
-You can get this from the <ref>.fai index file. You can use the entire .fai file if you are analyzing the whole genome,
-but for this assignment you can just grab your chromosome of interest.
+The -g file is a tab delimited file with the chromosome name in the first column and the chromosome size on the second column (chr\tsize). You can get this from the <ref>.fai index file. You can use the entire .fai file if you are analyzing the whole genome, but for this assignment you can just grab your chromosome of interest.
 :::
 
 1. Counting the overlaps
@@ -842,6 +840,6 @@ The latest task consists of a comparison between the variant calls you obtained 
 3) Calculate the precision and recall for each sequencing technology **(5pts)**
 4) Calculate the F1 score for each sequencing technology **(5pts)**
 5) Make a grouped barplot of each metric and each sequencing technology. Group bars by sequencing technology. Make one plot for TP, FP, FN; and another plot for precision, recall and F1 score (in percentage) **(10pts)**
-8) Look at the distribution of false negatives and false positives along the genome per sequencing technology using a genomic window of 10kbp. Make a density plot or a histogram of FP and FN along the genome. X-axis is genome position as determined by the beginning of the window. Y-axis is the number of FP or FN. Is there any pattern in the distribution? Are there any areas with high FP and FN? Calculate recall, precision and F1 for each genomic window. Are there any areas with low recall/precision/F1? Give approximate genomic coordinates **(20pts)**
-9) Repeat the analysis using genomic windows of 10kpb and a 5000bp window overlap. You can find this in the `bedtools makewindows` command help. Repeat the plot of the previous question. How has the plot change? Is there any pattern in the distribution? Are there any areas with high FP and FN? Calculate recall, precision and F1 for each genomic window. Are there any areas with low recall/precision/F1? Give approximate genomic coordinates **(20pts)**
+6) Look at the distribution of false negatives and false positives along the genome per sequencing technology using a genomic window of 10kbp. Make a density plot or a histogram of FP and FN along the genome. X-axis is genome position as determined by the beginning of the window. Y-axis is the number of FP or FN. Is there any pattern in the distribution? Are there any areas with high FP and FN? Calculate recall, precision and F1 for each genomic window. Are there any areas with low recall/precision/F1? Give approximate genomic coordinates **(20pts)**
+7) Repeat the analysis using genomic windows of 10kpb and a 5000bp window overlap. You can find this in the `bedtools makewindows` command help. Repeat the plot of the previous question. How has the plot change? Is there any pattern in the distribution? Are there any areas with high FP and FN? Calculate recall, precision and F1 for each genomic window. Are there any areas with low recall/precision/F1? Give approximate genomic coordinates **(20pts)**
 :::

@@ -264,7 +264,7 @@ For filtering, see your specific SV caller. If it already adds filter tags by de
 3. What is the minimum and maximum insertion size for Illumina, Nanopore and PacBio? Plot a the density distributions of deletions for Illumina, Nanopore and PacBio in a single figure. **(10pts)**
 :::
 
-### Task 3: Discussion on detection methods
+### Task 3: Discussion of detection methods
 ::: {.callout-note}
 1. Why can we use general variant calling software that relies on alignment statistics (eg: bcftools, GATK...) to detect small Indels, but require specialized algorithms to detect large SVs?  **(10pts)**
 :::
