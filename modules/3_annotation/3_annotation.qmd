@@ -259,7 +259,7 @@ These annotation files sometimes come unsorted. To ensure proper formatting of t
 
 
 ```sh
-conda activate /project2/msalomon_1816/trgn_515/genometools
+conda activate /project2/msalomon_1816/trgn_515/conda_env/genometools
 
 gt gff3 -sort -tidy -retainids input.gff | bgzip -c > sorted.gff.gz
 tabix index -p gff sorted.gff.gz
@@ -281,6 +281,18 @@ tabix -p gff $gff_file.gz
 ```
 
 There are many tools to perform variant annotation. Some of the most commonly used include `VEP` (Variant Effect Predictor, from Ensembl); `SnpEff`; `BCFtools csq`, or `ANNOVAR`. Ideally, we would like a simple software that takes a VCF file as an input, gives an annotated VCF file as output, and can be easily used with command pipes.
+
+To use VEP, use the conda environment:
+
+```sh
+conda activate /project2/msalomon_1816/trgn_515/conda_env/vep
+```
+
+For bcftools or SnpEff:
+
+```sh
+conda activate /project2/msalomon_1816/trgn_515/conda_env/trgn515
+```
 
 #### VEP
 
