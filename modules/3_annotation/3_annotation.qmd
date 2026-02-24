@@ -318,6 +318,7 @@ As most bcftools tools, `BCFtools csq` is memory efficient and incredibly fast. 
 bcftools csq
 -f <ref_genome>
 -g <gff_file>
+-p a # Handle unphased genotypes
 -Oz
 -o <vcf_file|stdout>
 <vcf_file|stdin>
