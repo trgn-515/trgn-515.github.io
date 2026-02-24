@@ -634,9 +634,10 @@ Note
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bcftools</span> csq</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="ex">-f</span> <span class="op">&lt;</span>ref_genome<span class="op">&gt;</span></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="ex">-g</span> <span class="op">&lt;</span>gff_file<span class="op">&gt;</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="ex">-Oz</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="ex">-o</span> <span class="op">&lt;</span>vcf_file<span class="kw">|</span><span class="ex">stdout</span><span class="op">&gt;</span></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>vcf_file<span class="kw">|</span><span class="ex">stdin</span><span class="op">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="ex">-p</span> a <span class="co"># Handle unphased genotypes</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="ex">-Oz</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="ex">-o</span> <span class="op">&lt;</span>vcf_file<span class="kw">|</span><span class="ex">stdout</span><span class="op">&gt;</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>vcf_file<span class="kw">|</span><span class="ex">stdin</span><span class="op">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Unfortunately, <code>BCFtools csq</code> is very particular about the format of the GFF file, and it requires that the file adheres perfectly to the Ensembl format. That means that even files downloaded from NCBI may cause errors. For most Eukaryotic genomes, you can find GFF files on the Ensembl portal.</p>
 </section>
 <section id="snpeff" class="level4">
