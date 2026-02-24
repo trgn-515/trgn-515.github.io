@@ -378,7 +378,7 @@ We can use this plugin to select the features we want from the VCF file. For the
 
 ```sh
 bcftools view -e 'GT="0/1"' CDC_all.vcf.gz | \
-bcftools +split-vep -d -f '%CHROM\t%POS\t%REF\t%ALT[\t%SAMPLE=%GT]\t%Consequence\t%Gene\n' > CDC_results.txt
+bcftools +split-vep -d -f '%CHROM\t%POS\t%REF\t%ALT[\t%SAMPLE=%GT]\t%Consequence\t%SYMBOL\n' > CDC_results.txt
 ```
 
 You will have to adapt this to bcftools csq or snpeff.
