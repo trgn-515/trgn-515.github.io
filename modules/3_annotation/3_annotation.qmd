@@ -392,8 +392,7 @@ Use any of the options listed above to parse the variant functional annotation f
 
 
 ### Task 7: Detect variants likely to be associated to rifampicin resistance**.
-
-::: info
+::: {.callout-note}
 
 Answer the following questions:
 
