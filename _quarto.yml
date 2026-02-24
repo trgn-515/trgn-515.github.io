@@ -32,7 +32,9 @@ website:
       - section: "Module 2: Structural Variants"
         contents:
           - modules/2_sv/2_sv.qmd
-
+      - section: "Module 3: Variant functional annotation"
+        contents:
+          - modules/3_annotation/3_annotation.qmd
 format:
   html:
     theme: cosmo
