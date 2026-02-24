@@ -6,3 +6,9 @@ Here is a list of the course modules.
 
 ## Module 1
 * [Sequencing Technologies](modules/1_sequencing_techs/1_sequencing_techs.qmd)
+
+## Module 2
+* [Structural variants](modules/2_sv/2_sv.qmd)
+
+## Module 3
+* [Variant consequence annotation](modules/3_annotation/3_annotation.qmd)

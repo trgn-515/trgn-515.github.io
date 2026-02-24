@@ -252,8 +252,8 @@ This code can be embedded within a python script or a cluster slurm batch job. A
 #SBATCH --mem=5G
 #SBATCH --time=1:00:00
 #SBATCH --job-name=fastqc
-#SBATCH --output=/scratch1/USER/temp/fastqc_%j.%a.out
-#SBATCH --error=/scratch1/USER/temp/fastqc_%j.%a.err
+#SBATCH --output=/scratch1/USER/temp/fastqc_%j.out
+#SBATCH --error=/scratch1/USER/temp/fastqc_%j.err
 
 # Put the input and output directories into variables for conciseness
 in_dir=/project/msalomon_1385/TRGN_515/1_exp_evolution/data/m_tuberculosis/fastq
