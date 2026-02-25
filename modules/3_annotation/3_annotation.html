@@ -285,6 +285,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#task-7-detect-variants-likely-to-be-associated-to-rifampicin-resistance." id="toc-task-7-detect-variants-likely-to-be-associated-to-rifampicin-resistance." class="nav-link" data-scroll-target="#task-7-detect-variants-likely-to-be-associated-to-rifampicin-resistance.">Task 7: Detect variants likely to be associated to rifampicin resistance.</a></li>
   </ul></li>
   </ul></li>
+  <li><a href="#dataset-2-annotation-clinical-consequences-of-human-variants" id="toc-dataset-2-annotation-clinical-consequences-of-human-variants" class="nav-link" data-scroll-target="#dataset-2-annotation-clinical-consequences-of-human-variants">Dataset 2: Annotation clinical consequences of human variants</a>
+  <ul>
+  <li><a href="#input-and-outputs-1" id="toc-input-and-outputs-1" class="nav-link" data-scroll-target="#input-and-outputs-1">Input and outputs</a></li>
+  <li><a href="#using-clinical-databases" id="toc-using-clinical-databases" class="nav-link" data-scroll-target="#using-clinical-databases">Using clinical databases</a>
+  <ul class="collapse">
+  <li><a href="#clinvar" id="toc-clinvar" class="nav-link" data-scroll-target="#clinvar">ClinVar</a></li>
+  <li><a href="#gnomad" id="toc-gnomad" class="nav-link" data-scroll-target="#gnomad">gnomAD</a></li>
+  </ul></li>
+  <li><a href="#in-silico-score-prediction" id="toc-in-silico-score-prediction" class="nav-link" data-scroll-target="#in-silico-score-prediction">In silico score prediction</a></li>
+  </ul></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="3_annotation.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
@@ -449,19 +459,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="va">out_dir</span><span class="op">=</span>/scratch1/USER/1_exp_evolution/fastq_qc</span>
 <span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co"># First, let's select one file within a directory. In each iteration we will get a different file:</span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="va">in_file</span><span class="op">=</span><span class="va">$(</span><span class="fu">ls</span> <span class="va">$in_dir</span>/ <span class="kw">|</span> <span class="fu">awk</span> <span class="st">"NR==</span><span class="va">${SGE_TASK_ID}</span><span class="st">"</span><span class="va">)</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="va">in_file</span><span class="op">=</span><span class="va">$(</span><span class="fu">ls</span> <span class="va">$in_dir</span>/ <span class="kw">|</span> <span class="fu">awk</span> <span class="st">"NR==</span><span class="va">${SLURM_ARRAY_TASK_ID}</span><span class="st">"</span><span class="va">)</span></span>
 <span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="va">sample</span><span class="op">=</span><span class="va">$(</span><span class="fu">basename</span> <span class="va">$in_file</span> .fastq.gz<span class="va">)</span> <span class="co"># Set up a sample variable for the output.</span></span>
 <span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="ex">fastqc</span> <span class="at">-o</span> <span class="va">$out_dir</span>/<span class="va">$sample</span> <span class="at">--extract</span> <span class="at">--dir</span> <span class="va">$out_dir</span> <span class="va">$in_file</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>In this example, we are listing the files in our input directory using <code>ls</code>, then we are selecting each file depending on their order using <code>awk</code> and <code>${SGE_TASK_ID}</code>. So when <code>${SGE_TASK_ID}</code> is 1, we get the first file; when it’s 2, we get the second file, etc.</p>
+<p>In this example, we are listing the files in our input directory using <code>ls</code>, then we are selecting each file depending on their order using <code>awk</code> and <code>${SLURM_ARRAY_TASK_ID}</code>. So when <code>${SLURM_ARRAY_TASK_ID}</code> is 1, we get the first file; when it’s 2, we get the second file, etc.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Now let's use a file with sample ids in each line of the file</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="va">sample_list</span><span class="op">=</span>/scratch1/USER/1_exp_evolution/sample_list.txt</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="va">sample</span><span class="op">=</span><span class="va">$(</span><span class="fu">awk</span> <span class="st">"NR==</span><span class="va">${SGE_TASK_ID}</span><span class="st">"</span> <span class="va">$sample_list)</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="va">sample</span><span class="op">=</span><span class="va">$(</span><span class="fu">awk</span> <span class="st">"NR==</span><span class="va">${SLURM_ARRAY_TASK_ID}</span><span class="st">"</span> <span class="va">$sample_list)</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="va">in_file</span><span class="op">=</span><span class="va">$sample</span>.fastq.gz <span class="co"># Set up the file name variable.</span></span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="ex">fastqc</span> <span class="at">-o</span> <span class="va">$out_dir</span>/<span class="va">$sample</span> <span class="at">--extract</span> <span class="at">--dir</span> <span class="va">$out_dir</span> <span class="va">$in_file</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>In this case, we directly have a list of sample ids that we use the array job to loop through.</p>
-<p>There are many ways to build array jobs, and the way to structure it will depend on your specific application. Just remember, everything comes down to how you use the <code>${SGE_TASK_ID}</code> variable.</p>
+<p>There are many ways to build array jobs, and the way to structure it will depend on your specific application. Just remember, everything comes down to how you use the <code>${SLURM_ARRAY_TASK_ID}</code> variable.</p>
 <p>A couple of other interesting variables in the array header are <code>%j</code> and <code>%a</code>. The variable <code>%j</code> stores the job id, and the variable <code>%a</code> has the array index (1,2,3,…n), so each of the stderr and stdout outputs will have their own name.</p>
 </section>
 <section id="short-read-alignment" class="level2">
@@ -737,9 +747,46 @@ Note
 </ol>
 </div>
 </div>
-
-
 </section>
+</section>
+</section>
+<section id="dataset-2-annotation-clinical-consequences-of-human-variants" class="level1">
+<h1>Dataset 2: Annotation clinical consequences of human variants</h1>
+<p>This dataset was extensively characterized by the FDA’s SEQC2 consortium. The consortium used orthogonal sequencing technologies and multiple bioinformatics pipelines to create a highly validated “truth set”. It contains true and verified pathogenic mutations.</p>
+<section id="input-and-outputs-1" class="level2">
+<h2 class="anchored" data-anchor-id="input-and-outputs-1">Input and outputs</h2>
+<p>For this dataset, we will start using VCF files with high confidence variant calls.</p>
+<blockquote class="blockquote">
+<p>VCF files</p>
+<p><code>/project2/msalomon_1816/trgn_515/3_annotation/HCC1395_breast_cancer/vcf/high-confidence_sSNV_in_HC_regions_v1.2.1.vcf.gz</code></p>
+</blockquote>
+</section>
+<section id="using-clinical-databases" class="level2">
+<h2 class="anchored" data-anchor-id="using-clinical-databases">Using clinical databases</h2>
+<section id="clinvar" class="level4">
+<h4 class="anchored" data-anchor-id="clinvar">ClinVar</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://ftp.ncbi.nlm.nih.gov/pub/clinvar/vcf_GRCh38/clinvar.vcf.gz</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="ex">tabix</span> <span class="at">-p</span> vcf clinvar.vcf.gz</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bcftools</span> annotate <span class="dt">\</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">-a</span> clinvar.vcf.gz <span class="dt">\</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">-c</span> INFO/CLNSIG <span class="dt">\</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">-Oz</span> <span class="at">-o</span> tumor_annotated.vcf.gz <span class="dt">\</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  tumor_gnomad.vcf.gz</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="gnomad" class="level4">
+<h4 class="anchored" data-anchor-id="gnomad">gnomAD</h4>
+<p>In clinical genomics, variants that are common in the general population are almost always filtered out when looking for rare pathogenic drivers. We can pull the Allele Frequency (AF) from gnomAD and annotate our VCF file with it.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bcftools</span> annotate <span class="dt">\</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">-a</span> gnomad.genomes.vcf.gz <span class="dt">\</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">-c</span> ID,INFO/AF <span class="dt">\</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">-Oz</span> <span class="at">-o</span> <span class="op">&lt;</span>output_vcf.gz<span class="op">&gt;</span> <span class="dt">\</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="op">&lt;</span>input.vcf.gz<span class="op">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="in-silico-score-prediction" class="level2">
+<h2 class="anchored" data-anchor-id="in-silico-score-prediction">In silico score prediction</h2>
+
+
 </section>
 </section>
 
