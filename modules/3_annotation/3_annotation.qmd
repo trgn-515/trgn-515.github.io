@@ -110,18 +110,18 @@ in_dir=/project2/msalomon_1816/trgn_515/3_annotation/m_tuberculosis/fastq
 out_dir=/scratch1/USER/1_exp_evolution/fastq_qc
 
 # First, let's select one file within a directory. In each iteration we will get a different file:
-in_file=$(ls $in_dir/ | awk "NR==${SGE_TASK_ID}")
+in_file=$(ls $in_dir/ | awk "NR==${SLURM_ARRAY_TASK_ID}")
 
 sample=$(basename $in_file .fastq.gz) # Set up a sample variable for the output.
 fastqc -o $out_dir/$sample --extract --dir $out_dir $in_file
 ```
 
-In this example, we are listing the files in our input directory using `ls`, then we are selecting each file depending on their order using `awk` and `${SGE_TASK_ID}`. So when `${SGE_TASK_ID}` is 1, we get the first file; when it's 2, we get the second file, etc.
+In this example, we are listing the files in our input directory using `ls`, then we are selecting each file depending on their order using `awk` and `${SLURM_ARRAY_TASK_ID}`. So when `${SLURM_ARRAY_TASK_ID}` is 1, we get the first file; when it's 2, we get the second file, etc.
 
 ```sh
 # Now let's use a file with sample ids in each line of the file
 sample_list=/scratch1/USER/1_exp_evolution/sample_list.txt
-sample=$(awk "NR==${SGE_TASK_ID}" $sample_list)
+sample=$(awk "NR==${SLURM_ARRAY_TASK_ID}" $sample_list)
 
 in_file=$sample.fastq.gz # Set up the file name variable.
 fastqc -o $out_dir/$sample --extract --dir $out_dir $in_file
@@ -129,7 +129,7 @@ fastqc -o $out_dir/$sample --extract --dir $out_dir $in_file
 
 In this case, we directly have a list of sample ids that we use the array job to loop through.
 
-There are many ways to build array jobs, and the way to structure it will depend on your specific application. Just remember, everything comes down to how you use the `${SGE_TASK_ID}` variable.
+There are many ways to build array jobs, and the way to structure it will depend on your specific application. Just remember, everything comes down to how you use the `${SLURM_ARRAY_TASK_ID}` variable.
 
 A couple of other interesting variables in the array header are `%j` and `%a`. The variable `%j` stores the job id, and the variable `%a` has the array index (1,2,3,...n), so each of the stderr and stdout outputs will have their own name.
 
@@ -416,3 +416,48 @@ Answer the following questions:
 5. Review the variants within those genes in IGV and determine if the alignment is reliable **(5pts)**
 6. What antibiotic resistant mechanism from the ones reviewed in class explains the functional consequence of the variant? (i.e: target site modification, efflux pump, etc.) **(10pts)**
 :::
+
+# Dataset 2: Annotation clinical consequences of human variants
+
+This dataset was extensively characterized by the FDA's SEQC2 consortium. The consortium used orthogonal sequencing technologies and multiple bioinformatics pipelines to create a highly validated "truth set". It contains true and verified pathogenic mutations.
+
+## Input and outputs
+
+For this dataset, we will start using VCF files with high confidence variant calls.
+
+> VCF files
+>
+> `/project2/msalomon_1816/trgn_515/3_annotation/HCC1395_breast_cancer/vcf/high-confidence_sSNV_in_HC_regions_v1.2.1.vcf.gz`
+
+
+## Using clinical databases
+
+#### ClinVar
+
+```sh
+wget https://ftp.ncbi.nlm.nih.gov/pub/clinvar/vcf_GRCh38/clinvar.vcf.gz
+tabix -p vcf clinvar.vcf.gz
+```
+
+```sh
+bcftools annotate \
+  -a clinvar.vcf.gz \
+  -c INFO/CLNSIG \
+  -Oz -o tumor_annotated.vcf.gz \
+  tumor_gnomad.vcf.gz
+```
+
+#### gnomAD
+
+In clinical genomics, variants that are common in the general population are almost always filtered out when looking for rare pathogenic drivers. We can pull the Allele Frequency (AF) from gnomAD and annotate our VCF file with it.
+
+```sh
+bcftools annotate \
+  -a gnomad.genomes.vcf.gz \
+  -c ID,INFO/AF \
+  -Oz -o <output_vcf.gz> \
+  <input.vcf.gz>
+  ```
+
+## In silico score prediction
+
