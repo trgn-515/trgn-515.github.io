@@ -160,7 +160,7 @@
     "href": "modules/2_sv/2_sv.html#ont-and-pacbio",
     "title": "Assignment 2: Structural variants",
     "section": "ONT and PacBio",
-    "text": "ONT and PacBio\nUse Nanocaller.\n# For bcftools or freebayes\nconda activate /project2/msalomon_1816/trgn_515/conda_env/nanocaller\nNanoCaller ...\nFilters (some of these nomenclature mary vary by caller):\n\nMQ &lt; 10\nDP &lt; 20\nAD: if homozoygous, 10 reads; if heterozygous, 5 reads\n\nNOTE: Use the Human GRCh38 assembly as reference genome.\n\nCreate a slurm job to run the Indel calling code. Attach your code to the assignment (5pts)",
+    "text": "ONT and PacBio\nUse Nanocaller.\nconda activate /project2/msalomon_1816/trgn_515/conda_env/nanocaller\nNanoCaller ...\nFilters (some of these nomenclature mary vary by caller):\n\nMQ &lt; 10\nDP &lt; 20\nAD: if homozoygous, 10 reads; if heterozygous, 5 reads\n\nNOTE: Use the Human GRCh38 assembly as reference genome.\n\nCreate a slurm job to run the Indel calling code. Attach your code to the assignment (5pts)",
     "crumbs": [
       "Home",
       "Module 2: Structural Variants",

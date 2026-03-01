@@ -255,6 +255,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#input-and-outputs" id="toc-input-and-outputs" class="nav-link" data-scroll-target="#input-and-outputs">Input and outputs</a></li>
   <li><a href="#required-software" id="toc-required-software" class="nav-link" data-scroll-target="#required-software">Required software</a></li>
   <li><a href="#bioinformatics-workflow" id="toc-bioinformatics-workflow" class="nav-link" data-scroll-target="#bioinformatics-workflow">Bioinformatics workflow</a></li>
+  <li><a href="#indel-realignment" id="toc-indel-realignment" class="nav-link" data-scroll-target="#indel-realignment">Indel realignment</a></li>
   <li><a href="#detection-of-indels" id="toc-detection-of-indels" class="nav-link" data-scroll-target="#detection-of-indels">Detection of Indels</a>
   <ul>
   <li><a href="#task-1-indel-calling" id="toc-task-1-indel-calling" class="nav-link" data-scroll-target="#task-1-indel-calling">Task 1: Indel calling</a></li>
@@ -359,20 +360,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </blockquote>
 <blockquote class="blockquote">
 <p>Benchmarking file:</p>
-<p>For indels: <code>/project2/msalomon_1816/trgn_515/1_seq_techs/benchmark/HG002_GRCh38_1_22_v4.2.1_benchmark.indels.vcf.gz</code></p>
+<p>For indels: <code>/project2/msalomon_1816/trgn_515/2_sv/benchmark/HG002_GRCh38_1_22_v4.2.1_benchmark.indels.vcf.gz</code></p>
 </blockquote>
 <blockquote class="blockquote">
-<p>For SV: <code>/project2/msalomon_1816/trgn_515/1_seq_techs/benchmark/HG002_GRCh37_SVs_Tier1_v0.6.vcf.gz</code></p>
+<p>For SV: <code>/project2/msalomon_1816/trgn_515/2_sv/benchmark/HG002_GRCh37_SVs_Tier1_v0.6.vcf.gz</code></p>
 </blockquote>
 <blockquote class="blockquote">
 <p>Human Reference Genome GRCh38</p>
-<p><code>/project2/biodb/genomes/Homo_sapiens/NCBI/GRCh38/Sequence/BWAIndex/genome.fa</code></p>
-<p><code>/project2/biodb/genomes/Homo_sapiens/NCBI/GRCh38/Sequence/WholeGenomeFasta/genome.fa</code></p>
+<p>For BWA: <code>/project2/biodb/genomes/Homo_sapiens/NCBI/GRCh38/Sequence/BWAIndex/genome.fa</code></p>
+<p>For Variant Calling: <code>/project2/msalomon_1816/trgn_515/2_sv/ref_genome/GRCh38/genome.fa</code></p>
 </blockquote>
 <blockquote class="blockquote">
 <p>Human Reference Genome GRCh37</p>
-<p><code>/project2/biodb/genomes/Homo_sapiens/NCBI/build37.2/Sequence/BWAIndex/genome.fa</code></p>
-<p><code>/project2/biodb/genomes/Homo_sapiens/NCBI/build37.2/Sequence/WholeGenomeFasta/genome.fa</code></p>
+<p>For BWA: <code>/project2/biodb/genomes/Homo_sapiens/NCBI/build37.2/Sequence/BWAIndex/genome.fa</code></p>
+<p>For Variant Calling: <code>/project2/msalomon_1816/trgn_515/2_sv/ref_genome/GRCh37/genome.fa</code></p>
 </blockquote>
 <blockquote class="blockquote">
 <p>Original data can be found at: https://ftp-trace.ncbi.nlm.nih.gov/giab/ftp/data/AshkenazimTrio/HG002_NA24385_son/ For the benchmarking: https://ftp-trace.ncbi.nlm.nih.gov/giab/ftp/release/AshkenazimTrio/HG002_NA24385_son/NISTv4.2.1/GRCh38/ For the benchmarking of SVs: https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/data/AshkenazimTrio/analysis/NIST_SVs_Integration_v0.6/</p>
@@ -449,6 +450,29 @@ Warning
 </div>
 </div>
 </section>
+<section id="indel-realignment" class="level1">
+<h1>Indel realignment</h1>
+<p>The most common software to re-align Indels is GATK’s IndelRealignment tool. However, they recently removed it from the GATK suite. The most common replacement is ABRA.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate /project2/msalomon_1816/trgn_515/conda_env/trgn515</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">abra2</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">--in</span> <span class="op">&lt;</span>bam_file<span class="op">&gt;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="ex">--out</span> <span class="op">&lt;</span>bam_file<span class="op">&gt;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="ex">--ref</span> <span class="op">&lt;</span>reference_genome<span class="op">&gt;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="ex">--threads</span> <span class="op">&lt;</span>n<span class="op">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>BWA mem is actually quite good at re-aligning indels, so the indel realignment step is more and more often skipped. However, it is still good to learn it.</p>
+</div>
+</div>
+</section>
 <section id="detection-of-indels" class="level1">
 <h1>Detection of Indels</h1>
 <p>Indels are usually detected using the same software tools as SNPs, as small gaps and insertions are part of the alignment process and their information is annotated within the BAM file.</p>
@@ -481,11 +505,11 @@ Note
 <section id="illumina" class="level2">
 <h2 class="anchored" data-anchor-id="illumina">Illumina</h2>
 <p>Use one of the following variant callers: BCFtools, GATK, or FreeBayes.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># For bcftools or freebayes</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate /project2/msalomon_1816/trgn_515/conda_env/trgn515</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># For GATK</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate /project2/msalomon_1816/trgn_515/conda_env/gatk</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># For bcftools or freebayes</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate /project2/msalomon_1816/trgn_515/conda_env/trgn515</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># For GATK</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate /project2/msalomon_1816/trgn_515/conda_env/gatk</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Filters (some of these nomenclature may vary by caller):</p>
 <ul>
 <li>MQ &lt; 20</li>
@@ -499,9 +523,8 @@ You will have to complete the heterozygous filter on your own</li>
 <section id="ont-and-pacbio" class="level2">
 <h2 class="anchored" data-anchor-id="ont-and-pacbio">ONT and PacBio</h2>
 <p>Use Nanocaller.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># For bcftools or freebayes</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate /project2/msalomon_1816/trgn_515/conda_env/nanocaller</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">NanoCaller</span> ...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate /project2/msalomon_1816/trgn_515/conda_env/nanocaller</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">NanoCaller</span> ...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Filters (some of these nomenclature mary vary by caller):</p>
 <ul>
 <li>MQ &lt; 10</li>
@@ -548,11 +571,11 @@ Note
 <div class="callout-body-container callout-body">
 <p>Call deletions, insertions, duplications and inversions.</p>
 <p>For illumina data use Delly.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate /project2/msalomon_1816/trgn_515/conda_env/trgn515</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">delly</span> call ...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>For ONT and PacBio, use Sniffles2.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate /project2/msalomon_1816/trgn_515/conda_env/sniffles</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate /project2/msalomon_1816/trgn_515/conda_env/trgn515</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">delly</span> call ...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>For ONT and PacBio, use Sniffles2.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate /project2/msalomon_1816/trgn_515/conda_env/sniffles</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">delly</span> call ...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>For filtering, see your specific SV caller. If it already adds filter tags by default, use those.</p>
 <p><strong>NOTE:</strong> Use the Human GRCh37 assembly as reference genome. You will have to rerun rerun your mapping for illumina, ONT, and PacBio.</p>
 <ol type="1">
@@ -587,7 +610,7 @@ Note
 <p>Structural variants are more difficult to benchmark and intersect than SNPs because often the exactly start and end of a SV in not precisely known. For that reason, we are going to extend the start and end coordinates a few basepairs, and then we will intersect them without needing to match the coordinates perfectly.</p>
 <p>For the benchmarking, we will divide our VCF files into INDEL and SV, and will use BEDtools to intersect with the benchmark VCF files.</p>
 <p>For Structural Variants, the benchmarking file only has Deletions and Insertions, so we will remove any other SV from our file. You can do this using the <code>SVTYPE</code> field within the VCF file:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bcftools</span> view <span class="at">-i</span> <span class="st">'SVTYPE="DEL" | SVTYPE="INS"'</span> ...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bcftools</span> view <span class="at">-i</span> <span class="st">'SVTYPE="DEL" | SVTYPE="INS"'</span> ...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>To perform the benchmarking, follow this steps:</p>
 <ol type="1">
 <li><p>Prepare genome files for BEDtools.<br>
@@ -595,13 +618,13 @@ You will have to prepare one for GRCh37 and another one for GRCh38 (although you
 <li><p>Convert the sample VCF file into BED format.<br>
 Using BEDtools, add 10bp downstream and upstream of your indel, and 100bp of your SV.</p></li>
 </ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bcftools</span> query</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">-i</span> <span class="st">'FILTER="PASS"'</span> <span class="co"># Select only PASS variants</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="ex">-f</span> <span class="st">'%CHROM\t%POS0\t%END\n'</span> <span class="co"># Print Chromosome, 0-based POS, </span><span class="re">END</span><span class="co"> position</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>input.vcf<span class="op">&gt;</span> <span class="co"># Onput VCF file</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="kw">|</span> <span class="ex">bedtools</span> slop </span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="ex">-g</span> file.genome</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="ex">-b</span> <span class="op">&lt;</span>n<span class="op">&gt;</span> <span class="co"># Number of bases to add in each direction</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bcftools</span> query</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">-i</span> <span class="st">'FILTER="PASS"'</span> <span class="co"># Select only PASS variants</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="ex">-f</span> <span class="st">'%CHROM\t%POS0\t%END\n'</span> <span class="co"># Print Chromosome, 0-based POS, </span><span class="re">END</span><span class="co"> position</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>input.vcf<span class="op">&gt;</span> <span class="co"># Onput VCF file</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="kw">|</span> <span class="ex">bedtools</span> slop </span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="ex">-g</span> file.genome</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="ex">-b</span> <span class="op">&lt;</span>n<span class="op">&gt;</span> <span class="co"># Number of bases to add in each direction</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ol start="3" type="1">
 <li><p>Convert the benchmark VCF file into BED format.<br>
 Using BEDtools, add 10bp downstream and upstream of your indel, and 100bp of your SV.</p></li>
@@ -609,11 +632,11 @@ Using BEDtools, add 10bp downstream and upstream of your indel, and 100bp of you
 Using BEDtools, intersect indels and SVs to their respective benchmark file.<br>
 Use a <strong>50% reciprocal overlap</strong> to overlap the variants.</p></li>
 </ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bedtools</span> intersect</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">-a</span> sample.bed</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="ex">-b</span> benchmark.bed</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="ex">-f</span> 0.50 <span class="co"># Fraction to overlap</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="ex">-r</span> <span class="co"># Reciprocal overlap</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bedtools</span> intersect</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="ex">-a</span> sample.bed</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="ex">-b</span> benchmark.bed</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="ex">-f</span> 0.50 <span class="co"># Fraction to overlap</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="ex">-r</span> <span class="co"># Reciprocal overlap</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <section id="task-4-calculate-the-fp-and-fn" class="level3">
 <h3 class="anchored" data-anchor-id="task-4-calculate-the-fp-and-fn">Task 4: Calculate the FP and FN</h3>
 <div class="callout callout-style-default callout-note callout-titled">
