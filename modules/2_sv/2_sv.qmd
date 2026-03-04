@@ -262,7 +262,7 @@ Call deletions, insertions, duplications and inversions.
 For illumina data use Delly.
 
 ```sh
-conda activate /project2/msalomon_1816/trgn_515/conda_env/trgn515
+conda activate /project2/msalomon_1816/trgn_515/conda_env/delly
 delly call ...
 ```
 
