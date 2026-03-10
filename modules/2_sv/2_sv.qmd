@@ -220,12 +220,17 @@ Use Clair3. Clair3 has pre-trained models for different sequencing platforms and
 
 For the ONT dataset, we can use this model:
 
-`/project2/msalomon_1816/trgn_515/conda_env/clair/Clair3/models/ont`
+`/project2/msalomon_1816/trgn_515/conda_env/clair/Clair3/models/r941_prom_hac_g360+g422`
+
+This model is specific to the flowcell used on this dataset (R9.4.1), the machine (PromethION), and the basecaller (HAC model). If any of these change, you need to change the model!
 
 For the PacBio dataset, we can use:
 
 `/project2/msalomon_1816/trgn_515/conda_env/clair/Clair3/models/hifi`
 
+<!-- NanoCaller filters
+bcftools filter -i 'QUAL > 20 && FORMAT/GQ > 15'
+-->
 
 ```sh
 conda activate /project2/msalomon_1816/trgn_515/conda_env/clair
@@ -243,6 +248,7 @@ run_clair3.sh \
 --model_path=$model \
 --output=$out_dir
 ```
+
 
 Filters (some of these nomenclature mary vary by caller):
 
