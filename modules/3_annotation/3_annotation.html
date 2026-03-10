@@ -289,16 +289,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#input-and-outputs-1" id="toc-input-and-outputs-1" class="nav-link" data-scroll-target="#input-and-outputs-1">Input and outputs</a></li>
   <li><a href="#vcf-downsampling" id="toc-vcf-downsampling" class="nav-link" data-scroll-target="#vcf-downsampling">VCF downsampling</a></li>
-  </ul></li>
-  <li><a href="#use-bcftools-view-to-filter-for-variants-with-an-af-1-or-absent-entirely" id="toc-use-bcftools-view-to-filter-for-variants-with-an-af-1-or-absent-entirely" class="nav-link" data-scroll-target="#use-bcftools-view-to-filter-for-variants-with-an-af-1-or-absent-entirely">Use bcftools view to filter for variants with an AF &lt; 1% (or absent entirely)</a></li>
-  <li><a href="#and-that-have-a-pathogenic-or-likely_pathogenic-clinvar-tag." id="toc-and-that-have-a-pathogenic-or-likely_pathogenic-clinvar-tag." class="nav-link" data-scroll-target="#and-that-have-a-pathogenic-or-likely_pathogenic-clinvar-tag.">AND that have a Pathogenic or Likely_pathogenic ClinVar tag.</a>
-  <ul>
   <li><a href="#using-clinical-databases" id="toc-using-clinical-databases" class="nav-link" data-scroll-target="#using-clinical-databases">Using clinical databases</a>
   <ul class="collapse">
-  <li><a href="#clinvar" id="toc-clinvar" class="nav-link" data-scroll-target="#clinvar">ClinVar</a></li>
   <li><a href="#gnomad" id="toc-gnomad" class="nav-link" data-scroll-target="#gnomad">gnomAD</a></li>
+  <li><a href="#clinvar" id="toc-clinvar" class="nav-link" data-scroll-target="#clinvar">ClinVar</a></li>
+  <li><a href="#task-8-find-pathogenic-variants." id="toc-task-8-find-pathogenic-variants." class="nav-link" data-scroll-target="#task-8-find-pathogenic-variants.">Task 8: Find pathogenic variants.</a></li>
   </ul></li>
-  <li><a href="#in-silico-score-prediction" id="toc-in-silico-score-prediction" class="nav-link" data-scroll-target="#in-silico-score-prediction">In silico score prediction</a></li>
+  <li><a href="#in-silico-pathogenicity-predictors" id="toc-in-silico-pathogenicity-predictors" class="nav-link" data-scroll-target="#in-silico-pathogenicity-predictors"><em>In Silico</em> pathogenicity predictors</a></li>
   </ul></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="3_annotation.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
@@ -758,6 +755,7 @@ Note
 <section id="dataset-2-annotation-clinical-consequences-of-human-variants" class="level1">
 <h1>Dataset 2: Annotation clinical consequences of human variants</h1>
 <p>HCC1395 is an epithelial cell that was isolated from the mammary gland of a 43-year-old, White, female patient with ductal carcinoma TNM Stage I, grade 3. This dataset was extensively characterized by the FDA’s SEQC2 consortium. The consortium used orthogonal sequencing technologies and multiple bioinformatics pipelines to create a highly validated “truth set”. It contains true and verified pathogenic mutations.</p>
+<p>For this exercise, we will be analyzing high-confidence somatic and germline variants from HCC1395. Your goal is to identify the driver mutations responsible for this cancer by cross-referencing your VCF with two major clinical databases: <strong>gnomAD</strong> and <strong>ClinVar</strong>.</p>
 <p>The original data can be accessed here:</p>
 <blockquote class="blockquote">
 <p>Original dataset can be found here: For somatic variants: https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/seqc/Somatic_Mutation_WG/release/latest/ For germline variants: https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/seqc/Somatic_Mutation_WG/release/v1.0/</p>
@@ -768,6 +766,14 @@ Note
 <blockquote class="blockquote">
 <p>VCF files</p>
 <p><code>/project2/msalomon_1816/trgn_515/3_annotation/HCC1395_breast_cancer/vcf/HCC1395_combined.vcf.gz</code></p>
+</blockquote>
+<blockquote class="blockquote">
+<p>gnomAD DB:</p>
+<p><code>/project2/msalomon_1816/trgn_515/3_annotation/HCC1395_breast_cancer/gnomAD/gnomad.exomes.v4.1.sites.vcf.gz</code></p>
+</blockquote>
+<blockquote class="blockquote">
+<p>ClinVar DB:</p>
+<p><code>/project2/msalomon_1816/trgn_515/3_annotation/HCC1395_breast_cancer/clinvar/clinvar.vcf.gz</code></p>
 </blockquote>
 </section>
 <section id="vcf-downsampling" class="level2">
@@ -780,107 +786,210 @@ Note
 <span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="op">&lt;</span>input_vcf<span class="op">&gt;</span></span>
 <span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="ex">tabix</span> <span class="at">-p</span> vcf <span class="op">&lt;</span>output_vcf<span class="op">&gt;</span> <span class="co"># index file</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>bcftools view<br>
--r chr13,chr17<br>
--Oz -o results/HCC1395_chr13_17.vcf.gz<br>
-/project2/msalomon_1816/trgn_515/3_annotation/HCC1395_breast_cancer/vcf/high-confidence_sSNV_in_HC_regions_v1.2.1.vcf.gz</p>
-<p>bcftools annotate<br>
--a gnomAD/gnomad.exomes.v4.1.sites.chr13.vcf.bgz<br>
--c ID,INFO/AF<br>
--Oz -o results/HCC1395_gnomad.vcf.gz<br>
-results/HCC1395_chr13_17.vcf.gz</p>
-<p>bcftools annotate<br>
--a clinvar/clinvar.vcf.gz<br>
--c INFO/CLNSIG<br>
--Oz -o results/HCC1395_clinvar.vcf.gz<br>
-results/HCC1395_gnomad.vcf.gz</p>
-<p>tabix -p vcf HCC1395_clinvar.vcf.gz</p>
-<p>tabix -p vcf HCC1395_gnomad.vcf.gz</p>
 </section>
-</section>
-<section id="use-bcftools-view-to-filter-for-variants-with-an-af-1-or-absent-entirely" class="level1">
-<h1>Use bcftools view to filter for variants with an AF &lt; 1% (or absent entirely)</h1>
-</section>
-<section id="and-that-have-a-pathogenic-or-likely_pathogenic-clinvar-tag." class="level1">
-<h1>AND that have a Pathogenic or Likely_pathogenic ClinVar tag.</h1>
-<p>bcftools view<br>
--i ‘(INFO/AF &lt; 0.01 || INFO/AF=“.”) &amp;&amp; (INFO/CLNSIG~“Pathogenic” || INFO/CLNSIG~“Likely_pathogenic”)’<br>
-HCC1395_clinvar.vcf.gz</p>
-<p>&lt;!– 1. Chromosome 17 (The absolute highest yield)</p>
-<p>Genes: TP53 and BRCA1</p>
-<p>What the students will find: HCC1395 is a fantastic teaching model because it contains both a nonsense germline variant in the BRCA1 gene and hotspot somatic mutations in the TP53 gene. The BRCA1 variant is a known nonsense mutation, specifically R1751X.</p>
-<p>Pedagogical value: By giving students just Chromosome 17, you can teach them the critical bioinformatics difference between a germline cancer predisposition variant (which will have a ~50% variant allele frequency in both the normal and tumor VCF) and a somatic driver mutation (which will only be present in the tumor VCF).</p>
-<ol type="1">
-<li>Chromosome 13</li>
-</ol>
-<p>Gene: BRCA2</p>
-<p>What the students will find: The SEQC2 benchmark data confirms that HCC1395 also contains a somatic nonsense mutation in the BRCA2 gene.</p>
-<ol start="3" type="1">
-<li>Chromosome 8</li>
-</ol>
-<p>Gene: FGFR1</p>
-<p>What the students will find: There are known hotspot somatic mutations in the FGFR1 gene in this specific cell line.</p>
-<ol start="4" type="1">
-<li>Chromosome 3 and Chromosome 10</li>
-</ol>
-<p>Genes: PIK3CA (Chr 3) and PTEN (Chr 10)</p>
-<p>Note for teaching: While these are canonical breast cancer genes, they are not the primary drivers in HCC1395. If you want students to find aggressive, clear-cut mutations, stick to the BRCA and TP53 pathways for this specific dataset.</p>
-<p>My Recommendation for the Classroom Only have the students download and process the data for Chromosome 17 and Chromosome 13.</p>
-<p>It drastically reduces the compute time and storage space required for the lab.</p>
-<p>It perfectly sets up the workflow to find the “Big Three” breast cancer genes (BRCA1, BRCA2, and TP53).</p>
 <section id="using-clinical-databases" class="level2">
 <h2 class="anchored" data-anchor-id="using-clinical-databases">Using clinical databases</h2>
-<section id="clinvar" class="level4">
-<h4 class="anchored" data-anchor-id="clinvar">ClinVar</h4>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://ftp.ncbi.nlm.nih.gov/pub/clinvar/vcf_GRCh38/clinvar.vcf.gz</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="ex">tabix</span> <span class="at">-p</span> vcf clinvar.vcf.gz</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bcftools</span> annotate <span class="dt">\</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">-a</span> clinvar.vcf.gz <span class="dt">\</span></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">-c</span> INFO/CLNSIG <span class="dt">\</span></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">-Oz</span> <span class="at">-o</span> tumor_annotated.vcf.gz <span class="dt">\</span></span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  tumor_gnomad.vcf.gz</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
 <section id="gnomad" class="level4">
 <h4 class="anchored" data-anchor-id="gnomad">gnomAD</h4>
-<p>In clinical genomics, variants that are common in the general population are almost always filtered out when looking for rare pathogenic drivers. We can pull the Allele Frequency (AF) from gnomAD and annotate our VCF file with it.</p>
+<p>In clinical genomics, variants that are common in the general population are almost always filtered out when looking for rare pathogenic drivers. The Genome Aggregation Database (gnomAD) catalogs population allele frequencies (AF) from hundreds of thousands of healthy exomes and genomes. We can pull the Allele Frequency (AF) from gnomAD and annotate our VCF file with it.</p>
+<p>We can use <code>bcftools annotate</code> to take the <code>AF</code> tag from the gnomAD VCF database.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bcftools</span> annotate <span class="dt">\</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">-a</span> <span class="op">&lt;</span>gnomad.vcf.gz<span class="op">&gt;</span> <span class="dt">\</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">-c</span> ID,INFO/gnomAD_AF <span class="dt">\</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">-Oz</span> <span class="at">-o</span> <span class="op">&lt;</span>output_vcf.gz<span class="op">&gt;</span> <span class="dt">\</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="op">&lt;</span>input.vcf.gz<span class="op">&gt;</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="ex">tabix</span> <span class="at">-p</span> vcf <span class="op">&lt;</span>output_vcf.gz<span class="op">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If a variant in your VCF is a somatic cancer mutation (meaning it only exists in the tumor and not in healthy humans), gnomAD will not have a record of it. In this case, bcftools will simply leave the AF tag blank (represented by a .).</p>
+</div>
+</div>
+</section>
+<section id="clinvar" class="level4">
+<h4 class="anchored" data-anchor-id="clinvar">ClinVar</h4>
+<p>ClinVar is a public database of reports of human variations classified for diseases and drug responses. It includes annotation for common variants, their clinical significance and supporting evidence.</p>
+<p>I have already provided the ClinVar DB for you, but you could get it from here:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://ftp.ncbi.nlm.nih.gov/pub/clinvar/vcf_GRCh38/clinvar.vcf.gz</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="ex">tabix</span> <span class="at">-p</span> vcf clinvar.vcf.gz</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>To annotate the VCF file using the ClinVar DB:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bcftools</span> annotate <span class="dt">\</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">-a</span> gnomad.genomes.vcf.gz <span class="dt">\</span></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">-c</span> ID,INFO/AF <span class="dt">\</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">-a</span> <span class="op">&lt;</span>clinvar.vcf.gz<span class="op">&gt;</span> <span class="dt">\</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">-c</span> INFO/CLNSIG <span class="dt">\</span></span>
 <span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">-Oz</span> <span class="at">-o</span> <span class="op">&lt;</span>output_vcf.gz<span class="op">&gt;</span> <span class="dt">\</span></span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="op">&lt;</span>input.vcf.gz<span class="op">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bcftools</span> annotate <span class="dt">\</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">-a</span> clinvar.vcf.gz <span class="dt">\</span></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">-c</span> INFO/CLNSIG <span class="dt">\</span></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">-Oz</span> <span class="at">-o</span> tumor_annotated.vcf.gz <span class="dt">\</span></span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  tumor_gnomad.vcf.gz</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="op">&lt;</span>input.vcf.gz<span class="op">&gt;</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="ex">tabix</span> <span class="at">-p</span> vcf <span class="op">&lt;</span>output_vcf.gz<span class="op">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-</section>
-<section id="in-silico-score-prediction" class="level2">
-<h2 class="anchored" data-anchor-id="in-silico-score-prediction">In silico score prediction</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="ex">vep</span> <span class="at">-i</span> tumor_annotated.vcf.gz <span class="dt">\</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">-o</span> final_clinical_tumor.vcf.gz <span class="dt">\</span></span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">--vcf</span> <span class="at">--compress_output</span> bgzip <span class="dt">\</span></span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">--sift</span> b <span class="at">--polyphen</span> b <span class="at">--plugin</span> CADD,CADD.tsv.gz</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>For HCC1395:</p>
-<p>TP53 (Multiple Hits): The SEQC2 high-confidence set includes canonical TP53 mutations. These will have high CADD scores and definitive ClinVar pathogenic assertions.</p>
-<p>PIK3CA or PTEN variants: Common in triple-negative breast cancers, these should be identifiable in the SEQC2 truth set.</p>
-<ol start="4" type="1">
-<li>Problem Set &amp; Discussion Questions for Students Here is a list of conceptual and practical problems you can assign based on this workflow:</li>
+<section id="task-8-find-pathogenic-variants." class="level3">
+<h3 class="anchored" data-anchor-id="task-8-find-pathogenic-variants.">Task 8: Find pathogenic variants.</h3>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Now that your VCF contains both population frequency and clinical consequence, write a bcftools view command to filter your VCF file.</p>
+<p>Filter for variants that meet both of the following criteria:</p>
+<ul>
+<li>The gnomAD Allele Frequency (AF) is less than 0.01 (1%) OR the variant is entirely absent from gnomAD</li>
+<li>The ClinVar Significance is Pathogenic or Likely_pathogenic.</li>
+</ul>
+<ol type="1">
+<li>Write your bcftools command to select variants. <strong>(10pts)</strong></li>
+<li>Return the chromosome and position of the resulting variants. <strong>(5pts)</strong></li>
+<li>What genes do the variants fall in? <strong>(5pts)</strong></li>
+<li>Search for the exact genomic coordinates of these variants on the ClinVar website. What is the specific molecular consequence of each mutation (e.g., missense, nonsense/stop-gain, frameshift)? <strong>(10pts)</strong></li>
+<li>Why did we filter out variants with a gnomAD AF &gt; 1%? <strong>(10pts)</strong></li>
 </ol>
-<p>The Frequency Paradox: You identify a variant with a high Variant Allele Frequency (VAF = 0.45) in the tumor sample, but your gnomAD annotation shows it has a population frequency of 0.30 (30%). Is this variant driving the cancer? Why or why not? (Goal: Distinguish between somatic drivers and common germline SNPs).</p>
-<p>ClinVar Parsing: Find the CLNSIG (Clinical Significance) tag for the BRAF variant at chr7:140753336. What is its clinical classification? Use the ClinVar web portal to look up this variant and identify one FDA-approved drug associated with this mutation.</p>
-<p>In Silico Limitations: You find a novel missense variant in BRCA1 that is completely absent from ClinVar and gnomAD. VEP reports a CADD score of 28. Calculate the percentile rank of this variant’s predicted deleteriousness. Does a high CADD score guarantee that this variant is the cause of the patient’s tumor? Discuss the limitations of in silico predictors in a clinical setting.</p>
-<p>Mutational Signatures (COLO-829 specific): Write a bash command using grep and awk to count the total number of C&gt;T or CC&gt;TT transitions in the COLO-829 VCF. How does this compare to the number of A&gt;G transitions? What does this ratio tell you about the etiology of this specific melanoma?</p>
-<p>If they run the workflow correctly on the GRCh38 assembly of HCC1395, their final filtered list should prominently feature these three canonical mutations:</p>
-<p>TP53 Somatic Hotspot Mutation (Chromosome 17)</p>
-<p>Coordinate: chr17:7675088 C&gt;T</p>
-<p>Details: This is a missense mutation (p.Arg43His) that inactivates the TP53 tumor suppressor function. Because it is somatic, it will have a very high variant allele fraction (VAF) in the tumor, but shouldn’t be present in the normal cell line background.</p>
-<p>BRCA1 Germline Mutation (Chromosome 17)</p>
-<p>Coordinate: chr17:43057078 C&gt;A</p>
-<p>Details: This is a premature stop-gain/nonsense mutation (p.Arg1751*). This is the actual inherited mutation (ClinVar #55480) that predisposed the patient to breast cancer.</p>
-<p>BRCA2 Somatic Mutation (Chromosome 13)</p>
-<p>Coordinate: chr13:32339132 G&gt;A</p>
-<p>Details: Another nonsense mutation (p.Glu1593*) that acquired somatically, further degrading the cell’s ability to repair DNA double-strand breaks.</p>
+<p><strong>Hint</strong>: Within bcftools filtering expressions, you can use the symbol <code>~</code> to filter or select if a tag contains a word.</p>
+</div>
+</div>
+<!-- ```sh
+bcftools view \
+  -i '(INFO/AF < 0.01 || INFO/AF=".") && (INFO/CLNSIG~"Pathogenic" || INFO/CLNSIG~"Likely_pathogenic")' \
+  <input.vcf.gz>
+``` -->
+</section>
+</section>
+<section id="in-silico-pathogenicity-predictors" class="level2">
+<h2 class="anchored" data-anchor-id="in-silico-pathogenicity-predictors"><em>In Silico</em> pathogenicity predictors</h2>
+<p>Databases like ClinVar only know about variants that have been historically seen and manually submitted by other scientists. If a patient has a novel, private mutation, or a somatic mutation that hasn’t been documented, the database won’t return anything.</p>
+<p>To complement databases, we can also use <strong>in silico predictions</strong>. These algorithms translate the DNA to RNA, determine the resulting amino acid change, and predict how damaging that change will be to the protein’s function.</p>
+<p>We will use the VEP to functionally annotate our VCF. We will also run three predictive algorithms:</p>
+<ul>
+<li><strong>SIFT and PolyPhen-2:</strong> Predict the impact of amino acid substitutions on protein structure.</li>
+<li><strong>CADD:</strong> A comprehensive algorithmic framework that scores the deleteriousness of single nucleotide variants across the entire human genome.</li>
+</ul>
+<p>Use the VCF file that contains all the GnomAD and ClinVar annotations.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate /project2/msalomon_1816/trgn_515/conda_env/vep</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="ex">vep</span> <span class="at">-i</span> <span class="op">&lt;</span>input.vcf.gz<span class="op">&gt;</span> <span class="dt">\</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">-o</span> <span class="op">&lt;</span>output.vcf.gz<span class="op">&gt;</span> <span class="dt">\</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">--vcf</span> <span class="at">--compress_output</span> bgzip <span class="dt">\</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">--species</span> homo_sapiens <span class="at">--assembly</span> GRCh38 <span class="dt">\</span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">--offline</span> <span class="at">--cache</span> <span class="dt">\</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">--symbol</span> <span class="at">--canonical</span> </span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Index the output</span></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a><span class="ex">tabix</span> <span class="at">-p</span> vcf <span class="op">&lt;</span>output.vcf.gz<span class="op">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The VEP annotated VCF contains a massive amount of information in the CSQ string separated by pipes (|). We can use <code>bcftools query</code> to extract just the genomic coordinates, the Gene Symbol, and the predicted Consequence.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bcftools</span> query <span class="dt">\</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">-f</span> <span class="st">'%CHROM\t%POS\t%REF\t%ALT\t%INFO/CSQ\n'</span> <span class="dt">\</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  HCC1395_vep_annotated.vcf.gz <span class="op">&gt;</span> vep_summary.txt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<!-- 1. Chromosome 17 (The absolute highest yield)
+
+Genes: TP53 and BRCA1
+
+What the students will find: HCC1395 is a fantastic teaching model because it contains both a nonsense germline variant in the BRCA1 gene and hotspot somatic mutations in the TP53 gene. The BRCA1 variant is a known nonsense mutation, specifically R1751X.
+
+Pedagogical value: By giving students just Chromosome 17, you can teach them the critical bioinformatics difference between a germline cancer predisposition variant (which will have a ~50% variant allele frequency in both the normal and tumor VCF) and a somatic driver mutation (which will only be present in the tumor VCF).
+
+
+1. Chromosome 13
+
+Gene: BRCA2
+
+What the students will find: The SEQC2 benchmark data confirms that HCC1395 also contains a somatic nonsense mutation in the BRCA2 gene.
+
+3. Chromosome 8
+
+Gene: FGFR1
+
+What the students will find: There are known hotspot somatic mutations in the FGFR1 gene in this specific cell line.
+
+4. Chromosome 3 and Chromosome 10
+
+Genes: PIK3CA (Chr 3) and PTEN (Chr 10)
+
+Note for teaching: While these are canonical breast cancer genes, they are not the primary drivers in HCC1395. If you want students to find aggressive, clear-cut mutations, stick to the BRCA and TP53 pathways for this specific dataset.
+
+My Recommendation for the Classroom
+Only have the students download and process the data for Chromosome 17 and Chromosome 13.
+
+It drastically reduces the compute time and storage space required for the lab.
+
+It perfectly sets up the workflow to find the "Big Three" breast cancer genes (BRCA1, BRCA2, and TP53).
+
+
+
+```sh
+bcftools annotate \
+  -a clinvar.vcf.gz \
+  -c INFO/CLNSIG \
+  -Oz -o tumor_annotated.vcf.gz \
+  tumor_gnomad.vcf.gz
+```
+
+
+## In silico score prediction
+
+```sh
+vep -i tumor_annotated.vcf.gz \
+  -o final_clinical_tumor.vcf.gz \
+  --vcf --compress_output bgzip \
+  --sift b --polyphen b --plugin CADD,CADD.tsv.gz
+```
+
+For HCC1395:
+
+TP53 (Multiple Hits): The SEQC2 high-confidence set includes canonical TP53 mutations. These will have high CADD scores and definitive ClinVar pathogenic assertions.
+
+PIK3CA or PTEN variants: Common in triple-negative breast cancers, these should be identifiable in the SEQC2 truth set.
+
+
+4. Problem Set & Discussion Questions for Students
+Here is a list of conceptual and practical problems you can assign based on this workflow:
+
+The Frequency Paradox: You identify a variant with a high Variant Allele Frequency (VAF = 0.45) in the tumor sample, but your gnomAD annotation shows it has a population frequency of 0.30 (30%). Is this variant driving the cancer? Why or why not? (Goal: Distinguish between somatic drivers and common germline SNPs).
+
+ClinVar Parsing: Find the CLNSIG (Clinical Significance) tag for the BRAF variant at chr7:140753336. What is its clinical classification? Use the ClinVar web portal to look up this variant and identify one FDA-approved drug associated with this mutation.
+
+In Silico Limitations: You find a novel missense variant in BRCA1 that is completely absent from ClinVar and gnomAD. VEP reports a CADD score of 28. Calculate the percentile rank of this variant's predicted deleteriousness. Does a high CADD score guarantee that this variant is the cause of the patient's tumor? Discuss the limitations of in silico predictors in a clinical setting.
+
+Mutational Signatures (COLO-829 specific): Write a bash command using grep and awk to count the total number of C>T or CC>TT transitions in the COLO-829 VCF. How does this compare to the number of A>G transitions? What does this ratio tell you about the etiology of this specific melanoma?
+
+
+
+If they run the workflow correctly on the GRCh38 assembly of HCC1395, their final filtered list should prominently feature these three canonical mutations:
+
+TP53 Somatic Hotspot Mutation (Chromosome 17)
+
+Coordinate: chr17:7675088 C>T
+
+Details: This is a missense mutation (p.Arg43His) that inactivates the TP53 tumor suppressor function. Because it is somatic, it will have a very high variant allele fraction (VAF) in the tumor, but shouldn't be present in the normal cell line background.
+
+BRCA1 Germline Mutation (Chromosome 17)
+
+Coordinate: chr17:43057078 C>A
+
+Details: This is a premature stop-gain/nonsense mutation (p.Arg1751*). This is the actual inherited mutation (ClinVar #55480) that predisposed the patient to breast cancer.
+
+BRCA2 Somatic Mutation (Chromosome 13)
+
+Coordinate: chr13:32339132 G>A
+
+Details: Another nonsense mutation (p.Glu1593*) that acquired somatically, further degrading the cell's ability to repair DNA double-strand breaks.
+
+
+Fact-Checking the FDA: The official FDA/SEQC2 consortium publication describing this cell line states that the tumor contains a BRCA2 somatic stop-gain mutation resulting from a G>A transversion. However, your VCF likely shows a different alternate allele at coordinate chr13:32339132.
+
+What is the reference and alternate allele in your VCF?
+
+The wild-type codon for Glutamic acid (Glu/E) at this position is GAG. Using a standard codon table, mathematically prove whether your bioinformatic VCF is correct or if the published paper is correct in causing a premature stop codon (nonsense mutation).
+-->
 
 
 </section>
