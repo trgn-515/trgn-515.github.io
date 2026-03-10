@@ -254,8 +254,10 @@ run_clair3.sh \
 --platform="ont" \
 --model_path=$model \
 --output=$out_dir
+
 ```
 
+The output VCF file will be the file: `merge_output.vcf.gz`. It contains SNPs and Indels, so you will have to remove indels using the `--types` flag within `bcftools view`.
 
 Filters (some of these nomenclature mary vary by caller):
 

@@ -421,15 +421,69 @@ Answer the following questions:
 
 HCC1395 is an epithelial cell that was isolated from the mammary gland of a 43-year-old, White, female patient with ductal carcinoma TNM Stage I, grade 3. This dataset was extensively characterized by the FDA's SEQC2 consortium. The consortium used orthogonal sequencing technologies and multiple bioinformatics pipelines to create a highly validated "truth set". It contains true and verified pathogenic mutations.
 
+The original data can be accessed here:
+
+> Original dataset can be found here:
+> For somatic variants: https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/seqc/Somatic_Mutation_WG/release/latest/
+> For germline variants: https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/seqc/Somatic_Mutation_WG/release/v1.0/
+
+
 ## Input and outputs
 
 For this dataset, we will start using VCF files with high confidence variant calls.
 
 > VCF files
 >
-> `/project2/msalomon_1816/trgn_515/3_annotation/HCC1395_breast_cancer/vcf/high-confidence_sSNV_in_HC_regions_v1.2.1.vcf.gz`
+> `/project2/msalomon_1816/trgn_515/3_annotation/HCC1395_breast_cancer/vcf/HCC1395_combined.vcf.gz`
 
-1. Chromosome 17 (The absolute highest yield)
+
+
+## VCF downsampling
+
+First, let's focus on Chromosome 13 and 17. Subsample the input VCF to include only those two chromosomes and save the output into your directory.
+
+```sh
+input_file=
+bcftools view \
+  ... \
+  -Oz -o <output_vcf> \
+  <input_vcf>
+
+tabix -p vcf <output_vcf> # index file
+```
+
+bcftools view \
+  -r chr13,chr17 \
+  -Oz -o results/HCC1395_chr13_17.vcf.gz \
+  /project2/msalomon_1816/trgn_515/3_annotation/HCC1395_breast_cancer/vcf/high-confidence_sSNV_in_HC_regions_v1.2.1.vcf.gz
+
+bcftools annotate \
+  -a gnomAD/gnomad.exomes.v4.1.sites.chr13.vcf.bgz \
+  -c ID,INFO/AF \
+  -Oz -o results/HCC1395_gnomad.vcf.gz \
+  results/HCC1395_chr13_17.vcf.gz
+
+
+bcftools annotate \
+  -a clinvar/clinvar.vcf.gz \
+  -c INFO/CLNSIG \
+  -Oz -o results/HCC1395_clinvar.vcf.gz \
+  results/HCC1395_gnomad.vcf.gz
+
+tabix -p vcf HCC1395_clinvar.vcf.gz
+
+
+tabix -p vcf HCC1395_gnomad.vcf.gz
+
+
+# Use bcftools view to filter for variants with an AF < 1% (or absent entirely) 
+# AND that have a Pathogenic or Likely_pathogenic ClinVar tag.
+bcftools view \
+  -i '(INFO/AF < 0.01 || INFO/AF=".") && (INFO/CLNSIG~"Pathogenic" || INFO/CLNSIG~"Likely_pathogenic")' \
+  HCC1395_clinvar.vcf.gz
+
+
+<!-- 1. Chromosome 17 (The absolute highest yield)
 
 Genes: TP53 and BRCA1
 
@@ -438,7 +492,7 @@ What the students will find: HCC1395 is a fantastic teaching model because it co
 Pedagogical value: By giving students just Chromosome 17, you can teach them the critical bioinformatics difference between a germline cancer predisposition variant (which will have a ~50% variant allele frequency in both the normal and tumor VCF) and a somatic driver mutation (which will only be present in the tumor VCF).
 
 
-2. Chromosome 13
+1. Chromosome 13
 
 Gene: BRCA2
 
@@ -462,8 +516,6 @@ Only have the students download and process the data for Chromosome 17 and Chrom
 It drastically reduces the compute time and storage space required for the lab.
 
 It perfectly sets up the workflow to find the "Big Three" breast cancer genes (BRCA1, BRCA2, and TP53).
-
-When executing the gsutil or aws download commands for gnomAD, they will just need to target gnomad.exomes.v4.1.sites.chr17.vcf.bgz and gnomad.exomes.v4.1.sites.chr13.vcf.bgz.
 
 
 
@@ -532,3 +584,24 @@ In Silico Limitations: You find a novel missense variant in BRCA1 that is comple
 
 Mutational Signatures (COLO-829 specific): Write a bash command using grep and awk to count the total number of C>T or CC>TT transitions in the COLO-829 VCF. How does this compare to the number of A>G transitions? What does this ratio tell you about the etiology of this specific melanoma?
 
+
+
+If they run the workflow correctly on the GRCh38 assembly of HCC1395, their final filtered list should prominently feature these three canonical mutations:
+
+TP53 Somatic Hotspot Mutation (Chromosome 17)
+
+Coordinate: chr17:7675088 C>T
+
+Details: This is a missense mutation (p.Arg43His) that inactivates the TP53 tumor suppressor function. Because it is somatic, it will have a very high variant allele fraction (VAF) in the tumor, but shouldn't be present in the normal cell line background.
+
+BRCA1 Germline Mutation (Chromosome 17)
+
+Coordinate: chr17:43057078 C>A
+
+Details: This is a premature stop-gain/nonsense mutation (p.Arg1751*). This is the actual inherited mutation (ClinVar #55480) that predisposed the patient to breast cancer.
+
+BRCA2 Somatic Mutation (Chromosome 13)
+
+Coordinate: chr13:32339132 G>A
+
+Details: Another nonsense mutation (p.Glu1593*) that acquired somatically, further degrading the cell's ability to repair DNA double-strand breaks.
