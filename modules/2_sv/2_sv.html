@@ -548,6 +548,7 @@ bcftools filter -i 'QUAL > 20 && FORMAT/GQ > 15'
 <span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>--platform=<span class="st">"ont"</span> <span class="dt">\</span></span>
 <span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>--model_path=<span class="va">$model</span> <span class="dt">\</span></span>
 <span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>--output=<span class="va">$out_dir</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The output VCF file will be the file: <code>merge_output.vcf.gz</code>. It contains SNPs and Indels, so you will have to remove indels using the <code>--types</code> flag within <code>bcftools view</code>.</p>
 <p>Filters (some of these nomenclature mary vary by caller):</p>
 <ul>
 <li>MQ &lt; 10</li>
