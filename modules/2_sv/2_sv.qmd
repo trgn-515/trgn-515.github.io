@@ -232,6 +232,13 @@ For the PacBio dataset, we can use:
 bcftools filter -i 'QUAL > 20 && FORMAT/GQ > 15'
 -->
 
+Clair can take a very long time and memory. Make sure to give it enough resources in your SLURM header:
+
+```
+#SBATCH --cpus-per-task=10
+#SBATCH --mem=50G
+```
+
 ```sh
 conda activate /project2/msalomon_1816/trgn_515/conda_env/clair
 

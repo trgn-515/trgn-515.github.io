@@ -419,7 +419,7 @@ Answer the following questions:
 
 # Dataset 2: Annotation clinical consequences of human variants
 
-This dataset was extensively characterized by the FDA's SEQC2 consortium. The consortium used orthogonal sequencing technologies and multiple bioinformatics pipelines to create a highly validated "truth set". It contains true and verified pathogenic mutations.
+HCC1395 is an epithelial cell that was isolated from the mammary gland of a 43-year-old, White, female patient with ductal carcinoma TNM Stage I, grade 3. This dataset was extensively characterized by the FDA's SEQC2 consortium. The consortium used orthogonal sequencing technologies and multiple bioinformatics pipelines to create a highly validated "truth set". It contains true and verified pathogenic mutations.
 
 ## Input and outputs
 
@@ -428,6 +428,43 @@ For this dataset, we will start using VCF files with high confidence variant cal
 > VCF files
 >
 > `/project2/msalomon_1816/trgn_515/3_annotation/HCC1395_breast_cancer/vcf/high-confidence_sSNV_in_HC_regions_v1.2.1.vcf.gz`
+
+1. Chromosome 17 (The absolute highest yield)
+
+Genes: TP53 and BRCA1
+
+What the students will find: HCC1395 is a fantastic teaching model because it contains both a nonsense germline variant in the BRCA1 gene and hotspot somatic mutations in the TP53 gene. The BRCA1 variant is a known nonsense mutation, specifically R1751X.
+
+Pedagogical value: By giving students just Chromosome 17, you can teach them the critical bioinformatics difference between a germline cancer predisposition variant (which will have a ~50% variant allele frequency in both the normal and tumor VCF) and a somatic driver mutation (which will only be present in the tumor VCF).
+
+
+2. Chromosome 13
+
+Gene: BRCA2
+
+What the students will find: The SEQC2 benchmark data confirms that HCC1395 also contains a somatic nonsense mutation in the BRCA2 gene.
+
+3. Chromosome 8
+
+Gene: FGFR1
+
+What the students will find: There are known hotspot somatic mutations in the FGFR1 gene in this specific cell line.
+
+4. Chromosome 3 and Chromosome 10
+
+Genes: PIK3CA (Chr 3) and PTEN (Chr 10)
+
+Note for teaching: While these are canonical breast cancer genes, they are not the primary drivers in HCC1395. If you want students to find aggressive, clear-cut mutations, stick to the BRCA and TP53 pathways for this specific dataset.
+
+My Recommendation for the Classroom
+Only have the students download and process the data for Chromosome 17 and Chromosome 13.
+
+It drastically reduces the compute time and storage space required for the lab.
+
+It perfectly sets up the workflow to find the "Big Three" breast cancer genes (BRCA1, BRCA2, and TP53).
+
+When executing the gsutil or aws download commands for gnomAD, they will just need to target gnomad.exomes.v4.1.sites.chr17.vcf.bgz and gnomad.exomes.v4.1.sites.chr13.vcf.bgz.
+
 
 
 ## Using clinical databases
@@ -459,5 +496,39 @@ bcftools annotate \
   <input.vcf.gz>
   ```
 
+```sh
+bcftools annotate \
+  -a clinvar.vcf.gz \
+  -c INFO/CLNSIG \
+  -Oz -o tumor_annotated.vcf.gz \
+  tumor_gnomad.vcf.gz
+```
+
+
 ## In silico score prediction
+
+```sh
+vep -i tumor_annotated.vcf.gz \
+  -o final_clinical_tumor.vcf.gz \
+  --vcf --compress_output bgzip \
+  --sift b --polyphen b --plugin CADD,CADD.tsv.gz
+```
+
+For HCC1395:
+
+TP53 (Multiple Hits): The SEQC2 high-confidence set includes canonical TP53 mutations. These will have high CADD scores and definitive ClinVar pathogenic assertions.
+
+PIK3CA or PTEN variants: Common in triple-negative breast cancers, these should be identifiable in the SEQC2 truth set.
+
+
+4. Problem Set & Discussion Questions for Students
+Here is a list of conceptual and practical problems you can assign based on this workflow:
+
+The Frequency Paradox: You identify a variant with a high Variant Allele Frequency (VAF = 0.45) in the tumor sample, but your gnomAD annotation shows it has a population frequency of 0.30 (30%). Is this variant driving the cancer? Why or why not? (Goal: Distinguish between somatic drivers and common germline SNPs).
+
+ClinVar Parsing: Find the CLNSIG (Clinical Significance) tag for the BRAF variant at chr7:140753336. What is its clinical classification? Use the ClinVar web portal to look up this variant and identify one FDA-approved drug associated with this mutation.
+
+In Silico Limitations: You find a novel missense variant in BRCA1 that is completely absent from ClinVar and gnomAD. VEP reports a CADD score of 28. Calculate the percentile rank of this variant's predicted deleteriousness. Does a high CADD score guarantee that this variant is the cause of the patient's tumor? Discuss the limitations of in silico predictors in a clinical setting.
+
+Mutational Signatures (COLO-829 specific): Write a bash command using grep and awk to count the total number of C>T or CC>TT transitions in the COLO-829 VCF. How does this compare to the number of A>G transitions? What does this ratio tell you about the etiology of this specific melanoma?
 
