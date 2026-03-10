@@ -134,7 +134,7 @@ Alternatively, you can use this conda environments I prepared:
 
 ```sh
 conda activate /project2/msalomon_1816/trgn_515/conda_env/trgn515
-conda activate /project2/msalomon_1816/trgn_515/conda_env/nanocaller
+conda activate /project2/msalomon_1816/trgn_515/conda_env/clair
 ```
 
 # Bioinformatics workflow
@@ -216,11 +216,32 @@ Filters (some of these nomenclature may vary by caller):
   You will have to complete the heterozygous filter on your own
 
 ## ONT and PacBio
-Use Nanocaller.
+Use Clair3. Clair3 has pre-trained models for different sequencing platforms and flowcell types.
+
+For the ONT dataset, we can use this model:
+
+`/project2/msalomon_1816/trgn_515/conda_env/clair/Clair3/models/ont`
+
+For the PacBio dataset, we can use:
+
+`/project2/msalomon_1816/trgn_515/conda_env/clair/Clair3/models/hifi`
+
 
 ```sh
-conda activate /project2/msalomon_1816/trgn_515/conda_env/nanocaller
-NanoCaller ...
+conda activate /project2/msalomon_1816/trgn_515/conda_env/clair
+
+model=/project2/msalomon_1816/trgn_515/conda_env/clair/Clair3/models/ont # Change this for PacBio
+input_bam=<bam_file>
+ref_genome=<ref_genome>
+out_dir=<out_dir>
+
+run_clair3.sh \
+--bam_fn=$input_bam \
+--ref_fn=$ref_genome \
+--threads=$SLURM_CPUS_PER_TAS \
+--platform="ont" \
+--model_path=$model \
+--output=$out_dir
 ```
 
 Filters (some of these nomenclature mary vary by caller):
