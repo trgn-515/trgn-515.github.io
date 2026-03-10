@@ -426,7 +426,9 @@ For this exercise, we will be analyzing high-confidence somatic and germline var
 The original data can be accessed here:
 
 > Original dataset can be found here:
+> 
 > For somatic variants: https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/seqc/Somatic_Mutation_WG/release/latest/
+>
 > For germline variants: https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/seqc/Somatic_Mutation_WG/release/v1.0/
 
 
@@ -553,7 +555,8 @@ vep -i <input.vcf.gz> \
   --vcf --compress_output bgzip \
   --species homo_sapiens --assembly GRCh38 \
   --offline --cache \
-  --symbol --canonical 
+  --symbol --canonical  \
+  -sift b --polyphen b --plugin CADD,/path/to/CADD.tsv.gz
 
 # Index the output
 tabix -p vcf <output.vcf.gz>
