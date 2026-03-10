@@ -556,7 +556,7 @@ vep -i <input.vcf.gz> \
   --species homo_sapiens --assembly GRCh38 \
   --offline --cache \
   --symbol --canonical  \
-  -sift b --polyphen b --plugin CADD,/path/to/CADD.tsv.gz
+  -sift b --polyphen b --plugin CADD,/project2/msalomon_1816/trgn_515/3_annotation/HCC1395_breast_cancer/cadd/whole_genome_SNVs.tsv.gz
 
 # Index the output
 tabix -p vcf <output.vcf.gz>
