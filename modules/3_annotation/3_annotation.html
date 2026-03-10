@@ -758,7 +758,9 @@ Note
 <p>For this exercise, we will be analyzing high-confidence somatic and germline variants from HCC1395. Your goal is to identify the driver mutations responsible for this cancer by cross-referencing your VCF with two major clinical databases: <strong>gnomAD</strong> and <strong>ClinVar</strong>.</p>
 <p>The original data can be accessed here:</p>
 <blockquote class="blockquote">
-<p>Original dataset can be found here: For somatic variants: https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/seqc/Somatic_Mutation_WG/release/latest/ For germline variants: https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/seqc/Somatic_Mutation_WG/release/v1.0/</p>
+<p>Original dataset can be found here:</p>
+<p>For somatic variants: https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/seqc/Somatic_Mutation_WG/release/latest/</p>
+<p>For germline variants: https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/seqc/Somatic_Mutation_WG/release/v1.0/</p>
 </blockquote>
 <section id="input-and-outputs-1" class="level2">
 <h2 class="anchored" data-anchor-id="input-and-outputs-1">Input and outputs</h2>
@@ -881,10 +883,11 @@ bcftools view \
 <span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">--vcf</span> <span class="at">--compress_output</span> bgzip <span class="dt">\</span></span>
 <span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">--species</span> homo_sapiens <span class="at">--assembly</span> GRCh38 <span class="dt">\</span></span>
 <span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">--offline</span> <span class="at">--cache</span> <span class="dt">\</span></span>
-<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">--symbol</span> <span class="at">--canonical</span> </span>
-<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Index the output</span></span>
-<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a><span class="ex">tabix</span> <span class="at">-p</span> vcf <span class="op">&lt;</span>output.vcf.gz<span class="op">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">--symbol</span> <span class="at">--canonical</span>  <span class="dt">\</span></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">-sift</span> b <span class="at">--polyphen</span> b <span class="at">--plugin</span> CADD,/path/to/CADD.tsv.gz</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Index the output</span></span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a><span class="ex">tabix</span> <span class="at">-p</span> vcf <span class="op">&lt;</span>output.vcf.gz<span class="op">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The VEP annotated VCF contains a massive amount of information in the CSQ string separated by pipes (|). We can use <code>bcftools query</code> to extract just the genomic coordinates, the Gene Symbol, and the predicted Consequence.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bcftools</span> query <span class="dt">\</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">-f</span> <span class="st">'%CHROM\t%POS\t%REF\t%ALT\t%INFO/CSQ\n'</span> <span class="dt">\</span></span>
