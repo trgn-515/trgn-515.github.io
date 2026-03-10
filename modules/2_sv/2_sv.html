@@ -524,9 +524,13 @@ You will have to complete the heterozygous filter on your own</li>
 <h2 class="anchored" data-anchor-id="ont-and-pacbio">ONT and PacBio</h2>
 <p>Use Clair3. Clair3 has pre-trained models for different sequencing platforms and flowcell types.</p>
 <p>For the ONT dataset, we can use this model:</p>
-<p><code>/project2/msalomon_1816/trgn_515/conda_env/clair/Clair3/models/ont</code></p>
+<p><code>/project2/msalomon_1816/trgn_515/conda_env/clair/Clair3/models/r941_prom_hac_g360+g422</code></p>
+<p>This model is specific to the flowcell used on this dataset (R9.4.1), the machine (PromethION), and the basecaller (HAC model). If any of these change, you need to change the model!</p>
 <p>For the PacBio dataset, we can use:</p>
 <p><code>/project2/msalomon_1816/trgn_515/conda_env/clair/Clair3/models/hifi</code></p>
+<!-- NanoCaller filters
+bcftools filter -i 'QUAL > 20 && FORMAT/GQ > 15'
+-->
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate /project2/msalomon_1816/trgn_515/conda_env/clair</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="va">model</span><span class="op">=</span>/project2/msalomon_1816/trgn_515/conda_env/clair/Clair3/models/ont <span class="co"># Change this for PacBio</span></span>
