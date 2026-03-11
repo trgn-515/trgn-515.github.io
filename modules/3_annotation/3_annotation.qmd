@@ -474,7 +474,7 @@ We can use `bcftools annotate` to take the `AF` tag from the gnomAD VCF database
 ```sh
 bcftools annotate \
   -a <gnomad.vcf.gz> \
-  -c ID,INFO/gnomAD_AF \
+  -c ID,INFO/AF \
   -Oz -o <output_vcf.gz> \
   <input.vcf.gz>
 
@@ -482,7 +482,7 @@ tabix -p vcf <output_vcf.gz>
 ```
 
 ::: {.callout-warning}
-If a variant in your VCF is a somatic cancer mutation (meaning it only exists in the tumor and not in healthy humans), gnomAD will not have a record of it. In this case, bcftools will simply leave the AF tag blank (represented by a .).
+If a variant in your VCF is a somatic cancer mutation (meaning it only exists in the tumor and not in healthy humans) or a variant at a very low frequency, gnomAD may not have a record of it. In this case, bcftools will simply leave the AF tag blank (or represented by a .).
 :::
 
 #### ClinVar
