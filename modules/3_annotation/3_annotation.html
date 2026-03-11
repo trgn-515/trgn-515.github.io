@@ -797,7 +797,7 @@ Note
 <p>We can use <code>bcftools annotate</code> to take the <code>AF</code> tag from the gnomAD VCF database.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bcftools</span> annotate <span class="dt">\</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">-a</span> <span class="op">&lt;</span>gnomad.vcf.gz<span class="op">&gt;</span> <span class="dt">\</span></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">-c</span> ID,INFO/gnomAD_AF <span class="dt">\</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">-c</span> ID,INFO/AF <span class="dt">\</span></span>
 <span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">-Oz</span> <span class="at">-o</span> <span class="op">&lt;</span>output_vcf.gz<span class="op">&gt;</span> <span class="dt">\</span></span>
 <span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="op">&lt;</span>input.vcf.gz<span class="op">&gt;</span></span>
 <span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a></span>
@@ -812,7 +812,7 @@ Warning
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>If a variant in your VCF is a somatic cancer mutation (meaning it only exists in the tumor and not in healthy humans), gnomAD will not have a record of it. In this case, bcftools will simply leave the AF tag blank (represented by a .).</p>
+<p>If a variant in your VCF is a somatic cancer mutation (meaning it only exists in the tumor and not in healthy humans) or a variant at a very low frequency, gnomAD may not have a record of it. In this case, bcftools will simply leave the AF tag blank (or represented by a .).</p>
 </div>
 </div>
 </section>
