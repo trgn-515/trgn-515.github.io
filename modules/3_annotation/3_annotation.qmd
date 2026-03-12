@@ -280,6 +280,13 @@ grep -v "#" $gff_file | sort -k1,1 -k4,4n -k5,5n -t$'\t' | bgzip -c > $gff_file.
 tabix -p gff $gff_file.gz
 ```
 
+To ensure that the gff is properly formatted, use the following reference genomes in any of the annotation analysis:
+
+```bash
+ref_genome=/project2/msalomon_1816/trgn_515/3_annotation/m_tuberculosis/reference/Mycobacterium_tuberculosis_h37rv.ASM19595v2.dna_sm.toplevel.fa
+gtt_file=/project2/msalomon_1816/trgn_515/3_annotation/m_tuberculosis/reference/Mycobacterium_tuberculosis_h37rv.ASM19595v2.37.gff3
+```
+
 There are many tools to perform variant annotation. Some of the most commonly used include `VEP` (Variant Effect Predictor, from Ensembl); `SnpEff`; `BCFtools csq`, or `ANNOVAR`. Ideally, we would like a simple software that takes a VCF file as an input, gives an annotated VCF file as output, and can be easily used with command pipes.
 
 To use VEP, use the conda environment:
@@ -545,31 +552,100 @@ We will use the VEP to functionally annotate our VCF. We will also run three pre
 - **SIFT and PolyPhen-2:** Predict the impact of amino acid substitutions on protein structure.
 - **CADD:** A comprehensive algorithmic framework that scores the deleteriousness of single nucleotide variants across the entire human genome.
 
-Use the VCF file that contains all the GnomAD and ClinVar annotations.
+Like many of these tools, VEP requires a database (cache). I have already downloaded it for you, but if you wanted to do it, you would run:
 
 ```sh
+vep_install -a cf -s homo_sapiens -y GRCh38 -c /project2/msalomon_1816/trgn_515/3_annotation/db/vep_cache
+```
+
+CADD, one of the models we will run to predict the functional consequence of a variant, also requires a DB. Although I have already got it for you, you would get the latest version (v1.7) here:
+
+```bash
+wget https://krishna.gs.washington.edu/download/CADD/v1.7/GRCh38/whole_genome_SNVs.tsv.gz
+wget https://krishna.gs.washington.edu/download/CADD/v1.7/GRCh38/whole_genome_SNVs.tsv.gz.tbi
+```
+
+Now we can run VEP. Use the VCF file that contains all the GnomAD and ClinVar annotations:
+```sh
 conda activate /project2/msalomon_1816/trgn_515/conda_env/vep
+
+VEP_CACHE="/project2/msalomon_1816/trgn_515/3_annotation/db/vep_cache"
+CADD_DB="/project2/msalomon_1816/trgn_515/3_annotation/HCC1395_breast_cancer/cadd/whole_genome_SNVs.tsv.gz"
 
 vep -i <input.vcf.gz> \
   -o <output.vcf.gz> \
   --vcf --compress_output bgzip \
   --species homo_sapiens --assembly GRCh38 \
   --offline --cache \
+  --dir_cache $VEP_CACHE \
   --symbol --canonical  \
-  -sift b --polyphen b --plugin CADD,/project2/msalomon_1816/trgn_515/3_annotation/HCC1395_breast_cancer/cadd/whole_genome_SNVs.tsv.gz
+  --sift b --polyphen b \
+  --plugin CADD,$CADD_DB
 
 # Index the output
 tabix -p vcf <output.vcf.gz>
 ```
-The VEP annotated VCF contains a massive amount of information in the CSQ string separated by pipes (|). We can use `bcftools query` to extract just the genomic coordinates, the Gene Symbol, and the predicted Consequence.
 
-```sh
-bcftools query \
-  -f '%CHROM\t%POS\t%REF\t%ALT\t%INFO/CSQ\n' \
-  HCC1395_vep_annotated.vcf.gz > vep_summary.txt
+#### Filtering for *In Silico* Pathogenicity
+
+Now that our VCF is heavily annotated with predictions, we want to filter out the benign noise and isolate variants that the algorithms flag as dangerous. 
+
+The predictive algorithms use specific vocabulary:
+* **SIFT:** Flags severe amino acid changes as `deleterious`.
+* **PolyPhen:** Flags structural protein damage as `probably_damaging`.
+* **CADD:** Outputs a Phred-scaled score. A score `> 20` means the variant is in the top 1% of most deleterious substitutions in the human genome.
+
+If you look closely at the `INFO/CSQ` field in your VCF, you will notice two important formatting rules that make parsing it slightly complex:
+1. **Pipes (`|`):** VEP separates different annotation fields (like Gene Name, Consequence, SIFT, PolyPhen, CADD) using pipes. 
+2. **Commas (`,`):** A single genomic coordinate can overlap multiple transcripts (isoforms) of the same gene. VEP calculates the consequence for *every* known transcript and separates these distinct prediction blocks with commas.
+
+We can use `bcftools` to search the complex `CSQ` string for these specific keywords and generate a file of only the predicted pathogenic variants.
+
+
+To make our final clinical report readable, we will process this data in three distinct steps: 
+1. **Extract & Filter:** Pull the data out of the VCF into a text table.
+2. **Deduplicate:** Remove redundant transcripts for the same mutation.
+3. **Sort:** Rank them by the CADD score.
+
+```bash
+# Step 1: Extract VEP annotations, split overlapping transcripts onto separate lines (-d), 
+# and filter for high-impact predictions. Save this to a temporary text file.
+bcftools +split-vep \
+  -d \
+  -c SYMBOL,Consequence,SIFT,PolyPhen,CADD_PHRED:Float \
+  -f '%CHROM\t%POS\t%REF\t%ALT\t%SYMBOL\t%Consequence\t%SIFT\t%PolyPhen\t%CADD_PHRED\n' \
+  -i 'CADD_PHRED > 20 || SIFT ~ "deleterious" || PolyPhen ~ "probably_damaging"' \
+  HCC1395_final.vcf.gz > step1_filtered_transcripts.txt
+
+# Step 2: Deduplicate the variants.
+# The awk command creates a memory array using the Chromosome (Column 1) and Position (Column 2). 
+# It only prints the first time it sees a coordinate, gracefully dropping redundant transcripts.
+awk '!seen[$1,$2]++' step1_filtered_transcripts.txt > step2_deduplicated.txt
+
+# Step 3: Sort the results mathematically by the CADD score.
+# -k9,9nr means sort based on the 9th column (n = numeric, r = reverse/highest first).
+sort -k9,9nr step2_deduplicated.txt > in_silico_predictions_final.txt
+
+# Step 4: Clean up the intermediate files to keep your directory tidy.
+rm step1_filtered_transcripts.txt step2_deduplicated.txt
 ```
 
 
+
+<!-- ### Task 9: Inferring pathogenic variants.
+::: {.callout-note}
+
+Your filtered ClinVar list missed a critical mutation on Chromosome 13. Let's use our in silico predictions to find it.
+
+Use grep on your in_silico_predictions.txt to search specifically for variants in the BRCA2 gene. Locate the variant at chr13:32339132.
+
+What is the functional consequence of this mutation (e.g., missense_variant, stop_gained, frameshift_variant)?
+
+The Algorithm Trap: Look closely at the VEP string for this variant. You will notice that it has a high CADD score, but SIFT and PolyPhen failed to evaluate it (often represented by empty fields or lacking the "deleterious" tag). Based on the functional consequence of the BRCA2 variant you found in Question 2, explain biologically why SIFT and PolyPhen algorithms cannot score this specific mutation.
+
+Clinical Conclusion: Look at the Phred-scaled CADD score for the BRCA2 variant. Based on this score and the biological function of the BRCA2 gene (a tumor suppressor that repairs DNA), explain why this is a high-confidence cancer driver despite missing a ClinVar "Pathogenic" classification.
+
+::: -->
 
 
 <!-- 1. Chromosome 17 (The absolute highest yield)
