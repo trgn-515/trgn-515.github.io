@@ -298,6 +298,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#in-silico-pathogenicity-predictors" id="toc-in-silico-pathogenicity-predictors" class="nav-link" data-scroll-target="#in-silico-pathogenicity-predictors"><em>In Silico</em> pathogenicity predictors</a>
   <ul class="collapse">
   <li><a href="#filtering-for-in-silico-pathogenicity" id="toc-filtering-for-in-silico-pathogenicity" class="nav-link" data-scroll-target="#filtering-for-in-silico-pathogenicity">Filtering for <em>In Silico</em> Pathogenicity</a></li>
+  <li><a href="#task-9-inferring-pathogenic-variants." id="toc-task-9-inferring-pathogenic-variants." class="nav-link" data-scroll-target="#task-9-inferring-pathogenic-variants.">Task 9: Inferring pathogenic variants.</a></li>
   </ul></li>
   </ul></li>
   </ul>
@@ -750,8 +751,7 @@ Note
 <li>What are the genes with the highest number of variants? <strong>(5pts)</strong></li>
 <li>What are the genes with the highest number of non-synoymous variants? In how many samples are these mutations present? <strong>(5pts)</strong></li>
 <li>What are the genes with the highest proportion of non-synoymous variants to synonymous variants? <strong>(5pts)</strong></li>
-<li>Review the variants within those genes in IGV and determine if the alignment is reliable <strong>(5pts)</strong></li>
-<li>What antibiotic resistant mechanism from the ones reviewed in class explains the functional consequence of the variant? (i.e: target site modification, efflux pump, etc.) <strong>(10pts)</strong></li>
+<li>Review the variants within those genes in IGV and determine if the alignment is reliable <strong>(5pts)</strong> <!-- 6. What antibiotic resistant mechanism from the ones reviewed in class explains the functional consequence of the variant? (i.e: target site modification, efflux pump, etc.) **(10pts)** --></li>
 </ol>
 </div>
 </div>
@@ -855,14 +855,18 @@ Note
 <li>The gnomAD Allele Frequency (AF) is less than 0.01 (1%) OR the variant is entirely absent from gnomAD</li>
 <li>The ClinVar Significance is Pathogenic or Likely_pathogenic.</li>
 </ul>
+<p><strong>Hint</strong>: Within bcftools filtering expressions, you can use the symbol <code>~</code> to filter or select if a tag contains a word.</p>
 <ol type="1">
-<li>Write your bcftools command to select variants. <strong>(10pts)</strong></li>
-<li>Return the chromosome and position of the resulting variants. <strong>(5pts)</strong></li>
+<li>Write your bcftools command to select variants. Return the chromosome and position of the resulting variants. <strong>(10pts)</strong></li>
+<li>Search for the exact genomic coordinates of these variants on the ClinVar website and answer the following questions:
+<ol type="1">
 <li>What genes do the variants fall in? <strong>(5pts)</strong></li>
-<li>Search for the exact genomic coordinates of these variants on the ClinVar website. What is the specific molecular consequence of each mutation (e.g., missense, nonsense/stop-gain, frameshift)? <strong>(10pts)</strong></li>
+<li>Find information about these genes in the ClinVar DB and briefly describe the function of the gene <strong>(5pts)</strong></li>
+<li>What is the specific molecular consequence of each mutation (e.g., missense, nonsense/stop-gain, frameshift)? <strong>(5pts)</strong></li>
+<li>What is the evidence of these variants being pathogenic?</li>
+</ol></li>
 <li>Why did we filter out variants with a gnomAD AF &gt; 1%? <strong>(10pts)</strong></li>
 </ol>
-<p><strong>Hint</strong>: Within bcftools filtering expressions, you can use the symbol <code>~</code> to filter or select if a tag contains a word.</p>
 </div>
 </div>
 <!-- ```sh
@@ -922,82 +926,67 @@ bcftools view \
 <span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 2: Deduplicate the variants.</span></span>
 <span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a><span class="co"># The awk command creates a memory array using the Chromosome (Column 1) and Position (Column 2). </span></span>
-<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a><span class="co"># It only prints the first time it sees a coordinate, gracefully dropping redundant transcripts.</span></span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a><span class="co"># It only prints the first time it sees a coordinate, dropping redundant transcripts.</span></span>
 <span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a><span class="fu">awk</span> <span class="st">'!seen[$1,$2]++'</span> step1_filtered_transcripts.txt <span class="op">&gt;</span> step2_deduplicated.txt</span>
 <span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 3: Sort the results mathematically by the CADD score.</span></span>
+<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 3: Sort the results by the CADD score.</span></span>
 <span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a><span class="co"># -k9,9nr means sort based on the 9th column (n = numeric, r = reverse/highest first).</span></span>
 <span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span> <span class="at">-k9,9nr</span> step2_deduplicated.txt <span class="op">&gt;</span> in_silico_predictions_final.txt</span>
 <span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-19"><a href="#cb30-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 4: Clean up the intermediate files to keep your directory tidy.</span></span>
+<span id="cb30-19"><a href="#cb30-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 4: Clean up the intermediate files to keep your directory clean.</span></span>
 <span id="cb30-20"><a href="#cb30-20" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> step1_filtered_transcripts.txt step2_deduplicated.txt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<!-- ### Task 9: Inferring pathogenic variants.
-::: {.callout-note}
+</section>
+<section id="task-9-inferring-pathogenic-variants." class="level3">
+<h3 class="anchored" data-anchor-id="task-9-inferring-pathogenic-variants.">Task 9: Inferring pathogenic variants.</h3>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Look at the 5 variants with the highest CADD scores.</p>
+<ol type="1">
+<li>Find information about those 5 genes in ClinVar. What genes are more likely oncogenic based on the ClinVar annotations? <strong>(10pts)</strong></li>
+<li>From those likely oncogenic genes, what mutations where not annotated in ClinVar in our previoous analysis? <strong>(5pts)</strong></li>
+<li>What is the functional consequence of these mutations? <strong>(5pts)</strong></li>
+</ol>
+</div>
+</div>
+<!-- Look closely at the VEP string for this variant. You will notice that it has a high CADD score, but SIFT and PolyPhen failed to evaluate it (often represented by empty fields or lacking the "deleterious" tag). Based on the functional consequence of the BRCA2 variant you found in Question 2, explain biologically why SIFT and PolyPhen algorithms cannot score this specific mutation. -->
+<!--
 
-Your filtered ClinVar list missed a critical mutation on Chromosome 13. Let's use our in silico predictions to find it.
-
-Use grep on your in_silico_predictions.txt to search specifically for variants in the BRCA2 gene. Locate the variant at chr13:32339132.
-
-What is the functional consequence of this mutation (e.g., missense_variant, stop_gained, frameshift_variant)?
-
-The Algorithm Trap: Look closely at the VEP string for this variant. You will notice that it has a high CADD score, but SIFT and PolyPhen failed to evaluate it (often represented by empty fields or lacking the "deleterious" tag). Based on the functional consequence of the BRCA2 variant you found in Question 2, explain biologically why SIFT and PolyPhen algorithms cannot score this specific mutation.
-
-Clinical Conclusion: Look at the Phred-scaled CADD score for the BRCA2 variant. Based on this score and the biological function of the BRCA2 gene (a tumor suppressor that repairs DNA), explain why this is a high-confidence cancer driver despite missing a ClinVar "Pathogenic" classification.
-
-::: -->
-<!-- 1. Chromosome 17 (The absolute highest yield)
+1. Chromosome 17
 
 Genes: TP53 and BRCA1
 
-What the students will find: HCC1395 is a fantastic teaching model because it contains both a nonsense germline variant in the BRCA1 gene and hotspot somatic mutations in the TP53 gene. The BRCA1 variant is a known nonsense mutation, specifically R1751X.
+- germline cancer predisposition variant (which will have a ~50% variant allele frequency in both the normal and tumor VCF)
+- somatic driver mutation (which will only be present in the tumor VCF).
 
-Pedagogical value: By giving students just Chromosome 17, you can teach them the critical bioinformatics difference between a germline cancer predisposition variant (which will have a ~50% variant allele frequency in both the normal and tumor VCF) and a somatic driver mutation (which will only be present in the tumor VCF).
 
-
-1. Chromosome 13
+2. Chromosome 13
 
 Gene: BRCA2
 
-What the students will find: The SEQC2 benchmark data confirms that HCC1395 also contains a somatic nonsense mutation in the BRCA2 gene.
+The SEQC2 benchmark data confirms that HCC1395 also contains a somatic nonsense mutation in the BRCA2 gene.
 
 3. Chromosome 8
 
 Gene: FGFR1
 
-What the students will find: There are known hotspot somatic mutations in the FGFR1 gene in this specific cell line.
+There are known hotspot somatic mutations in the FGFR1 gene in this specific cell line.
 
 4. Chromosome 3 and Chromosome 10
 
 Genes: PIK3CA (Chr 3) and PTEN (Chr 10)
 
-Note for teaching: While these are canonical breast cancer genes, they are not the primary drivers in HCC1395. If you want students to find aggressive, clear-cut mutations, stick to the BRCA and TP53 pathways for this specific dataset.
-
-My Recommendation for the Classroom
-Only have the students download and process the data for Chromosome 17 and Chromosome 13.
-
-It drastically reduces the compute time and storage space required for the lab.
-
-It perfectly sets up the workflow to find the "Big Three" breast cancer genes (BRCA1, BRCA2, and TP53).
+While these are canonical breast cancer genes, they are not the primary drivers in HCC1395.
 
 
 
-```sh
-bcftools annotate \
-  -a clinvar.vcf.gz \
-  -c INFO/CLNSIG \
-  -Oz -o tumor_annotated.vcf.gz \
-  tumor_gnomad.vcf.gz
-```
-
-
-## In silico score prediction
-
-```sh
-vep -i tumor_annotated.vcf.gz \
-  -o final_clinical_tumor.vcf.gz \
-  --vcf --compress_output bgzip \
-  --sift b --polyphen b --plugin CADD,CADD.tsv.gz
-```
 
 For HCC1395:
 
@@ -1006,22 +995,19 @@ TP53 (Multiple Hits): The SEQC2 high-confidence set includes canonical TP53 muta
 PIK3CA or PTEN variants: Common in triple-negative breast cancers, these should be identifiable in the SEQC2 truth set.
 
 
-4. Problem Set & Discussion Questions for Students
-Here is a list of conceptual and practical problems you can assign based on this workflow:
+1. Possible questions
 
-The Frequency Paradox: You identify a variant with a high Variant Allele Frequency (VAF = 0.45) in the tumor sample, but your gnomAD annotation shows it has a population frequency of 0.30 (30%). Is this variant driving the cancer? Why or why not? (Goal: Distinguish between somatic drivers and common germline SNPs).
+Frequency question: You identify a variant with a high Variant Allele Frequency (VAF = 0.45) in the tumor sample, but your gnomAD annotation shows it has a population frequency of 0.30 (30%). Is this variant driving the cancer? Why or why not? (Distinguish between somatic drivers and common germline SNPs).
 
-ClinVar Parsing: Find the CLNSIG (Clinical Significance) tag for the BRAF variant at chr7:140753336. What is its clinical classification? Use the ClinVar web portal to look up this variant and identify one FDA-approved drug associated with this mutation.
+ClinVar parsing: Find the CLNSIG (Clinical Significance) tag for the BRAF variant at chr7:140753336. What is its clinical classification? Use the ClinVar web portal to look up this variant and identify one FDA-approved drug associated with this mutation.
 
-In Silico Limitations: You find a novel missense variant in BRCA1 that is completely absent from ClinVar and gnomAD. VEP reports a CADD score of 28. Calculate the percentile rank of this variant's predicted deleteriousness. Does a high CADD score guarantee that this variant is the cause of the patient's tumor? Discuss the limitations of in silico predictors in a clinical setting.
+In Silico limitations: You find a novel missense variant in BRCA1 that is completely absent from ClinVar and gnomAD. VEP reports a CADD score of 28. Calculate the percentile rank of this variant's predicted deleteriousness. Does a high CADD score guarantee that this variant is the cause of the patient's tumor? Discuss the limitations of in silico predictors in a clinical setting.
 
 Mutational Signatures (COLO-829 specific): Write a bash command using grep and awk to count the total number of C>T or CC>TT transitions in the COLO-829 VCF. How does this compare to the number of A>G transitions? What does this ratio tell you about the etiology of this specific melanoma?
 
 
 
-If they run the workflow correctly on the GRCh38 assembly of HCC1395, their final filtered list should prominently feature these three canonical mutations:
-
-TP53 Somatic Hotspot Mutation (Chromosome 17)
+TP53 Somatic Mutation (Chromosome 17)
 
 Coordinate: chr17:7675088 C>T
 
@@ -1040,7 +1026,7 @@ Coordinate: chr13:32339132 G>A
 Details: Another nonsense mutation (p.Glu1593*) that acquired somatically, further degrading the cell's ability to repair DNA double-strand breaks.
 
 
-Fact-Checking the FDA: The official FDA/SEQC2 consortium publication describing this cell line states that the tumor contains a BRCA2 somatic stop-gain mutation resulting from a G>A transversion. However, your VCF likely shows a different alternate allele at coordinate chr13:32339132.
+FDA issues: The official FDA/SEQC2 consortium publication describing this cell line states that the tumor contains a BRCA2 somatic stop-gain mutation resulting from a G>A transversion. However, your VCF likely shows a different alternate allele at coordinate chr13:32339132.
 
 What is the reference and alternate allele in your VCF?
 
