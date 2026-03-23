@@ -239,7 +239,7 @@ bcftools annotate -a regions.bed -h filter_header.txt -m '+hypervar' input.vcf.g
 ### Task 3: Removing variants that fall within hypervariable regions.
 ::: {.callout-note}
 
-1. Hard-filtered the variants from your multi-sample VCF that fall within the hypervariable regions in the .bed file. Attach your command **(5pts)**
+1. Hard-filter the variants from your multi-sample VCF that fall within the hypervariable regions in the .bed file. Attach your command **(5pts)**
 :::
 
 
