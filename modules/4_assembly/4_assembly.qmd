@@ -124,7 +124,7 @@ We will perform the following assemblies:
 6. Hybrid Illumina + ONT Rapid kit
 7. ONT Rapid kit + short-read polishing
 
-![Bioinformatic workflow for Genome Assembly](/Users/arturo/Documents/teaching/usc_genomics/trgn515/markdowns/week4/assembly_pipeline.png){style="display: block; margin: 0 auto"}
+![Bioinformatic workflow for Genome Assembly](assembly_pipeline.png){style="display: block; margin: 0 auto"}
 
 
 # Sequencing technologies and library preparation
@@ -267,7 +267,7 @@ First, we start by downloading the dataset that BUSCO will use for the compariso
 busco --download bacteria
 ```
 
-To run BUSCO on _E. coli_:
+To run BUSCO on *E. coli*:
 
 ```sh
 busco -i <assembly.fa> # Input assembly
