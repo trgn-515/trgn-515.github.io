@@ -19,27 +19,14 @@ format:
 
 For this assignment, we will perform de novo assembly of a bacterial genome from *Escherichia coli* using three different technologies: Illumina, Nanopore and PacBio. The specific strain is *E. coli* O127:H6 (strain E2348/69). The files used for the assignment and their SRA accession are summarized in the following table:
 
-```{=latex}
-\captionsetup[table]{
-  justification = centering
-}
-
-\begin{table}[!ht]
-\caption{Samples use for this assignment}
-\centering
-\begin{tabular}{lll}
-\hline
-\textbf{Organism} & \textbf{Library}        & \textbf{SRA accession} \\ \hline
-\textit{E. coli}  & ONT Rapid               & SRR11523179            \\
-\textit{E. coli}  & ONT Ligation            & SRR11434959            \\
-\textit{E. coli}  & ONT Ligation (no size selection) & SRR12801740            \\ \hline
-% \textit{E. coli}  & PacBio RS II            & SRR11434956            \\
-\textit{E. coli}  & Pacbio Sequel II CLR    & SRR11434960            \\
-\textit{E. coli}  & Pacbio Sequel II HiFi   & SRR11434954            \\ \hline
-\textit{E. coli}  & Illumina HiSeq4000      & SRR11434958            \\ \hline
-\end{tabular}
-\end{table}
-```
+| Organism | Library | SRA accession |
+| :--- | :--- | :--- |
+| *E. coli* | ONT Rapid | SRR11523179 |
+| *E. coli* | ONT Ligation | SRR11434959 |
+| *E. coli* | ONT Ligation (no size selection) | SRR12801740 |
+| *E. coli* | Pacbio Sequel II CLR | SRR11434960 |
+| *E. coli* | Pacbio Sequel II HiFi | SRR11434954 |
+| *E. coli* | Illumina HiSeq4000 | SRR11434958 |
 
 The original reference paper for this dataset:
 
