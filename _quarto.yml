@@ -35,6 +35,9 @@ website:
       - section: "Module 3: Variant functional annotation"
         contents:
           - modules/3_annotation/3_annotation.qmd
+      - section: "Module 4: Genome assembly"
+        contents:
+          - modules/4_assembly/4_assembly.qmd
 format:
   html:
     theme: cosmo
