@@ -276,20 +276,6 @@
     ]
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "TRGN 515: Advanced Human Genomic Analysis Methods",
-    "section": "",
-    "text": "Below is the schedule of modules, slides, and assignments for the semester. Links will be updated as we progress through the course.\n\n\n\n\n\n\n\n\n\nModule\nSlides\nAssignment\nDue Date\n\n\n\n\nModule 1: Sequencing TechnologiesOverview of NGS, Nanopore, and PacBio.\n HTML PDF\n Assignment 1\n02/27/2026\n\n\nModule 2: Structural Variant DetectionDefinition and types of structural variants (SV), detection of indels and SV.\n HTML PDF\n Assignment 2\n03/10/2026\n\n\nModule 3: Variant Functional AnnotationVariant effect prediction.\n HTML PDF\n Assignment 3\nTBD\n\n\nModule 4: Genome AssemblyIntroduction to genome assembly, QC, and hybrid-assembly.\n HTML PDF\n Assignment 4\nTBD\n\n\nModule 5: GWASIntroduction to GWAS, population structure, and linkage disequilibrium.\n HTML PDF\n Assignment 5\nTBD\n\n\nModule 6: Epigenetics - MethylationMethylation detection with 3rd Generation sequencing.\n HTML PDF\n Assignment 6\nTBD\n\n\nModule 7: Metagenomics IIntroduction to metagenomics, 16S amplification, and taxonomy.\n HTML PDF\n Assignment 7\nTBD\n\n\nModule 8: Metagenomics IIWhole-genome amplification, MAGs, and functional analysis.\n HTML PDF\n Assignment 8\nTBD"
-  },
-  {
-    "objectID": "index.html#course-content",
-    "href": "index.html#course-content",
-    "title": "TRGN 515: Advanced Human Genomic Analysis Methods",
-    "section": "",
-    "text": "Below is the schedule of modules, slides, and assignments for the semester. Links will be updated as we progress through the course.\n\n\n\n\n\n\n\n\n\nModule\nSlides\nAssignment\nDue Date\n\n\n\n\nModule 1: Sequencing TechnologiesOverview of NGS, Nanopore, and PacBio.\n HTML PDF\n Assignment 1\n02/27/2026\n\n\nModule 2: Structural Variant DetectionDefinition and types of structural variants (SV), detection of indels and SV.\n HTML PDF\n Assignment 2\n03/10/2026\n\n\nModule 3: Variant Functional AnnotationVariant effect prediction.\n HTML PDF\n Assignment 3\nTBD\n\n\nModule 4: Genome AssemblyIntroduction to genome assembly, QC, and hybrid-assembly.\n HTML PDF\n Assignment 4\nTBD\n\n\nModule 5: GWASIntroduction to GWAS, population structure, and linkage disequilibrium.\n HTML PDF\n Assignment 5\nTBD\n\n\nModule 6: Epigenetics - MethylationMethylation detection with 3rd Generation sequencing.\n HTML PDF\n Assignment 6\nTBD\n\n\nModule 7: Metagenomics IIntroduction to metagenomics, 16S amplification, and taxonomy.\n HTML PDF\n Assignment 7\nTBD\n\n\nModule 8: Metagenomics IIWhole-genome amplification, MAGs, and functional analysis.\n HTML PDF\n Assignment 8\nTBD"
-  },
-  {
     "objectID": "modules.html",
     "href": "modules.html",
     "title": "Modules",
@@ -316,6 +302,55 @@
     "title": "Modules",
     "section": "Module 3",
     "text": "Module 3\n\nVariant consequence annotation"
+  },
+  {
+    "objectID": "modules.html#module-4",
+    "href": "modules.html#module-4",
+    "title": "Modules",
+    "section": "Module 4",
+    "text": "Module 4\n\nGenome assembly"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "TRGN 515: Advanced Human Genomic Analysis Methods",
+    "section": "",
+    "text": "Below is the schedule of modules, slides, and assignments for the semester. Links will be updated as we progress through the course.\n\n\n\n\n\n\n\n\n\nModule\nSlides\nAssignment\nDue Date\n\n\n\n\nModule 1: Sequencing TechnologiesOverview of NGS, Nanopore, and PacBio.\n HTML PDF\n Assignment 1\n02/27/2026\n\n\nModule 2: Structural Variant DetectionDefinition and types of structural variants (SV), detection of indels and SV.\n HTML PDF\n Assignment 2\n03/10/2026\n\n\nModule 3: Variant Functional AnnotationVariant effect prediction.\n HTML PDF\n Assignment 3\n03/31/2026\n\n\nModule 4: Genome AssemblyIntroduction to genome assembly.\n HTML PDF\n Assignment 4\nTBD\n\n\nModule 5: GWASIntroduction to GWAS, population structure, and linkage disequilibrium.\n HTML PDF\n Assignment 5\nTBD\n\n\nModule 6: Epigenetics - MethylationMethylation detection with 3rd Generation sequencing.\n HTML PDF\n Assignment 6\nTBD\n\n\nModule 7: Metagenomics IIntroduction to metagenomics, 16S amplification, and taxonomy.\n HTML PDF\n Assignment 7\nTBD\n\n\nModule 8: Metagenomics IIWhole-genome amplification, MAGs, and functional analysis.\n HTML PDF\n Assignment 8\nTBD"
+  },
+  {
+    "objectID": "index.html#course-content",
+    "href": "index.html#course-content",
+    "title": "TRGN 515: Advanced Human Genomic Analysis Methods",
+    "section": "",
+    "text": "Below is the schedule of modules, slides, and assignments for the semester. Links will be updated as we progress through the course.\n\n\n\n\n\n\n\n\n\nModule\nSlides\nAssignment\nDue Date\n\n\n\n\nModule 1: Sequencing TechnologiesOverview of NGS, Nanopore, and PacBio.\n HTML PDF\n Assignment 1\n02/27/2026\n\n\nModule 2: Structural Variant DetectionDefinition and types of structural variants (SV), detection of indels and SV.\n HTML PDF\n Assignment 2\n03/10/2026\n\n\nModule 3: Variant Functional AnnotationVariant effect prediction.\n HTML PDF\n Assignment 3\n03/31/2026\n\n\nModule 4: Genome AssemblyIntroduction to genome assembly.\n HTML PDF\n Assignment 4\nTBD\n\n\nModule 5: GWASIntroduction to GWAS, population structure, and linkage disequilibrium.\n HTML PDF\n Assignment 5\nTBD\n\n\nModule 6: Epigenetics - MethylationMethylation detection with 3rd Generation sequencing.\n HTML PDF\n Assignment 6\nTBD\n\n\nModule 7: Metagenomics IIntroduction to metagenomics, 16S amplification, and taxonomy.\n HTML PDF\n Assignment 7\nTBD\n\n\nModule 8: Metagenomics IIWhole-genome amplification, MAGs, and functional analysis.\n HTML PDF\n Assignment 8\nTBD"
+  },
+  {
+    "objectID": "modules/4_assembly/4_assembly.html",
+    "href": "modules/4_assembly/4_assembly.html",
+    "title": "Assignment 4: Genome assembly",
+    "section": "",
+    "text": "For this assignment, we will perform de novo assembly of a bacterial genome from Escherichia coli using three different technologies: Illumina, Nanopore and PacBio. The specific strain is E. coli O127:H6 (strain E2348/69). The files used for the assignment and their SRA accession are summarized in the following table:\nThe original reference paper for this dataset:\nThe authors provide a well-curated and visually validated assembly combining multiple technologies. We will use that assembly as our gold standard to compare the different assemblies.\nWe will compare the characteristics and SNP calls for three sequencing technologies: Illumina, PacBio HiFi, and Nanopore."
+  },
+  {
+    "objectID": "modules/4_assembly/4_assembly.html#contiguity",
+    "href": "modules/4_assembly/4_assembly.html#contiguity",
+    "title": "Assignment 4: Genome assembly",
+    "section": "Contiguity",
+    "text": "Contiguity\nAssembly contiguity measures how contiguous or broken up is the assembly. A good assembly should have a low number of contigs but very long. Common metrics used to measure contiguity include N50, NG50, L50, LG50, number of contigs, mean contig length etc. QUAST is commonly used to get some of these metrics. You can provide all your assemblies at once to get a comparison:\nquast.py *.fasta\n-o &lt;out_dir&gt;\nNOTE: No need to run this version of the code, we will run it later with additional options."
+  },
+  {
+    "objectID": "modules/4_assembly/4_assembly.html#completeness",
+    "href": "modules/4_assembly/4_assembly.html#completeness",
+    "title": "Assignment 4: Genome assembly",
+    "section": "Completeness",
+    "text": "Completeness\nAssembly completeness measures of much of the assembly is missing. If there’s a well-assembled reference genome, we can simply measures completeness by comparing it against it. Otherwise, a common way to measure completeness is by inferring the presence of conserved single-copy genes (core genes) in our assembly and comparing it the expectation given the assembly species. The most commonly used software for that is BUSCO (Benchmarking Universal Single-Copy Orthologs).\nFirst, we start by downloading the dataset that BUSCO will use for the comparison. This is done for you, but the command for E. coli would be:\nbusco --download bacteria\nTo run BUSCO on E. coli:\nbusco -i &lt;assembly.fa&gt; # Input assembly\n-o &lt;out_dir&gt; # Output directory\n-l bacteria_odb10 # Bacteria database. You can incude the full path if already downloaded\n-m genome # Genome assembly\nTo get a comparison of the BUSCO results for all the samples, you need to first get all the BUSCO reports in one folder and then run their comparison script:\n# Get all BUSCO summaries into one folder\nfor folder in *; do scp $folder/short_summary*txt; done\nmkdir -p busco_summaries\nmv short_summary.* busco_summaries/\n\n# Generate comparison plot for all BUSCO results\ngenerate_plot.py -wd busco_summaries"
+  },
+  {
+    "objectID": "modules/4_assembly/4_assembly.html#accuracy",
+    "href": "modules/4_assembly/4_assembly.html#accuracy",
+    "title": "Assignment 4: Genome assembly",
+    "section": "Accuracy",
+    "text": "Accuracy\nThe accuracy of the genome assembly is affected by how many mistakes the assembler makes. Assembly accuracy is determined by:\n\nMisassemblies (large-scale rearrangements)\nConsensus errors (mismatches, insertions or deletions)\n\nCalculating the accuracy of an assembly typically requires the use of a reference genome. We can again use QUAST for this by giving it a reference genome:\nquast.py\n*.fasta # Assembly list\n-r &lt;reference_genome.fa&gt; # Reference genome\n-o &lt;out_dir&gt; # Output directory\n\nTask 2: Assessing assembly quality\n\n\n\n\n\n\nNote\n\n\n\nThe latest task consists of a comparison between the variant calls you obtained and the gold standard.\nCompare the following assemblies:\n\nIllumina\nONT Rapid kit\nONT Rapid kit + long-read polishing\nONT Ligation kit\nONT Ligation kit + long-read polishing\nONT Ligation kit without shearing\nONT Ligation kit without shearing + long-read polishing\nPacBio HiFi\nHybrid Illumina + ONT Rapid kit (Tricycler)\nONT Rapid kit + short-read polishing (POLCA)\n\n\nInterpret the Nx plot produced by QUAST. Explain the plot, the axes, what it shows and why is important (5pts)\nWhat are the sequencing technologies that produce the most contiguous assembly? Does short-read or long-read sequencing produce the most contiguous contigs? (5pts)\nWhat’s the most accurate sequencing technology? (5pts)\nExplain the BUSCO gene completeness plot. What’s the plot showing? (5pts)\nBased on the BUSCO plot, what sequencing technologies produce the most complete assembly? (5pts)\nFor an experiment, you want to perform genome assembly of a bacterial species that may contain a plasmid of 2000bp. The scientist asks you a few questions:\n\nWhat sequencing technologies and library preparations will be able to sequence the plasmid? Why? (5pts)\nWhat sequencing technologies and library preparations will deliver the plasmid and the most contiguous assembly? Why? (5pts)\nWould there be any benefit on doing both Illumina and Nanopore?"
   },
   {
     "objectID": "modules/0_intro_git/assignment_template.html",
