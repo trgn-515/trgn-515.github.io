@@ -79,7 +79,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-a06763021a52c43c40a351ac8b799b8f.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-65a5721f63f3fdc511c5020e08a3ef57.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-eee6cd8b03cb522c15b9b12b91299b51.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -273,6 +273,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives">Learning objectives</a></li>
   <li><a href="#input-and-outputs" id="toc-input-and-outputs" class="nav-link" data-scroll-target="#input-and-outputs">Input and outputs</a></li>
   <li><a href="#required-software" id="toc-required-software" class="nav-link" data-scroll-target="#required-software">Required software</a></li>
+  <li><a href="#bioinformatics-workflow" id="toc-bioinformatics-workflow" class="nav-link" data-scroll-target="#bioinformatics-workflow">Bioinformatics workflow</a></li>
   <li><a href="#sequencing-technologies-and-library-preparation" id="toc-sequencing-technologies-and-library-preparation" class="nav-link" data-scroll-target="#sequencing-technologies-and-library-preparation">Sequencing technologies and library preparation</a>
   <ul>
   <li><a href="#task-1-compare-raw-read-statistics-between-sequencing-technologies-and-library-preparation-protocols." id="toc-task-1-compare-raw-read-statistics-between-sequencing-technologies-and-library-preparation-protocols." class="nav-link" data-scroll-target="#task-1-compare-raw-read-statistics-between-sequencing-technologies-and-library-preparation-protocols.">Task 1: Compare raw read statistics between sequencing technologies and library preparation protocols.</a></li>
@@ -423,41 +424,43 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="required-software" class="level1">
 <h1>Required software</h1>
-<p>In order to complete the assignment, the following tools need to be installed:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mamba</span> install bioconda::trimmomatic</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">mamba</span> install bioconda::filtlong</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">mamba</span> install bioconda::fastp</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">mamba</span> install bioconda::fastqc</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">mamba</span> install bioconda::nanoplot</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="ex">mamba</span> install bioconda::spades</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="ex">mamba</span> install bioconda::flye</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="ex">mamba</span> install bioconda::canu</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="ex">mamba</span> install bioconda::pilon</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="ex">mamba</span> install bioconda::polypolish</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="ex">mamba</span> install bioconda::masurca</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="ex">mamba</span> install bioconda::unicycler</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install bioconda::quast</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="ex">mamba</span> install bioconda::busco=5.8.2</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="ex">mamba</span> install bioconda::csvtk</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load htslib</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load bcftools</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load samtools</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>All these packages are available by loading the following conda environments:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># For all software</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate /project2/msalomon_1816/trgn_515/conda_env/trgn515</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># For BUSCO </span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate /project/msalomon_1385/TRGN_515/conda/envs/busco</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<!-- In order to complete the assignment, the following tools need to be installed:
+
+```sh
+mamba install bioconda::trimmomatic
+mamba install bioconda::filtlong
+mamba install bioconda::fastp
+mamba install bioconda::fastqc
+mamba install bioconda::nanoplot
+mamba install bioconda::spades
+mamba install bioconda::flye
+mamba install bioconda::canu
+mamba install bioconda::pilon
+mamba install bioconda::polypolish
+mamba install bioconda::masurca
+mamba install bioconda::unicycler
+conda install bioconda::quast
+mamba install bioconda::busco=5.8.2
+mamba install bioconda::csvtk
+
+module load htslib
+module load bcftools
+module load samtools
+``` -->
+<p>All the required software is available by loading the following conda environment:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># For all software</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate /project2/msalomon_1816/trgn_515/conda_env/trgn515</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Some software will have its own conda environment, which I will indicate in each subsection.</p>
 <p>We will perform the following assemblies:</p>
+</section>
+<section id="bioinformatics-workflow" class="level1">
+<h1>Bioinformatics workflow</h1>
 <ol type="1">
-<li>Illumina</li>
-<li>ONT Rapid kit +/- long-read polishing</li>
-<li>ONT Ligation kit +/- long-read polishing</li>
-<li>ONT Ligation kit without size selection +/- long-read polishing</li>
+<li>Illumina <!-- 2. ONT Rapid kit +/- long-read polishing --></li>
+<li>ONT Ligation kit +/- long-read polishing <!-- 4. ONT Ligation kit without size selection +/- long-read polishing --></li>
 <li>PacBio HiFi</li>
-<li>Hybrid Illumina + ONT Rapid kit</li>
-<li>ONT Rapid kit + short-read polishing</li>
+<li>Hybrid Illumina + ONT Ligation kit</li>
+<li>ONT Ligation kit + short-read polishing</li>
 </ol>
 <div class="quarto-figure quarto-figure-center" style="display: block; margin: 0 auto">
 <figure class="figure">
@@ -505,61 +508,67 @@ Note
 <section id="short-read-genome-assembly" class="level1">
 <h1>Short-read genome assembly</h1>
 <p>For the Illumina data, we will perform genome assembly using the Spades assembler. As seen in class, short-read assemblies rely on dividing the short-reads into k-mers. Choosing k-mer and other parameters can be tricky and many assemblers (including spades) will automatically select values for its parameters based on the input data. Also, Spades allows the user to select multiple k-mer sizes to maximise the chance of finding an ideal assembly. For this data, I propose using k-mer sizes of 21, 33, 55, 77, and 101bp. You can also use different k-mers or let Spades decide by not using the <code>-k</code> flag.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="va">kmers</span><span class="op">=</span>21,33,55,77,101</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">spades.py</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="ex">-o</span> <span class="op">&lt;</span>out_dir<span class="op">&gt;</span> <span class="co"># Output directory</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="ex">-1</span> <span class="op">&lt;</span>fwd.fastq<span class="op">&gt;</span> <span class="co"># Forward reads</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="ex">-2</span> <span class="op">&lt;</span>rev.fastq<span class="op">&gt;</span> <span class="co"># Reverse reads</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="ex">--isolate</span> <span class="co"># Isolate mode (recommended for single species with high coverage )</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="ex">-t</span> <span class="va">$SLURM_CPUS_PER_TASK</span> <span class="co"># Multithreading</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="ex">-k</span> <span class="va">$kmers</span> <span class="co"># Kmer size (skip for automatic selection)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="va">kmers</span><span class="op">=</span>21,33,55,77,101</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">spades.py</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ex">-o</span> <span class="op">&lt;</span>out_dir<span class="op">&gt;</span> <span class="co"># Output directory</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ex">-1</span> <span class="op">&lt;</span>fwd.fastq<span class="op">&gt;</span> <span class="co"># Forward reads</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="ex">-2</span> <span class="op">&lt;</span>rev.fastq<span class="op">&gt;</span> <span class="co"># Reverse reads</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="ex">--isolate</span> <span class="co"># Isolate mode (recommended for single species with high coverage )</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="ex">-t</span> <span class="va">$SLURM_CPUS_PER_TASK</span> <span class="co"># Multithreading</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="ex">-k</span> <span class="va">$kmers</span> <span class="co"># Kmer size (skip for automatic selection)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>NOTE:</strong> This command took 40 minutes and peak memory usage of 200mb in the cluster</p>
 <p>Spades outputs contigs with consistent headers that include information regarding contig length and contig coverage (number of reads included in the contig). An example of contig header for a contig of 100,000bp in length and 100x coverage:</p>
 <pre><code>&gt;NODE_1_length_100000_cov_100</code></pre>
 <p>This makes it very handy for filtering poor quality contigs using only the information from the header. You can filter using the following command:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">seqkit</span> fx2tab <span class="va">$contigs</span> <span class="kw">|</span> </span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">csvtk</span> mutate <span class="at">-H</span> <span class="at">-t</span> <span class="at">-f</span> 1 <span class="at">-p</span> <span class="st">"cov_(.+)"</span> <span class="kw">|</span> </span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">csvtk</span> mutate <span class="at">-H</span> <span class="at">-t</span> <span class="at">-f</span> 1 <span class="at">-p</span> <span class="st">"length_([0-9]+)"</span> <span class="kw">|</span> </span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">awk</span> <span class="at">-F</span> <span class="st">"\t"</span> <span class="st">'$4&gt;=10 &amp;&amp; $5&gt;=1000'</span> <span class="kw">|</span> <span class="co"># Only keep contigs with coverage higher or equal than 10 reads and length of at least 1000bp</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="ex">seqkit</span> tab2fx <span class="op">&gt;</span> <span class="va">$out_dir</span>/<span class="va">$sample</span>.filt_contigs.fa</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">seqkit</span> fx2tab <span class="va">$contigs</span> <span class="kw">|</span> </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">csvtk</span> mutate <span class="at">-H</span> <span class="at">-t</span> <span class="at">-f</span> 1 <span class="at">-p</span> <span class="st">"cov_(.+)"</span> <span class="kw">|</span> </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">csvtk</span> mutate <span class="at">-H</span> <span class="at">-t</span> <span class="at">-f</span> 1 <span class="at">-p</span> <span class="st">"length_([0-9]+)"</span> <span class="kw">|</span> </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">awk</span> <span class="at">-F</span> <span class="st">"\t"</span> <span class="st">'$4&gt;=10 &amp;&amp; $5&gt;=1000'</span> <span class="kw">|</span> <span class="co"># Only keep contigs with coverage higher or equal than 10 reads and length of at least 1000bp</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="ex">seqkit</span> tab2fx <span class="op">&gt;</span> <span class="va">$out_dir</span>/<span class="va">$sample</span>.filt_contigs.fa</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="long-read-genome-assembly" class="level1">
 <h1>Long-read genome assembly</h1>
 <p>Long-reads from different sequencing technologies will have different base error profiles, and thus many general long-read assemblers will have different options. For instance, Flye has <code>--nano-raw</code> for old Nanopore reads and <code>--nano-hq</code> for newer chemestries and basecallers. Similarly, for PacBio the flag <code>--pacbio-raw</code> should be used for CLR reads while the flag <code>--pacbio-hifi</code> is the recommended one for HiFi reads. The assembly algorithm is the same, it just changes the expected sequencing error rate. To run Flye:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">flye</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">--nano-raw</span> <span class="op">&lt;</span>in_reads.fq<span class="op">&gt;</span> <span class="co"># Use --nano-raw for nanopore, --pacbio-raw for CLR and --pacbio-hifi for HiFi</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ex">--threads</span> <span class="va">$SLURM_CPUS_PER_TASK</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="ex">--out-dir</span> <span class="op">&lt;</span>output_dir<span class="op">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate /project2/msalomon_1816/trgn_515/conda_env/medaka</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">flye</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="ex">--nano-raw</span> <span class="op">&lt;</span>in_reads.fq<span class="op">&gt;</span> <span class="co"># Use --nano-raw for nanopore, --pacbio-raw for CLR and --pacbio-hifi for HiFi</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="ex">--threads</span> <span class="va">$SLURM_CPUS_PER_TASK</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="ex">--out-dir</span> <span class="op">&lt;</span>output_dir<span class="op">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>For each of the ONT assemblies, we will also perform long-read assembly polishing. On this step, long-reads are mapped back to the assembled contigs, and any differences between the mapped reads and the contig will be resolved. We will use Medaka for this:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">medaka_consensus</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">-i</span> <span class="op">&lt;</span>in_reads.fq<span class="op">&gt;</span> <span class="co"># Input long-reads</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="ex">-d</span> <span class="op">&lt;</span>in_assembly.fa<span class="op">&gt;</span> <span class="co"># Input assembly</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="ex">-o</span>  <span class="op">&lt;</span>output_dir<span class="op">&gt;</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="ex">-m</span> <span class="op">&lt;</span>model<span class="op">&gt;</span> <span class="co"># Basecalling model</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co">## Basecalling models:</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co"># ONT Rapid and ONT ligation - r941_e81_hac_g514</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co"># ONT Ligation (no shear) - r1041_e82_400bps_hac_v4.0.0</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate /project2/msalomon_1816/trgn_515/conda_env/medaka</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ex">medaka_consensus</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="ex">-i</span> <span class="op">&lt;</span>in_reads.fq<span class="op">&gt;</span> <span class="co"># Input long-reads</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="ex">-d</span> <span class="op">&lt;</span>in_assembly.fa<span class="op">&gt;</span> <span class="co"># Input assembly</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="ex">-o</span>  <span class="op">&lt;</span>output_dir<span class="op">&gt;</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="ex">-m</span> <span class="op">&lt;</span>model<span class="op">&gt;</span> <span class="co"># Basecalling model</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co">## Basecalling models:</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co"># ONT Rapid and ONT ligation - r941_e81_hac_g514</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co"># ONT Ligation (no shear) - r1041_e82_400bps_hac_v4.0.0</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="hybrid-assembly---polishing-with-short-reads" class="level1">
 <h1>Hybrid assembly - Polishing with short-reads</h1>
 <p>Long-read assemblies tend to be very contiguous, but they may contain small-scale errors such as single basepair erros and indels. The goal of short-read polishing is to fix these small-scale errors using Illumina reads. There are many short-read polishing tools, such as Polypolish, POLCA, Pilon, or Racon. For it’s performance and simplicity, let’s use the POLCA polisher with the Illumina short-reads:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">polca.sh</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">-a</span> <span class="op">&lt;</span>assembly.fasta<span class="op">&gt;</span> <span class="co"># Assembly to polish</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="ex">-r</span> <span class="st">"&lt;short-reads_1.fq&gt; &lt;short-reads_2.fq&gt;"</span> <span class="co"># Short-reads. Make sure the list of read files are between quotes</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="ex">-t</span> <span class="st">"</span><span class="va">$SLURM_CPUS_PER_TASK</span><span class="st">"</span> <span class="co"># Number of threads</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">polca.sh</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">-a</span> <span class="op">&lt;</span>assembly.fasta<span class="op">&gt;</span> <span class="co"># Assembly to polish</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="ex">-r</span> <span class="st">"&lt;short-reads_1.fq&gt; &lt;short-reads_2.fq&gt;"</span> <span class="co"># Short-reads. Make sure the list of read files are between quotes</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="ex">-t</span> <span class="st">"</span><span class="va">$SLURM_CPUS_PER_TASK</span><span class="st">"</span> <span class="co"># Number of threads</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>POLCA creates a bunch of indexes and temporary files, and unsorts the contigs (not important, but annoying). We can remove temporary files and reorder contigs:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Reorder contigs and remove newlines from sequences</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">seqtk</span> seq <span class="op">&lt;</span>assembly.fasta<span class="op">&gt;</span>.PolcaCorrected.fa <span class="kw">|</span> <span class="fu">paste</span> <span class="at">-</span> <span class="at">-</span> <span class="kw">|</span> <span class="fu">sort</span> <span class="kw">|</span> <span class="fu">tr</span> <span class="st">'\t'</span> <span class="st">'\n'</span> <span class="op">&gt;</span> <span class="op">&lt;</span>sample<span class="op">&gt;</span>_polca.fasta</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove temporary files</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="pp">*</span>PolcaCorrected.fa <span class="pp">*</span>.amb <span class="pp">*</span>.ann <span class="pp">*</span>.bai <span class="pp">*</span>.bam <span class="pp">*</span>.batches <span class="pp">*</span>.bwt <span class="pp">*</span>.fai <span class="pp">*</span>.names <span class="pp">*</span>.pac <span class="pp">*</span>.report <span class="pp">*</span>.sa <span class="pp">*</span>.sam <span class="pp">*</span>.success <span class="pp">*</span>.vcf</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Reorder contigs and remove newlines from sequences</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">seqtk</span> seq <span class="op">&lt;</span>assembly.fasta<span class="op">&gt;</span>.PolcaCorrected.fa <span class="kw">|</span> <span class="fu">paste</span> <span class="at">-</span> <span class="at">-</span> <span class="kw">|</span> <span class="fu">sort</span> <span class="kw">|</span> <span class="fu">tr</span> <span class="st">'\t'</span> <span class="st">'\n'</span> <span class="op">&gt;</span> <span class="op">&lt;</span>sample<span class="op">&gt;</span>_polca.fasta</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove temporary files</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="pp">*</span>PolcaCorrected.fa <span class="pp">*</span>.amb <span class="pp">*</span>.ann <span class="pp">*</span>.bai <span class="pp">*</span>.bam <span class="pp">*</span>.batches <span class="pp">*</span>.bwt <span class="pp">*</span>.fai <span class="pp">*</span>.names <span class="pp">*</span>.pac <span class="pp">*</span>.report <span class="pp">*</span>.sa <span class="pp">*</span>.sam <span class="pp">*</span>.success <span class="pp">*</span>.vcf</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="hybrid-assembly---short-reads-first" class="level1">
 <h1>Hybrid assembly - Short reads first</h1>
 <p>Another type of hybrid assembly performs short-read assembly first, then bridges the gaps using long-reads. A widely-used software to perform this type of hybrid assembly is Unicycler. To run Unicycler:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">unicycler</span> <span class="at">-1</span> <span class="op">&lt;</span>short-reads_1.fq<span class="op">&gt;</span> -2 <span class="op">&lt;</span>short-reads_2.fq<span class="op">&gt;</span> -l <span class="op">&lt;</span>long_reads.fq<span class="op">&gt;</span> -o <span class="op">&lt;</span>out_dir<span class="op">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate /project2/msalomon_1816/trgn_515/conda_env/unicycler</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="ex">unicycler</span> <span class="at">-1</span> <span class="op">&lt;</span>short-reads_1.fq<span class="op">&gt;</span> -2 <span class="op">&lt;</span>short-reads_2.fq<span class="op">&gt;</span> -l <span class="op">&lt;</span>long_reads.fq<span class="op">&gt;</span> -o <span class="op">&lt;</span>out_dir<span class="op">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="genome-assembly-quality-control" class="level1">
 <h1>Genome assembly quality control</h1>
@@ -572,28 +581,28 @@ Note
 <section id="contiguity" class="level2">
 <h2 class="anchored" data-anchor-id="contiguity">Contiguity</h2>
 <p>Assembly contiguity measures how contiguous or broken up is the assembly. A good assembly should have a low number of contigs but very long. Common metrics used to measure contiguity include N50, NG50, L50, LG50, number of contigs, mean contig length etc. QUAST is commonly used to get some of these metrics. You can provide all your assemblies at once to get a comparison:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quast.py</span> <span class="pp">*</span>.fasta</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="ex">-o</span> <span class="op">&lt;</span>out_dir<span class="op">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quast.py</span> <span class="pp">*</span>.fasta</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="ex">-o</span> <span class="op">&lt;</span>out_dir<span class="op">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>NOTE:</strong> No need to run this version of the code, we will run it later with additional options.</p>
 </section>
 <section id="completeness" class="level2">
 <h2 class="anchored" data-anchor-id="completeness">Completeness</h2>
 <p>Assembly completeness measures of much of the assembly is missing. If there’s a well-assembled reference genome, we can simply measures completeness by comparing it against it. Otherwise, a common way to measure completeness is by inferring the presence of conserved single-copy genes (core genes) in our assembly and comparing it the expectation given the assembly species. The most commonly used software for that is BUSCO (Benchmarking Universal Single-Copy Orthologs).</p>
 <p>First, we start by downloading the dataset that BUSCO will use for the comparison. This is done for you, but the command for <em>E. coli</em> would be:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">busco</span> <span class="at">--download</span> bacteria</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">busco</span> <span class="at">--download</span> bacteria</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>To run BUSCO on <em>E. coli</em>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">busco</span> <span class="at">-i</span> <span class="op">&lt;</span>assembly.fa<span class="op">&gt;</span> <span class="co"># Input assembly</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="ex">-o</span> <span class="op">&lt;</span>out_dir<span class="op">&gt;</span> <span class="co"># Output directory</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="ex">-l</span> bacteria_odb10 <span class="co"># Bacteria database. You can incude the full path if already downloaded</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="ex">-m</span> genome <span class="co"># Genome assembly</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">busco</span> <span class="at">-i</span> <span class="op">&lt;</span>assembly.fa<span class="op">&gt;</span> <span class="co"># Input assembly</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="ex">-o</span> <span class="op">&lt;</span>out_dir<span class="op">&gt;</span> <span class="co"># Output directory</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="ex">-l</span> bacteria_odb10 <span class="co"># Bacteria database. You can incude the full path if already downloaded</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="ex">-m</span> genome <span class="co"># Genome assembly</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>To get a comparison of the BUSCO results for all the samples, you need to first get all the BUSCO reports in one folder and then run their comparison script:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get all BUSCO summaries into one folder</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> folder <span class="kw">in</span> <span class="pp">*</span><span class="kw">;</span> <span class="cf">do</span> <span class="fu">scp</span> <span class="va">$folder</span>/short_summary<span class="pp">*</span>txt<span class="kw">;</span> <span class="cf">done</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> busco_summaries</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> short_summary.<span class="pp">*</span> busco_summaries/</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate comparison plot for all BUSCO results</span></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="ex">generate_plot.py</span> <span class="at">-wd</span> busco_summaries</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get all BUSCO summaries into one folder</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> folder <span class="kw">in</span> <span class="pp">*</span><span class="kw">;</span> <span class="cf">do</span> <span class="fu">scp</span> <span class="va">$folder</span>/short_summary<span class="pp">*</span>txt<span class="kw">;</span> <span class="cf">done</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> busco_summaries</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> short_summary.<span class="pp">*</span> busco_summaries/</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate comparison plot for all BUSCO results</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="ex">generate_plot.py</span> <span class="at">-wd</span> busco_summaries</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="accuracy" class="level2">
 <h2 class="anchored" data-anchor-id="accuracy">Accuracy</h2>
@@ -603,10 +612,10 @@ Note
 <li>Consensus errors (mismatches, insertions or deletions)</li>
 </ul>
 <p>Calculating the accuracy of an assembly typically requires the use of a reference genome. We can again use QUAST for this by giving it a reference genome:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quast.py</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="ex">*.fasta</span> <span class="co"># Assembly list</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="ex">-r</span> <span class="op">&lt;</span>reference_genome.fa<span class="op">&gt;</span> <span class="co"># Reference genome</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="ex">-o</span> <span class="op">&lt;</span>out_dir<span class="op">&gt;</span> <span class="co"># Output directory</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quast.py</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="ex">*.fasta</span> <span class="co"># Assembly list</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="ex">-r</span> <span class="op">&lt;</span>reference_genome.fa<span class="op">&gt;</span> <span class="co"># Reference genome</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="ex">-o</span> <span class="op">&lt;</span>out_dir<span class="op">&gt;</span> <span class="co"># Output directory</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <section id="task-2-assessing-assembly-quality" class="level3">
 <h3 class="anchored" data-anchor-id="task-2-assessing-assembly-quality">Task 2: Assessing assembly quality</h3>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -622,16 +631,14 @@ Note
 <p>The latest task consists of a comparison between the variant calls you obtained and the gold standard.</p>
 <p>Compare the following assemblies:</p>
 <ul>
-<li>Illumina</li>
-<li>ONT Rapid kit</li>
-<li>ONT Rapid kit + long-read polishing</li>
+<li>Illumina &lt;!– * ONT Rapid kit</li>
+<li>ONT Rapid kit + long-read polishing –&gt;</li>
 <li>ONT Ligation kit</li>
-<li>ONT Ligation kit + long-read polishing</li>
-<li>ONT Ligation kit without shearing</li>
-<li>ONT Ligation kit without shearing + long-read polishing</li>
+<li>ONT Ligation kit + long-read polishing &lt;!– * ONT Ligation kit without shearing</li>
+<li>ONT Ligation kit without shearing + long-read polishing –&gt;</li>
 <li>PacBio HiFi</li>
-<li>Hybrid Illumina + ONT Rapid kit (Tricycler)</li>
-<li>ONT Rapid kit + short-read polishing (POLCA)</li>
+<li>Hybrid Illumina + ONT Ligation kit (Unicycler)</li>
+<li>ONT Ligation kit + short-read polishing (POLCA)</li>
 </ul>
 <ol type="1">
 <li>Interpret the Nx plot produced by QUAST. Explain the plot, the axes, what it shows and why is important <strong>(5pts)</strong></li>
@@ -639,12 +646,10 @@ Note
 <li>What’s the most accurate sequencing technology? <strong>(5pts)</strong></li>
 <li>Explain the BUSCO gene completeness plot. What’s the plot showing? <strong>(5pts)</strong></li>
 <li>Based on the BUSCO plot, what sequencing technologies produce the most complete assembly? <strong>(5pts)</strong></li>
-<li>For an experiment, you want to perform genome assembly of a bacterial species that may contain a plasmid of 2000bp. The scientist asks you a few questions:
-<ol type="1">
-<li>What sequencing technologies and library preparations will be able to sequence the plasmid? Why? <strong>(5pts)</strong></li>
-<li>What sequencing technologies and library preparations will deliver the plasmid and the most contiguous assembly? Why? <strong>(5pts)</strong></li>
-<li>Would there be any benefit on doing both Illumina and Nanopore?</li>
-</ol></li>
+<li>Can an assembly with a bad Nx plot have a good BUSCO analysis result? Explain your answer <strong>(10pts)</strong> <!-- 6) For an experiment, you want to perform genome assembly of a bacterial species that may contain a plasmid of 2000bp. The scientist asks you a few questions:    
+ 1. What sequencing technologies and library preparations will be able to sequence the plasmid? Why? **(5pts)**
+ 2. What sequencing technologies and library preparations will deliver the plasmid and the most contiguous assembly? Why? **(5pts)**
+ 3. Would there be any benefit on doing both Illumina and Nanopore? **(5pts)** --></li>
 </ol>
 </div>
 </div>
