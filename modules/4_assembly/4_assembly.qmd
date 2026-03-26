@@ -80,7 +80,7 @@ The original dataset can be found in the following publication:
 
 
 # Required software
-In order to complete the assignment, the following tools need to be installed:
+<!-- In order to complete the assignment, the following tools need to be installed:
 
 ```sh
 mamba install bioconda::trimmomatic
@@ -102,27 +102,28 @@ mamba install bioconda::csvtk
 module load htslib
 module load bcftools
 module load samtools
-```
+``` -->
 
-All these packages are available by loading the following conda environments:
+All the required software is available by loading the following conda environment:
 
 ```sh
 # For all software
 conda activate /project2/msalomon_1816/trgn_515/conda_env/trgn515
-
-# For BUSCO 
-conda activate /project/msalomon_1385/TRGN_515/conda/envs/busco
 ```
+
+Some software will have its own conda environment, which I will indicate in each subsection.
 
 We will perform the following assemblies:
 
+# Bioinformatics workflow
+
 1. Illumina
-2. ONT Rapid kit +/- long-read polishing
+<!-- 2. ONT Rapid kit +/- long-read polishing -->
 3. ONT Ligation kit +/- long-read polishing
-4. ONT Ligation kit without size selection +/- long-read polishing
+<!-- 4. ONT Ligation kit without size selection +/- long-read polishing -->
 5. PacBio HiFi
-6. Hybrid Illumina + ONT Rapid kit
-7. ONT Rapid kit + short-read polishing
+6. Hybrid Illumina + ONT Ligation kit
+7. ONT Ligation kit + short-read polishing
 
 ![Bioinformatic workflow for Genome Assembly](assembly_pipeline.png){style="display: block; margin: 0 auto"}
 
@@ -147,7 +148,7 @@ Get a random sample of 200,000 reads for each sample summarized in Table 1. For 
 
 1. Plot a histogram of each of the three metrics. Plot all samples together, each metric in a different plot, for a total of 3 plots **(10pts)**
 2. Is there any difference in read length, base quality and GC content between library preparations for ONT? If so, what is causing these differences? **(10pts)**
-2. Is there any difference in read length, base quality and GC content between library preparations for PacBio? If so, what is causing these differences? **(10pts)**
+3. Is there any difference in read length, base quality and GC content between library preparations for PacBio? If so, what is causing these differences? **(10pts)**
 :::
 
 # Short-read genome assembly
@@ -189,6 +190,8 @@ seqkit tab2fx > $out_dir/$sample.filt_contigs.fa
 Long-reads from different sequencing technologies will have different base error profiles, and thus many general long-read assemblers will have different options. For instance, Flye has `--nano-raw` for old Nanopore reads and `--nano-hq` for newer chemestries and basecallers. Similarly, for PacBio the flag `--pacbio-raw` should be used for CLR reads while the flag `--pacbio-hifi` is the recommended one for HiFi reads. The assembly algorithm is the same, it just changes the expected sequencing error rate. To run Flye:
 
 ```sh
+conda activate /project2/msalomon_1816/trgn_515/conda_env/medaka
+
 flye
 --nano-raw <in_reads.fq> # Use --nano-raw for nanopore, --pacbio-raw for CLR and --pacbio-hifi for HiFi
 --threads $SLURM_CPUS_PER_TASK
@@ -198,6 +201,8 @@ flye
 For each of the ONT assemblies, we will also perform long-read assembly polishing. On this step, long-reads are mapped back to the assembled contigs, and any differences between the mapped reads and the contig will be resolved. We will use Medaka for this:
 
 ```sh
+conda activate /project2/msalomon_1816/trgn_515/conda_env/medaka
+
 medaka_consensus
 -i <in_reads.fq> # Input long-reads
 -d <in_assembly.fa> # Input assembly
@@ -235,6 +240,8 @@ rm *PolcaCorrected.fa *.amb *.ann *.bai *.bam *.batches *.bwt *.fai *.names *.pa
 Another type of hybrid assembly performs short-read assembly first, then bridges the gaps using long-reads. A widely-used software to perform this type of hybrid assembly is Unicycler. To run Unicycler:
 
 ```sh
+conda activate /project2/msalomon_1816/trgn_515/conda_env/unicycler
+
 unicycler -1 <short-reads_1.fq> -2 <short-reads_2.fq> -l <long_reads.fq> -o <out_dir>
 ```
 
@@ -311,15 +318,15 @@ The latest task consists of a comparison between the variant calls you obtained 
 Compare the following assemblies:
 
 * Illumina
-* ONT Rapid kit
-* ONT Rapid kit + long-read polishing
+<!-- * ONT Rapid kit
+* ONT Rapid kit + long-read polishing -->
 * ONT Ligation kit
 * ONT Ligation kit + long-read polishing
-* ONT Ligation kit without shearing
-* ONT Ligation kit without shearing + long-read polishing
+<!-- * ONT Ligation kit without shearing
+* ONT Ligation kit without shearing + long-read polishing -->
 * PacBio HiFi
-* Hybrid Illumina + ONT Rapid kit (Tricycler)
-* ONT Rapid kit + short-read polishing (POLCA)
+* Hybrid Illumina + ONT Ligation kit (Unicycler)
+* ONT Ligation kit + short-read polishing (POLCA)
 
 
 1) Interpret the Nx plot produced by QUAST. Explain the plot, the axes, what it shows and why is important **(5pts)**
@@ -327,8 +334,9 @@ Compare the following assemblies:
 3) What's the most accurate sequencing technology? **(5pts)**
 4) Explain the BUSCO gene completeness plot. What's the plot showing?  **(5pts)**
 5) Based on the BUSCO plot, what sequencing technologies produce the most complete assembly? **(5pts)**
-6) For an experiment, you want to perform genome assembly of a bacterial species that may contain a plasmid of 2000bp. The scientist asks you a few questions:    
+6) Can an assembly with a bad Nx plot have a good BUSCO analysis result? Explain your answer **(10pts)**
+<!-- 6) For an experiment, you want to perform genome assembly of a bacterial species that may contain a plasmid of 2000bp. The scientist asks you a few questions:    
     1. What sequencing technologies and library preparations will be able to sequence the plasmid? Why? **(5pts)**
     2. What sequencing technologies and library preparations will deliver the plasmid and the most contiguous assembly? Why? **(5pts)**
-    3. Would there be any benefit on doing both Illumina and Nanopore?
+    3. Would there be any benefit on doing both Illumina and Nanopore? **(5pts)** -->
 :::
