@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Arturo Torres Ortiz">
+<meta name="dcterms.date" content="2026-03-31">
 
-<title>assignment_template – TRGN-515</title>
+<title>Assignment 5: Nanopore base modifications – TRGN-515</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -74,10 +76,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-a06763021a52c43c40a351ac8b799b8f.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-b933da61422079644513f618cd81c344.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-eee6cd8b03cb522c15b9b12b91299b51.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -153,7 +155,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../modules/5_base_mods/5_base_mods.html">Module 5: Nanopore base modifications</a></li><li class="breadcrumb-item"><a href="../../modules/5_base_mods/5_base_mods.html">Assignment 5: Nanopore base modifications</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -269,7 +271,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../modules/5_base_mods/5_base_mods.html" class="sidebar-item-text sidebar-link">
+  <a href="../../modules/5_base_mods/5_base_mods.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Assignment 5: Nanopore base modifications</span></a>
   </div>
 </li>
@@ -285,136 +287,372 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#assignment-x-topic-name" id="toc-assignment-x-topic-name" class="nav-link active" data-scroll-target="#assignment-x-topic-name">Assignment X: Topic Name</a>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives">Learning objectives</a></li>
+  <li><a href="#input-and-outputs" id="toc-input-and-outputs" class="nav-link" data-scroll-target="#input-and-outputs">Input and outputs</a></li>
+  <li><a href="#required-software" id="toc-required-software" class="nav-link" data-scroll-target="#required-software">Required software</a></li>
+  <li><a href="#converting-fast5-to-pod5-format" id="toc-converting-fast5-to-pod5-format" class="nav-link" data-scroll-target="#converting-fast5-to-pod5-format">Converting fast5 to pod5 format</a></li>
+  <li><a href="#basecalling-with-dorado" id="toc-basecalling-with-dorado" class="nav-link" data-scroll-target="#basecalling-with-dorado">Basecalling with Dorado</a>
   <ul>
-  <li><a href="#author-your-name-here" id="toc-author-your-name-here" class="nav-link" data-scroll-target="#author-your-name-here">Author: Your Name Here</a></li>
-  <li><a href="#date-last-modified" id="toc-date-last-modified" class="nav-link" data-scroll-target="#date-last-modified">Date: last-modified</a></li>
+  <li><a href="#task-1-basecalling-with-modified-bases" id="toc-task-1-basecalling-with-modified-bases" class="nav-link" data-scroll-target="#task-1-basecalling-with-modified-bases">Task 1: Basecalling with modified bases</a></li>
   </ul></li>
-  <li><a href="#task-1-short-title" id="toc-task-1-short-title" class="nav-link" data-scroll-target="#task-1-short-title">Task 1: [Short Title]</a>
+  <li><a href="#mapping-to-the-reference-genome" id="toc-mapping-to-the-reference-genome" class="nav-link" data-scroll-target="#mapping-to-the-reference-genome">Mapping to the reference genome</a>
   <ul>
-  <li><a href="#this-is-a-subheader" id="toc-this-is-a-subheader" class="nav-link" data-scroll-target="#this-is-a-subheader">This is a subheader</a></li>
-  <li><a href="#writing-code" id="toc-writing-code" class="nav-link" data-scroll-target="#writing-code">Writing code</a></li>
-  <li><a href="#adding-images" id="toc-adding-images" class="nav-link" data-scroll-target="#adding-images">Adding images</a></li>
-  <li><a href="#other-important-syntax" id="toc-other-important-syntax" class="nav-link" data-scroll-target="#other-important-syntax">Other important syntax</a></li>
-  </ul></li>
-  <li><a href="#question-2-short-title" id="toc-question-2-short-title" class="nav-link" data-scroll-target="#question-2-short-title">Question 2: [Short Title]</a>
-  <ul>
-  <li><a href="#adding-tables" id="toc-adding-tables" class="nav-link" data-scroll-target="#adding-tables">Adding tables</a></li>
+  <li><a href="#task-2-mapping-modified-reads." id="toc-task-2-mapping-modified-reads." class="nav-link" data-scroll-target="#task-2-mapping-modified-reads.">Task 2: Mapping modified reads.</a></li>
   </ul></li>
   </ul>
-</nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="5_base_mods.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
 
-
-
-
-<section id="assignment-x-topic-name" class="level1">
-<h1>Assignment X: Topic Name</h1>
-<section id="author-your-name-here" class="level2">
-<h2 class="anchored" data-anchor-id="author-your-name-here">Author: Your Name Here</h2>
-</section>
-<section id="date-last-modified" class="level2">
-<h2 class="anchored" data-anchor-id="date-last-modified">Date: last-modified</h2>
-<!-- INSTRUCTIONS:
-1. Rename this file to match the assignment (e.g 1_sequencing_techs.md).
-2. Move the file to the correct folder (e.g 1_sequencing_techs/).
-3. Update the 'title' and 'author' in the YAML header above.
-4. Write your answers below each Question header.
-5. Install the dependency Markdown PDF
-6. Export to PDF before submitting to GitHub (VS Code: Right Click -> Markdown PDF: Export).
--->
-<p>Markdown is a lightweight markup language that allows you to format text using plain text symbols. It is the industry standard for documentation in bioinformatics and data science. It is widely used primarily due to the following characteristics:</p>
-<ul>
-<li>Code-Friendly: It handles code blocks and syntax highlighting natively.</li>
-<li>Git-Friendly: Since it is plain text, Git can track changes line-by-line (unlike Word documents).</li>
-<li>Universal: It renders automatically on GitHub and converts easily to PDF or HTML.</li>
-</ul>
-<div style="page-break-after: always;">
-
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../modules/5_base_mods/5_base_mods.html">Module 5: Nanopore base modifications</a></li><li class="breadcrumb-item"><a href="../../modules/5_base_mods/5_base_mods.html">Assignment 5: Nanopore base modifications</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Assignment 5: Nanopore base modifications</h1>
 </div>
-</section>
-</section>
-<section id="task-1-short-title" class="level1">
-<h1>Task 1: [Short Title]</h1>
-<p>In markdown, headers are specified with the hashtag symbol (“#”). For subheaders, you use two hashtags (“##”). The more hashtag you put, the smaller the header will be.</p>
-<section id="this-is-a-subheader" class="level2">
-<h2 class="anchored" data-anchor-id="this-is-a-subheader">This is a subheader</h2>
-<p>Start each answer pasting the question as given in the pdf. After that, you can add your answer.</p>
-</section>
-<section id="writing-code" class="level2">
-<h2 class="anchored" data-anchor-id="writing-code">Writing code</h2>
-<p>If the answer requires code, use a code block starting and ending with single quotation marks like the one below:</p>
-<pre><code># Write your code here</code></pre>
-<p>You can add language specific code blocks by using the language’s name:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Write your BASH code here</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> view ...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Write your R code here</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">=</span> <span class="fu">glm</span>(...)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Write your Python code here</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="adding-images" class="level2">
-<h2 class="anchored" data-anchor-id="adding-images">Adding images</h2>
-<p>To add an image or plot to your answer, save the image in your folder and use the following code:</p>
-<p><img src="image.png" class="img-fluid"></p>
-<p>To add a caption to your image:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="image.png" class="img-fluid figure-img"></p>
-<figcaption>Caption text</figcaption>
-</figure>
-</div>
-<p>If the image is not in the same folder as your markdown file, you need to put the whole path:</p>
-<p><img src="../../path/to/image.jpg" class="img-fluid"></p>
-<p>The square brackets are used to give the image a specific format. For instance:</p>
-<p><img src="../../path/to/image.jpg" class="img-fluid" style="display: block; margin: 0 auto"></p>
-</section>
-<section id="other-important-syntax" class="level2">
-<h2 class="anchored" data-anchor-id="other-important-syntax">Other important syntax</h2>
-<p>Your answer can also include lists. You can start a list with the “*” symbol for a bulleted list or with numbers for a numbered list.</p>
-<ul>
-<li>Item 1</li>
-<li>Item 2</li>
-</ul>
-<p>Or</p>
-<ol type="1">
-<li>Item 1</li>
-<li>Item 2</li>
-</ol>
-<p>You can also make a word <em>italic</em> or <strong>bold</strong>.</p>
-Once you finish an answer, put the next question on a different page: <!-- This tag forces the next question to start on a new page -->
-<div style="page-break-after: always;">
 
-</div>
-</section>
-</section>
-<section id="question-2-short-title" class="level1">
-<h1>Question 2: [Short Title]</h1>
-<p>This is the second question.</p>
-<section id="adding-tables" class="level2">
-<h2 class="anchored" data-anchor-id="adding-tables">Adding tables</h2>
-<p>If you need to include a table, you can do it like this:</p>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Arturo Torres Ortiz </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">March 31, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>For this assignment, we will perform differential methylation analysis using single-molecule direct DNA methylation detection from Nanopore sequencing. We will use data generated via Cas9-targeted Nanopore sequencing (nCATS) to compare the methylation profiles of a normal breast epithelial cell line (MCF-10A) against a highly aggressive triple-negative breast cancer cell line (MDA-MB-231). The files used for the assignment and their SRA accessions are summarized in the following table:</p>
 <table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
 <thead>
 <tr class="header">
-<th>Column 1</th>
-<th>Column 2</th>
+<th style="text-align: left;">Cell Line</th>
+<th style="text-align: left;">Status</th>
+<th style="text-align: left;">Library</th>
+<th style="text-align: left;">SRA accession</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Text 1</td>
-<td>Text 2</td>
+<td style="text-align: left;">MCF-10A</td>
+<td style="text-align: left;">Normal breast epithelial</td>
+<td style="text-align: left;">MinION nCATS (10 gene panel)</td>
+<td style="text-align: left;">SRX7698109</td>
 </tr>
 <tr class="even">
-<td>Text 3</td>
-<td>Text 4</td>
+<td style="text-align: left;">MDA-MB-231</td>
+<td style="text-align: left;">Breast cancer (TNBC)</td>
+<td style="text-align: left;">MinION nCATS (10 gene panel)</td>
+<td style="text-align: left;">SRX7698110</td>
 </tr>
 </tbody>
 </table>
-<p>Making tables can be tedius. My favority online software to turn .csv or excel tables into markdown or latex is https://www.tablesgenerator.com/markdown_tables</p>
+<p>The original reference paper for this dataset:</p>
+<ul>
+<li>Gilpatrick, T., Lee, I., Graham, J.E. et al.&nbsp;Targeted nanopore sequencing with Cas9-guided adapter ligation. Nat Biotechnol 38, 433–438 (2020). https://doi.org/10.1038/s41587-020-0407-5</li>
+</ul>
+<p>The authors developed a targeted enrichment strategy that yields extremely high sequencing coverage over specific cancer-associated loci, allowing for highly accurate, native DNA methylation profiling without the need for bisulfite conversion.</p>
+<p>We will process the raw Nanopore signal data to identify Differentially Methylated Regions (DMRs) linked to cancer development, specifically focusing on the GSTP1 and KRT19 genes.</p>
+<section id="learning-objectives" class="level1">
+<h1>Learning objectives</h1>
+<p>At the end of this week’s assignment you will be able to:</p>
+<ol type="1">
+<li>Be familiar with single-molecule direct DNA methylation detection</li>
+<li>Methylation aware asecalling from Nanopore raw signal<br>
+</li>
+<li>Be able to extract methylation levels from BAM files</li>
+<li>Know how to visualize methylation data</li>
+<li>Be able to identify differentially methylated regions (DMRs)</li>
+</ol>
+</section>
+<section id="input-and-outputs" class="level1">
+<h1>Input and outputs</h1>
+<p>The input for this assignment are the fast5 files generated by Nanopore from normal breast tissue (MCF-10A cell line) and Triple-Negative Breast Cancer (MDA-MB-231 cell line). This dataset was generated using Cas9-targeted Nanopore sequencing (nCATS), and Cas9 was used to cut and enrich specific genes before sequencing. This data is publicly available with accession number PRJNA531320.</p>
+<blockquote class="blockquote">
+<p>fast5 files:</p>
+<p><code>/project2/msalomon_1816/trgn_515/5_base_mods/fast5</code></p>
+</blockquote>
+<p>You can download the data from here as well:</p>
+<blockquote class="blockquote">
+<p>Normal sample:</p>
+<p>wget https://sra-pub-src-1.s3.amazonaws.com/SRR11047866/TG_02_Mcf10a_brPanel_MinION_fast5.tgz.2</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Tumor sample:</p>
+<p>wget https://sra-pub-src-1.s3.amazonaws.com/SRR11047865/TG_03_MdaMb231_brPanel_MinION_fast5.tgz.2</p>
+</blockquote>
+</section>
+<section id="required-software" class="level1">
+<h1>Required software</h1>
+<p>In order to complete the assignment, you can use this conda environments I prepared:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate /project2/msalomon_1816/trgn_515/conda_env/trgn515</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="converting-fast5-to-pod5-format" class="level1">
+<h1>Converting fast5 to pod5 format</h1>
+<!-- Because these are single file fast5, run this with the ont-fast5-api software:
+single_to_multi_fast5 -i fast5/MCF-10A/ -s fast5_multi/MCF-10A/ -n 4000 --recursive -t 10
+single_to_multi_fast5 -i fast5/MDA-MB-231/ -s fast5_multi/MDA-MB-231/ -n 4000 --recursive -t 10
+-->
+<p>The two most common ONT raw signal file formats are:</p>
+<ol type="1">
+<li>Fast5 is the original raw signal data from ONT. This file format has been replaced, but it’s still found in many ONT runs done before 2022. For a comprehensive guide on the fast5 format: https://hasindu2008.github.io/slow5specs/fast5_demystified.pdf</li>
+<li>Pod5 is the new ONT format, based on Apache arrow-columnal format. More information here: https://pod5-file-format.readthedocs.io/en/0.3.2/SPECIFICATION.html</li>
+</ol>
+<p>New softare works better (and sometimes even requires!) pod5 files, so the first thing we are going to do is to transformed our fast5 files into pod5. ONT provides the software <code>pod5</code> to do exactly this:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate /project2/msalomon_1816/trgn_515/conda_env/pod5</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">pod5</span> convert fast5</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ex">-t</span> <span class="va">$SLURM_CPUS_PER_TASK</span> <span class="co"># Multithreading</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ex">-r</span> <span class="co"># Search files recursively</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="ex">--output</span> /path/to/pod5/data.pod5 <span class="co"># Output Pod5</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="ex">/path/to/fast5/</span> <span class="co"># Folder with fast5</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="basecalling-with-dorado" class="level1">
+<h1>Basecalling with Dorado</h1>
+<p>Dorado is the current ONT basecaller. It is optimized to run in GPU, especially Nvidia A100 and H100 GPU cards. To request an interactive GPU in CARC:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">salloc</span> <span class="at">--partition</span><span class="op">=</span>gpu <span class="at">--ntasks</span><span class="op">=</span>1 <span class="at">--gpus-per-task</span><span class="op">=</span>a100:1 <span class="at">--mem</span><span class="op">=</span>30G <span class="at">--time</span><span class="op">=</span>1:00:00</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>You will also need to load some modules from the CUDA toolkit. To do that:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load gcc/13.3.0</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load cuda/12.6.3</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="va">dorado</span><span class="op">=</span>/project/msalomon_1385/TRGN_515/6_base_mods/dorado-0.9.1/bin/dorado</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="va">reference</span><span class="op">=</span>/project2/biodb/genomes/Homo_sapiens/NCBI/GRCh38/Sequence/WholeGenomeFasta/genome.fa</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="va">pod5_dir</span><span class="op">=</span>/path/to/pod5</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="va">bam_dir</span><span class="op">=</span>/path/to/bam</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="va">$dorado</span> basecaller <span class="at">-v</span> <span class="at">--reference</span> <span class="va">$reference</span> <span class="at">--mm2-opts</span> <span class="st">"-x asm10"</span> <span class="at">-r</span> sup,5mCG_5hmCG <span class="va">$pod5_dir</span>/<span class="pp">*</span>.pod5 <span class="op">&gt;</span> <span class="va">$bam_dir</span>/file.bam</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="task-1-basecalling-with-modified-bases" class="level3">
+<h3 class="anchored" data-anchor-id="task-1-basecalling-with-modified-bases">Task 1: Basecalling with modified bases</h3>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>What is the output of the basecalling when using modified bases? <strong>(5pts)</strong></li>
+<li>Why do you think they have chosen this file type? <strong>(5pts)</strong></li>
+<li>What are the tags that represent methylation, and what do each of them mean? <strong>(5pts)</strong></li>
+<li>In our Dorado command, we passed the argument <code>-r sup,5mCG_5hmCG</code>. What does <code>sup</code> and <code>5mCG_5hmCG</code> mean? <strong>(10pts)</strong></li>
+<li>Why have we chosen <code>5mCG_5hmCG</code> a human dataset? <strong>(10pts)</strong></li>
+</ol>
+</div>
+</div>
+</section>
+</section>
+<section id="mapping-to-the-reference-genome" class="level1">
+<h1>Mapping to the reference genome</h1>
+<p>We have already aligned our reads to the reference genome, but if you hadn’t done this, you would need to convert your SAM file into fastq.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> fastq <span class="at">-@</span> 5 <span class="at">-T</span> <span class="st">"*"</span> <span class="va">$bam_dir</span>/M13363.sam <span class="op">&gt;</span> /path/to/fastq/M13363.fastq</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Once we have fastq files, we can map them with minimap.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="va">reference</span><span class="op">=</span>/project2/biodb/genomes/Homo_sapiens/NCBI/GRCh38/Sequence/WholeGenomeFasta/genome.fa</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="ex">minimap2</span> <span class="at">-ax</span> splice <span class="dt">\</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>-y</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="va">$reference</span> /path/to/fastq/M13363.fastq <span class="kw">|</span> <span class="dt">\</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> sort <span class="at">-o</span> <span class="va">$bam_dir</span>/M13363.bam <span class="at">-</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="task-2-mapping-modified-reads." class="level3">
+<h3 class="anchored" data-anchor-id="task-2-mapping-modified-reads.">Task 2: Mapping modified reads.</h3>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>What does the -T flag in <code>samtools fastq</code> do and why is it important? <strong>(5pts)</strong></li>
+<li>What does the -y (lower case!) flag in <code>minimap2</code> do and why is it important? <strong>(5pts)</strong></li>
+</ol>
+</div>
+</div>
+<!-- # Extract modified base information from BAM file
+
+We are going to use ModKit to analyze methylation data. The pileup subcommand runs through all sites or motifs and generates a probability that the site is modified.
+
+```sh
+modkit=/project/msalomon_1385/TRGN_515/6_base_mods/modkit_v0.4.4/modkit
+reference=/project2/biodb/genomes/Homo_sapiens/NCBI/GRCh38/Sequence/WholeGenomeFasta/genome.fa
+
+$modkit pileup /
+--filter-threshold <float (0-1)> # General filtering
+--mod-thresholds mod_code:<float (0-1)> # Modified base filtering
+--ref <reference.fa> # Reference genome
+<file.bam> # Input BAM file
+<file.bed> # Output bed file
+
+bgzip -k <file.bed> # Note you can also pipe the output of modkit into bgzip
+tabix -p bed <file.bed.gz>
+
+
+```
+
+You can find the modified codes in Table 1. If no thresholds are specified, ModKit will calculate the appropiate threshold by taking a sample of the BAM file and calculating the 10th percentile of the probability distribution.
+
+```{=latex}
+\captionsetup[table]{
+  justification = centering
+}
+
+\begin{table}[!ht]
+\centering
+\caption{Modified Base codes (source: https://samtools.github.io/hts-specs/SAMtags.pdf)}
+\begin{tabular}{lllll}
+\hline
+Unmodified base    & Code & Abbreviation              & Name                      & ChEBI \\ \hline
+\multirow{5}{*}{C} & m    & 5mC                       & 5-Methylcytosine          & 27551 \\
+                   & h    & 5hmC                      & 5-Hydroxymethylcytosine   & 76792 \\
+                   & f    & 5fC                       & 5-Formylcytosine          & 76794 \\
+                   & c    & 5caC                      & 5-Carboxylcytosine        & 76793 \\
+                   & C    & Ambiguity code; any C mod & Ambiguity code; any C mod & -     \\ \hline
+\multirow{4}{*}{T} & g    & 5hmU                      & 5-Hydroxymethyluracil     & 16964 \\
+                   & e    & 5fU                       & 5-Formyluracil            & 80961 \\
+                   & b    & 5caU                      & 5-Carboxyluracil          & 17477 \\
+                   & T    & Ambiguity code; any T mod & Ambiguity code; any T mod & -     \\ \hline
+U                  & U    & Ambiguity code; any U mod & Ambiguity code; any U mod & -     \\ \hline
+\multirow{2}{*}{A} & a    & 6mA                       & 6-Methyladenine           & 28871 \\
+                   & A    & Ambiguity code; any A mod & Ambiguity code; any A mod & -     \\ \hline
+\multirow{2}{*}{G} & o    & 8oxoG                     & 8-Oxoguanine              & 44605 \\
+                   & G    & Ambiguity code; any G mod & Ambiguity code; any G mod & -     \\ \hline
+\multirow{2}{*}{N} & n    & Xao                       & Xanthosine                & 18107 \\
+                   & N    & Ambiguity code; any mod   & Ambiguity code; any mod   & -     \\ \hline
+\end{tabular}
+\end{table}
+```
+
+::: info
+**Task 4: Make a pileup of the methylation calls.**
+
+Let ModKit calculate the filtering thresholds.
+
+1) What are the columns of the resulting file? Visit https://github.com/nanoporetech/modkit for more information **(5pts)**
+2) How many rows do you expect per genomic position? **(5pts)**
+3) Can you think on some filters that may be important given the provided columns? **(5pts)**
+4) What column would you use to identify different methylation patterns in each allele? How would a heterozygous methylation pattern look like? **(5pts)**
+:::
+
+# Differential methylation analysis
+
+In differential methylation analysis, we perform a statistical test (eg: t-test) to find differences in methylation patterns between samples (eg: normal vs tumour).
+
+We will stay within ModKit, which uses a binomial distribution to find differential methylation. In our example, we have a cancer/normal pair.
+
+
+## Analyze modified bases at specific locations
+
+If you are not interested in genome wide methylation patterns, it may be handy to subset methylation in specific regions. For human, common regions of interest would be CpG islands.
+
+You can get a list of CpG islands from the UCSC genome browser:
+
+```sh
+wget -qO- http://hgdownload.cse.ucsc.edu/goldenpath/hg38/database/cpgIslandExt.txt.gz \
+   | gunzip -c \
+   | awk 'BEGIN{FS="\t"; OFS="\t"} NR>1 {print $2, $3, $4, $5}' \
+   | bedtools sort -i - > cpg_islands_ucsc.bed
+```
+
+
+```sh
+regions=/project/msalomon_1385/TRGN_515/6_base_mods/colo829/cpg_islands_ucsc.bed
+reference=/project2/biodb/genomes/Homo_sapiens/NCBI/GRCh38/Sequence/WholeGenomeFasta/genome.fa
+
+$modkit dmr pair
+  -a ${norm_pileup}.gz # Bed with methylation from sample 1
+  -b ${tumor_pileup}.gz # Bed with methylation from sample 2
+  -o <out_file.bed> # Output to stdout if not present
+  -r ${regions} # List of regions in BED format
+  --ref <reference.fa> # Reference genome
+  --base C # may be repeated if multiple modifications are being used
+  --threads <n_threads> # Number of threads
+  --log-filepath <log_file> # Path to log file
+```
+
+## Analyze modified bases at every position
+
+If we want to get methylation patters at every position, we can skip the `--ref` option.
+
+```sh
+modkit=/project/msalomon_1385/TRGN_515/6_base_mods/modkit_v0.4.4/modkit
+reference=/project2/biodb/genomes/Homo_sapiens/NCBI/GRCh38/Sequence/WholeGenomeFasta/genome.fa
+
+$modkit dmr pair
+  -a ${norm_pileup}.gz # Bed with methylation from sample 1
+  -b ${tumor_pileup}.gz # Bed with methylation from sample 2
+  -o <out_file.bed> # Output to stdout if not present
+  --ref <reference.fa> # Reference genome
+  --base C # may be repeated if multiple modifications are being used
+  --threads <n_threads> # Number of threads
+  --log-filepath <log_file> # Path to log file
+```
+
+## Visualize modified bases on IGV
+
+During class, we will see how to visualize methylaytion data in IGV. Use what we learn to answer the following questions:
+
+::: info
+**Task 5: Visualize modified variants.**
+
+Select a region from your differential methylation output (either the CpG islands or single base) and show it in IGV.
+
+1) What are the different colors showing? **(5pts)**
+2) Are there any differences between the tumor sample and the control? **(5pts)**
+3) Is the tumor sample hypermethylated or hypomethylated compared to the control? Make a quick reference search to find what's the common pattern. **(5pts)**
+:::
+
+# Phasing of long reads
+
+Phasing refers to the process of determining which alleles (genomics variants) are inherited together, identifying the parental origin of each allele and separating maternally and paternally inherited copies of each chromosome into haplotypes to get a complete picture of genetic variation. Variants within the same copy of a chromosome are in “cis”, while those from different copies are in “trans”.
+
+Phasing can be done by looking at the heterozygous calls in a VCF that co-occur within the same read. To do that, we will use `WhatsHap`.
+
+First, we phase the variants within the VCF file:
+
+```sh
+whatshap phase
+--ignore-read-groups # Adding this because in our examples sample names in BAM and VCF do not match
+-o <output.vcf> # Output VCF file
+--reference=<reference.fa> # Reference genome
+<input_vcf> # Input VCF file
+<input_bam> # Input BAM file
+```
+
+Once we have the phased variants, we can find out which reads within a BAM file belong to each haplotype. We will add a haplotype tag to each read individually. 
+
+```sh
+whatshap haplotag
+--ignore-read-groups
+-o <out_bam> # Output BAM file
+--reference=<reference.fa> # Reference genome
+--output-threads=<n_threads> # Threads for BAM compression
+<input_phased_vcf> # Input phased VCF file
+<input_bam> # Input BAM file
+``` -->
 
 
 </section>

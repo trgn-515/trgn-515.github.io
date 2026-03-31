@@ -79,7 +79,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-a06763021a52c43c40a351ac8b799b8f.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-65a5721f63f3fdc511c5020e08a3ef57.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-eee6cd8b03cb522c15b9b12b91299b51.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -256,6 +256,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="../../modules/4_assembly/4_assembly.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Assignment 4: Genome assembly</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Module 5: Nanopore base modifications</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../modules/5_base_mods/5_base_mods.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Assignment 5: Nanopore base modifications</span></a>
   </div>
 </li>
       </ul>
@@ -647,7 +664,7 @@ Note
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="ex">tabix</span> <span class="at">-p</span> gff <span class="va">$gff_file</span>.gz</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>To ensure that the gff is properly formatted, use the following reference genomes in any of the annotation analysis:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="va">ref_genome</span><span class="op">=</span>/project2/msalomon_1816/trgn_515/3_annotation/m_tuberculosis/reference/Mycobacterium_tuberculosis_h37rv.ASM19595v2.dna_sm.toplevel.fa</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="va">gtt_file</span><span class="op">=</span>/project2/msalomon_1816/trgn_515/3_annotation/m_tuberculosis/reference/Mycobacterium_tuberculosis_h37rv.ASM19595v2.37.gff3</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="va">gff_file</span><span class="op">=</span>/project2/msalomon_1816/trgn_515/3_annotation/m_tuberculosis/reference/Mycobacterium_tuberculosis_h37rv.ASM19595v2.37.gff3</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>There are many tools to perform variant annotation. Some of the most commonly used include <code>VEP</code> (Variant Effect Predictor, from Ensembl); <code>SnpEff</code>; <code>BCFtools csq</code>, or <code>ANNOVAR</code>. Ideally, we would like a simple software that takes a VCF file as an input, gives an annotated VCF file as output, and can be easily used with command pipes.</p>
 <p>To use VEP, use the conda environment:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate /project2/msalomon_1816/trgn_515/conda_env/vep</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
