@@ -15,3 +15,6 @@ Here is a list of the course modules.
 
 ## Module 4
 * [Genome assembly](modules/4_assembly/4_assembly.qmd)
+
+## Module 5
+* [Genome assembly](modules/5_base_mods/5_base_mods.qmd)

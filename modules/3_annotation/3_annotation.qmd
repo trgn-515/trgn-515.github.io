@@ -284,7 +284,7 @@ To ensure that the gff is properly formatted, use the following reference genome
 
 ```bash
 ref_genome=/project2/msalomon_1816/trgn_515/3_annotation/m_tuberculosis/reference/Mycobacterium_tuberculosis_h37rv.ASM19595v2.dna_sm.toplevel.fa
-gtt_file=/project2/msalomon_1816/trgn_515/3_annotation/m_tuberculosis/reference/Mycobacterium_tuberculosis_h37rv.ASM19595v2.37.gff3
+gff_file=/project2/msalomon_1816/trgn_515/3_annotation/m_tuberculosis/reference/Mycobacterium_tuberculosis_h37rv.ASM19595v2.37.gff3
 ```
 
 There are many tools to perform variant annotation. Some of the most commonly used include `VEP` (Variant Effect Predictor, from Ensembl); `SnpEff`; `BCFtools csq`, or `ANNOVAR`. Ideally, we would like a simple software that takes a VCF file as an input, gives an annotated VCF file as output, and can be easily used with command pipes.

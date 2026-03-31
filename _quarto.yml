@@ -38,6 +38,9 @@ website:
       - section: "Module 4: Genome assembly"
         contents:
           - modules/4_assembly/4_assembly.qmd
+      - section: "Module 5: Nanopore base modifications"
+        contents:
+          - modules/5_base_mods/5_base_mods.qmd
 format:
   html:
     theme: cosmo
