@@ -107,6 +107,8 @@ module load gcc/13.3.0
 module load cuda/12.6.3
 ```
 
+For more information on GPU programming in CARC, visit https://www.carc.usc.edu/user-guides/advanced-hpc-programming/gpu-programming
+
 ```sh
 dorado=/project/msalomon_1385/TRGN_515/6_base_mods/dorado-0.9.1/bin/dorado
 reference=/project2/biodb/genomes/Homo_sapiens/NCBI/GRCh38/Sequence/WholeGenomeFasta/genome.fa
