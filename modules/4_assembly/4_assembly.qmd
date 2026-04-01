@@ -181,7 +181,7 @@ This makes it very handy for filtering poor quality contigs using only the infor
 seqkit fx2tab $contigs | 
 csvtk mutate -H -t -f 1 -p "cov_(.+)" | 
 csvtk mutate -H -t -f 1 -p "length_([0-9]+)" | 
-awk -F "\t" '$3>=10 && $4>=1000' | # Only keep contigs with coverage higher or equal than 10 reads and length of at least 1000bp
+awk -F "\t" '$4>=10 && $5>=1000' | # Only keep contigs with coverage higher or equal than 10 reads and length of at least 1000bp
 seqkit tab2fx > $out_dir/$sample.filt_contigs.fa
 ```
 
