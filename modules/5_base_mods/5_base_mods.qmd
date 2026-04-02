@@ -110,14 +110,33 @@ module load cuda/12.6.3
 For more information on GPU programming in CARC, visit https://www.carc.usc.edu/user-guides/advanced-hpc-programming/gpu-programming
 
 ```sh
-dorado=/project/msalomon_1385/TRGN_515/6_base_mods/dorado-0.9.1/bin/dorado
-reference=/project2/biodb/genomes/Homo_sapiens/NCBI/GRCh38/Sequence/WholeGenomeFasta/genome.fa
+conda activate /project2/msalomon_1816/trgn_515/conda_env/trgn515
+
+dorado_bin=/project2/msalomon_1816/trgn_515/5_base_mods/dorado-0.9.6/bin/dorado
+reference=/project2/msalomon_1816/trgn_515/5_base_mods/ref_genome/genome.fa
 pod5_dir=/path/to/pod5
 bam_dir=/path/to/bam
 
-$dorado basecaller -v --reference $reference --mm2-opts "-x asm10" -r sup,5mCG_5hmCG $pod5_dir/*.pod5 > $bam_dir/file.bam
-```
+# The path to the model for basecalling
+model_dir=/project2/msalomon_1816/trgn_515/5_base_mods/dorado-0.9.6/models/dna_r9.4.1_e8_sup@v3.3
 
+# The path to the model for modified bases basecalling
+mod_model_dir=/project2/msalomon_1816/trgn_515/5_base_mods/dorado-0.9.6/models/dna_r9.4.1_e8_sup@v3.3_5mCG_5hmCG@v0
+
+# We need to use an older version of dorado for this dataset, and for that we need to build a container to make it work in our CARC cluster
+module load apptainer # Loading Apptainer to build the container
+
+# The Apptainer wrapper (using Ubuntu 22.04 to guarantee glibc compatibility)
+# --nv tells it to use the cluster's GPUs
+# --bind makes sure the container can see your /project2 files
+dorado="apptainer exec --nv --bind /project2:/project2 docker://ubuntu:22.04 $dorado_bin"
+
+$dorado basecaller $model_dir $pod5_dir/file.pod5 -v --reference $reference --mm2-opts "-x asm10" --modified-bases-models $mod_model_dir > $bam_dir/file.bam
+
+# You already know how to do the next two steps!
+samtools sort ...
+samtools index ...
+```
 
 ### Task 1: Basecalling with modified bases
 ::: {.callout-note}
@@ -125,7 +144,7 @@ $dorado basecaller -v --reference $reference --mm2-opts "-x asm10" -r sup,5mCG_5
 2) Why do you think they have chosen this file type? **(5pts)**
 3) What are the tags that represent methylation, and what do each of them mean? **(5pts)**
 4) In our Dorado command, we passed the argument `-r sup,5mCG_5hmCG`. What does `sup` and `5mCG_5hmCG` mean? **(10pts)**
-5) Why have we chosen `5mCG_5hmCG` a human dataset? **(10pts)**
+5) Why have we chosen `5mCG_5hmCG` for a human dataset? **(10pts)**
 :::
 
 
@@ -155,72 +174,74 @@ samtools sort -o $bam_dir/M13363.bam -
 2) What does the -y (lower case!) flag in `minimap2` do and why is it important? **(5pts)**
 :::
 
-<!-- # Extract modified base information from BAM file
+# Extract modified base information from BAM file
 
 We are going to use ModKit to analyze methylation data. The pileup subcommand runs through all sites or motifs and generates a probability that the site is modified.
 
+You need to run this both for your normal and tumor samples.
+
 ```sh
-modkit=/project/msalomon_1385/TRGN_515/6_base_mods/modkit_v0.4.4/modkit
+modkit=/project2/msalomon_1816/trgn_515/5_base_mods/modkit-0.6.1/modkit
 reference=/project2/biodb/genomes/Homo_sapiens/NCBI/GRCh38/Sequence/WholeGenomeFasta/genome.fa
 
-$modkit pileup /
---filter-threshold <float (0-1)> # General filtering
---mod-thresholds mod_code:<float (0-1)> # Modified base filtering
---ref <reference.fa> # Reference genome
+$modkit pileup
+--cpg # Restrict analysis to CpG sites
+--combine-strands # Combine methylation for the forward and reverse strand
+--reference <reference.fa> # Reference genome
+--modified-bases 5mC 5hmC # Specified the inferred modified bases
 <file.bam> # Input BAM file
 <file.bed> # Output bed file
 
 bgzip -k <file.bed> # Note you can also pipe the output of modkit into bgzip
 tabix -p bed <file.bed.gz>
-
-
 ```
+
+The `modkit` software allows for filtering of methylation calls using `--filter-threshold` for general filtering and `--mod-thresholds` for modified base filtering.
 
 You can find the modified codes in Table 1. If no thresholds are specified, ModKit will calculate the appropiate threshold by taking a sample of the BAM file and calculating the 10th percentile of the probability distribution.
 
-```{=latex}
-\captionsetup[table]{
-  justification = centering
-}
+**Table 1: Modified Base codes** *(source: https://samtools.github.io/hts-specs/SAMtags.pdf)*
 
-\begin{table}[!ht]
-\centering
-\caption{Modified Base codes (source: https://samtools.github.io/hts-specs/SAMtags.pdf)}
-\begin{tabular}{lllll}
-\hline
-Unmodified base    & Code & Abbreviation              & Name                      & ChEBI \\ \hline
-\multirow{5}{*}{C} & m    & 5mC                       & 5-Methylcytosine          & 27551 \\
-                   & h    & 5hmC                      & 5-Hydroxymethylcytosine   & 76792 \\
-                   & f    & 5fC                       & 5-Formylcytosine          & 76794 \\
-                   & c    & 5caC                      & 5-Carboxylcytosine        & 76793 \\
-                   & C    & Ambiguity code; any C mod & Ambiguity code; any C mod & -     \\ \hline
-\multirow{4}{*}{T} & g    & 5hmU                      & 5-Hydroxymethyluracil     & 16964 \\
-                   & e    & 5fU                       & 5-Formyluracil            & 80961 \\
-                   & b    & 5caU                      & 5-Carboxyluracil          & 17477 \\
-                   & T    & Ambiguity code; any T mod & Ambiguity code; any T mod & -     \\ \hline
-U                  & U    & Ambiguity code; any U mod & Ambiguity code; any U mod & -     \\ \hline
-\multirow{2}{*}{A} & a    & 6mA                       & 6-Methyladenine           & 28871 \\
-                   & A    & Ambiguity code; any A mod & Ambiguity code; any A mod & -     \\ \hline
-\multirow{2}{*}{G} & o    & 8oxoG                     & 8-Oxoguanine              & 44605 \\
-                   & G    & Ambiguity code; any G mod & Ambiguity code; any G mod & -     \\ \hline
-\multirow{2}{*}{N} & n    & Xao                       & Xanthosine                & 18107 \\
-                   & N    & Ambiguity code; any mod   & Ambiguity code; any mod   & -     \\ \hline
-\end{tabular}
-\end{table}
-```
+| Unmodified base | Code | Abbreviation | Name | ChEBI |
+| :--- | :--- | :--- | :--- | :--- |
+| **C** | m | 5mC | 5-Methylcytosine | 27551 |
+| | h | 5hmC | 5-Hydroxymethylcytosine | 76792 |
+| | f | 5fC | 5-Formylcytosine | 76794 |
+| | c | 5caC | 5-Carboxylcytosine | 76793 |
+| | C | Ambiguity code | any C mod | - |
+| **T** | g | 5hmU | 5-Hydroxymethyluracil | 16964 |
+| | e | 5fU | 5-Formyluracil | 80961 |
+| | b | 5caU | 5-Carboxyluracil | 17477 |
+| | T | Ambiguity code | any T mod | - |
+| **U** | U | Ambiguity code | any U mod | - |
+| **A** | a | 6mA | 6-Methyladenine | 28871 |
+| | A | Ambiguity code | any A mod | - |
+| **G** | o | 8oxoG | 8-Oxoguanine | 44605 |
+| | G | Ambiguity code | any G mod | - |
+| **N** | n | Xao | Xanthosine | 18107 |
+| | N | Ambiguity code | any mod | - |
 
-::: info
-**Task 4: Make a pileup of the methylation calls.**
 
+
+### Task 3: Make a pileup of the methylation calls
+::: {.callout-note}
 Let ModKit calculate the filtering thresholds.
 
+The output of this analysis is a `bedMethyl` file, which it's just a normal bed file with some extra columns.
+
 1) What are the columns of the resulting file? Visit https://github.com/nanoporetech/modkit for more information **(5pts)**
-2) How many rows do you expect per genomic position? **(5pts)**
-3) Can you think on some filters that may be important given the provided columns? **(5pts)**
-4) What column would you use to identify different methylation patterns in each allele? How would a heterozygous methylation pattern look like? **(5pts)**
+2) Can you think on some filters that may be important given the provided columns? **(5pts)**
+3) Open the resulting BED file and look at the first few rows. How many rows are generated for each single genomic position, and what specific column differentiates them? Based on our ModKit command, why is the file structured this way? How many rows do you expect per genomic position? **(5pts)**
+4) Look at column 11 (fraction modified). If a genomic region is fully methylated on both alleles, you would expect a value near 100%. What biological scenario would result in a fraction of ~50%? **(5pts)**
+5) What column would you use to identify different methylation patterns in each allele? How would a heterozygous methylation pattern look like? **(5pts)**
+6) Why do we run `bgzip` and `tabix` on the resulting BED file before moving to the next step? What do these tools do? **(5pts)**
 :::
 
-# Differential methylation analysis
+<!-- 1) If you did NOT use the `--combine-strands` flag, how many rows would you expect to see for a single CpG site, and why? **(5pts)** -->
+
+<!-- Heterozygosity / Allele-Specific Methylation, Imprinting, or a mixed cell population/tumor heterogeneity -->
+
+# Differential methylation analysis (DMR)
 
 In differential methylation analysis, we perform a statistical test (eg: t-test) to find differences in methylation patterns between samples (eg: normal vs tumour).
 
@@ -240,9 +261,18 @@ wget -qO- http://hgdownload.cse.ucsc.edu/goldenpath/hg38/database/cpgIslandExt.t
    | bedtools sort -i - > cpg_islands_ucsc.bed
 ```
 
+Because we are working with a targeted sequencing panel (nCATS) rather than Whole Genome Sequencing, we do not want to scan the entire genome or every single CpG island. Instead, we will restrict our analysis to the specific genes targeted by our panel.
+
+You can find those genes in this bed file:
+
+```
+regions=/project2/msalomon_1816/trgn_515/5_base_mods/bed/gene_targets.bed
+```
+
+Now, we can pass this target file to `modkit dmr pair` using the `-r` flag. This will extract the methylation probabilities from both of our pileup files and calculate the statistical difference only at these specific loci.
 
 ```sh
-regions=/project/msalomon_1385/TRGN_515/6_base_mods/colo829/cpg_islands_ucsc.bed
+regions=/project2/msalomon_1816/trgn_515/5_base_mods/bed/gene_targets.bed
 reference=/project2/biodb/genomes/Homo_sapiens/NCBI/GRCh38/Sequence/WholeGenomeFasta/genome.fa
 
 $modkit dmr pair
@@ -253,10 +283,22 @@ $modkit dmr pair
   --ref <reference.fa> # Reference genome
   --base C # may be repeated if multiple modifications are being used
   --threads <n_threads> # Number of threads
-  --log-filepath <log_file> # Path to log file
+
 ```
 
-## Analyze modified bases at every position
+
+### Task 4: Interpreting the DMR Output
+::: {.callout-note}
+
+Review the resulting bed file and consult the ModKit documentation if necessary.
+
+1) Which column in the output file represents the actual difference in methylation fractions between the normal and tumor samples? **(5pts)**
+2) Look at the data for the  region. Does this gene show hypermethylation (increased methylation) or hypomethylation (decreased methylation) in the tumor sample compared to the normal sample? **(5pts)**
+3) Why is it statistically more robust to calculate differential methylation across a region (like a CpG island or promoter) rather than looking at individual, isolated cytosines? **(5pts)**
+:::
+
+
+<!-- ## Analyze modified bases at every position
 
 If we want to get methylation patters at every position, we can skip the `--ref` option.
 
@@ -272,7 +314,7 @@ $modkit dmr pair
   --base C # may be repeated if multiple modifications are being used
   --threads <n_threads> # Number of threads
   --log-filepath <log_file> # Path to log file
-```
+``` -->
 
 ## Visualize modified bases on IGV
 
@@ -315,4 +357,4 @@ whatshap haplotag
 --output-threads=<n_threads> # Threads for BAM compression
 <input_phased_vcf> # Input phased VCF file
 <input_bam> # Input BAM file
-``` -->
+```
