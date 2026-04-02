@@ -316,7 +316,7 @@ $modkit dmr pair
   --log-filepath <log_file> # Path to log file
 ``` -->
 
-## Visualize modified bases on IGV
+<!-- ## Visualize modified bases on IGV
 
 During class, we will see how to visualize methylaytion data in IGV. Use what we learn to answer the following questions:
 
@@ -357,4 +357,4 @@ whatshap haplotag
 --output-threads=<n_threads> # Threads for BAM compression
 <input_phased_vcf> # Input phased VCF file
 <input_bam> # Input BAM file
-```
+``` -->
