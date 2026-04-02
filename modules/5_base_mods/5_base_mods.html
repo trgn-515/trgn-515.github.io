@@ -299,6 +299,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#task-2-mapping-modified-reads." id="toc-task-2-mapping-modified-reads." class="nav-link" data-scroll-target="#task-2-mapping-modified-reads.">Task 2: Mapping modified reads.</a></li>
   </ul></li>
+  <li><a href="#extract-modified-base-information-from-bam-file" id="toc-extract-modified-base-information-from-bam-file" class="nav-link" data-scroll-target="#extract-modified-base-information-from-bam-file">Extract modified base information from BAM file</a>
+  <ul>
+  <li><a href="#task-3-make-a-pileup-of-the-methylation-calls" id="toc-task-3-make-a-pileup-of-the-methylation-calls" class="nav-link" data-scroll-target="#task-3-make-a-pileup-of-the-methylation-calls">Task 3: Make a pileup of the methylation calls</a></li>
+  </ul></li>
+  <li><a href="#differential-methylation-analysis-dmr" id="toc-differential-methylation-analysis-dmr" class="nav-link" data-scroll-target="#differential-methylation-analysis-dmr">Differential methylation analysis (DMR)</a>
+  <ul>
+  <li><a href="#analyze-modified-bases-at-specific-locations" id="toc-analyze-modified-bases-at-specific-locations" class="nav-link" data-scroll-target="#analyze-modified-bases-at-specific-locations">Analyze modified bases at specific locations</a>
+  <ul class="collapse">
+  <li><a href="#task-4-interpreting-the-dmr-output" id="toc-task-4-interpreting-the-dmr-output" class="nav-link" data-scroll-target="#task-4-interpreting-the-dmr-output">Task 4: Interpreting the DMR Output</a></li>
+  </ul></li>
+  </ul></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="5_base_mods.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
@@ -435,12 +446,32 @@ single_to_multi_fast5 -i fast5/MDA-MB-231/ -s fast5_multi/MDA-MB-231/ -n 4000 --
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load gcc/13.3.0</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load cuda/12.6.3</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>For more information on GPU programming in CARC, visit https://www.carc.usc.edu/user-guides/advanced-hpc-programming/gpu-programming</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="va">dorado</span><span class="op">=</span>/project/msalomon_1385/TRGN_515/6_base_mods/dorado-0.9.1/bin/dorado</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="va">reference</span><span class="op">=</span>/project2/biodb/genomes/Homo_sapiens/NCBI/GRCh38/Sequence/WholeGenomeFasta/genome.fa</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="va">pod5_dir</span><span class="op">=</span>/path/to/pod5</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="va">bam_dir</span><span class="op">=</span>/path/to/bam</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="va">$dorado</span> basecaller <span class="at">-v</span> <span class="at">--reference</span> <span class="va">$reference</span> <span class="at">--mm2-opts</span> <span class="st">"-x asm10"</span> <span class="at">-r</span> sup,5mCG_5hmCG <span class="va">$pod5_dir</span>/<span class="pp">*</span>.pod5 <span class="op">&gt;</span> <span class="va">$bam_dir</span>/file.bam</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate /project2/msalomon_1816/trgn_515/conda_env/trgn515</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="va">dorado_bin</span><span class="op">=</span>/project2/msalomon_1816/trgn_515/5_base_mods/dorado-0.9.6/bin/dorado</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="va">reference</span><span class="op">=</span>/project2/msalomon_1816/trgn_515/5_base_mods/ref_genome/genome.fa</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="va">pod5_dir</span><span class="op">=</span>/path/to/pod5</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="va">bam_dir</span><span class="op">=</span>/path/to/bam</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># The path to the model for basecalling</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="va">model_dir</span><span class="op">=</span>/project2/msalomon_1816/trgn_515/5_base_mods/dorado-0.9.6/models/dna_r9.4.1_e8_sup@v3.3</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co"># The path to the model for modified bases basecalling</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="va">mod_model_dir</span><span class="op">=</span>/project2/msalomon_1816/trgn_515/5_base_mods/dorado-0.9.6/models/dna_r9.4.1_e8_sup@v3.3_5mCG_5hmCG@v0</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="co"># We need to use an older version of dorado for this dataset, and for that we need to build a container to make it work in our CARC cluster</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load apptainer <span class="co"># Loading Apptainer to build the container</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="co"># The Apptainer wrapper (using Ubuntu 22.04 to guarantee glibc compatibility)</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="co"># --nv tells it to use the cluster's GPUs</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="co"># --bind makes sure the container can see your /project2 files</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="va">dorado</span><span class="op">=</span><span class="st">"apptainer exec --nv --bind /project2:/project2 docker://ubuntu:22.04 </span><span class="va">$dorado_bin</span><span class="st">"</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="va">$dorado</span> basecaller <span class="va">$model_dir</span> <span class="va">$pod5_dir</span>/file.pod5 <span class="at">-v</span> <span class="at">--reference</span> <span class="va">$reference</span> <span class="at">--mm2-opts</span> <span class="st">"-x asm10"</span> <span class="at">--modified-bases-models</span> <span class="va">$mod_model_dir</span> <span class="op">&gt;</span> <span class="va">$bam_dir</span>/file.bam</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="co"># You already know how to do the next two steps!</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> sort ...</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> index ...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <section id="task-1-basecalling-with-modified-bases" class="level3">
 <h3 class="anchored" data-anchor-id="task-1-basecalling-with-modified-bases">Task 1: Basecalling with modified bases</h3>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -458,7 +489,7 @@ Note
 <li>Why do you think they have chosen this file type? <strong>(5pts)</strong></li>
 <li>What are the tags that represent methylation, and what do each of them mean? <strong>(5pts)</strong></li>
 <li>In our Dorado command, we passed the argument <code>-r sup,5mCG_5hmCG</code>. What does <code>sup</code> and <code>5mCG_5hmCG</code> mean? <strong>(10pts)</strong></li>
-<li>Why have we chosen <code>5mCG_5hmCG</code> a human dataset? <strong>(10pts)</strong></li>
+<li>Why have we chosen <code>5mCG_5hmCG</code> for a human dataset? <strong>(10pts)</strong></li>
 </ol>
 </div>
 </div>
@@ -493,108 +524,229 @@ Note
 </ol>
 </div>
 </div>
-<!-- # Extract modified base information from BAM file
-
-We are going to use ModKit to analyze methylation data. The pileup subcommand runs through all sites or motifs and generates a probability that the site is modified.
-
-```sh
-modkit=/project/msalomon_1385/TRGN_515/6_base_mods/modkit_v0.4.4/modkit
-reference=/project2/biodb/genomes/Homo_sapiens/NCBI/GRCh38/Sequence/WholeGenomeFasta/genome.fa
-
-$modkit pileup /
---filter-threshold <float (0-1)> # General filtering
---mod-thresholds mod_code:<float (0-1)> # Modified base filtering
---ref <reference.fa> # Reference genome
-<file.bam> # Input BAM file
-<file.bed> # Output bed file
-
-bgzip -k <file.bed> # Note you can also pipe the output of modkit into bgzip
-tabix -p bed <file.bed.gz>
-
-
-```
-
-You can find the modified codes in Table 1. If no thresholds are specified, ModKit will calculate the appropiate threshold by taking a sample of the BAM file and calculating the 10th percentile of the probability distribution.
-
-```{=latex}
-\captionsetup[table]{
-  justification = centering
-}
-
-\begin{table}[!ht]
-\centering
-\caption{Modified Base codes (source: https://samtools.github.io/hts-specs/SAMtags.pdf)}
-\begin{tabular}{lllll}
-\hline
-Unmodified base    & Code & Abbreviation              & Name                      & ChEBI \\ \hline
-\multirow{5}{*}{C} & m    & 5mC                       & 5-Methylcytosine          & 27551 \\
-                   & h    & 5hmC                      & 5-Hydroxymethylcytosine   & 76792 \\
-                   & f    & 5fC                       & 5-Formylcytosine          & 76794 \\
-                   & c    & 5caC                      & 5-Carboxylcytosine        & 76793 \\
-                   & C    & Ambiguity code; any C mod & Ambiguity code; any C mod & -     \\ \hline
-\multirow{4}{*}{T} & g    & 5hmU                      & 5-Hydroxymethyluracil     & 16964 \\
-                   & e    & 5fU                       & 5-Formyluracil            & 80961 \\
-                   & b    & 5caU                      & 5-Carboxyluracil          & 17477 \\
-                   & T    & Ambiguity code; any T mod & Ambiguity code; any T mod & -     \\ \hline
-U                  & U    & Ambiguity code; any U mod & Ambiguity code; any U mod & -     \\ \hline
-\multirow{2}{*}{A} & a    & 6mA                       & 6-Methyladenine           & 28871 \\
-                   & A    & Ambiguity code; any A mod & Ambiguity code; any A mod & -     \\ \hline
-\multirow{2}{*}{G} & o    & 8oxoG                     & 8-Oxoguanine              & 44605 \\
-                   & G    & Ambiguity code; any G mod & Ambiguity code; any G mod & -     \\ \hline
-\multirow{2}{*}{N} & n    & Xao                       & Xanthosine                & 18107 \\
-                   & N    & Ambiguity code; any mod   & Ambiguity code; any mod   & -     \\ \hline
-\end{tabular}
-\end{table}
-```
-
-::: info
-**Task 4: Make a pileup of the methylation calls.**
-
-Let ModKit calculate the filtering thresholds.
-
-1) What are the columns of the resulting file? Visit https://github.com/nanoporetech/modkit for more information **(5pts)**
-2) How many rows do you expect per genomic position? **(5pts)**
-3) Can you think on some filters that may be important given the provided columns? **(5pts)**
-4) What column would you use to identify different methylation patterns in each allele? How would a heterozygous methylation pattern look like? **(5pts)**
-:::
-
-# Differential methylation analysis
-
-In differential methylation analysis, we perform a statistical test (eg: t-test) to find differences in methylation patterns between samples (eg: normal vs tumour).
-
-We will stay within ModKit, which uses a binomial distribution to find differential methylation. In our example, we have a cancer/normal pair.
-
-
-## Analyze modified bases at specific locations
-
-If you are not interested in genome wide methylation patterns, it may be handy to subset methylation in specific regions. For human, common regions of interest would be CpG islands.
-
-You can get a list of CpG islands from the UCSC genome browser:
-
-```sh
-wget -qO- http://hgdownload.cse.ucsc.edu/goldenpath/hg38/database/cpgIslandExt.txt.gz \
-   | gunzip -c \
-   | awk 'BEGIN{FS="\t"; OFS="\t"} NR>1 {print $2, $3, $4, $5}' \
-   | bedtools sort -i - > cpg_islands_ucsc.bed
-```
-
-
-```sh
-regions=/project/msalomon_1385/TRGN_515/6_base_mods/colo829/cpg_islands_ucsc.bed
-reference=/project2/biodb/genomes/Homo_sapiens/NCBI/GRCh38/Sequence/WholeGenomeFasta/genome.fa
-
-$modkit dmr pair
-  -a ${norm_pileup}.gz # Bed with methylation from sample 1
-  -b ${tumor_pileup}.gz # Bed with methylation from sample 2
-  -o <out_file.bed> # Output to stdout if not present
-  -r ${regions} # List of regions in BED format
-  --ref <reference.fa> # Reference genome
-  --base C # may be repeated if multiple modifications are being used
-  --threads <n_threads> # Number of threads
-  --log-filepath <log_file> # Path to log file
-```
-
-## Analyze modified bases at every position
+</section>
+</section>
+<section id="extract-modified-base-information-from-bam-file" class="level1">
+<h1>Extract modified base information from BAM file</h1>
+<p>We are going to use ModKit to analyze methylation data. The pileup subcommand runs through all sites or motifs and generates a probability that the site is modified.</p>
+<p>You need to run this both for your normal and tumor samples.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="va">modkit</span><span class="op">=</span>/project2/msalomon_1816/trgn_515/5_base_mods/modkit-0.6.1/modkit</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="va">reference</span><span class="op">=</span>/project2/biodb/genomes/Homo_sapiens/NCBI/GRCh38/Sequence/WholeGenomeFasta/genome.fa</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="va">$modkit</span> pileup</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="ex">--cpg</span> <span class="co"># Restrict analysis to CpG sites</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="ex">--combine-strands</span> <span class="co"># Combine methylation for the forward and reverse strand</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="ex">--reference</span> <span class="op">&lt;</span>reference.fa<span class="op">&gt;</span> <span class="co"># Reference genome</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="ex">--modified-bases</span> 5mC 5hmC <span class="co"># Specified the inferred modified bases</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>file.bam<span class="op">&gt;</span> <span class="co"># Input BAM file</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>file.bed<span class="op">&gt;</span> <span class="co"># Output bed file</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="ex">bgzip</span> <span class="at">-k</span> <span class="op">&lt;</span>file.bed<span class="op">&gt;</span> <span class="co"># Note you can also pipe the output of modkit into bgzip</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="ex">tabix</span> <span class="at">-p</span> bed <span class="op">&lt;</span>file.bed.gz<span class="op">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The <code>modkit</code> software allows for filtering of methylation calls using <code>--filter-threshold</code> for general filtering and <code>--mod-thresholds</code> for modified base filtering.</p>
+<p>You can find the modified codes in Table 1. If no thresholds are specified, ModKit will calculate the appropiate threshold by taking a sample of the BAM file and calculating the 10th percentile of the probability distribution.</p>
+<p><strong>Table 1: Modified Base codes</strong> <em>(source: https://samtools.github.io/hts-specs/SAMtags.pdf)</em></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Unmodified base</th>
+<th style="text-align: left;">Code</th>
+<th style="text-align: left;">Abbreviation</th>
+<th style="text-align: left;">Name</th>
+<th style="text-align: left;">ChEBI</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>C</strong></td>
+<td style="text-align: left;">m</td>
+<td style="text-align: left;">5mC</td>
+<td style="text-align: left;">5-Methylcytosine</td>
+<td style="text-align: left;">27551</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">h</td>
+<td style="text-align: left;">5hmC</td>
+<td style="text-align: left;">5-Hydroxymethylcytosine</td>
+<td style="text-align: left;">76792</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">f</td>
+<td style="text-align: left;">5fC</td>
+<td style="text-align: left;">5-Formylcytosine</td>
+<td style="text-align: left;">76794</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">c</td>
+<td style="text-align: left;">5caC</td>
+<td style="text-align: left;">5-Carboxylcytosine</td>
+<td style="text-align: left;">76793</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">C</td>
+<td style="text-align: left;">Ambiguity code</td>
+<td style="text-align: left;">any C mod</td>
+<td style="text-align: left;">-</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>T</strong></td>
+<td style="text-align: left;">g</td>
+<td style="text-align: left;">5hmU</td>
+<td style="text-align: left;">5-Hydroxymethyluracil</td>
+<td style="text-align: left;">16964</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">e</td>
+<td style="text-align: left;">5fU</td>
+<td style="text-align: left;">5-Formyluracil</td>
+<td style="text-align: left;">80961</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">b</td>
+<td style="text-align: left;">5caU</td>
+<td style="text-align: left;">5-Carboxyluracil</td>
+<td style="text-align: left;">17477</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">T</td>
+<td style="text-align: left;">Ambiguity code</td>
+<td style="text-align: left;">any T mod</td>
+<td style="text-align: left;">-</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>U</strong></td>
+<td style="text-align: left;">U</td>
+<td style="text-align: left;">Ambiguity code</td>
+<td style="text-align: left;">any U mod</td>
+<td style="text-align: left;">-</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>A</strong></td>
+<td style="text-align: left;">a</td>
+<td style="text-align: left;">6mA</td>
+<td style="text-align: left;">6-Methyladenine</td>
+<td style="text-align: left;">28871</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">A</td>
+<td style="text-align: left;">Ambiguity code</td>
+<td style="text-align: left;">any A mod</td>
+<td style="text-align: left;">-</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>G</strong></td>
+<td style="text-align: left;">o</td>
+<td style="text-align: left;">8oxoG</td>
+<td style="text-align: left;">8-Oxoguanine</td>
+<td style="text-align: left;">44605</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">G</td>
+<td style="text-align: left;">Ambiguity code</td>
+<td style="text-align: left;">any G mod</td>
+<td style="text-align: left;">-</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>N</strong></td>
+<td style="text-align: left;">n</td>
+<td style="text-align: left;">Xao</td>
+<td style="text-align: left;">Xanthosine</td>
+<td style="text-align: left;">18107</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">Ambiguity code</td>
+<td style="text-align: left;">any mod</td>
+<td style="text-align: left;">-</td>
+</tr>
+</tbody>
+</table>
+<section id="task-3-make-a-pileup-of-the-methylation-calls" class="level3">
+<h3 class="anchored" data-anchor-id="task-3-make-a-pileup-of-the-methylation-calls">Task 3: Make a pileup of the methylation calls</h3>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Let ModKit calculate the filtering thresholds.</p>
+<p>The output of this analysis is a <code>bedMethyl</code> file, which it’s just a normal bed file with some extra columns.</p>
+<ol type="1">
+<li>What are the columns of the resulting file? Visit https://github.com/nanoporetech/modkit for more information <strong>(5pts)</strong></li>
+<li>Can you think on some filters that may be important given the provided columns? <strong>(5pts)</strong></li>
+<li>Open the resulting BED file and look at the first few rows. How many rows are generated for each single genomic position, and what specific column differentiates them? Based on our ModKit command, why is the file structured this way? How many rows do you expect per genomic position? <strong>(5pts)</strong></li>
+<li>Look at column 11 (fraction modified). If a genomic region is fully methylated on both alleles, you would expect a value near 100%. What biological scenario would result in a fraction of ~50%? <strong>(5pts)</strong></li>
+<li>What column would you use to identify different methylation patterns in each allele? How would a heterozygous methylation pattern look like? <strong>(5pts)</strong></li>
+<li>Why do we run <code>bgzip</code> and <code>tabix</code> on the resulting BED file before moving to the next step? What do these tools do? <strong>(5pts)</strong></li>
+</ol>
+</div>
+</div>
+<!-- 1) If you did NOT use the `--combine-strands` flag, how many rows would you expect to see for a single CpG site, and why? **(5pts)** -->
+<!-- Heterozygosity / Allele-Specific Methylation, Imprinting, or a mixed cell population/tumor heterogeneity -->
+</section>
+</section>
+<section id="differential-methylation-analysis-dmr" class="level1">
+<h1>Differential methylation analysis (DMR)</h1>
+<p>In differential methylation analysis, we perform a statistical test (eg: t-test) to find differences in methylation patterns between samples (eg: normal vs tumour).</p>
+<p>We will stay within ModKit, which uses a binomial distribution to find differential methylation. In our example, we have a cancer/normal pair.</p>
+<section id="analyze-modified-bases-at-specific-locations" class="level2">
+<h2 class="anchored" data-anchor-id="analyze-modified-bases-at-specific-locations">Analyze modified bases at specific locations</h2>
+<p>If you are not interested in genome wide methylation patterns, it may be handy to subset methylation in specific regions. For human, common regions of interest would be CpG islands.</p>
+<p>You can get a list of CpG islands from the UCSC genome browser:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-qO-</span> http://hgdownload.cse.ucsc.edu/goldenpath/hg38/database/cpgIslandExt.txt.gz <span class="dt">\</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>   <span class="kw">|</span> <span class="fu">gunzip</span> <span class="at">-c</span> <span class="dt">\</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>   <span class="kw">|</span> <span class="fu">awk</span> <span class="st">'BEGIN{FS="\t"; OFS="\t"} NR&gt;1 {print $2, $3, $4, $5}'</span> <span class="dt">\</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>   <span class="kw">|</span> <span class="ex">bedtools</span> sort <span class="at">-i</span> <span class="at">-</span> <span class="op">&gt;</span> cpg_islands_ucsc.bed</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Because we are working with a targeted sequencing panel (nCATS) rather than Whole Genome Sequencing, we do not want to scan the entire genome or every single CpG island. Instead, we will restrict our analysis to the specific genes targeted by our panel.</p>
+<p>You can find those genes in this bed file:</p>
+<pre><code>regions=/project2/msalomon_1816/trgn_515/5_base_mods/bed/gene_targets.bed</code></pre>
+<p>Now, we can pass this target file to <code>modkit dmr pair</code> using the <code>-r</code> flag. This will extract the methylation probabilities from both of our pileup files and calculate the statistical difference only at these specific loci.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="va">regions</span><span class="op">=</span>/project2/msalomon_1816/trgn_515/5_base_mods/bed/gene_targets.bed</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="va">reference</span><span class="op">=</span>/project2/biodb/genomes/Homo_sapiens/NCBI/GRCh38/Sequence/WholeGenomeFasta/genome.fa</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="va">$modkit</span> dmr pair</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="ex">-a</span> <span class="va">${norm_pileup}</span>.gz <span class="co"># Bed with methylation from sample 1</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="ex">-b</span> <span class="va">${tumor_pileup}</span>.gz <span class="co"># Bed with methylation from sample 2</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="ex">-o</span> <span class="op">&lt;</span>out_file.bed<span class="op">&gt;</span> <span class="co"># Output to stdout if not present</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="ex">-r</span> <span class="va">${regions}</span> <span class="co"># List of regions in BED format</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--ref</span> <span class="op">&lt;</span>reference.fa<span class="op">&gt;</span> <span class="co"># Reference genome</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--base</span> C <span class="co"># may be repeated if multiple modifications are being used</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--threads</span> <span class="op">&lt;</span>n_threads<span class="op">&gt;</span> <span class="co"># Number of threads</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="task-4-interpreting-the-dmr-output" class="level3">
+<h3 class="anchored" data-anchor-id="task-4-interpreting-the-dmr-output">Task 4: Interpreting the DMR Output</h3>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Review the resulting bed file and consult the ModKit documentation if necessary.</p>
+<ol type="1">
+<li>Which column in the output file represents the actual difference in methylation fractions between the normal and tumor samples? <strong>(5pts)</strong></li>
+<li>Look at the data for the region. Does this gene show hypermethylation (increased methylation) or hypomethylation (decreased methylation) in the tumor sample compared to the normal sample? <strong>(5pts)</strong></li>
+<li>Why is it statistically more robust to calculate differential methylation across a region (like a CpG island or promoter) rather than looking at individual, isolated cytosines? <strong>(5pts)</strong></li>
+</ol>
+</div>
+</div>
+<!-- ## Analyze modified bases at every position
 
 If we want to get methylation patters at every position, we can skip the `--ref` option.
 
@@ -610,9 +762,8 @@ $modkit dmr pair
   --base C # may be repeated if multiple modifications are being used
   --threads <n_threads> # Number of threads
   --log-filepath <log_file> # Path to log file
-```
-
-## Visualize modified bases on IGV
+``` -->
+<!-- ## Visualize modified bases on IGV
 
 During class, we will see how to visualize methylaytion data in IGV. Use what we learn to answer the following questions:
 
@@ -656,6 +807,7 @@ whatshap haplotag
 ``` -->
 
 
+</section>
 </section>
 </section>
 
