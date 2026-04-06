@@ -68,6 +68,11 @@ In order to complete the assignment, you can use this conda environments I prepa
 conda activate /project2/msalomon_1816/trgn_515/conda_env/trgn515
 ```
 
+
+# Bioinformatics workflow
+
+![Bioinformatic workflow for base modification basecalling in Nanopore reads](dorado_workflow.png){style="display: block; margin: 0 auto"}
+
 # Converting fast5 to pod5 format
 
 <!-- Because these are single file fast5, run this with the ont-fast5-api software:
@@ -261,7 +266,7 @@ wget -qO- http://hgdownload.cse.ucsc.edu/goldenpath/hg38/database/cpgIslandExt.t
    | bedtools sort -i - > cpg_islands_ucsc.bed
 ```
 
-Because we are working with a targeted sequencing panel (nCATS) rather than Whole Genome Sequencing, we do not want to scan the entire genome or every single CpG island. Instead, we will restrict our analysis to the specific genes targeted by our panel.
+Because we are working with a targeted sequencing panel rather than Whole Genome Sequencing, we do not want to scan the entire genome or every single CpG island. Instead, we will restrict our analysis to the specific genes targeted by our panel.
 
 You can find those genes in this bed file:
 
@@ -292,10 +297,15 @@ $modkit dmr pair
 
 Review the resulting bed file and consult the ModKit documentation if necessary.
 
-1) Which column in the output file represents the actual difference in methylation fractions between the normal and tumor samples? **(5pts)**
-2) Look at the data for the  region. Does this gene show hypermethylation (increased methylation) or hypomethylation (decreased methylation) in the tumor sample compared to the normal sample? **(5pts)**
-3) Why is it statistically more robust to calculate differential methylation across a region (like a CpG island or promoter) rather than looking at individual, isolated cytosines? **(5pts)**
+The modkit DMR output format is detailed here: https://nanoporetech.github.io/modkit/intro_dmr.html
+
+1) Which are the two genes with the higuest differences? Which gene shows hypermethylation (increased methylation) and which shows hypomethylation (decreased methylation) in the tumor sample compared to the normal sample? Which columns did you use to determine this? **(10pts)**
+2) Which of the previous two genes is most likely a tumor supressor gene and which one is most likely an oncogene? How is this related to their methylation pattern? **(10pts)**
+3) Compare the results for KRT19 and GPX1. Both have high statistical scores (significance), but how do their effect_size values differ? Which one should we prioritize when looking for drivers of disease? Which one is more likely to be a statistical artifact? **(5pts)**
+4) Why is it statistically more robust to calculate differential methylation across a region (like a CpG island or promoter) rather than looking at individual, isolated cytosines? **(5pts)**
+5) In this analysis, the coordinates used for the DMR covered the entire gene body for each gene. Explain why measuring average methylation changes across an entire entire gene might not be the most appropiate method for identifying biologically meaningful changes, and propose a better approach. **(5pts)**
 :::
+
 
 
 <!-- ## Analyze modified bases at every position
@@ -316,7 +326,7 @@ $modkit dmr pair
   --log-filepath <log_file> # Path to log file
 ``` -->
 
-<!-- ## Visualize modified bases on IGV
+## Visualize modified bases on IGV
 
 During class, we will see how to visualize methylaytion data in IGV. Use what we learn to answer the following questions:
 
@@ -330,7 +340,7 @@ Select a region from your differential methylation output (either the CpG island
 3) Is the tumor sample hypermethylated or hypomethylated compared to the control? Make a quick reference search to find what's the common pattern. **(5pts)**
 :::
 
-# Phasing of long reads
+<!-- # Phasing of long reads
 
 Phasing refers to the process of determining which alleles (genomics variants) are inherited together, identifying the parental origin of each allele and separating maternally and paternally inherited copies of each chromosome into haplotypes to get a complete picture of genetic variation. Variants within the same copy of a chromosome are in “cis”, while those from different copies are in “trans”.
 

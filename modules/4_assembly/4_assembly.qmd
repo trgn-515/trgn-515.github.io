@@ -190,7 +190,7 @@ seqkit tab2fx > $out_dir/$sample.filt_contigs.fa
 Long-reads from different sequencing technologies will have different base error profiles, and thus many general long-read assemblers will have different options. For instance, Flye has `--nano-raw` for old Nanopore reads and `--nano-hq` for newer chemestries and basecallers. Similarly, for PacBio the flag `--pacbio-raw` should be used for CLR reads while the flag `--pacbio-hifi` is the recommended one for HiFi reads. The assembly algorithm is the same, it just changes the expected sequencing error rate. To run Flye:
 
 ```sh
-conda activate /project2/msalomon_1816/trgn_515/conda_env/medaka
+conda activate /project2/msalomon_1816/trgn_515/conda_env/flye
 
 flye
 --nano-raw <in_reads.fq> # Use --nano-raw for nanopore, --pacbio-raw for CLR and --pacbio-hifi for HiFi
