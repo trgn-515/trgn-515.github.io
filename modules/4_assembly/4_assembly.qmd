@@ -115,8 +115,6 @@ Some software will have its own conda environment, which I will indicate in each
 
 We will perform the following assemblies:
 
-# Bioinformatics workflow
-
 1. Illumina
 <!-- 2. ONT Rapid kit +/- long-read polishing -->
 3. ONT Ligation kit +/- long-read polishing
@@ -124,6 +122,8 @@ We will perform the following assemblies:
 5. PacBio HiFi
 6. Hybrid Illumina + ONT Ligation kit
 7. ONT Ligation kit + short-read polishing
+
+# Bioinformatics workflow
 
 ![Bioinformatic workflow for Genome Assembly](assembly_pipeline.png){style="display: block; margin: 0 auto"}
 
