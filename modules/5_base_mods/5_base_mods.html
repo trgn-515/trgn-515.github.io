@@ -290,6 +290,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives">Learning objectives</a></li>
   <li><a href="#input-and-outputs" id="toc-input-and-outputs" class="nav-link" data-scroll-target="#input-and-outputs">Input and outputs</a></li>
   <li><a href="#required-software" id="toc-required-software" class="nav-link" data-scroll-target="#required-software">Required software</a></li>
+  <li><a href="#bioinformatics-workflow" id="toc-bioinformatics-workflow" class="nav-link" data-scroll-target="#bioinformatics-workflow">Bioinformatics workflow</a></li>
   <li><a href="#converting-fast5-to-pod5-format" id="toc-converting-fast5-to-pod5-format" class="nav-link" data-scroll-target="#converting-fast5-to-pod5-format">Converting fast5 to pod5 format</a></li>
   <li><a href="#basecalling-with-dorado" id="toc-basecalling-with-dorado" class="nav-link" data-scroll-target="#basecalling-with-dorado">Basecalling with Dorado</a>
   <ul>
@@ -309,6 +310,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#task-4-interpreting-the-dmr-output" id="toc-task-4-interpreting-the-dmr-output" class="nav-link" data-scroll-target="#task-4-interpreting-the-dmr-output">Task 4: Interpreting the DMR Output</a></li>
   </ul></li>
+  <li><a href="#visualize-modified-bases-on-igv" id="toc-visualize-modified-bases-on-igv" class="nav-link" data-scroll-target="#visualize-modified-bases-on-igv">Visualize modified bases on IGV</a></li>
   </ul></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="5_base_mods.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
@@ -417,6 +419,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h1>Required software</h1>
 <p>In order to complete the assignment, you can use this conda environments I prepared:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate /project2/msalomon_1816/trgn_515/conda_env/trgn515</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="bioinformatics-workflow" class="level1">
+<h1>Bioinformatics workflow</h1>
+<div class="quarto-figure quarto-figure-center" style="display: block; margin: 0 auto">
+<figure class="figure">
+<p><img src="dorado_workflow.png" class="img-fluid figure-img"></p>
+<figcaption>Bioinformatic workflow for base modification basecalling in Nanopore reads</figcaption>
+</figure>
+</div>
 </section>
 <section id="converting-fast5-to-pod5-format" class="level1">
 <h1>Converting fast5 to pod5 format</h1>
@@ -711,7 +722,7 @@ Note
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>   <span class="kw">|</span> <span class="fu">gunzip</span> <span class="at">-c</span> <span class="dt">\</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>   <span class="kw">|</span> <span class="fu">awk</span> <span class="st">'BEGIN{FS="\t"; OFS="\t"} NR&gt;1 {print $2, $3, $4, $5}'</span> <span class="dt">\</span></span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>   <span class="kw">|</span> <span class="ex">bedtools</span> sort <span class="at">-i</span> <span class="at">-</span> <span class="op">&gt;</span> cpg_islands_ucsc.bed</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Because we are working with a targeted sequencing panel (nCATS) rather than Whole Genome Sequencing, we do not want to scan the entire genome or every single CpG island. Instead, we will restrict our analysis to the specific genes targeted by our panel.</p>
+<p>Because we are working with a targeted sequencing panel rather than Whole Genome Sequencing, we do not want to scan the entire genome or every single CpG island. Instead, we will restrict our analysis to the specific genes targeted by our panel.</p>
 <p>You can find those genes in this bed file:</p>
 <pre><code>regions=/project2/msalomon_1816/trgn_515/5_base_mods/bed/gene_targets.bed</code></pre>
 <p>Now, we can pass this target file to <code>modkit dmr pair</code> using the <code>-r</code> flag. This will extract the methylation probabilities from both of our pileup files and calculate the statistical difference only at these specific loci.</p>
@@ -739,10 +750,13 @@ Note
 </div>
 <div class="callout-body-container callout-body">
 <p>Review the resulting bed file and consult the ModKit documentation if necessary.</p>
+<p>The modkit DMR output format is detailed here: https://nanoporetech.github.io/modkit/intro_dmr.html</p>
 <ol type="1">
-<li>Which column in the output file represents the actual difference in methylation fractions between the normal and tumor samples? <strong>(5pts)</strong></li>
-<li>Look at the data for the region. Does this gene show hypermethylation (increased methylation) or hypomethylation (decreased methylation) in the tumor sample compared to the normal sample? <strong>(5pts)</strong></li>
+<li>Which are the two genes with the higuest differences? Which gene shows hypermethylation (increased methylation) and which shows hypomethylation (decreased methylation) in the tumor sample compared to the normal sample? Which columns did you use to determine this? <strong>(10pts)</strong></li>
+<li>Which of the previous two genes is most likely a tumor supressor gene and which one is most likely an oncogene? How is this related to their methylation pattern? <strong>(10pts)</strong></li>
+<li>Compare the results for KRT19 and GPX1. Both have high statistical scores (significance), but how do their effect_size values differ? Which one should we prioritize when looking for drivers of disease? Which one is more likely to be a statistical artifact? <strong>(5pts)</strong></li>
 <li>Why is it statistically more robust to calculate differential methylation across a region (like a CpG island or promoter) rather than looking at individual, isolated cytosines? <strong>(5pts)</strong></li>
+<li>In this analysis, the coordinates used for the DMR covered the entire gene body for each gene. Explain why measuring average methylation changes across an entire entire gene might not be the most appropiate method for identifying biologically meaningful changes, and propose a better approach. <strong>(5pts)</strong></li>
 </ol>
 </div>
 </div>
@@ -763,21 +777,21 @@ $modkit dmr pair
   --threads <n_threads> # Number of threads
   --log-filepath <log_file> # Path to log file
 ``` -->
-<!-- ## Visualize modified bases on IGV
-
-During class, we will see how to visualize methylaytion data in IGV. Use what we learn to answer the following questions:
-
-::: info
-**Task 5: Visualize modified variants.**
-
-Select a region from your differential methylation output (either the CpG islands or single base) and show it in IGV.
-
-1) What are the different colors showing? **(5pts)**
-2) Are there any differences between the tumor sample and the control? **(5pts)**
-3) Is the tumor sample hypermethylated or hypomethylated compared to the control? Make a quick reference search to find what's the common pattern. **(5pts)**
-:::
-
-# Phasing of long reads
+</section>
+</section>
+<section id="visualize-modified-bases-on-igv" class="level2">
+<h2 class="anchored" data-anchor-id="visualize-modified-bases-on-igv">Visualize modified bases on IGV</h2>
+<p>During class, we will see how to visualize methylaytion data in IGV. Use what we learn to answer the following questions:</p>
+<div class="info">
+<p><strong>Task 5: Visualize modified variants.</strong></p>
+<p>Select a region from your differential methylation output (either the CpG islands or single base) and show it in IGV.</p>
+<ol type="1">
+<li>What are the different colors showing? <strong>(5pts)</strong></li>
+<li>Are there any differences between the tumor sample and the control? <strong>(5pts)</strong></li>
+<li>Is the tumor sample hypermethylated or hypomethylated compared to the control? Make a quick reference search to find what’s the common pattern. <strong>(5pts)</strong></li>
+</ol>
+</div>
+<!-- # Phasing of long reads
 
 Phasing refers to the process of determining which alleles (genomics variants) are inherited together, identifying the parental origin of each allele and separating maternally and paternally inherited copies of each chromosome into haplotypes to get a complete picture of genetic variation. Variants within the same copy of a chromosome are in “cis”, while those from different copies are in “trans”.
 
@@ -807,7 +821,6 @@ whatshap haplotag
 ``` -->
 
 
-</section>
 </section>
 </section>
 

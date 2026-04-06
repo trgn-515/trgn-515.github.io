@@ -469,9 +469,6 @@ module load samtools
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate /project2/msalomon_1816/trgn_515/conda_env/trgn515</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Some software will have its own conda environment, which I will indicate in each subsection.</p>
 <p>We will perform the following assemblies:</p>
-</section>
-<section id="bioinformatics-workflow" class="level1">
-<h1>Bioinformatics workflow</h1>
 <ol type="1">
 <li>Illumina <!-- 2. ONT Rapid kit +/- long-read polishing --></li>
 <li>ONT Ligation kit +/- long-read polishing <!-- 4. ONT Ligation kit without size selection +/- long-read polishing --></li>
@@ -479,6 +476,9 @@ module load samtools
 <li>Hybrid Illumina + ONT Ligation kit</li>
 <li>ONT Ligation kit + short-read polishing</li>
 </ol>
+</section>
+<section id="bioinformatics-workflow" class="level1">
+<h1>Bioinformatics workflow</h1>
 <div class="quarto-figure quarto-figure-center" style="display: block; margin: 0 auto">
 <figure class="figure">
 <p><img src="assembly_pipeline.png" class="img-fluid figure-img"></p>
@@ -547,7 +547,7 @@ Note
 <section id="long-read-genome-assembly" class="level1">
 <h1>Long-read genome assembly</h1>
 <p>Long-reads from different sequencing technologies will have different base error profiles, and thus many general long-read assemblers will have different options. For instance, Flye has <code>--nano-raw</code> for old Nanopore reads and <code>--nano-hq</code> for newer chemestries and basecallers. Similarly, for PacBio the flag <code>--pacbio-raw</code> should be used for CLR reads while the flag <code>--pacbio-hifi</code> is the recommended one for HiFi reads. The assembly algorithm is the same, it just changes the expected sequencing error rate. To run Flye:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate /project2/msalomon_1816/trgn_515/conda_env/medaka</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate /project2/msalomon_1816/trgn_515/conda_env/flye</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">flye</span></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="ex">--nano-raw</span> <span class="op">&lt;</span>in_reads.fq<span class="op">&gt;</span> <span class="co"># Use --nano-raw for nanopore, --pacbio-raw for CLR and --pacbio-hifi for HiFi</span></span>
