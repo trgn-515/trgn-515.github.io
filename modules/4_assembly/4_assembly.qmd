@@ -259,6 +259,8 @@ We typically measure the quality of an assembly using three factors:
 
 Assembly contiguity measures how contiguous or broken up is the assembly. A good assembly should have a low number of contigs but very long. Common metrics used to measure contiguity include N50, NG50, L50, LG50, number of contigs, mean contig length etc. QUAST is commonly used to get some of these metrics. You can provide all your assemblies at once to get a comparison:
 
+**NOTE:** No need to run this version of the code, we will run it later with additional options.
+
 ```sh
 conda activate /project2/msalomon_1816/trgn_515/conda_env/quast
 
@@ -266,7 +268,6 @@ quast.py *.fasta
 -o <out_dir>
 ```
 
-**NOTE:** No need to run this version of the code, we will run it later with additional options.
 
 ## Completeness
 
