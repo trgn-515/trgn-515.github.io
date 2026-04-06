@@ -219,6 +219,7 @@ medaka_consensus
 Long-read assemblies tend to be very contiguous, but they may contain small-scale errors such as single basepair erros and indels. The goal of short-read polishing is to fix these small-scale errors using Illumina reads. There are many short-read polishing tools, such as Polypolish, POLCA, Pilon, or Racon. For it's performance and simplicity, let's use the POLCA polisher with the Illumina short-reads:
 
 ```sh
+conda activate /project2/msalomon_1816/trgn_515/conda_env/polca
 polca.sh
 -a <assembly.fasta> # Assembly to polish
 -r "<short-reads_1.fq> <short-reads_2.fq>" # Short-reads. Make sure the list of read files are between quotes
