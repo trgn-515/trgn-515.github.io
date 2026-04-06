@@ -600,11 +600,11 @@ Note
 <section id="contiguity" class="level2">
 <h2 class="anchored" data-anchor-id="contiguity">Contiguity</h2>
 <p>Assembly contiguity measures how contiguous or broken up is the assembly. A good assembly should have a low number of contigs but very long. Common metrics used to measure contiguity include N50, NG50, L50, LG50, number of contigs, mean contig length etc. QUAST is commonly used to get some of these metrics. You can provide all your assemblies at once to get a comparison:</p>
+<p><strong>NOTE:</strong> No need to run this version of the code, we will run it later with additional options.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate /project2/msalomon_1816/trgn_515/conda_env/quast</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="ex">quast.py</span> <span class="pp">*</span>.fasta</span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="ex">-o</span> <span class="op">&lt;</span>out_dir<span class="op">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><strong>NOTE:</strong> No need to run this version of the code, we will run it later with additional options.</p>
 </section>
 <section id="completeness" class="level2">
 <h2 class="anchored" data-anchor-id="completeness">Completeness</h2>

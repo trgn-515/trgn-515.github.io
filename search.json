@@ -527,7 +527,7 @@
     "href": "modules/4_assembly/4_assembly.html#contiguity",
     "title": "Assignment 4: Genome assembly",
     "section": "Contiguity",
-    "text": "Contiguity\nAssembly contiguity measures how contiguous or broken up is the assembly. A good assembly should have a low number of contigs but very long. Common metrics used to measure contiguity include N50, NG50, L50, LG50, number of contigs, mean contig length etc. QUAST is commonly used to get some of these metrics. You can provide all your assemblies at once to get a comparison:\nconda activate /project2/msalomon_1816/trgn_515/conda_env/quast\n\nquast.py *.fasta\n-o &lt;out_dir&gt;\nNOTE: No need to run this version of the code, we will run it later with additional options.",
+    "text": "Contiguity\nAssembly contiguity measures how contiguous or broken up is the assembly. A good assembly should have a low number of contigs but very long. Common metrics used to measure contiguity include N50, NG50, L50, LG50, number of contigs, mean contig length etc. QUAST is commonly used to get some of these metrics. You can provide all your assemblies at once to get a comparison:\nNOTE: No need to run this version of the code, we will run it later with additional options.\nconda activate /project2/msalomon_1816/trgn_515/conda_env/quast\n\nquast.py *.fasta\n-o &lt;out_dir&gt;",
     "crumbs": [
       "Home",
       "Module 4: Genome assembly",
