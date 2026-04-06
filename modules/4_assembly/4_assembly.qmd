@@ -220,6 +220,7 @@ Long-read assemblies tend to be very contiguous, but they may contain small-scal
 
 ```sh
 conda activate /project2/msalomon_1816/trgn_515/conda_env/polca
+
 polca.sh
 -a <assembly.fasta> # Assembly to polish
 -r "<short-reads_1.fq> <short-reads_2.fq>" # Short-reads. Make sure the list of read files are between quotes
@@ -259,6 +260,8 @@ We typically measure the quality of an assembly using three factors:
 Assembly contiguity measures how contiguous or broken up is the assembly. A good assembly should have a low number of contigs but very long. Common metrics used to measure contiguity include N50, NG50, L50, LG50, number of contigs, mean contig length etc. QUAST is commonly used to get some of these metrics. You can provide all your assemblies at once to get a comparison:
 
 ```sh
+conda activate /project2/msalomon_1816/trgn_515/conda_env/quast
+
 quast.py *.fasta
 -o <out_dir>
 ```
