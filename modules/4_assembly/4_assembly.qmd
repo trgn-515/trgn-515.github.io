@@ -207,7 +207,7 @@ medaka_consensus
 -i <in_reads.fq> # Input long-reads
 -d <in_assembly.fa> # Input assembly
 -o  <output_dir>
--m <model> # Basecalling model
+-m r1041_e82_400bps_hac_v4.0.0 # Basecalling model
 
 ## Basecalling models:
 # ONT Rapid and ONT ligation - r941_e81_hac_g514
