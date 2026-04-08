@@ -399,9 +399,9 @@ We will do this plot to find regional differences between our tumor and normal s
 ### Task 6: Loess methylation plot.
 ::: {.callout-note}
 
-Do a Loess methylation plot for each of the 10 genes we have targetted in this assignment.
+Do a Loess methylation plot for each of the 8 genes we have targetted in this assignment. It should look similar to Fig 3b from the data's original paper (https://www.nature.com/articles/s41587-020-0407-5).
 
-1) Include the generated plots for all 10 genes **(15pts)**
+1) Include the generated plots for all 8 genes **(15pts)**
 2) Look at the scatterplot dots underlying the smoothed curves. Do all neighboring sites share the exact same methylation percentage, or is there high variance from one nucleotide to the next? What does this tell you about the biological "noise" of DNA methylation? **(10pts)**
 3) Compare the plot for a gene with a big effect size (like KRT19 or TPM2) to a gene with an effect size near zero (like KRAS). How does the distance between the Tumor and Normal LOESS curves reflect the effect size calculated in Task 4? **(10pts)**
 4) Compare the profiles of TPM2 and KRT19. Which one shows broad methylation changes and which one shows localize ones? **(5pts)**  
