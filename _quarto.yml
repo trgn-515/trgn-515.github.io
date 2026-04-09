@@ -41,6 +41,13 @@ website:
       - section: "Module 5: Nanopore base modifications"
         contents:
           - modules/5_base_mods/5_base_mods.qmd
+      - section: "Module 6: Introduction to metagenomics"
+        contents:
+          - modules/6_meta/6_meta.qmd
+
+
+
+
 format:
   html:
     theme: cosmo

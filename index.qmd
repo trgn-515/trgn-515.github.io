@@ -18,8 +18,8 @@ Links will be updated as we progress through the course.
 | **Module 3: Variant Functional Annotation**<br>Variant effect prediction. | [{{< fa tv >}} HTML](#)<br>[{{< fa file-pdf >}} PDF](#) | [{{< fa pen-to-square >}} Assignment 3](modules/3_annotation/3_annotation.qmd) | **03/31/2026** |
 | **Module 4: Genome Assembly**<br>Introduction to genome assembly. | [{{< fa tv >}} HTML](#)<br>[{{< fa file-pdf >}} PDF](#) | [{{< fa pen-to-square >}} Assignment 4](modules/4_assembly/4_assembly.qmd) | **04/10/2026** |
 | **Module 5: Epigenetics - Methylation**<br>Methylation detection with 3rd Generation sequencing. | [{{< fa tv >}} HTML](#)<br>[{{< fa file-pdf >}} PDF](#) | [{{< fa pen-to-square >}} Assignment 5](modules/5_base_mods/5_base_mods.qmd) | **04/21/2026** |
-| **Module 6: GWAS**<br>Introduction to GWAS, population structure, and linkage disequilibrium. | [{{< fa tv >}} HTML](#)<br>[{{< fa file-pdf >}} PDF](#) | [{{< fa pen-to-square >}} Assignment 6](#) | **TBD** |
-| **Module 7: Metagenomics I**<br>Introduction to metagenomics, 16S amplification, and taxonomy. | [{{< fa tv >}} HTML](#)<br>[{{< fa file-pdf >}} PDF](#) | [{{< fa pen-to-square >}} Assignment 7](#) | **TBD** |
-| **Module 8: Metagenomics II**<br>Whole-genome amplification, MAGs, and functional analysis. | [{{< fa tv >}} HTML](#)<br>[{{< fa file-pdf >}} PDF](#) | [{{< fa pen-to-square >}} Assignment 8](#) | **TBD** |
+| **Module 6: Metagenomics I**<br>Introduction to metagenomics, 16S amplification, and taxonomy. | [{{< fa tv >}} HTML](#)<br>[{{< fa file-pdf >}} PDF](#) | [{{< fa pen-to-square >}} Assignment 6](modules/6_meta/6_meta.qmd) | **TBD** |
+| **Module 7: Metagenomics II**<br>Whole-genome amplification, MAGs, and functional analysis. | [{{< fa tv >}} HTML](#)<br>[{{< fa file-pdf >}} PDF](#) | [{{< fa pen-to-square >}} Assignment 7](#) | **TBD** |
+| **Module 9: GWAS**<br>Introduction to GWAS, population structure, and linkage disequilibrium. | [{{< fa tv >}} HTML](#)<br>[{{< fa file-pdf >}} PDF](#) | [{{< fa pen-to-square >}} Assignment 8](#) | **TBD** |
 
 : {tbl-colwidths="[40,15,20,25]" .table .table-hover}
