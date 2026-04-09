@@ -155,7 +155,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Assignment 6: Introduction to Metagenomics</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../modules/6_metagenomics/6_meta.html">Module 6: Introduction to metagenomics</a></li><li class="breadcrumb-item"><a href="../../modules/6_metagenomics/6_meta.html">Assignment 6: Introduction to Metagenomics</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -287,8 +287,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       </div>
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
- <span class="menu-text">modules/6_meta/6_meta.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="../../modules/6_metagenomics/6_meta.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Assignment 6: Introduction to Metagenomics</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -301,12 +304,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#removing-human-reads" id="toc-removing-human-reads" class="nav-link active" data-scroll-target="#removing-human-reads">Removing human reads</a></li>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives">Learning objectives</a></li>
+  <li><a href="#input-and-outputs" id="toc-input-and-outputs" class="nav-link" data-scroll-target="#input-and-outputs">Input and outputs</a></li>
+  <li><a href="#removing-human-reads" id="toc-removing-human-reads" class="nav-link" data-scroll-target="#removing-human-reads">Removing human reads</a></li>
   <li><a href="#removing-low-complexity-reads" id="toc-removing-low-complexity-reads" class="nav-link" data-scroll-target="#removing-low-complexity-reads">Removing low complexity reads</a></li>
-  <li><a href="#read-level-taxonomic-assignment-using-metaphlan" id="toc-read-level-taxonomic-assignment-using-metaphlan" class="nav-link" data-scroll-target="#read-level-taxonomic-assignment-using-metaphlan">Read level taxonomic assignment using MetaPhlAn</a>
+  <li><a href="#read-level-taxonomic-assignment-using-kraken2" id="toc-read-level-taxonomic-assignment-using-kraken2" class="nav-link" data-scroll-target="#read-level-taxonomic-assignment-using-kraken2">Read level taxonomic assignment using Kraken2</a>
   <ul>
-  <li><a href="#task-1-metaphlan-output." id="toc-task-1-metaphlan-output." class="nav-link" data-scroll-target="#task-1-metaphlan-output.">Task 1: MetaPhlan output.</a></li>
-  <li><a href="#task-2-metaphlan-combined-output." id="toc-task-2-metaphlan-combined-output." class="nav-link" data-scroll-target="#task-2-metaphlan-combined-output.">Task 2: MetaPhlan combined output.</a></li>
+  <li><a href="#task-1-kraken2-report-output." id="toc-task-1-kraken2-report-output." class="nav-link" data-scroll-target="#task-1-kraken2-report-output.">Task 1: Kraken2 Report Output.</a></li>
   </ul></li>
   <li><a href="#taxonomic-analysis-in-r" id="toc-taxonomic-analysis-in-r" class="nav-link" data-scroll-target="#taxonomic-analysis-in-r">Taxonomic analysis in R</a>
   <ul>
@@ -336,7 +340,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../modules/6_metagenomics/6_meta.html">Module 6: Introduction to metagenomics</a></li><li class="breadcrumb-item"><a href="../../modules/6_metagenomics/6_meta.html">Assignment 6: Introduction to Metagenomics</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Assignment 6: Introduction to Metagenomics</h1>
 </div>
@@ -367,7 +371,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>For this assignment, we will perform a microbiome composition analysis using shotgun sequencing metagenomics. We will use data generated from human fecal samples to compare the gut microbiota profiles of a healthy adult at baseline (Day 0) against their microbial profile immediately following a 4-day intervention with a cocktail of three last-resort antibiotics (Day 4).</p>
+<p>For this assignment, we will perform a microbiome composition analysis using shotgun sequencing metagenomics. We will use data generated from human fecal samples to compare the gut microbiota profiles of a healthy adult at baseline (Day 0) against their microbial profile immediately following a 4-day intervention with a cocktail of three last-resort antibiotics (Day 4). In total, we will have samples for days 0, 4, 8, 42, and 180.</p>
 <p>The files used for the assignment follow the sample name structure: subject_timepoint_readpair.fq.gz. For instance, ERAS6_Dag4opt_wHAXPI002161-78.clean.pair.rmhost.1.fq.gz is subject 6, timepoint 4, forward read.</p>
 <p>The original reference paper for this dataset:</p>
 <ul>
@@ -375,6 +379,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>The authors utilized a deep shotgun metagenomic sequencing strategy to observe the effects of antibiotics in the gut microbiota in healthy individuals, allowing for high-resolution taxonomic profiling and the tracking of antibiotic resistance genes (the resistome) over a 6-month period.</p>
 <p>We will process the raw metagenomic reads to identify differentially abundant microbial taxa and detect shifts in the resistome linked to antibiotic exposure.</p>
+<section id="learning-objectives" class="level1">
+<h1>Learning objectives</h1>
+<p>At the end of this week’s assignment you will be able to:</p>
+<ol type="1">
+<li>Be familiar with single-molecule direct DNA methylation detection</li>
+<li>Methylation aware asecalling from Nanopore raw signal<br>
+</li>
+<li>Be able to extract methylation levels from BAM files</li>
+<li>Know how to visualize methylation data</li>
+<li>Be able to identify differentially methylated regions (DMRs)</li>
+</ol>
+</section>
+<section id="input-and-outputs" class="level1">
+<h1>Input and outputs</h1>
+<p>The input for this assignment are the fastq files generated with Illumina from different patients at multiple timepoints. This data is publicly available with accession number ERP022986.</p>
+<blockquote class="blockquote">
+<p>fastq files:</p>
+<p><code>/project2/msalomon_1816/trgn_515/6_metagenomics/fastq</code></p>
+</blockquote>
+</section>
 <section id="removing-human-reads" class="level1">
 <h1>Removing human reads</h1>
 <p>To remove human reads, we simply map reads to the human reference genome and take extract unmapped reads.</p>
@@ -401,20 +425,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="va">entropyk</span><span class="op">=</span>5 <span class="kw">|</span></span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="fu">gzip</span> <span class="op">&gt;</span> output.fq.gz</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="read-level-taxonomic-assignment-using-metaphlan" class="level1">
-<h1>Read level taxonomic assignment using MetaPhlAn</h1>
-<p>A tool that is commonly used for taxonomic annotation of metagenomic sequences is MetaPhlAn, which uses a database of marker genes. You can run the latest version of MetaPhlAn directly on your reads as:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a> <span class="ex">conda</span> activate /home1/atortiz/miniforge3/envs/mpa</span>
+<section id="read-level-taxonomic-assignment-using-kraken2" class="level1">
+<h1>Read level taxonomic assignment using Kraken2</h1>
+<p>A standard approach for taxonomic annotation of metagenomic sequences is using a k-mer based classifier. We will use Kraken 2, which breaks down our reads into short sequences (k-mers) and compares them against a massive database to assign taxonomy.</p>
+<p>Because Kraken 2 assigns reads to various levels of the taxonomic tree (from Kingdom down to Strain), we will then use a companion tool called Bracken (Bayesian Reestimation of Abundance with KrakEN). Bracken takes the Kraken 2 output and pushes all the read counts down to a specific taxonomic level (e.g., the species level) to give us an accurate count matrix.</p>
+<p>First, run Kraken 2 directly on your quality-controlled reads:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate /project2/msalomon_1816/trgn_515/conda_env/kraken</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">metaphlan</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>fwd.fastq.gz<span class="op">&gt;</span>,<span class="op">&lt;</span>rev.fastq.gz<span class="op">&gt;</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="ex">-t</span> rel_ab_w_read_stats <span class="co"># Add absolute abundance</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="ex">--bowtie2out</span> <span class="op">&lt;</span>aln_out.bowtie2.bz2<span class="op">&gt;</span> <span class="co"># Alignment file</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="ex">--input_type</span> fastq</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="ex">--nproc</span> <span class="va">$SLURM_CPUS_PER_TASK</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="ex">-o</span> <span class="op">&lt;</span>out.mpa<span class="op">&gt;</span> <span class="co"># Output file</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<section id="task-1-metaphlan-output." class="level3">
-<h3 class="anchored" data-anchor-id="task-1-metaphlan-output.">Task 1: MetaPhlan output.</h3>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="va">kraken_db</span><span class="op">=</span>/project2/msalomon_1816/trgn_515/6_metagenomics/k2_db</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="ex">kraken2</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--db</span> <span class="va">$kraken_db</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--threads</span> <span class="va">$SLURM_CPUS_PER_TASK</span> <span class="co"># Multithreading</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--paired</span> <span class="op">&lt;</span>fwd.fastq.gz<span class="op">&gt;</span> <span class="op">&lt;</span>rev.fastq.gz<span class="op">&gt;</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--report</span> <span class="op">&lt;</span>sample_name<span class="op">&gt;</span>.kreport.tsv</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--output</span> <span class="op">&lt;</span>sample_name<span class="op">&gt;</span>.kraken.tsv</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="task-1-kraken2-report-output." class="level3">
+<h3 class="anchored" data-anchor-id="task-1-kraken2-report-output.">Task 1: Kraken2 Report Output.</h3>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -425,72 +452,49 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Look at the output generated by MetaPhlan and answer the following questions:</p>
-<ol type="1">
-<li>What are the rows in the output file? <strong>(5pts)</strong></li>
-<li>What are the columns in the output file? <strong>(5pts)</strong></li>
-<li>What does k__, p<strong>, c</strong>, o<strong>, f</strong>, g<strong> and s</strong> mean? <strong>(5pts)</strong></li>
-<li>Look at the relative abundance column. What does each of k__, p<strong>, c</strong> etc. must sum up to? <strong>(5pts)</strong></li>
+<p>Look at the <sample_name>.kraken.tsv file generated by Kraken2 and answer the following questions: 1. What are the rows in the output file? <strong>(5pts)</strong></sample_name></p>
+<p>Look at the <sample_name>.kreport.tsv file generated by Kraken 2 and answer the following questions:</sample_name></p>
+<ol start="2" type="1">
+<li>Look at the taxonomic rank column. What do the codes U, D, P, C, O, F, G, and S mean? <strong>(5pts)</strong></li>
+<li>What is the difference between “reads covered by the clade” (Column 2) and “reads assigned directly to the taxon” (Column 3)? <strong>(5pts)</strong></li>
 </ol>
 </div>
 </div>
-<p>Once we all have all the samples processed, we will merged them into a table. We will only keep taxa at the species level.</p>
-<p>Metaphlan includes a script called <code>merge_metaphlan_tables.py</code> to do exactly this. We will use a modified version that keeps the absolute abundance instead of relative abundance.</p>
-<p>I have already done this for you but here’s the code for reference:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="va">merging_script</span><span class="op">=</span>/project/msalomon_1385/TRGN_516/microbiome/merge_metaphlan4_tables_abs.py</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="va">in_files</span><span class="op">=</span>/project/msalomon_1385/TRGN_516/microbiome/metaphlan</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="va">$merging_script</span> <span class="va">$in_files</span>/<span class="pp">*</span>mpa <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-v</span> <span class="st">"#"</span> <span class="kw">|</span> <span class="fu">grep</span> <span class="st">"k__Bacteria"</span> <span class="kw">|</span> <span class="fu">grep</span> <span class="st">"s__"</span> <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-v</span> <span class="st">"t__"</span> <span class="op">&gt;</span> <span class="va">$in_files</span>/all_merged.txt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="task-2-metaphlan-combined-output." class="level3">
-<h3 class="anchored" data-anchor-id="task-2-metaphlan-combined-output.">Task 2: MetaPhlan combined output.</h3>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Look at the merged output generated and answer the following questions:</p>
-<ol type="1">
-<li>What are the rows in the merged output file? <strong>(5pts)</strong></li>
-<li>What are the columns in the merged output file? <strong>(5pts)</strong></li>
-</ol>
-</div>
-</div>
-<p>We can quickly get the sample names for the header in a bit of a hacky way:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> files <span class="kw">in</span> <span class="va">$in_files</span>/<span class="pp">*</span>mpa<span class="kw">;</span> <span class="cf">do</span> <span class="bu">echo</span> <span class="dt">\'</span><span class="va">$(</span><span class="fu">basename</span> <span class="va">$files</span> <span class="kw">|</span> <span class="fu">cut</span> <span class="at">-d</span><span class="st">'_'</span> <span class="at">-f1</span><span class="va">)</span>_<span class="va">$(</span><span class="fu">basename</span> <span class="va">$files</span> <span class="kw">|</span> <span class="fu">cut</span> <span class="at">-d_</span> <span class="at">-f2</span><span class="va">)</span><span class="dt">\'</span> <span class="kw">|</span> <span class="fu">sed</span> <span class="st">'s/Dag//g'</span> <span class="kw">|</span> <span class="fu">sed</span> <span class="st">'s/.mpa//g'</span> <span class="kw">|</span> <span class="fu">sed</span> <span class="st">'s/DAG//g'</span> <span class="kw">|</span> <span class="fu">sed</span> <span class="st">'s/opt//g'</span> <span class="kw">|</span> <span class="fu">sed</span> <span class="st">'s/ERAS/sample/'</span> <span class="kw">|</span> <span class="fu">tr</span> <span class="st">'\n'</span>, <span class="st">','</span><span class="kw">;</span> <span class="cf">done</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Next, we will run Bracken on the Kraken 2 report to estimate species-level abundances.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bracken</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="ex">-d</span> <span class="va">$kraken_db</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="ex">-i</span> <span class="op">&lt;</span>sample_name<span class="op">&gt;</span>.kreport.tsv</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="ex">-o</span> <span class="op">&lt;</span>sample_name<span class="op">&gt;</span>.bracken.tsv</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="ex">-r</span> 150 <span class="co"># expected read length</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="ex">-l</span> S</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
 <section id="taxonomic-analysis-in-r" class="level1">
 <h1>Taxonomic analysis in R</h1>
 <p>We will continue the rest of the taxonomic analysis in R.</p>
 <p>Load the libraries and the data:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(phyloseq)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vegan)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(taxonomizr)</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(GUniFrac)</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>data<span class="ot">=</span><span class="fu">read.table</span>(<span class="st">"/project/msalomon_1385/TRGN_516/microbiome/metaphlan"</span>, <span class="at">header =</span> F)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>V1 <span class="ot">=</span> <span class="fu">sapply</span>(data<span class="sc">$</span>V1, <span class="cf">function</span>(x) <span class="fu">rev</span>(<span class="fu">strsplit</span>(x, <span class="st">'[|]'</span>)[[<span class="dv">1</span>]])[<span class="dv">1</span>])</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>V1 <span class="ot">=</span> <span class="fu">substring</span>(data<span class="sc">$</span>V1, <span class="dv">4</span>)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(data) <span class="ot">=</span> <span class="fu">c</span>(<span class="st">'taxa'</span>, <span class="st">'sample10_0'</span>,<span class="st">'sample10_180'</span>,<span class="st">'sample10_42'</span>,<span class="st">'sample10_8'</span>,<span class="st">'sample2_0'</span>,</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>                   <span class="st">'sample2_42'</span>,<span class="st">'sample2_4'</span>,<span class="st">'sample2_8'</span>,<span class="st">'sample4_0'</span>,<span class="st">'sample4_180'</span>,<span class="st">'sample4_42'</span>,</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>                   <span class="st">'sample4_4'</span>,<span class="st">'sample4_8'</span>,<span class="st">'sample6_0'</span>,<span class="st">'sample6_180'</span>,<span class="st">'sample6_42'</span>,<span class="st">'sample6_4'</span>,</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>                   <span class="st">'sample6_8'</span>,<span class="st">'sample7_0'</span>,<span class="st">'sample7_180'</span>,<span class="st">'sample7_42'</span>,<span class="st">'sample7_4'</span>,<span class="st">'sample7_8'</span>,</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>                   <span class="st">'sample8_0'</span>,<span class="st">'sample8_180'</span>,<span class="st">'sample8_42'</span>,<span class="st">'sample8_8'</span>,<span class="st">'sample9_0'</span>,<span class="st">'sample9_180'</span>,</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>                   <span class="st">'sample9_42'</span>,<span class="st">'sample9_4'</span>,<span class="st">'sample9_8'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(phyloseq)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vegan)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(taxonomizr)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(GUniFrac)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>data<span class="ot">=</span><span class="fu">read.table</span>(<span class="st">"/project/msalomon_1385/TRGN_516/microbiome/metaphlan"</span>, <span class="at">header =</span> F)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>V1 <span class="ot">=</span> <span class="fu">sapply</span>(data<span class="sc">$</span>V1, <span class="cf">function</span>(x) <span class="fu">rev</span>(<span class="fu">strsplit</span>(x, <span class="st">'[|]'</span>)[[<span class="dv">1</span>]])[<span class="dv">1</span>])</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>V1 <span class="ot">=</span> <span class="fu">substring</span>(data<span class="sc">$</span>V1, <span class="dv">4</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(data) <span class="ot">=</span> <span class="fu">c</span>(<span class="st">'taxa'</span>, <span class="st">'sample10_0'</span>,<span class="st">'sample10_180'</span>,<span class="st">'sample10_42'</span>,<span class="st">'sample10_8'</span>,<span class="st">'sample2_0'</span>,</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>                   <span class="st">'sample2_42'</span>,<span class="st">'sample2_4'</span>,<span class="st">'sample2_8'</span>,<span class="st">'sample4_0'</span>,<span class="st">'sample4_180'</span>,<span class="st">'sample4_42'</span>,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>                   <span class="st">'sample4_4'</span>,<span class="st">'sample4_8'</span>,<span class="st">'sample6_0'</span>,<span class="st">'sample6_180'</span>,<span class="st">'sample6_42'</span>,<span class="st">'sample6_4'</span>,</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>                   <span class="st">'sample6_8'</span>,<span class="st">'sample7_0'</span>,<span class="st">'sample7_180'</span>,<span class="st">'sample7_42'</span>,<span class="st">'sample7_4'</span>,<span class="st">'sample7_8'</span>,</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>                   <span class="st">'sample8_0'</span>,<span class="st">'sample8_180'</span>,<span class="st">'sample8_42'</span>,<span class="st">'sample8_8'</span>,<span class="st">'sample9_0'</span>,<span class="st">'sample9_180'</span>,</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>                   <span class="st">'sample9_42'</span>,<span class="st">'sample9_4'</span>,<span class="st">'sample9_8'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Create taxonomic table</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>otu_table <span class="ot">=</span> <span class="fu">as.matrix</span>(data[,<span class="sc">-</span><span class="dv">1</span>])</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(otu_table) <span class="ot">=</span> data<span class="sc">$</span>taxa</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>otu_table <span class="ot">=</span> <span class="fu">as.matrix</span>(data[,<span class="sc">-</span><span class="dv">1</span>])</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(otu_table) <span class="ot">=</span> data<span class="sc">$</span>taxa</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Remove low frequency (rare) species:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>otu_table <span class="ot">=</span> otu_table[<span class="fu">apply</span>(otu_table, <span class="dv">1</span>, <span class="cf">function</span>(x) <span class="fu">any</span>(x <span class="sc">&gt;=</span> <span class="dv">100</span>)),]</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>otu_table <span class="ot">=</span> otu_table[<span class="fu">apply</span>(otu_table, <span class="dv">1</span>, <span class="cf">function</span>(x) <span class="fu">length</span>(x[x <span class="sc">!=</span> <span class="dv">0</span>])<span class="sc">&gt;=</span><span class="dv">2</span>),]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>otu_table <span class="ot">=</span> otu_table[<span class="fu">apply</span>(otu_table, <span class="dv">1</span>, <span class="cf">function</span>(x) <span class="fu">any</span>(x <span class="sc">&gt;=</span> <span class="dv">100</span>)),]</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>otu_table <span class="ot">=</span> otu_table[<span class="fu">apply</span>(otu_table, <span class="dv">1</span>, <span class="cf">function</span>(x) <span class="fu">length</span>(x[x <span class="sc">!=</span> <span class="dv">0</span>])<span class="sc">&gt;=</span><span class="dv">2</span>),]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <section id="rarefaction" class="level2">
 <h2 class="anchored" data-anchor-id="rarefaction">Rarefaction</h2>
 <p>An important step in analyzing sequencing data is rarefaction. Rarefaction involves randomly subsetting samples so that all samples have even sequencing depth.</p>
@@ -512,7 +516,7 @@ Note
 </div>
 </div>
 <p>To rarefy our dataset, we must first visualize the rarefaction curve of our samples using the <code>vegan</code> package. To do this, we need to create a dataframe that vegan can work with from our OTU table.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rarecurve</span>(<span class="fu">as.data.frame</span>(<span class="fu">t</span>(otu_table)), <span class="at">step=</span><span class="dv">100</span>,<span class="at">cex=</span><span class="fl">0.5</span>,<span class="at">label=</span><span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rarecurve</span>(<span class="fu">as.data.frame</span>(<span class="fu">t</span>(otu_table)), <span class="at">step=</span><span class="dv">100</span>,<span class="at">cex=</span><span class="fl">0.5</span>,<span class="at">label=</span><span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="task-4-rarefaction-curve." class="level3">
 <h3 class="anchored" data-anchor-id="task-4-rarefaction-curve.">Task 4: Rarefaction curve.</h3>
@@ -553,9 +557,9 @@ Note
 </ol>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>n_depth<span class="ot">=</span><span class="er">&lt;</span>n<span class="sc">&gt;</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>otu_table <span class="ot">=</span> <span class="fu">Rarefy</span>(<span class="fu">t</span>(otu_table), <span class="at">depth =</span> n_depth)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>otu_table <span class="ot">=</span> <span class="fu">t</span>(otu_table<span class="sc">$</span>otu.tab.rff)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>n_depth<span class="ot">=</span><span class="er">&lt;</span>n<span class="sc">&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>otu_table <span class="ot">=</span> <span class="fu">Rarefy</span>(<span class="fu">t</span>(otu_table), <span class="at">depth =</span> n_depth)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>otu_table <span class="ot">=</span> <span class="fu">t</span>(otu_table<span class="sc">$</span>otu.tab.rff)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="task-6-rarefaction-curve." class="level3">
 <h3 class="anchored" data-anchor-id="task-6-rarefaction-curve.">Task 6: Rarefaction curve.</h3>
@@ -582,9 +586,9 @@ Note
 <section id="richness" class="level3">
 <h3 class="anchored" data-anchor-id="richness">Richness</h3>
 <p>Richness measures the number of distinct species within a sample. We can do this within R:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>sp_rich <span class="ot">=</span> <span class="fu">apply</span>(otu_table, <span class="dv">2</span>, <span class="cf">function</span>(x) <span class="fu">length</span>(x[x <span class="sc">!=</span> <span class="dv">0</span>]))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>sp_rich <span class="ot">=</span> <span class="fu">apply</span>(otu_table, <span class="dv">2</span>, <span class="cf">function</span>(x) <span class="fu">length</span>(x[x <span class="sc">!=</span> <span class="dv">0</span>]))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Within the <code>vegan</code> package you can also use:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>sp_rich <span class="ot">=</span> <span class="fu">specnumber</span>(<span class="fu">t</span>(otu_table))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>sp_rich <span class="ot">=</span> <span class="fu">specnumber</span>(<span class="fu">t</span>(otu_table))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="task-7-species-richness." class="level3">
 <h3 class="anchored" data-anchor-id="task-7-species-richness.">Task 7: Species richness.</h3>
@@ -608,29 +612,29 @@ Note
 <section id="other-measures-of-diversity" class="level3">
 <h3 class="anchored" data-anchor-id="other-measures-of-diversity">Other measures of diversity</h3>
 <p>There are multiple diversity measures. Some of them will take into account the richness, and others both the richness and the eveness.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Shannon diversity</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>shannon_div <span class="ot">=</span> vegan<span class="sc">::</span><span class="fu">diversity</span>(<span class="fu">t</span>(otu_table), <span class="at">index =</span> <span class="st">"shannon"</span>)</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Simpson diversity</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>simpson_div <span class="ot">=</span> vegan<span class="sc">::</span><span class="fu">diversity</span>(<span class="fu">t</span>(otu_table), <span class="at">index =</span> <span class="st">"simpson"</span>)</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Fisher diversity</span></span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>simpson_div <span class="ot">=</span> vegan<span class="sc">::</span><span class="fu">fisher.alpha</span>(<span class="fu">t</span>(otu_table))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Shannon diversity</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>shannon_div <span class="ot">=</span> vegan<span class="sc">::</span><span class="fu">diversity</span>(<span class="fu">t</span>(otu_table), <span class="at">index =</span> <span class="st">"shannon"</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Simpson diversity</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>simpson_div <span class="ot">=</span> vegan<span class="sc">::</span><span class="fu">diversity</span>(<span class="fu">t</span>(otu_table), <span class="at">index =</span> <span class="st">"simpson"</span>)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Fisher diversity</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>simpson_div <span class="ot">=</span> vegan<span class="sc">::</span><span class="fu">fisher.alpha</span>(<span class="fu">t</span>(otu_table))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="analyze-differences-in-alpha-diversity" class="level3">
 <h3 class="anchored" data-anchor-id="analyze-differences-in-alpha-diversity">Analyze differences in alpha diversity</h3>
 <p>The Mann-Whitney U Test, also called Wilcoxon Rank Sum Test, is a non-parametric statistical test that is used to compare two groups, as we have here in our dataset. Being a non-parametric test, it does not assume normalcy in our data (unlike Student’s test). The test assesses if the two groups are from the same population, i.e.&nbsp;whether they are equal.</p>
 <p>We will do it for the species richness.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>sp_rich <span class="ot">=</span> <span class="fu">apply</span>(otu_table, <span class="dv">2</span>, <span class="cf">function</span>(x) <span class="fu">length</span>(x[x <span class="sc">!=</span> <span class="dv">0</span>]))</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="st">'richness'</span> <span class="ot">=</span> <span class="fu">as.numeric</span>(sp_rich), <span class="st">'time'</span> <span class="ot">=</span> <span class="fu">trimws</span>(<span class="fu">gsub</span>(<span class="st">".*_"</span>,<span class="st">""</span>,<span class="fu">names</span>(sp_rich))))</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>time <span class="ot">=</span> <span class="fu">factor</span>(df<span class="sc">$</span>time, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">42</span>, <span class="dv">180</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>sp_rich <span class="ot">=</span> <span class="fu">apply</span>(otu_table, <span class="dv">2</span>, <span class="cf">function</span>(x) <span class="fu">length</span>(x[x <span class="sc">!=</span> <span class="dv">0</span>]))</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="st">'richness'</span> <span class="ot">=</span> <span class="fu">as.numeric</span>(sp_rich), <span class="st">'time'</span> <span class="ot">=</span> <span class="fu">trimws</span>(<span class="fu">gsub</span>(<span class="st">".*_"</span>,<span class="st">""</span>,<span class="fu">names</span>(sp_rich))))</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>time <span class="ot">=</span> <span class="fu">factor</span>(df<span class="sc">$</span>time, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">42</span>, <span class="dv">180</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>We can only compare two groups using the Mann-Whitney U Test:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">=</span> <span class="fu">wilcox.test</span>(<span class="fu">as.numeric</span>(richness) <span class="sc">~</span> time, <span class="at">data =</span> df[df<span class="sc">$</span>time <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">4</span>),])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">=</span> <span class="fu">wilcox.test</span>(<span class="fu">as.numeric</span>(richness) <span class="sc">~</span> time, <span class="at">data =</span> df[df<span class="sc">$</span>time <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">4</span>),])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>To compare more than two groups,we are going to employ the Kruskal-Wallis test, which is a further extension of the Mann-Whiteny U test for three or more groups. Again, we want to find out if the sample groups are representative of different populations, and therefore different from each other.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">=</span> <span class="fu">kruskal.test</span>(<span class="fu">as.numeric</span>(richness) <span class="sc">~</span> time, <span class="at">data =</span> df)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">=</span> <span class="fu">kruskal.test</span>(<span class="fu">as.numeric</span>(richness) <span class="sc">~</span> time, <span class="at">data =</span> df)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Using the Kruskal Test, we can only go so far as to say that there are differences between the groups. However, we don’t know exactly which groups are different. And, because we are comparing more than 2 groups, we must incorporate multiple test correction as well.Because the Kruskal-Wallis test uses a rank-sum approach, it is appropriate to use a post-hoc test which preserves these ranks, such as Dunn’s test (but an alternative could be the Conover-Iman test).</p>
 <p>Instead of evaluating whether any of the groups are different, Dunn’s test uses pairwise comparisons to evaluate which groups might be significantly different from each other. And, we will use the Benjamini-Hochberg multiple test correction method to mitigate the false-discovery rate that is inherent to a series of pairwise tests.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>m3 <span class="ot">=</span> rstatix<span class="sc">::</span><span class="fu">dunn_test</span>(<span class="at">data =</span> df, richness <span class="sc">~</span> time, <span class="at">p.adjust.method =</span> <span class="st">"BH"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>m3 <span class="ot">=</span> rstatix<span class="sc">::</span><span class="fu">dunn_test</span>(<span class="at">data =</span> df, richness <span class="sc">~</span> time, <span class="at">p.adjust.method =</span> <span class="st">"BH"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="task-8-kruskal-test." class="level3">
 <h3 class="anchored" data-anchor-id="task-8-kruskal-test.">Task 8: Kruskal test.</h3>
@@ -655,26 +659,26 @@ Note
 <h2 class="anchored" data-anchor-id="beta-diversity">Beta diversity</h2>
 <p>Beta diversity measures diversity between samples.</p>
 <p>First, let’s transform the abundances into relative abundances. This is not neccesarry with the functions we will use, but other functions may require it:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>otu_rel <span class="ot">=</span> <span class="fu">apply</span>(otu_table, <span class="dv">2</span>, <span class="cf">function</span>(x) x<span class="sc">/</span><span class="fu">sum</span>(x))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>otu_rel <span class="ot">=</span> <span class="fu">apply</span>(otu_table, <span class="dv">2</span>, <span class="cf">function</span>(x) x<span class="sc">/</span><span class="fu">sum</span>(x))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Then we will calculate the Bray-Curtis dissimilarity:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>bray_dist <span class="ot">=</span> <span class="fu">as.matrix</span>(<span class="fu">vegdist</span>(<span class="fu">t</span>(otu_rel), <span class="at">method =</span> <span class="st">"bray"</span>))</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>times <span class="ot">=</span>  <span class="fu">sapply</span>(<span class="fu">colnames</span>(bray_dist), <span class="cf">function</span>(x) <span class="fu">strsplit</span>(x, <span class="st">'_'</span>)[[<span class="dv">1</span>]][<span class="dv">2</span>])</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>times <span class="ot">=</span> <span class="fu">factor</span>(times, <span class="at">levels =</span> <span class="fu">sort</span>(<span class="fu">unique</span>(times)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>bray_dist <span class="ot">=</span> <span class="fu">as.matrix</span>(<span class="fu">vegdist</span>(<span class="fu">t</span>(otu_rel), <span class="at">method =</span> <span class="st">"bray"</span>))</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>times <span class="ot">=</span>  <span class="fu">sapply</span>(<span class="fu">colnames</span>(bray_dist), <span class="cf">function</span>(x) <span class="fu">strsplit</span>(x, <span class="st">'_'</span>)[[<span class="dv">1</span>]][<span class="dv">2</span>])</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>times <span class="ot">=</span> <span class="fu">factor</span>(times, <span class="at">levels =</span> <span class="fu">sort</span>(<span class="fu">unique</span>(times)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Now that we have the raw distance data, we can do a permutational ANOVA (PERMANOVA) to see if there are significant differences. The PERMANOVA is used to analyze multivariate data that uses a dissimilarity metric. It is a consensus-based approach that uses the whole dataset and random subsets of the data to calculate a test statistic. In R, this can be done with the adonis2() function from the vegan package. PERMANOVA and Adonis tend to be used interchangeably to talk about the same test. To run our Adonis, use the following code:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>adonis<span class="ot">=</span><span class="fu">adonis2</span>(<span class="fu">as.dist</span>(bray_dist) <span class="sc">~</span> times)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>adonis<span class="ot">=</span><span class="fu">adonis2</span>(<span class="fu">as.dist</span>(bray_dist) <span class="sc">~</span> times)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Next, we will create an ordination and plot it to first visualize the differences between our groups.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"ade4"</span>)</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"vegan"</span>)</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>meta <span class="ot">=</span> <span class="fu">metaMDS</span>(bray_dist, <span class="at">k=</span><span class="dv">2</span>) <span class="co"># k=2 to keep only 2 ordinations</span></span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="fu">s.class</span>(</span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>  meta<span class="sc">$</span>points, <span class="at">col =</span> RColorBrewer<span class="sc">::</span><span class="fu">brewer.pal</span>(<span class="fu">length</span>(<span class="fu">levels</span>(times)), <span class="st">'Set1'</span>), <span class="at">cpoint =</span> <span class="dv">2</span>, <span class="at">fac =</span> times)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"ade4"</span>)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"vegan"</span>)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>meta <span class="ot">=</span> <span class="fu">metaMDS</span>(bray_dist, <span class="at">k=</span><span class="dv">2</span>) <span class="co"># k=2 to keep only 2 ordinations</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="fu">s.class</span>(</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  meta<span class="sc">$</span>points, <span class="at">col =</span> RColorBrewer<span class="sc">::</span><span class="fu">brewer.pal</span>(<span class="fu">length</span>(<span class="fu">levels</span>(times)), <span class="st">'Set1'</span>), <span class="at">cpoint =</span> <span class="dv">2</span>, <span class="at">fac =</span> times)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>We can again conduct our PERMANOVA to compare all the groups in a pairwise manner.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"pmartinezarbizu/pairwiseAdonis/pairwiseAdonis"</span>)</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">'pairwiseAdonis'</span>)</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>pairwise<span class="ot">=</span><span class="fu">pairwise.adonis</span>(<span class="fu">as.dist</span>(bray_dist), times, <span class="at">p.adjust.m =</span> <span class="st">'BH'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"pmartinezarbizu/pairwiseAdonis/pairwiseAdonis"</span>)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">'pairwiseAdonis'</span>)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>pairwise<span class="ot">=</span><span class="fu">pairwise.adonis</span>(<span class="fu">as.dist</span>(bray_dist), times, <span class="at">p.adjust.m =</span> <span class="st">'BH'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <section id="task-9-beta-diversity." class="level3">
 <h3 class="anchored" data-anchor-id="task-9-beta-diversity.">Task 9: Beta diversity.</h3>
 <div class="callout callout-style-default callout-note callout-titled">
