@@ -1,39 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://trgn-515.github.io/modules.html</loc>
-    <lastmod>2026-04-08T17:03:40.387Z</lastmod>
-  </url>
-  <url>
-    <loc>https://trgn-515.github.io/modules/1_sequencing_techs/1_sequencing_techs.html</loc>
-    <lastmod>2026-04-08T17:03:40.387Z</lastmod>
-  </url>
-  <url>
-    <loc>https://trgn-515.github.io/modules/5_base_mods/5_base_mods.html</loc>
-    <lastmod>2026-04-08T17:03:40.395Z</lastmod>
-  </url>
-  <url>
-    <loc>https://trgn-515.github.io/modules/0_intro_git/0_intro_git.html</loc>
-    <lastmod>2026-04-08T17:03:40.387Z</lastmod>
-  </url>
-  <url>
     <loc>https://trgn-515.github.io/modules/2_sv/2_sv.html</loc>
-    <lastmod>2026-04-08T17:03:40.389Z</lastmod>
-  </url>
-  <url>
-    <loc>https://trgn-515.github.io/modules/0_intro_git/assignment_template.html</loc>
-    <lastmod>2026-04-08T17:03:40.387Z</lastmod>
-  </url>
-  <url>
-    <loc>https://trgn-515.github.io/modules/3_annotation/3_annotation.html</loc>
-    <lastmod>2026-04-08T17:03:40.390Z</lastmod>
+    <lastmod>2026-04-09T22:10:23.331Z</lastmod>
   </url>
   <url>
     <loc>https://trgn-515.github.io/modules/4_assembly/4_assembly.html</loc>
-    <lastmod>2026-04-08T17:03:40.390Z</lastmod>
+    <lastmod>2026-04-09T22:10:23.332Z</lastmod>
+  </url>
+  <url>
+    <loc>https://trgn-515.github.io/modules/1_sequencing_techs/1_sequencing_techs.html</loc>
+    <lastmod>2026-04-09T22:10:23.330Z</lastmod>
+  </url>
+  <url>
+    <loc>https://trgn-515.github.io/modules/0_intro_git/assignment_template.html</loc>
+    <lastmod>2026-04-09T22:10:23.330Z</lastmod>
   </url>
   <url>
     <loc>https://trgn-515.github.io/index.html</loc>
-    <lastmod>2026-04-08T17:03:40.387Z</lastmod>
+    <lastmod>2026-04-09T22:10:23.329Z</lastmod>
+  </url>
+  <url>
+    <loc>https://trgn-515.github.io/modules.html</loc>
+    <lastmod>2026-04-09T22:10:23.329Z</lastmod>
+  </url>
+  <url>
+    <loc>https://trgn-515.github.io/modules/0_intro_git/0_intro_git.html</loc>
+    <lastmod>2026-04-09T22:10:23.330Z</lastmod>
+  </url>
+  <url>
+    <loc>https://trgn-515.github.io/modules/3_annotation/3_annotation.html</loc>
+    <lastmod>2026-04-09T22:10:23.332Z</lastmod>
+  </url>
+  <url>
+    <loc>https://trgn-515.github.io/modules/5_base_mods/5_base_mods.html</loc>
+    <lastmod>2026-04-09T22:10:23.337Z</lastmod>
+  </url>
+  <url>
+    <loc>https://trgn-515.github.io/modules/6_metagenomics/6_meta.html</loc>
+    <lastmod>2026-04-09T22:10:23.339Z</lastmod>
   </url>
 </urlset>

@@ -1,45 +1,87 @@
 [
   {
-    "objectID": "modules.html",
-    "href": "modules.html",
-    "title": "Modules",
+    "objectID": "modules/2_sv/2_sv.html",
+    "href": "modules/2_sv/2_sv.html",
+    "title": "Assignment 2: Structural variants",
     "section": "",
-    "text": "Here is a list of the course modules."
+    "text": "The first assignment focused on single-nucleotide variants (SNV or SNP), where a single nucleotide is substituted for another. For this assignment, we will detect other types of genetic variation knowns as Indels and Structural Variants:\nTraditionally, indels are considered to be from 1bp to 50bp. This distinction is a bit arbitrary and is mostly based on early alignment tools, which mostly extended gaps (deletions) of up to around 50bp and where thus available to variant callers that relied on alignment statistics reported in the CIGAR string within the BAM file. Biologically, indels are typically caused by Replication slippage, while structural variants are caused by more complex mechanisms, including Nonallelic homologous recombination or Non-homologous end-joining (NHEJ). In reality, there’s no real consensus of when a variant is considered an indel and when it is a large insertion or deletion. Usually, indels are detected by variant callers that also detect SNPs (using the information about the alignment) and structural variants are detected by specialized software.\nWe will again use the human genome standard (HG002) as our gold standard, and we will compare our indels and SV against the set of variants present when comparing HG002 against the reference genome. For indels, we will use the same benchmarking set of variants against the GRCh38 human assembly. For SV, however, there’s only the set of variants in reference to the GRCh37, so we have to use that assembly instead.\nSome reference papers regarding this dataset:\nWe will compare the characteristics and SNP calls for three sequencing technologies: Illumina, PacBio HiFi, and Nanopore.",
+    "crumbs": [
+      "Home",
+      "Module 2: Structural Variants",
+      "Assignment 2: Structural variants"
+    ]
   },
   {
-    "objectID": "modules.html#module-1",
-    "href": "modules.html#module-1",
-    "title": "Modules",
-    "section": "Module 1",
-    "text": "Module 1\n\nSequencing Technologies"
+    "objectID": "modules/2_sv/2_sv.html#illumina",
+    "href": "modules/2_sv/2_sv.html#illumina",
+    "title": "Assignment 2: Structural variants",
+    "section": "Illumina",
+    "text": "Illumina\nUse one of the following variant callers: BCFtools, GATK, or FreeBayes.\n# For bcftools or freebayes\nconda activate /project2/msalomon_1816/trgn_515/conda_env/trgn515\n\n# For GATK\nconda activate /project2/msalomon_1816/trgn_515/conda_env/gatk\nFilters (some of these nomenclature may vary by caller):\n\nMQ &lt; 20\nQUAL &lt; 20\nDP &lt; 20\nAD: if homozoygous, 10 reads; if heterozygous, 5 reads\neg: ‘FMT/GT ~ “1/1” & FMT/AD[:1] &lt; 10’\nYou will have to complete the heterozygous filter on your own",
+    "crumbs": [
+      "Home",
+      "Module 2: Structural Variants",
+      "Assignment 2: Structural variants"
+    ]
   },
   {
-    "objectID": "modules.html#module-2",
-    "href": "modules.html#module-2",
-    "title": "Modules",
-    "section": "Module 2",
-    "text": "Module 2\n\nStructural variants"
+    "objectID": "modules/2_sv/2_sv.html#ont-and-pacbio",
+    "href": "modules/2_sv/2_sv.html#ont-and-pacbio",
+    "title": "Assignment 2: Structural variants",
+    "section": "ONT and PacBio",
+    "text": "ONT and PacBio\nUse Clair3. Clair3 has pre-trained models for different sequencing platforms and flowcell types.\nFor the ONT dataset, we can use this model:\n/project2/msalomon_1816/trgn_515/conda_env/clair/Clair3/models/r941_prom_hac_g360+g422\nThis model is specific to the flowcell used on this dataset (R9.4.1), the machine (PromethION), and the basecaller (HAC model). If any of these change, you need to change the model!\nFor the PacBio dataset, we can use:\n/project2/msalomon_1816/trgn_515/conda_env/clair/Clair3/models/hifi\n\nClair can take a very long time and memory. Make sure to give it enough resources in your SLURM header:\n#SBATCH --cpus-per-task=10\n#SBATCH --mem=50G\nconda activate /project2/msalomon_1816/trgn_515/conda_env/clair\n\nmodel=/project2/msalomon_1816/trgn_515/conda_env/clair/Clair3/models/ont # Change this for PacBio\ninput_bam=&lt;bam_file&gt;\nref_genome=&lt;ref_genome&gt;\nout_dir=&lt;out_dir&gt;\n\nrun_clair3.sh \\\n--bam_fn=$input_bam \\\n--ref_fn=$ref_genome \\\n--threads=$SLURM_CPUS_PER_TAS \\\n--platform=\"ont\" \\\n--model_path=$model \\\n--output=$out_dir\nThe output VCF file will be the file: merge_output.vcf.gz. It contains SNPs and Indels, so you will have to remove indels using the --types flag within bcftools view.\nFilters (some of these nomenclature mary vary by caller):\n\nMQ &lt; 10\nDP &lt; 20\nAD: if homozoygous, 10 reads; if heterozygous, 5 reads\n\nNOTE: Use the Human GRCh38 assembly as reference genome.\n\nCreate a slurm job to run the Indel calling code. Attach your code to the assignment (5pts)",
+    "crumbs": [
+      "Home",
+      "Module 2: Structural Variants",
+      "Assignment 2: Structural variants"
+    ]
   },
   {
-    "objectID": "modules.html#module-3",
-    "href": "modules.html#module-3",
-    "title": "Modules",
-    "section": "Module 3",
-    "text": "Module 3\n\nVariant consequence annotation"
+    "objectID": "modules/4_assembly/4_assembly.html",
+    "href": "modules/4_assembly/4_assembly.html",
+    "title": "Assignment 4: Genome assembly",
+    "section": "",
+    "text": "For this assignment, we will perform de novo assembly of a bacterial genome from Escherichia coli using three different technologies: Illumina, Nanopore and PacBio. The specific strain is E. coli O127:H6 (strain E2348/69). The files used for the assignment and their SRA accession are summarized in the following table:\nThe original reference paper for this dataset:\nThe authors provide a well-curated and visually validated assembly combining multiple technologies. We will use that assembly as our gold standard to compare the different assemblies.\nWe will compare the characteristics and SNP calls for three sequencing technologies: Illumina, PacBio HiFi, and Nanopore.",
+    "crumbs": [
+      "Home",
+      "Module 4: Genome assembly",
+      "Assignment 4: Genome assembly"
+    ]
   },
   {
-    "objectID": "modules.html#module-4",
-    "href": "modules.html#module-4",
-    "title": "Modules",
-    "section": "Module 4",
-    "text": "Module 4\n\nGenome assembly"
+    "objectID": "modules/4_assembly/4_assembly.html#contiguity",
+    "href": "modules/4_assembly/4_assembly.html#contiguity",
+    "title": "Assignment 4: Genome assembly",
+    "section": "Contiguity",
+    "text": "Contiguity\nAssembly contiguity measures how contiguous or broken up is the assembly. A good assembly should have a low number of contigs but very long. Common metrics used to measure contiguity include N50, NG50, L50, LG50, number of contigs, mean contig length etc. QUAST is commonly used to get some of these metrics. You can provide all your assemblies at once to get a comparison:\nNOTE: No need to run this version of the code, we will run it later with additional options.\nconda activate /project2/msalomon_1816/trgn_515/conda_env/quast\n\nquast.py *.fasta\n-o &lt;out_dir&gt;",
+    "crumbs": [
+      "Home",
+      "Module 4: Genome assembly",
+      "Assignment 4: Genome assembly"
+    ]
   },
   {
-    "objectID": "modules.html#module-5",
-    "href": "modules.html#module-5",
-    "title": "Modules",
-    "section": "Module 5",
-    "text": "Module 5\n\nGenome assembly"
+    "objectID": "modules/4_assembly/4_assembly.html#completeness",
+    "href": "modules/4_assembly/4_assembly.html#completeness",
+    "title": "Assignment 4: Genome assembly",
+    "section": "Completeness",
+    "text": "Completeness\nAssembly completeness measures of much of the assembly is missing. If there’s a well-assembled reference genome, we can simply measures completeness by comparing it against it. Otherwise, a common way to measure completeness is by inferring the presence of conserved single-copy genes (core genes) in our assembly and comparing it the expectation given the assembly species. The most commonly used software for that is BUSCO (Benchmarking Universal Single-Copy Orthologs).\nFirst, we start by downloading the dataset that BUSCO will use for the comparison. This is done for you, but the command for E. coli would be:\nbusco --download bacteria\nTo run BUSCO on E. coli:\nbusco -i &lt;assembly.fa&gt; # Input assembly\n-o &lt;out_dir&gt; # Output directory\n-l bacteria_odb10 # Bacteria database. You can incude the full path if already downloaded\n-m genome # Genome assembly\nTo get a comparison of the BUSCO results for all the samples, you need to first get all the BUSCO reports in one folder and then run their comparison script:\n# Get all BUSCO summaries into one folder\nfor folder in *; do scp $folder/short_summary*txt; done\nmkdir -p busco_summaries\nmv short_summary.* busco_summaries/\n\n# Generate comparison plot for all BUSCO results\ngenerate_plot.py -wd busco_summaries",
+    "crumbs": [
+      "Home",
+      "Module 4: Genome assembly",
+      "Assignment 4: Genome assembly"
+    ]
+  },
+  {
+    "objectID": "modules/4_assembly/4_assembly.html#accuracy",
+    "href": "modules/4_assembly/4_assembly.html#accuracy",
+    "title": "Assignment 4: Genome assembly",
+    "section": "Accuracy",
+    "text": "Accuracy\nThe accuracy of the genome assembly is affected by how many mistakes the assembler makes. Assembly accuracy is determined by:\n\nMisassemblies (large-scale rearrangements)\nConsensus errors (mismatches, insertions or deletions)\n\nCalculating the accuracy of an assembly typically requires the use of a reference genome. We can again use QUAST for this by giving it a reference genome:\nquast.py\n*.fasta # Assembly list\n-r &lt;reference_genome.fa&gt; # Reference genome\n-o &lt;out_dir&gt; # Output directory\n\nTask 2: Assessing assembly quality\n\n\n\n\n\n\nNote\n\n\n\nThe latest task consists of a comparison between the variant calls you obtained and the gold standard.\nCompare the following assemblies:\n\nIllumina &lt;!– * ONT Rapid kit\nONT Rapid kit + long-read polishing –&gt;\nONT Ligation kit\nONT Ligation kit + long-read polishing &lt;!– * ONT Ligation kit without shearing\nONT Ligation kit without shearing + long-read polishing –&gt;\nPacBio HiFi\nHybrid Illumina + ONT Ligation kit (Unicycler)\nONT Ligation kit + short-read polishing (POLCA)\n\n\nInterpret the Nx plot produced by QUAST. Explain the plot, the axes, what it shows and why is important (5pts)\nWhat are the sequencing technologies that produce the most contiguous assembly? Does short-read or long-read sequencing produce the most contiguous contigs? (5pts)\nWhat’s the most accurate sequencing technology? (5pts)\nExplain the BUSCO gene completeness plot. What’s the plot showing? (5pts)\nBased on the BUSCO plot, what sequencing technologies produce the most complete assembly? (5pts)\nCan an assembly with a bad Nx plot have a good BUSCO analysis result? Explain your answer (10pts)",
+    "crumbs": [
+      "Home",
+      "Module 4: Genome assembly",
+      "Assignment 4: Genome assembly"
+    ]
   },
   {
     "objectID": "modules/1_sequencing_techs/1_sequencing_techs.html",
@@ -150,52 +192,109 @@
     ]
   },
   {
-    "objectID": "modules/5_base_mods/5_base_mods.html",
-    "href": "modules/5_base_mods/5_base_mods.html",
-    "title": "Assignment 5: Nanopore base modifications",
+    "objectID": "modules/0_intro_git/assignment_template.html",
+    "href": "modules/0_intro_git/assignment_template.html",
+    "title": "Assignment X: Topic Name",
     "section": "",
-    "text": "For this assignment, we will perform differential methylation analysis using single-molecule direct DNA methylation detection from Nanopore sequencing. We will use data generated via Cas9-targeted Nanopore sequencing (nCATS) to compare the methylation profiles of a normal breast epithelial cell line (MCF-10A) against a highly aggressive triple-negative breast cancer cell line (MDA-MB-231). The files used for the assignment and their SRA accessions are summarized in the following table:\nThe original reference paper for this dataset:\nThe authors developed a targeted enrichment strategy that yields extremely high sequencing coverage over specific cancer-associated loci, allowing for highly accurate, native DNA methylation profiling without the need for bisulfite conversion.\nWe will process the raw Nanopore signal data to identify Differentially Methylated Regions (DMRs) linked to cancer development, specifically focusing on the GSTP1 and KRT19 genes.",
-    "crumbs": [
-      "Home",
-      "Module 5: Nanopore base modifications",
-      "Assignment 5: Nanopore base modifications"
-    ]
+    "text": "Markdown is a lightweight markup language that allows you to format text using plain text symbols. It is the industry standard for documentation in bioinformatics and data science. It is widely used primarily due to the following characteristics:\n\nCode-Friendly: It handles code blocks and syntax highlighting natively.\nGit-Friendly: Since it is plain text, Git can track changes line-by-line (unlike Word documents).\nUniversal: It renders automatically on GitHub and converts easily to PDF or HTML."
   },
   {
-    "objectID": "modules/5_base_mods/5_base_mods.html#analyze-modified-bases-at-specific-locations",
-    "href": "modules/5_base_mods/5_base_mods.html#analyze-modified-bases-at-specific-locations",
-    "title": "Assignment 5: Nanopore base modifications",
-    "section": "Analyze modified bases at specific locations",
-    "text": "Analyze modified bases at specific locations\nIf you are not interested in genome wide methylation patterns, it may be handy to subset methylation in specific regions. For human, common regions of interest would be CpG islands.\nYou can get a list of CpG islands from the UCSC genome browser:\nwget -qO- http://hgdownload.cse.ucsc.edu/goldenpath/hg38/database/cpgIslandExt.txt.gz \\\n   | gunzip -c \\\n   | awk 'BEGIN{FS=\"\\t\"; OFS=\"\\t\"} NR&gt;1 {print $2, $3, $4, $5}' \\\n   | bedtools sort -i - &gt; cpg_islands_ucsc.bed\nBecause we are working with a targeted sequencing panel rather than Whole Genome Sequencing, we do not want to scan the entire genome or every single CpG island. Instead, we will restrict our analysis to the specific genes targeted by our panel.\nYou can find those genes in this bed file:\nregions=/project2/msalomon_1816/trgn_515/5_base_mods/bed/gene_targets.bed\nNow, we can pass this target file to modkit dmr pair using the -r flag. This will extract the methylation probabilities from both of our pileup files and calculate the statistical difference only at these specific loci.\nregions=/project2/msalomon_1816/trgn_515/5_base_mods/bed/gene_targets.bed\nreference=/project2/biodb/genomes/Homo_sapiens/NCBI/GRCh38/Sequence/WholeGenomeFasta/genome.fa\n\n$modkit dmr pair\n  -a ${norm_pileup}.gz # Bed with methylation from sample 1\n  -b ${tumor_pileup}.gz # Bed with methylation from sample 2\n  -o &lt;out_file.bed&gt; # Output to stdout if not present\n  -r ${regions} # List of regions in BED format\n  --ref &lt;reference.fa&gt; # Reference genome\n  --base C # may be repeated if multiple modifications are being used\n  --threads &lt;n_threads&gt; # Number of threads\n\nTask 4: Interpreting the DMR Output\n\n\n\n\n\n\nNote\n\n\n\nReview the resulting bed file and consult the ModKit documentation if necessary.\nThe modkit DMR output format is detailed here: https://nanoporetech.github.io/modkit/intro_dmr.html\n\nWhich are the two genes with the higuest differences? Which gene shows hypermethylation (increased methylation) and which shows hypomethylation (decreased methylation) in the tumor sample compared to the normal sample? Which columns did you use to determine this? (10pts)\nWhich of the previous two genes is most likely a tumor supressor gene and which one is most likely an oncogene? How is this related to their methylation pattern? (10pts)\nCompare the results for KRT19 and GPX1. Both have high statistical scores (significance), but how do their effect_size values differ? Which one should we prioritize when looking for drivers of disease? Which one is more likely to be a statistical artifact? (5pts)\nWhy is it statistically more robust to calculate differential methylation across a region (like a CpG island or promoter) rather than looking at individual, isolated cytosines? (5pts)\nIn this analysis, the coordinates used for the DMR covered the entire gene body for each gene. Explain why measuring average methylation changes across an entire entire gene might not be the most appropiate method for identifying biologically meaningful changes, and propose a better approach. (5pts)",
-    "crumbs": [
-      "Home",
-      "Module 5: Nanopore base modifications",
-      "Assignment 5: Nanopore base modifications"
-    ]
+    "objectID": "modules/0_intro_git/assignment_template.html#date-last-modified",
+    "href": "modules/0_intro_git/assignment_template.html#date-last-modified",
+    "title": "Assignment X: Topic Name",
+    "section": "",
+    "text": "Markdown is a lightweight markup language that allows you to format text using plain text symbols. It is the industry standard for documentation in bioinformatics and data science. It is widely used primarily due to the following characteristics:\n\nCode-Friendly: It handles code blocks and syntax highlighting natively.\nGit-Friendly: Since it is plain text, Git can track changes line-by-line (unlike Word documents).\nUniversal: It renders automatically on GitHub and converts easily to PDF or HTML."
   },
   {
-    "objectID": "modules/5_base_mods/5_base_mods.html#visualize-modified-bases-on-igv",
-    "href": "modules/5_base_mods/5_base_mods.html#visualize-modified-bases-on-igv",
-    "title": "Assignment 5: Nanopore base modifications",
-    "section": "Visualize modified bases on IGV",
-    "text": "Visualize modified bases on IGV\nA good way to validate the variants (or methylation in this case) detected is to visually check the alignment. The standard software to do this is Integrative Genomics Viewer (IGV).\nTo visualize modified bases in IGV, follow this instructions:\n\nLoad the reference genome\n\nOpen IGV.\nIn the top-left dropdown menu, ensure you have the correct reference genome selected (e.g., Human hg38). If it is not listed, click Genomes &gt; Select Hosted Genome and search for it.\n\nLoad your BAM files\n\nGo to File &gt; Load from File\nSelect your Normal and Tumor BAM files and click open. (Note: Make sure your .bam.bai index files are located in the exact same folder on your computer as your .bam files, otherwise IGV will throw an error).\n\nEnable base modification colors\n\nBy default, IGV colors reads gray and only highlights mutations/SNPs. We need to tell it to look for the MM and ML methylation tags instead.\nRight-click anywhere in the main alignment track for any of the alignments.\nIn the pop-up menu, hover over Color alignments by and select Base modification (2-color).\nRepeat this exact same process for the other alignment track.\n\nStep 4: Navigate to specific genomic coordinates\n\nUse the search bar at the top to type in a gene name (eg: KRT19) or genomic coordinate (chr:st-end) and hit Enter.\nOnce the reads load, you will see specific cytosine bases light up in color:\n\nRed: Hypermethylated (The sequencer is highly confident a methyl group is present).\nBlue: Hypomethylated (The sequencer is highly confident the base is unmethylated).\nGray/Transparent: The sequencer lacked the confidence to make a definitive call.\n\nTo make it easier to visualize, click View &gt; Squished to make the individual reads thinner.\n\n\n\nTask 5: Visualize modified bases\n\n\n\n\n\n\nNote\n\n\n\nSelect the 2 genes with the highest score from the DMR analysis and visually inspect them in IGV for both the tumor and the normal sample. Attach a screenshot of the genes and answer the following questions:\n\nWhat are the differences in methylation patterns you observe between normal and tumor samples? Are they consistent with the DMR analysis? (10pts)\nDo the methylation changes occur throughout the entirety of the gene or in a localized area? Discuss how these visual results affect our whole-gene DMR analysis and whether you would modify it in light of the IGV check. (10pts)\n\nNavigate to the TP53 gene and answer the following questions:\n\nThis gene had a high statistical score (794). Do the methylation tracks between the tumor and normal sample look drastically different to the naked eye? Why? (5pts)",
-    "crumbs": [
-      "Home",
-      "Module 5: Nanopore base modifications",
-      "Assignment 5: Nanopore base modifications"
-    ]
+    "objectID": "modules/0_intro_git/assignment_template.html#this-is-a-subheader",
+    "href": "modules/0_intro_git/assignment_template.html#this-is-a-subheader",
+    "title": "Assignment X: Topic Name",
+    "section": "This is a subheader",
+    "text": "This is a subheader\nStart each answer pasting the question as given in the pdf. After that, you can add your answer."
   },
   {
-    "objectID": "modules/5_base_mods/5_base_mods.html#loess-methylation-plot.",
-    "href": "modules/5_base_mods/5_base_mods.html#loess-methylation-plot.",
-    "title": "Assignment 5: Nanopore base modifications",
-    "section": "Loess methylation plot.",
-    "text": "Loess methylation plot.\nA common way to visualize aggregate regional methylation changes is through a specific type of scatter/line plot. In this plot, every dot represents a single genomic position, and a smoothed regression line (Loess) shows the broader regional trend.\nWe will do this plot to find regional differences between our tumor and normal sample. Follow this instructions to generate this plot:\n\nDownsampling the data (Bash)\n\nWhole-genome pileup BED files are massive, which will take too long to load it into R or Python. Before writing any plotting code, use the command line to extract the coordinates from the genes we are interested about. You can use a bash utility like awk, bedtools or tabix to filter the bed files. Because we have already gzipped them, the fastest way is to use tabix. For instance, for the KRT19 gene:\n\ntabix normal.bed.gz chr17:41517522-41535711 &gt; normal_KRT19_pileup.bed\ntabix tumor.bed.gz chr17:41517522-41535711 &gt; tumor_KRT19_pileup.bed\n\nUse the /project2/msalomon_1816/trgn_515/5_base_mods/bed/gene_targets.bed to subsample the rest of the genes.\n\nIdentify the right data columns\n\nLook up the bedMethyl format specifications online or in the ModKit documentation (https://github.com/nanoporetech/modkit).\nIdentify which column contains the start coordinate of the cytosine, and which column contains the fraction/percentage of modified reads.\n\nFormat the data\n\n\nImport your downsampled pileup files into your scripting environment.\nCombine the Normal and Tumor datasets for each gene into a single table. Ensure you create a new column that explicitly labels whether a row belongs to the “Normal” or “Tumor” condition.\n\n\nBuild the Plot\n\nPlot the genomic coordinate on the X-axis and the methylation percentage on the Y-axis.\nDraw the individual data points as a scatterplot. Apply transparency to the points so the density is visible.\nOverlay a LOESS (Locally Estimated Scatterplot Smoothing) regression curve for both the Normal and Tumor groups. Color-code the plot so it is easy to distinguish between the two conditions.\n\n\n\nTask 6: Loess methylation plot.\n\n\n\n\n\n\nNote\n\n\n\nDo a Loess methylation plot for each of the 8 genes we have targetted in this assignment. It should look similar to Fig 3b from the data’s original paper (https://www.nature.com/articles/s41587-020-0407-5).\n\nInclude the generated plots for all 8 genes (15pts)\nLook at the scatterplot dots underlying the smoothed curves. Do all neighboring sites share the exact same methylation percentage, or is there high variance from one nucleotide to the next? What does this tell you about the biological “noise” of DNA methylation? (10pts)\nCompare the plot for a gene with a big effect size (like KRT19 or TPM2) to a gene with an effect size near zero (like KRAS). How does the distance between the Tumor and Normal LOESS curves reflect the effect size calculated in Task 4? (10pts)\nCompare the profiles of TPM2 and KRT19. Which one shows broad methylation changes and which one shows localize ones? (5pts)",
-    "crumbs": [
-      "Home",
-      "Module 5: Nanopore base modifications",
-      "Assignment 5: Nanopore base modifications"
-    ]
+    "objectID": "modules/0_intro_git/assignment_template.html#writing-code",
+    "href": "modules/0_intro_git/assignment_template.html#writing-code",
+    "title": "Assignment X: Topic Name",
+    "section": "Writing code",
+    "text": "Writing code\nIf the answer requires code, use a code block starting and ending with single quotation marks like the one below:\n# Write your code here\nYou can add language specific code blocks by using the language’s name:\n# Write your BASH code here\nsamtools view ...\n# Write your R code here\nm1 = glm(...)\n# Write your Python code here\nimport pandas"
+  },
+  {
+    "objectID": "modules/0_intro_git/assignment_template.html#adding-images",
+    "href": "modules/0_intro_git/assignment_template.html#adding-images",
+    "title": "Assignment X: Topic Name",
+    "section": "Adding images",
+    "text": "Adding images\nTo add an image or plot to your answer, save the image in your folder and use the following code:\n\nTo add a caption to your image:\n\n\n\nCaption text\n\n\nIf the image is not in the same folder as your markdown file, you need to put the whole path:\n\nThe square brackets are used to give the image a specific format. For instance:"
+  },
+  {
+    "objectID": "modules/0_intro_git/assignment_template.html#other-important-syntax",
+    "href": "modules/0_intro_git/assignment_template.html#other-important-syntax",
+    "title": "Assignment X: Topic Name",
+    "section": "Other important syntax",
+    "text": "Other important syntax\nYour answer can also include lists. You can start a list with the “*” symbol for a bulleted list or with numbers for a numbered list.\n\nItem 1\nItem 2\n\nOr\n\nItem 1\nItem 2\n\nYou can also make a word italic or bold.\nOnce you finish an answer, put the next question on a different page:"
+  },
+  {
+    "objectID": "modules/0_intro_git/assignment_template.html#adding-tables",
+    "href": "modules/0_intro_git/assignment_template.html#adding-tables",
+    "title": "Assignment X: Topic Name",
+    "section": "Adding tables",
+    "text": "Adding tables\nIf you need to include a table, you can do it like this:\n\n\n\nColumn 1\nColumn 2\n\n\n\n\nText 1\nText 2\n\n\nText 3\nText 4\n\n\n\nMaking tables can be tedius. My favority online software to turn .csv or excel tables into markdown or latex is https://www.tablesgenerator.com/markdown_tables"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "TRGN 515: Advanced Human Genomic Analysis Methods",
+    "section": "",
+    "text": "Below is the schedule of modules, slides, and assignments for the semester. Links will be updated as we progress through the course.\n\n\n\n\n\n\n\n\n\nModule\nSlides\nAssignment\nDue Date\n\n\n\n\nModule 1: Sequencing TechnologiesOverview of NGS, Nanopore, and PacBio.\n HTML PDF\n Assignment 1\n02/27/2026\n\n\nModule 2: Structural Variant DetectionDefinition and types of structural variants (SV), detection of indels and SV.\n HTML PDF\n Assignment 2\n03/10/2026\n\n\nModule 3: Variant Functional AnnotationVariant effect prediction.\n HTML PDF\n Assignment 3\n03/31/2026\n\n\nModule 4: Genome AssemblyIntroduction to genome assembly.\n HTML PDF\n Assignment 4\n04/10/2026\n\n\nModule 5: Epigenetics - MethylationMethylation detection with 3rd Generation sequencing.\n HTML PDF\n Assignment 5\n04/21/2026\n\n\nModule 6: Metagenomics IIntroduction to metagenomics, 16S amplification, and taxonomy.\n HTML PDF\n Assignment 6\nTBD\n\n\nModule 7: Metagenomics IIWhole-genome amplification, MAGs, and functional analysis.\n HTML PDF\n Assignment 7\nTBD\n\n\nModule 9: GWASIntroduction to GWAS, population structure, and linkage disequilibrium.\n HTML PDF\n Assignment 8\nTBD"
+  },
+  {
+    "objectID": "index.html#course-content",
+    "href": "index.html#course-content",
+    "title": "TRGN 515: Advanced Human Genomic Analysis Methods",
+    "section": "",
+    "text": "Below is the schedule of modules, slides, and assignments for the semester. Links will be updated as we progress through the course.\n\n\n\n\n\n\n\n\n\nModule\nSlides\nAssignment\nDue Date\n\n\n\n\nModule 1: Sequencing TechnologiesOverview of NGS, Nanopore, and PacBio.\n HTML PDF\n Assignment 1\n02/27/2026\n\n\nModule 2: Structural Variant DetectionDefinition and types of structural variants (SV), detection of indels and SV.\n HTML PDF\n Assignment 2\n03/10/2026\n\n\nModule 3: Variant Functional AnnotationVariant effect prediction.\n HTML PDF\n Assignment 3\n03/31/2026\n\n\nModule 4: Genome AssemblyIntroduction to genome assembly.\n HTML PDF\n Assignment 4\n04/10/2026\n\n\nModule 5: Epigenetics - MethylationMethylation detection with 3rd Generation sequencing.\n HTML PDF\n Assignment 5\n04/21/2026\n\n\nModule 6: Metagenomics IIntroduction to metagenomics, 16S amplification, and taxonomy.\n HTML PDF\n Assignment 6\nTBD\n\n\nModule 7: Metagenomics IIWhole-genome amplification, MAGs, and functional analysis.\n HTML PDF\n Assignment 7\nTBD\n\n\nModule 9: GWASIntroduction to GWAS, population structure, and linkage disequilibrium.\n HTML PDF\n Assignment 8\nTBD"
+  },
+  {
+    "objectID": "modules.html",
+    "href": "modules.html",
+    "title": "Modules",
+    "section": "",
+    "text": "Here is a list of the course modules."
+  },
+  {
+    "objectID": "modules.html#module-1",
+    "href": "modules.html#module-1",
+    "title": "Modules",
+    "section": "Module 1",
+    "text": "Module 1\n\nSequencing Technologies"
+  },
+  {
+    "objectID": "modules.html#module-2",
+    "href": "modules.html#module-2",
+    "title": "Modules",
+    "section": "Module 2",
+    "text": "Module 2\n\nStructural variants"
+  },
+  {
+    "objectID": "modules.html#module-3",
+    "href": "modules.html#module-3",
+    "title": "Modules",
+    "section": "Module 3",
+    "text": "Module 3\n\nVariant consequence annotation"
+  },
+  {
+    "objectID": "modules.html#module-4",
+    "href": "modules.html#module-4",
+    "title": "Modules",
+    "section": "Module 4",
+    "text": "Module 4\n\nGenome assembly"
+  },
+  {
+    "objectID": "modules.html#module-5",
+    "href": "modules.html#module-5",
+    "title": "Modules",
+    "section": "Module 5",
+    "text": "Module 5\n\nGenome assembly"
   },
   {
     "objectID": "modules/0_intro_git/0_intro_git.html",
@@ -292,91 +391,6 @@
       "Module 0: Sequencing technologies",
       "Module 0: Git and GitHub"
     ]
-  },
-  {
-    "objectID": "modules/2_sv/2_sv.html",
-    "href": "modules/2_sv/2_sv.html",
-    "title": "Assignment 2: Structural variants",
-    "section": "",
-    "text": "The first assignment focused on single-nucleotide variants (SNV or SNP), where a single nucleotide is substituted for another. For this assignment, we will detect other types of genetic variation knowns as Indels and Structural Variants:\nTraditionally, indels are considered to be from 1bp to 50bp. This distinction is a bit arbitrary and is mostly based on early alignment tools, which mostly extended gaps (deletions) of up to around 50bp and where thus available to variant callers that relied on alignment statistics reported in the CIGAR string within the BAM file. Biologically, indels are typically caused by Replication slippage, while structural variants are caused by more complex mechanisms, including Nonallelic homologous recombination or Non-homologous end-joining (NHEJ). In reality, there’s no real consensus of when a variant is considered an indel and when it is a large insertion or deletion. Usually, indels are detected by variant callers that also detect SNPs (using the information about the alignment) and structural variants are detected by specialized software.\nWe will again use the human genome standard (HG002) as our gold standard, and we will compare our indels and SV against the set of variants present when comparing HG002 against the reference genome. For indels, we will use the same benchmarking set of variants against the GRCh38 human assembly. For SV, however, there’s only the set of variants in reference to the GRCh37, so we have to use that assembly instead.\nSome reference papers regarding this dataset:\nWe will compare the characteristics and SNP calls for three sequencing technologies: Illumina, PacBio HiFi, and Nanopore.",
-    "crumbs": [
-      "Home",
-      "Module 2: Structural Variants",
-      "Assignment 2: Structural variants"
-    ]
-  },
-  {
-    "objectID": "modules/2_sv/2_sv.html#illumina",
-    "href": "modules/2_sv/2_sv.html#illumina",
-    "title": "Assignment 2: Structural variants",
-    "section": "Illumina",
-    "text": "Illumina\nUse one of the following variant callers: BCFtools, GATK, or FreeBayes.\n# For bcftools or freebayes\nconda activate /project2/msalomon_1816/trgn_515/conda_env/trgn515\n\n# For GATK\nconda activate /project2/msalomon_1816/trgn_515/conda_env/gatk\nFilters (some of these nomenclature may vary by caller):\n\nMQ &lt; 20\nQUAL &lt; 20\nDP &lt; 20\nAD: if homozoygous, 10 reads; if heterozygous, 5 reads\neg: ‘FMT/GT ~ “1/1” & FMT/AD[:1] &lt; 10’\nYou will have to complete the heterozygous filter on your own",
-    "crumbs": [
-      "Home",
-      "Module 2: Structural Variants",
-      "Assignment 2: Structural variants"
-    ]
-  },
-  {
-    "objectID": "modules/2_sv/2_sv.html#ont-and-pacbio",
-    "href": "modules/2_sv/2_sv.html#ont-and-pacbio",
-    "title": "Assignment 2: Structural variants",
-    "section": "ONT and PacBio",
-    "text": "ONT and PacBio\nUse Clair3. Clair3 has pre-trained models for different sequencing platforms and flowcell types.\nFor the ONT dataset, we can use this model:\n/project2/msalomon_1816/trgn_515/conda_env/clair/Clair3/models/r941_prom_hac_g360+g422\nThis model is specific to the flowcell used on this dataset (R9.4.1), the machine (PromethION), and the basecaller (HAC model). If any of these change, you need to change the model!\nFor the PacBio dataset, we can use:\n/project2/msalomon_1816/trgn_515/conda_env/clair/Clair3/models/hifi\n\nClair can take a very long time and memory. Make sure to give it enough resources in your SLURM header:\n#SBATCH --cpus-per-task=10\n#SBATCH --mem=50G\nconda activate /project2/msalomon_1816/trgn_515/conda_env/clair\n\nmodel=/project2/msalomon_1816/trgn_515/conda_env/clair/Clair3/models/ont # Change this for PacBio\ninput_bam=&lt;bam_file&gt;\nref_genome=&lt;ref_genome&gt;\nout_dir=&lt;out_dir&gt;\n\nrun_clair3.sh \\\n--bam_fn=$input_bam \\\n--ref_fn=$ref_genome \\\n--threads=$SLURM_CPUS_PER_TAS \\\n--platform=\"ont\" \\\n--model_path=$model \\\n--output=$out_dir\nThe output VCF file will be the file: merge_output.vcf.gz. It contains SNPs and Indels, so you will have to remove indels using the --types flag within bcftools view.\nFilters (some of these nomenclature mary vary by caller):\n\nMQ &lt; 10\nDP &lt; 20\nAD: if homozoygous, 10 reads; if heterozygous, 5 reads\n\nNOTE: Use the Human GRCh38 assembly as reference genome.\n\nCreate a slurm job to run the Indel calling code. Attach your code to the assignment (5pts)",
-    "crumbs": [
-      "Home",
-      "Module 2: Structural Variants",
-      "Assignment 2: Structural variants"
-    ]
-  },
-  {
-    "objectID": "modules/0_intro_git/assignment_template.html",
-    "href": "modules/0_intro_git/assignment_template.html",
-    "title": "Assignment X: Topic Name",
-    "section": "",
-    "text": "Markdown is a lightweight markup language that allows you to format text using plain text symbols. It is the industry standard for documentation in bioinformatics and data science. It is widely used primarily due to the following characteristics:\n\nCode-Friendly: It handles code blocks and syntax highlighting natively.\nGit-Friendly: Since it is plain text, Git can track changes line-by-line (unlike Word documents).\nUniversal: It renders automatically on GitHub and converts easily to PDF or HTML."
-  },
-  {
-    "objectID": "modules/0_intro_git/assignment_template.html#date-last-modified",
-    "href": "modules/0_intro_git/assignment_template.html#date-last-modified",
-    "title": "Assignment X: Topic Name",
-    "section": "",
-    "text": "Markdown is a lightweight markup language that allows you to format text using plain text symbols. It is the industry standard for documentation in bioinformatics and data science. It is widely used primarily due to the following characteristics:\n\nCode-Friendly: It handles code blocks and syntax highlighting natively.\nGit-Friendly: Since it is plain text, Git can track changes line-by-line (unlike Word documents).\nUniversal: It renders automatically on GitHub and converts easily to PDF or HTML."
-  },
-  {
-    "objectID": "modules/0_intro_git/assignment_template.html#this-is-a-subheader",
-    "href": "modules/0_intro_git/assignment_template.html#this-is-a-subheader",
-    "title": "Assignment X: Topic Name",
-    "section": "This is a subheader",
-    "text": "This is a subheader\nStart each answer pasting the question as given in the pdf. After that, you can add your answer."
-  },
-  {
-    "objectID": "modules/0_intro_git/assignment_template.html#writing-code",
-    "href": "modules/0_intro_git/assignment_template.html#writing-code",
-    "title": "Assignment X: Topic Name",
-    "section": "Writing code",
-    "text": "Writing code\nIf the answer requires code, use a code block starting and ending with single quotation marks like the one below:\n# Write your code here\nYou can add language specific code blocks by using the language’s name:\n# Write your BASH code here\nsamtools view ...\n# Write your R code here\nm1 = glm(...)\n# Write your Python code here\nimport pandas"
-  },
-  {
-    "objectID": "modules/0_intro_git/assignment_template.html#adding-images",
-    "href": "modules/0_intro_git/assignment_template.html#adding-images",
-    "title": "Assignment X: Topic Name",
-    "section": "Adding images",
-    "text": "Adding images\nTo add an image or plot to your answer, save the image in your folder and use the following code:\n\nTo add a caption to your image:\n\n\n\nCaption text\n\n\nIf the image is not in the same folder as your markdown file, you need to put the whole path:\n\nThe square brackets are used to give the image a specific format. For instance:"
-  },
-  {
-    "objectID": "modules/0_intro_git/assignment_template.html#other-important-syntax",
-    "href": "modules/0_intro_git/assignment_template.html#other-important-syntax",
-    "title": "Assignment X: Topic Name",
-    "section": "Other important syntax",
-    "text": "Other important syntax\nYour answer can also include lists. You can start a list with the “*” symbol for a bulleted list or with numbers for a numbered list.\n\nItem 1\nItem 2\n\nOr\n\nItem 1\nItem 2\n\nYou can also make a word italic or bold.\nOnce you finish an answer, put the next question on a different page:"
-  },
-  {
-    "objectID": "modules/0_intro_git/assignment_template.html#adding-tables",
-    "href": "modules/0_intro_git/assignment_template.html#adding-tables",
-    "title": "Assignment X: Topic Name",
-    "section": "Adding tables",
-    "text": "Adding tables\nIf you need to include a table, you can do it like this:\n\n\n\nColumn 1\nColumn 2\n\n\n\n\nText 1\nText 2\n\n\nText 3\nText 4\n\n\n\nMaking tables can be tedius. My favority online software to turn .csv or excel tables into markdown or latex is https://www.tablesgenerator.com/markdown_tables"
   },
   {
     "objectID": "modules/3_annotation/3_annotation.html",
@@ -523,65 +537,79 @@
     ]
   },
   {
-    "objectID": "modules/4_assembly/4_assembly.html",
-    "href": "modules/4_assembly/4_assembly.html",
-    "title": "Assignment 4: Genome assembly",
+    "objectID": "modules/5_base_mods/5_base_mods.html",
+    "href": "modules/5_base_mods/5_base_mods.html",
+    "title": "Assignment 5: Nanopore base modifications",
     "section": "",
-    "text": "For this assignment, we will perform de novo assembly of a bacterial genome from Escherichia coli using three different technologies: Illumina, Nanopore and PacBio. The specific strain is E. coli O127:H6 (strain E2348/69). The files used for the assignment and their SRA accession are summarized in the following table:\nThe original reference paper for this dataset:\nThe authors provide a well-curated and visually validated assembly combining multiple technologies. We will use that assembly as our gold standard to compare the different assemblies.\nWe will compare the characteristics and SNP calls for three sequencing technologies: Illumina, PacBio HiFi, and Nanopore.",
+    "text": "For this assignment, we will perform differential methylation analysis using single-molecule direct DNA methylation detection from Nanopore sequencing. We will use data generated via Cas9-targeted Nanopore sequencing (nCATS) to compare the methylation profiles of a normal breast epithelial cell line (MCF-10A) against a highly aggressive triple-negative breast cancer cell line (MDA-MB-231). The files used for the assignment and their SRA accessions are summarized in the following table:\nThe original reference paper for this dataset:\nThe authors developed a targeted enrichment strategy that yields extremely high sequencing coverage over specific cancer-associated loci, allowing for highly accurate, native DNA methylation profiling without the need for bisulfite conversion.\nWe will process the raw Nanopore signal data to identify Differentially Methylated Regions (DMRs) linked to cancer development, specifically focusing on the GSTP1 and KRT19 genes.",
     "crumbs": [
       "Home",
-      "Module 4: Genome assembly",
-      "Assignment 4: Genome assembly"
+      "Module 5: Nanopore base modifications",
+      "Assignment 5: Nanopore base modifications"
     ]
   },
   {
-    "objectID": "modules/4_assembly/4_assembly.html#contiguity",
-    "href": "modules/4_assembly/4_assembly.html#contiguity",
-    "title": "Assignment 4: Genome assembly",
-    "section": "Contiguity",
-    "text": "Contiguity\nAssembly contiguity measures how contiguous or broken up is the assembly. A good assembly should have a low number of contigs but very long. Common metrics used to measure contiguity include N50, NG50, L50, LG50, number of contigs, mean contig length etc. QUAST is commonly used to get some of these metrics. You can provide all your assemblies at once to get a comparison:\nNOTE: No need to run this version of the code, we will run it later with additional options.\nconda activate /project2/msalomon_1816/trgn_515/conda_env/quast\n\nquast.py *.fasta\n-o &lt;out_dir&gt;",
+    "objectID": "modules/5_base_mods/5_base_mods.html#analyze-modified-bases-at-specific-locations",
+    "href": "modules/5_base_mods/5_base_mods.html#analyze-modified-bases-at-specific-locations",
+    "title": "Assignment 5: Nanopore base modifications",
+    "section": "Analyze modified bases at specific locations",
+    "text": "Analyze modified bases at specific locations\nIf you are not interested in genome wide methylation patterns, it may be handy to subset methylation in specific regions. For human, common regions of interest would be CpG islands.\nYou can get a list of CpG islands from the UCSC genome browser:\nwget -qO- http://hgdownload.cse.ucsc.edu/goldenpath/hg38/database/cpgIslandExt.txt.gz \\\n   | gunzip -c \\\n   | awk 'BEGIN{FS=\"\\t\"; OFS=\"\\t\"} NR&gt;1 {print $2, $3, $4, $5}' \\\n   | bedtools sort -i - &gt; cpg_islands_ucsc.bed\nBecause we are working with a targeted sequencing panel rather than Whole Genome Sequencing, we do not want to scan the entire genome or every single CpG island. Instead, we will restrict our analysis to the specific genes targeted by our panel.\nYou can find those genes in this bed file:\nregions=/project2/msalomon_1816/trgn_515/5_base_mods/bed/gene_targets.bed\nNow, we can pass this target file to modkit dmr pair using the -r flag. This will extract the methylation probabilities from both of our pileup files and calculate the statistical difference only at these specific loci.\nregions=/project2/msalomon_1816/trgn_515/5_base_mods/bed/gene_targets.bed\nreference=/project2/biodb/genomes/Homo_sapiens/NCBI/GRCh38/Sequence/WholeGenomeFasta/genome.fa\n\n$modkit dmr pair\n  -a ${norm_pileup}.gz # Bed with methylation from sample 1\n  -b ${tumor_pileup}.gz # Bed with methylation from sample 2\n  -o &lt;out_file.bed&gt; # Output to stdout if not present\n  -r ${regions} # List of regions in BED format\n  --ref &lt;reference.fa&gt; # Reference genome\n  --base C # may be repeated if multiple modifications are being used\n  --threads &lt;n_threads&gt; # Number of threads\n\nTask 4: Interpreting the DMR Output\n\n\n\n\n\n\nNote\n\n\n\nReview the resulting bed file and consult the ModKit documentation if necessary.\nThe modkit DMR output format is detailed here: https://nanoporetech.github.io/modkit/intro_dmr.html\n\nWhich are the two genes with the higuest differences? Which gene shows hypermethylation (increased methylation) and which shows hypomethylation (decreased methylation) in the tumor sample compared to the normal sample? Which columns did you use to determine this? (10pts)\nWhich of the previous two genes is most likely a tumor supressor gene and which one is most likely an oncogene? How is this related to their methylation pattern? (10pts)\nCompare the results for KRT19 and GPX1. Both have high statistical scores (significance), but how do their effect_size values differ? Which one should we prioritize when looking for drivers of disease? Which one is more likely to be a statistical artifact? (5pts)\nWhy is it statistically more robust to calculate differential methylation across a region (like a CpG island or promoter) rather than looking at individual, isolated cytosines? (5pts)\nIn this analysis, the coordinates used for the DMR covered the entire gene body for each gene. Explain why measuring average methylation changes across an entire entire gene might not be the most appropiate method for identifying biologically meaningful changes, and propose a better approach. (5pts)",
     "crumbs": [
       "Home",
-      "Module 4: Genome assembly",
-      "Assignment 4: Genome assembly"
+      "Module 5: Nanopore base modifications",
+      "Assignment 5: Nanopore base modifications"
     ]
   },
   {
-    "objectID": "modules/4_assembly/4_assembly.html#completeness",
-    "href": "modules/4_assembly/4_assembly.html#completeness",
-    "title": "Assignment 4: Genome assembly",
-    "section": "Completeness",
-    "text": "Completeness\nAssembly completeness measures of much of the assembly is missing. If there’s a well-assembled reference genome, we can simply measures completeness by comparing it against it. Otherwise, a common way to measure completeness is by inferring the presence of conserved single-copy genes (core genes) in our assembly and comparing it the expectation given the assembly species. The most commonly used software for that is BUSCO (Benchmarking Universal Single-Copy Orthologs).\nFirst, we start by downloading the dataset that BUSCO will use for the comparison. This is done for you, but the command for E. coli would be:\nbusco --download bacteria\nTo run BUSCO on E. coli:\nbusco -i &lt;assembly.fa&gt; # Input assembly\n-o &lt;out_dir&gt; # Output directory\n-l bacteria_odb10 # Bacteria database. You can incude the full path if already downloaded\n-m genome # Genome assembly\nTo get a comparison of the BUSCO results for all the samples, you need to first get all the BUSCO reports in one folder and then run their comparison script:\n# Get all BUSCO summaries into one folder\nfor folder in *; do scp $folder/short_summary*txt; done\nmkdir -p busco_summaries\nmv short_summary.* busco_summaries/\n\n# Generate comparison plot for all BUSCO results\ngenerate_plot.py -wd busco_summaries",
+    "objectID": "modules/5_base_mods/5_base_mods.html#visualize-modified-bases-on-igv",
+    "href": "modules/5_base_mods/5_base_mods.html#visualize-modified-bases-on-igv",
+    "title": "Assignment 5: Nanopore base modifications",
+    "section": "Visualize modified bases on IGV",
+    "text": "Visualize modified bases on IGV\nA good way to validate the variants (or methylation in this case) detected is to visually check the alignment. The standard software to do this is Integrative Genomics Viewer (IGV).\nTo visualize modified bases in IGV, follow this instructions:\n\nLoad the reference genome\n\nOpen IGV.\nIn the top-left dropdown menu, ensure you have the correct reference genome selected (e.g., Human hg38). If it is not listed, click Genomes &gt; Select Hosted Genome and search for it.\n\nLoad your BAM files\n\nGo to File &gt; Load from File\nSelect your Normal and Tumor BAM files and click open. (Note: Make sure your .bam.bai index files are located in the exact same folder on your computer as your .bam files, otherwise IGV will throw an error).\n\nEnable base modification colors\n\nBy default, IGV colors reads gray and only highlights mutations/SNPs. We need to tell it to look for the MM and ML methylation tags instead.\nRight-click anywhere in the main alignment track for any of the alignments.\nIn the pop-up menu, hover over Color alignments by and select Base modification (2-color).\nRepeat this exact same process for the other alignment track.\n\nStep 4: Navigate to specific genomic coordinates\n\nUse the search bar at the top to type in a gene name (eg: KRT19) or genomic coordinate (chr:st-end) and hit Enter.\nOnce the reads load, you will see specific cytosine bases light up in color:\n\nRed: Hypermethylated (The sequencer is highly confident a methyl group is present).\nBlue: Hypomethylated (The sequencer is highly confident the base is unmethylated).\nGray/Transparent: The sequencer lacked the confidence to make a definitive call.\n\nTo make it easier to visualize, click View &gt; Squished to make the individual reads thinner.\n\n\n\nTask 5: Visualize modified bases\n\n\n\n\n\n\nNote\n\n\n\nSelect the 2 genes with the highest score from the DMR analysis and visually inspect them in IGV for both the tumor and the normal sample. Attach a screenshot of the genes and answer the following questions:\n\nWhat are the differences in methylation patterns you observe between normal and tumor samples? Are they consistent with the DMR analysis? (10pts)\nDo the methylation changes occur throughout the entirety of the gene or in a localized area? Discuss how these visual results affect our whole-gene DMR analysis and whether you would modify it in light of the IGV check. (10pts)\n\nNavigate to the TP53 gene and answer the following questions:\n\nThis gene had a high statistical score (794). Do the methylation tracks between the tumor and normal sample look drastically different to the naked eye? Why? (5pts)",
     "crumbs": [
       "Home",
-      "Module 4: Genome assembly",
-      "Assignment 4: Genome assembly"
+      "Module 5: Nanopore base modifications",
+      "Assignment 5: Nanopore base modifications"
     ]
   },
   {
-    "objectID": "modules/4_assembly/4_assembly.html#accuracy",
-    "href": "modules/4_assembly/4_assembly.html#accuracy",
-    "title": "Assignment 4: Genome assembly",
-    "section": "Accuracy",
-    "text": "Accuracy\nThe accuracy of the genome assembly is affected by how many mistakes the assembler makes. Assembly accuracy is determined by:\n\nMisassemblies (large-scale rearrangements)\nConsensus errors (mismatches, insertions or deletions)\n\nCalculating the accuracy of an assembly typically requires the use of a reference genome. We can again use QUAST for this by giving it a reference genome:\nquast.py\n*.fasta # Assembly list\n-r &lt;reference_genome.fa&gt; # Reference genome\n-o &lt;out_dir&gt; # Output directory\n\nTask 2: Assessing assembly quality\n\n\n\n\n\n\nNote\n\n\n\nThe latest task consists of a comparison between the variant calls you obtained and the gold standard.\nCompare the following assemblies:\n\nIllumina &lt;!– * ONT Rapid kit\nONT Rapid kit + long-read polishing –&gt;\nONT Ligation kit\nONT Ligation kit + long-read polishing &lt;!– * ONT Ligation kit without shearing\nONT Ligation kit without shearing + long-read polishing –&gt;\nPacBio HiFi\nHybrid Illumina + ONT Ligation kit (Unicycler)\nONT Ligation kit + short-read polishing (POLCA)\n\n\nInterpret the Nx plot produced by QUAST. Explain the plot, the axes, what it shows and why is important (5pts)\nWhat are the sequencing technologies that produce the most contiguous assembly? Does short-read or long-read sequencing produce the most contiguous contigs? (5pts)\nWhat’s the most accurate sequencing technology? (5pts)\nExplain the BUSCO gene completeness plot. What’s the plot showing? (5pts)\nBased on the BUSCO plot, what sequencing technologies produce the most complete assembly? (5pts)\nCan an assembly with a bad Nx plot have a good BUSCO analysis result? Explain your answer (10pts)",
+    "objectID": "modules/5_base_mods/5_base_mods.html#loess-methylation-plot.",
+    "href": "modules/5_base_mods/5_base_mods.html#loess-methylation-plot.",
+    "title": "Assignment 5: Nanopore base modifications",
+    "section": "Loess methylation plot.",
+    "text": "Loess methylation plot.\nA common way to visualize aggregate regional methylation changes is through a specific type of scatter/line plot. In this plot, every dot represents a single genomic position, and a smoothed regression line (Loess) shows the broader regional trend.\nWe will do this plot to find regional differences between our tumor and normal sample. Follow this instructions to generate this plot:\n\nDownsampling the data (Bash)\n\nWhole-genome pileup BED files are massive, which will take too long to load it into R or Python. Before writing any plotting code, use the command line to extract the coordinates from the genes we are interested about. You can use a bash utility like awk, bedtools or tabix to filter the bed files. Because we have already gzipped them, the fastest way is to use tabix. For instance, for the KRT19 gene:\n\ntabix normal.bed.gz chr17:41517522-41535711 &gt; normal_KRT19_pileup.bed\ntabix tumor.bed.gz chr17:41517522-41535711 &gt; tumor_KRT19_pileup.bed\n\nUse the /project2/msalomon_1816/trgn_515/5_base_mods/bed/gene_targets.bed to subsample the rest of the genes.\n\nIdentify the right data columns\n\nLook up the bedMethyl format specifications online or in the ModKit documentation (https://github.com/nanoporetech/modkit).\nIdentify which column contains the start coordinate of the cytosine, and which column contains the fraction/percentage of modified reads.\n\nFormat the data\n\n\nImport your downsampled pileup files into your scripting environment.\nCombine the Normal and Tumor datasets for each gene into a single table. Ensure you create a new column that explicitly labels whether a row belongs to the “Normal” or “Tumor” condition.\n\n\nBuild the Plot\n\nPlot the genomic coordinate on the X-axis and the methylation percentage on the Y-axis.\nDraw the individual data points as a scatterplot. Apply transparency to the points so the density is visible.\nOverlay a LOESS (Locally Estimated Scatterplot Smoothing) regression curve for both the Normal and Tumor groups. Color-code the plot so it is easy to distinguish between the two conditions.\n\n\n\nTask 6: Loess methylation plot.\n\n\n\n\n\n\nNote\n\n\n\nDo a Loess methylation plot for each of the 8 genes we have targetted in this assignment. It should look similar to Fig 3b from the data’s original paper (https://www.nature.com/articles/s41587-020-0407-5).\n\nInclude the generated plots for all 8 genes (15pts)\nLook at the scatterplot dots underlying the smoothed curves. Do all neighboring sites share the exact same methylation percentage, or is there high variance from one nucleotide to the next? What does this tell you about the biological “noise” of DNA methylation? (10pts)\nCompare the plot for a gene with a big effect size (like KRT19 or TPM2) to a gene with an effect size near zero (like KRAS). How does the distance between the Tumor and Normal LOESS curves reflect the effect size calculated in Task 4? (10pts)\nCompare the profiles of TPM2 and KRT19. Which one shows broad methylation changes and which one shows localize ones? (5pts)",
     "crumbs": [
       "Home",
-      "Module 4: Genome assembly",
-      "Assignment 4: Genome assembly"
+      "Module 5: Nanopore base modifications",
+      "Assignment 5: Nanopore base modifications"
     ]
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "TRGN 515: Advanced Human Genomic Analysis Methods",
+    "objectID": "modules/6_metagenomics/6_meta.html",
+    "href": "modules/6_metagenomics/6_meta.html",
+    "title": "Assignment 6: Introduction to Metagenomics",
     "section": "",
-    "text": "Below is the schedule of modules, slides, and assignments for the semester. Links will be updated as we progress through the course.\n\n\n\n\n\n\n\n\n\nModule\nSlides\nAssignment\nDue Date\n\n\n\n\nModule 1: Sequencing TechnologiesOverview of NGS, Nanopore, and PacBio.\n HTML PDF\n Assignment 1\n02/27/2026\n\n\nModule 2: Structural Variant DetectionDefinition and types of structural variants (SV), detection of indels and SV.\n HTML PDF\n Assignment 2\n03/10/2026\n\n\nModule 3: Variant Functional AnnotationVariant effect prediction.\n HTML PDF\n Assignment 3\n03/31/2026\n\n\nModule 4: Genome AssemblyIntroduction to genome assembly.\n HTML PDF\n Assignment 4\n04/10/2026\n\n\nModule 5: Epigenetics - MethylationMethylation detection with 3rd Generation sequencing.\n HTML PDF\n Assignment 5\n04/21/2026\n\n\nModule 6: GWASIntroduction to GWAS, population structure, and linkage disequilibrium.\n HTML PDF\n Assignment 6\nTBD\n\n\nModule 7: Metagenomics IIntroduction to metagenomics, 16S amplification, and taxonomy.\n HTML PDF\n Assignment 7\nTBD\n\n\nModule 8: Metagenomics IIWhole-genome amplification, MAGs, and functional analysis.\n HTML PDF\n Assignment 8\nTBD"
+    "text": "For this assignment, we will perform a microbiome composition analysis using shotgun sequencing metagenomics. We will use data generated from human fecal samples to compare the gut microbiota profiles of a healthy adult at baseline (Day 0) against their microbial profile immediately following a 4-day intervention with a cocktail of three last-resort antibiotics (Day 4).\nThe files used for the assignment follow the sample name structure: subject_timepoint_readpair.fq.gz. For instance, ERAS6_Dag4opt_wHAXPI002161-78.clean.pair.rmhost.1.fq.gz is subject 6, timepoint 4, forward read.\nThe original reference paper for this dataset:\nThe authors utilized a deep shotgun metagenomic sequencing strategy to observe the effects of antibiotics in the gut microbiota in healthy individuals, allowing for high-resolution taxonomic profiling and the tracking of antibiotic resistance genes (the resistome) over a 6-month period.\nWe will process the raw metagenomic reads to identify differentially abundant microbial taxa and detect shifts in the resistome linked to antibiotic exposure."
   },
   {
-    "objectID": "index.html#course-content",
-    "href": "index.html#course-content",
-    "title": "TRGN 515: Advanced Human Genomic Analysis Methods",
-    "section": "",
-    "text": "Below is the schedule of modules, slides, and assignments for the semester. Links will be updated as we progress through the course.\n\n\n\n\n\n\n\n\n\nModule\nSlides\nAssignment\nDue Date\n\n\n\n\nModule 1: Sequencing TechnologiesOverview of NGS, Nanopore, and PacBio.\n HTML PDF\n Assignment 1\n02/27/2026\n\n\nModule 2: Structural Variant DetectionDefinition and types of structural variants (SV), detection of indels and SV.\n HTML PDF\n Assignment 2\n03/10/2026\n\n\nModule 3: Variant Functional AnnotationVariant effect prediction.\n HTML PDF\n Assignment 3\n03/31/2026\n\n\nModule 4: Genome AssemblyIntroduction to genome assembly.\n HTML PDF\n Assignment 4\n04/10/2026\n\n\nModule 5: Epigenetics - MethylationMethylation detection with 3rd Generation sequencing.\n HTML PDF\n Assignment 5\n04/21/2026\n\n\nModule 6: GWASIntroduction to GWAS, population structure, and linkage disequilibrium.\n HTML PDF\n Assignment 6\nTBD\n\n\nModule 7: Metagenomics IIntroduction to metagenomics, 16S amplification, and taxonomy.\n HTML PDF\n Assignment 7\nTBD\n\n\nModule 8: Metagenomics IIWhole-genome amplification, MAGs, and functional analysis.\n HTML PDF\n Assignment 8\nTBD"
+    "objectID": "modules/6_metagenomics/6_meta.html#rarefaction",
+    "href": "modules/6_metagenomics/6_meta.html#rarefaction",
+    "title": "Assignment 6: Introduction to Metagenomics",
+    "section": "Rarefaction",
+    "text": "Rarefaction\nAn important step in analyzing sequencing data is rarefaction. Rarefaction involves randomly subsetting samples so that all samples have even sequencing depth.\n\nTask 3: Rarefaction.\n\n\n\n\n\n\nNote\n\n\n\n\nWhy is important to have even sequencing depth? (10pts)\n\n\n\nTo rarefy our dataset, we must first visualize the rarefaction curve of our samples using the vegan package. To do this, we need to create a dataframe that vegan can work with from our OTU table.\nrarecurve(as.data.frame(t(otu_table)), step=100,cex=0.5,label=TRUE)\n\n\nTask 4: Rarefaction curve.\n\n\n\n\n\n\nNote\n\n\n\n\nDescribe the rarefaction plot. What does the x-axis mean? What does the y-axis mean? What’s the main conclusion you get out of the plot? (10pts)\nWhy is this plot important? (10pts)\nThe curve seems to plateau. Is this a good or a bad thing? Why? (10pts)\n\n\n\nBased on the rarefaction curve, choose a number to rarefy to and use the package GUniFrac:\n\n\nTask 5: Rarefaction number.\n\n\n\n\n\n\nNote\n\n\n\n\nWhat number have you chosen for the rarefaction? (5pts)\nIs this the only number you could have chosen? Could you go lower? Could you go higher? (5pts)\n\n\n\nn_depth=&lt;n&gt;\notu_table = Rarefy(t(otu_table), depth = n_depth)\notu_table = t(otu_table$otu.tab.rff)\n\n\nTask 6: Rarefaction curve.\n\n\n\n\n\n\nNote\n\n\n\n\nRepeat the rarefaction curve with your rarefied table. Explain the differences between the curves before and after rarefaction (10pts)"
+  },
+  {
+    "objectID": "modules/6_metagenomics/6_meta.html#alpha-diversity",
+    "href": "modules/6_metagenomics/6_meta.html#alpha-diversity",
+    "title": "Assignment 6: Introduction to Metagenomics",
+    "section": "Alpha diversity",
+    "text": "Alpha diversity\nAlpha diversity measures diversity within a sample.\n\nRichness\nRichness measures the number of distinct species within a sample. We can do this within R:\nsp_rich = apply(otu_table, 2, function(x) length(x[x != 0]))\nWithin the vegan package you can also use:\nsp_rich = specnumber(t(otu_table))\n\n\nTask 7: Species richness.\n\n\n\n\n\n\nNote\n\n\n\n\nPlot a boxplot of the richness per time point (0, 4, 8, 42 and 180). X-axis will be each timepoint while y-axis will show richness. (10pts)\nWhat are the effects of antibiotic usage on the gut microbiome richness given this plot? (10pts)\n\n\n\n\n\nOther measures of diversity\nThere are multiple diversity measures. Some of them will take into account the richness, and others both the richness and the eveness.\n# Shannon diversity\nshannon_div = vegan::diversity(t(otu_table), index = \"shannon\")\n\n# Simpson diversity\nsimpson_div = vegan::diversity(t(otu_table), index = \"simpson\")\n\n# Fisher diversity\nsimpson_div = vegan::fisher.alpha(t(otu_table))\n\n\nAnalyze differences in alpha diversity\nThe Mann-Whitney U Test, also called Wilcoxon Rank Sum Test, is a non-parametric statistical test that is used to compare two groups, as we have here in our dataset. Being a non-parametric test, it does not assume normalcy in our data (unlike Student’s test). The test assesses if the two groups are from the same population, i.e. whether they are equal.\nWe will do it for the species richness.\nsp_rich = apply(otu_table, 2, function(x) length(x[x != 0]))\ndf = data.frame('richness' = as.numeric(sp_rich), 'time' = trimws(gsub(\".*_\",\"\",names(sp_rich))))\ndf$time = factor(df$time, levels = c(0, 4, 8, 42, 180))\nWe can only compare two groups using the Mann-Whitney U Test:\nm1 = wilcox.test(as.numeric(richness) ~ time, data = df[df$time %in% c(0, 4),])\nTo compare more than two groups,we are going to employ the Kruskal-Wallis test, which is a further extension of the Mann-Whiteny U test for three or more groups. Again, we want to find out if the sample groups are representative of different populations, and therefore different from each other.\nm2 = kruskal.test(as.numeric(richness) ~ time, data = df)\nUsing the Kruskal Test, we can only go so far as to say that there are differences between the groups. However, we don’t know exactly which groups are different. And, because we are comparing more than 2 groups, we must incorporate multiple test correction as well.Because the Kruskal-Wallis test uses a rank-sum approach, it is appropriate to use a post-hoc test which preserves these ranks, such as Dunn’s test (but an alternative could be the Conover-Iman test).\nInstead of evaluating whether any of the groups are different, Dunn’s test uses pairwise comparisons to evaluate which groups might be significantly different from each other. And, we will use the Benjamini-Hochberg multiple test correction method to mitigate the false-discovery rate that is inherent to a series of pairwise tests.\nm3 = rstatix::dunn_test(data = df, richness ~ time, p.adjust.method = \"BH\")\n\n\nTask 8: Kruskal test.\n\n\n\n\n\n\nNote\n\n\n\n\nWhat groups are significantly different from each other? (10pts)"
+  },
+  {
+    "objectID": "modules/6_metagenomics/6_meta.html#beta-diversity",
+    "href": "modules/6_metagenomics/6_meta.html#beta-diversity",
+    "title": "Assignment 6: Introduction to Metagenomics",
+    "section": "Beta diversity",
+    "text": "Beta diversity\nBeta diversity measures diversity between samples.\nFirst, let’s transform the abundances into relative abundances. This is not neccesarry with the functions we will use, but other functions may require it:\notu_rel = apply(otu_table, 2, function(x) x/sum(x))\nThen we will calculate the Bray-Curtis dissimilarity:\nbray_dist = as.matrix(vegdist(t(otu_rel), method = \"bray\"))\ntimes =  sapply(colnames(bray_dist), function(x) strsplit(x, '_')[[1]][2])\ntimes = factor(times, levels = sort(unique(times)))\nNow that we have the raw distance data, we can do a permutational ANOVA (PERMANOVA) to see if there are significant differences. The PERMANOVA is used to analyze multivariate data that uses a dissimilarity metric. It is a consensus-based approach that uses the whole dataset and random subsets of the data to calculate a test statistic. In R, this can be done with the adonis2() function from the vegan package. PERMANOVA and Adonis tend to be used interchangeably to talk about the same test. To run our Adonis, use the following code:\nadonis=adonis2(as.dist(bray_dist) ~ times)\nNext, we will create an ordination and plot it to first visualize the differences between our groups.\nlibrary(\"ade4\")\nlibrary(\"vegan\")\n\nmeta = metaMDS(bray_dist, k=2) # k=2 to keep only 2 ordinations\n\ns.class(\n  meta$points, col = RColorBrewer::brewer.pal(length(levels(times)), 'Set1'), cpoint = 2, fac = times)\nWe can again conduct our PERMANOVA to compare all the groups in a pairwise manner.\ndevtools::install_github(\"pmartinezarbizu/pairwiseAdonis/pairwiseAdonis\")\nlibrary('pairwiseAdonis')\n\npairwise=pairwise.adonis(as.dist(bray_dist), times, p.adjust.m = 'BH')\n\nTask 9: Beta diversity.\n\n\n\n\n\n\nNote\n\n\n\n\nLook at the MDS plot. What conclusion do you get visually? (10pts)\nAnaluze the pairwise object from the pairwise adonis result. What groups are significantly different? (5pts)"
   }
 ]
