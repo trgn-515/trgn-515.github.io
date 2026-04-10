@@ -297,7 +297,7 @@ mkdir -p busco_summaries
 mv short_summary.* busco_summaries/
 
 # Generate comparison plot for all BUSCO results
-generate_plot.py -wd busco_summaries
+busco --plot busco_summaries
 ```
 
 ## Accuracy
