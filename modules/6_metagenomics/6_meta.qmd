@@ -19,7 +19,7 @@ format:
 
 For this assignment, we will perform a microbiome composition analysis using shotgun sequencing metagenomics. We will use data generated from human fecal samples to compare the gut microbiota profiles of a healthy adult at baseline (Day 0) against their microbial profile immediately following a 4-day intervention with a cocktail of three last-resort antibiotics (Day 4). In total, we will have samples for days 0, 4, 8, 42, and 180.
 
-The files used for the assignment follow the sample name structure: subject_timepoint_readpair.fq.gz. For instance, ERAS6_Dag4opt_wHAXPI002161-78.clean.pair.rmhost.1.fq.gz is subject 6, timepoint 4, forward read.
+The files used for the assignment follow the sample name structure: subject_timepoint_readpair.fq.gz. For instance, ERAS6_Dag4_R1.fq.gz is subject 6, timepoint 4, forward read.
 
 The original reference paper for this dataset:
 
@@ -93,7 +93,8 @@ conda activate /project2/msalomon_1816/trgn_515/conda_env/kraken
 kraken_db=/project2/msalomon_1816/trgn_515/6_metagenomics/k2_db
 
 kraken2
-  --db $kraken_db
+  --db $kraken_db # Kraken2 database
+  --use-names # Use species names
   --threads $SLURM_CPUS_PER_TASK # Multithreading
   --paired <fwd.fastq.gz> <rev.fastq.gz>
   --report <sample_name>.kreport.tsv
@@ -127,7 +128,7 @@ bracken
 
 We will continue the rest of the taxonomic analysis in R.
 
-Load the libraries and the data:
+Load the libraries or install them:
 
 ```r
 library(phyloseq)
@@ -135,78 +136,71 @@ library(vegan)
 library(ggplot2)
 library(taxonomizr)
 library(GUniFrac)
-
-data=read.table("/project/msalomon_1385/TRGN_516/microbiome/metaphlan", header = F)
+library(ade4)
 ```
 
-```r
-data$V1 = sapply(data$V1, function(x) rev(strsplit(x, '[|]')[[1]])[1])
-data$V1 = substring(data$V1, 4)
+Next we need to format the data. The final output needs to be a species matrix, where rows are samples, columns are species and the values of the matrix are read numbers.
 
-colnames(data) = c('taxa', 'sample10_0','sample10_180','sample10_42','sample10_8','sample2_0',
-                   'sample2_42','sample2_4','sample2_8','sample4_0','sample4_180','sample4_42',
-                   'sample4_4','sample4_8','sample6_0','sample6_180','sample6_42','sample6_4',
-                   'sample6_8','sample7_0','sample7_180','sample7_42','sample7_4','sample7_8',
-                   'sample8_0','sample8_180','sample8_42','sample8_8','sample9_0','sample9_180',
-                   'sample9_42','sample9_4','sample9_8')
-```
+Follow this steps for each sample:
 
-Create taxonomic table
 
-```r
-otu_table = as.matrix(data[,-1])
-rownames(otu_table) = data$taxa
-```
+1. Get a list of all Bracken files in that directory
+2. Create an empty list to store the data from each sample
+3. Extract the sample name from the filename
+4. Read the corresponding Bracken file
+5. Parse species name to remove the Tax id between parenthesis
+6. Subset to keep only the species name and the estimated read counts
+7. Add a variable with the sample name
+8. Store the data frame within the empty list using the sample name
+9. Transform the list into a matrix
+10. Replace NA values with 0
+11. Set the species names as the row names
+
 
 Remove low frequency (rare) species:
 
-```r
+11. Remove species that have more than 100 reads in at least one sample
+12. Remove species that appear in less than 2 samples
+
+<!-- ```r
 otu_table = otu_table[apply(otu_table, 1, function(x) any(x >= 100)),]
 otu_table = otu_table[apply(otu_table, 1, function(x) length(x[x != 0])>=2),]
-```
+``` -->
 
 ## Rarefaction
 
-An important step in analyzing sequencing data is rarefaction. Rarefaction involves randomly subsetting samples so that all samples have even sequencing depth.
+A rarefaction curve shows the number of species found as sequencing depth increases. This tells us about whether we’ve sequenced our samples sufficiently to capture all of the diversity within them.
 
-
-### Task 3: Rarefaction.
-::: {.callout-note}
-1. Why is important to have even sequencing depth? **(10pts)**
-:::
-
-
-To rarefy our dataset, we must first visualize the rarefaction curve of our samples using the `vegan` package. To do this, we need to create a dataframe that vegan can work with from our OTU table.
+We can visualize the rarefaction curve of our samples using the `vegan` package. To do this, we need to create a dataframe that vegan can work with from our OTU table.
 
 ```r
 rarecurve(as.data.frame(t(otu_table)), step=100,cex=0.5,label=TRUE)
 ```
 
-
-### Task 4: Rarefaction curve.
+### Task 2: Rarefaction curve.
 ::: {.callout-note}
 1. Describe the rarefaction plot. What does the x-axis mean? What does the y-axis mean? What's the main conclusion you get out of the plot? **(10pts)**
 2. Why is this plot important? **(10pts)**
-3. The curve seems to plateau. Is this a good or a bad thing? Why? **(10pts)**
+3. Does the number of species keep increasing with depth or does the curve plateau. Is this a good or a bad thing? Why? **(10pts)**
 :::
 
-Based on the rarefaction curve, choose a number to rarefy to and use the package `GUniFrac`:
-
-
-### Task 5: Rarefaction number.
-::: {.callout-note}
-1. What number have you chosen for the rarefaction? **(5pts)**
-2. Is this the only number you could have chosen? Could you go lower? Could you go higher? **(5pts)**
-:::
 
 ```r
 n_depth=<n>
+
 otu_table = Rarefy(t(otu_table), depth = n_depth)
 otu_table = t(otu_table$otu.tab.rff)
 ```
 
+### Task 3: Rarefaction.
+::: {.callout-note}
+1. Why is important to have even sequencing depth? **(10pts)**
+2. What number have you chosen for the rarefaction? **(5pts)**
+2. Is this the only number you could have chosen? What's the highest number you could choose? **(5pts)**
+:::
 
-### Task 6: Rarefaction curve.
+
+### Task 4: Rarefaction curve.
 ::: {.callout-note}
 1. Repeat the rarefaction curve with your rarefied table. Explain the differences between the curves before and after rarefaction  **(10pts)**
 :::
@@ -217,9 +211,11 @@ Alpha diversity measures diversity within a sample.
 
 ### Richness
 
-Richness measures the number of distinct species within a sample. We can do this within R:
+Richness measures the number of distinct species within a sample.
 
-```r
+<!-- We can do this within R: -->
+
+<!-- ```r
 sp_rich = apply(otu_table, 2, function(x) length(x[x != 0]))
 ```
 
@@ -227,19 +223,19 @@ Within the `vegan` package you can also use:
 
 ```r
 sp_rich = specnumber(t(otu_table))
-```
+``` -->
 
 
-### Task 7: Species richness.
+### Task 5: Species richness.
 ::: {.callout-note}
-1. Plot a boxplot of the richness per time point (0, 4, 8, 42 and 180). X-axis will be each timepoint while y-axis will show richness.  **(10pts)**
-2. What are the effects of antibiotic usage on the gut microbiome richness given this plot? **(10pts)**
+1. Plot a boxplot of the richness per time point (0, 4, 8, 42 and 180). X-axis will be each timepoint while y-axis will show richness. **(10pts)**
+2. Based on this plot, what are the effects of antibiotic usage on the gut microbiome's richness? **(10pts)**
 :::
 
 
 ### Other measures of diversity
 
-There are multiple diversity measures. Some of them will take into account the richness, and others both the richness and the eveness.
+There are multiple diversity measures. Some, like richness, only count presence/absence. Others, like Shannon and Simpson, account for both richness and evenness (how evenly the read counts are distributed among the species).
 
 ```r
 # Shannon diversity
@@ -254,46 +250,49 @@ simpson_div = vegan::fisher.alpha(t(otu_table))
 
 ### Analyze differences in alpha diversity
 
-The Mann-Whitney U Test, also called Wilcoxon Rank Sum Test, is a non-parametric statistical test that is used to compare two groups, as we have here in our dataset. Being a non-parametric test, it does not assume normalcy in our data (unlike Student's test). The test assesses if the two groups are from the same population, i.e. whether they are equal.
+We want to know if the drop in diversity after antibiotic administration is statistically significant.
 
-We will do it for the species richness.
-
-```r
-sp_rich = apply(otu_table, 2, function(x) length(x[x != 0]))
-df = data.frame('richness' = as.numeric(sp_rich), 'time' = trimws(gsub(".*_","",names(sp_rich))))
-df$time = factor(df$time, levels = c(0, 4, 8, 42, 180))
-```
-
-We can only compare two groups using the Mann-Whitney U Test:
+First, we create a dataframe holding our richness values and their corresponding timepoints. We must explicitly set the factor levels so R doesn't sort them alphabetically (which would put Day 180 before Day 4).
 
 ```r
-m1 = wilcox.test(as.numeric(richness) ~ time, data = df[df$time %in% c(0, 4),])
+df = data.frame(
+  'richness' = as.numeric(sp_rich), 
+  'time' = sapply(names(sp_rich), function(x) strsplit(x, '_')[[1]][2])
+)
+df$time = factor(df$time, levels = c("0", "4", "8", "42", "180"))
 ```
 
-To compare more than two groups,we are going to employ the Kruskal-Wallis test, which is a further extension of the Mann-Whiteny U test for three or more groups. Again, we want to find out if the sample groups are representative of different populations, and therefore different from each other.
+The Mann-Whitney U Test (Wilcoxon Rank Sum Test) is a non-parametric test used to compare two groups. Being a non-parametric test, it does not assume normalcy in our data (unlike Student's test). We will use it to compare baseline (Day 0) directly against the immediate post-antibiotic state (Day 4):
+
+```r
+m1 = wilcox.test(richness ~ time, data = df[df$time %in% c("0", "4"),])
+```
+
+To compare all timepoints simultaneously, we use the Kruskal-Wallis test, which is a non-parametric alternative to ANOVA:
 
 ```r
 m2 = kruskal.test(as.numeric(richness) ~ time, data = df)
 ```
 
-Using the Kruskal Test, we can only go so far as to say that there are differences between the groups. However, we don't know exactly which groups are different. And, because we are comparing more than 2 groups, we must incorporate multiple test correction as well.Because the Kruskal-Wallis test uses a rank-sum approach, it is appropriate to use a post-hoc test which preserves these ranks, such as Dunn's test (but an alternative could be the Conover-Iman test).
+Using the Kruskal Test, we can only say that there are differences between the groups. However, we don't know exactly which groups are different.
 
-Instead of evaluating whether any of the groups are different, Dunn's test uses pairwise comparisons to evaluate which groups might be significantly different from each other. And, we will use the Benjamini-Hochberg multiple test correction method to mitigate the false-discovery rate that is inherent to a series of pairwise tests.
+Instead of evaluating whether any of the groups are different, Dunn's test uses pairwise comparisons to evaluate which groups might be significantly different from each other. We will use the Benjamini-Hochberg multiple test correction method to mitigate the false-discovery rate that is inherent to a series of pairwise tests.
 
 ```r
 m3 = rstatix::dunn_test(data = df, richness ~ time, p.adjust.method = "BH")
 ```
 
 
-### Task 8: Kruskal test.
+### Task 6: Kruskal test.
 ::: {.callout-note}
-1. What groups are significantly different from each other? **(10pts)**
+1. Look at the output of the Dunn's test. Which specific timepoint comparisons are significantly different from each other? **(10pts)**
+2. Does the gut microbiome richness return to baseline levels by Day 180? Use the statistical output to justify your answer. **(10pts)**
 :::
 
 
 ## Beta diversity
 
-Beta diversity measures diversity between samples.
+Beta diversity measures the difference in microbial composition between samples.
 
 First, let's transform the abundances into relative abundances. This is not neccesarry with the functions we will use, but other functions may require it:
 
@@ -318,9 +317,6 @@ adonis=adonis2(as.dist(bray_dist) ~ times)
 Next, we will create an ordination and plot it to first visualize the differences between our groups. 
 
 ```r
-library("ade4")
-library("vegan")
-
 meta = metaMDS(bray_dist, k=2) # k=2 to keep only 2 ordinations
 
 s.class(
@@ -337,11 +333,84 @@ pairwise=pairwise.adonis(as.dist(bray_dist), times, p.adjust.m = 'BH')
 ```
 
 
-### Task 9: Beta diversity.
+### Task 7: Beta diversity.
 ::: {.callout-note}
 1. Look at the MDS plot. What conclusion do you get visually? **(10pts)**
-2. Analuze the `pairwise` object from the pairwise adonis result. What groups are significantly different? **(5pts)**
+2. Analyze the `pairwise` object from the pairwise adonis result. What groups are significantly different? **(5pts)**
 :::
+
+## Beta Diversity with compositional analysis
+
+Because sequencers yield a fixed number of reads regardless of the actual bacterial load in the gut, microbiome data is compositional. An increase in the relative abundance of one species forces a decrease in others. To properly handle this mathematically, we apply a Centered Log-Ratio (CLR) transformation.
+
+Standard log transformations cannot handle the value 0, and microbiome data is very sparse (full of zeros). To handle that, we will use the Robust Centered Log-Ratio (rCLR) transformation.
+
+We can apply this transformation directly using the vegan package:
+
+```r
+otu_clr = vegan::decostand(t(otu_table), method = "rclr")
+```
+
+We can calculate the Euclidean distance on the CLR transformed data. This is the Aitchison distance.
+
+```r
+aitchison_dist = vegan::vegdist(otu_rclr, method = "euclidean")
+
+# Extract timepoints for statistical grouping
+times = sapply(rownames(otu_clr), function(x) strsplit(x, '_')[[1]][2])
+times = factor(times, levels = c("0", "4", "8", "42", "180"))
+```
+
+Now that we have our distance matrix, we perform a permutational ANOVA (PERMANOVA) using `adonis2` to see if the overall community composition shifts significantly across the timepoints.
+
+```r
+# Global PERMANOVA test
+adonis_result = adonis2(aitchison_dist ~ times)
+```
+
+We can visualize these differences using Principal Component Analysis (PCA). Because we transformed our data into Euclidean space using CLR, PCA is the correct ordination method (rather than NMDS).
+
+```r
+# Perform PCA on the CLR-transformed data
+pca = prcomp(otu_clr)
+
+# Create a dataframe for plotting
+pca_df = data.frame(
+  pc1 = pca$x[,1], 
+  pc1 = pca$x[,2], 
+  time = times
+)
+
+# Calculate variance explained by the first two PCs
+var_explained = round(100 * pca$sdev^2 / sum(pca$sdev^2), 1)
+
+# Plot the PCA
+ggplot(pca_df, aes(x = pc1, y = pc2, color = time)) +
+  geom_point(size = 4, alpha = 0.8) +
+  scale_color_brewer(palette = "Set1") +
+  stat_ellipse(level = 0.95, linetype = 2) +
+  labs(
+    x = paste0("PC1 (", var_explained[1], "%)"),
+    y = paste0("PC2 (", var_explained[2], "%)")
+  ) +
+  theme_minimal()
+```
+
+Finally, we conduct a pairwise PERMANOVA to see exactly which timepoints harbor significantly different community structures compared to baseline and to each other.
+
+```r
+# Pairwise PERMANOVA with Benjamini-Hochberg multiple test correction
+pairwise = pairwise.adonis(robust_aitchison_dist, times, p.adjust.m = 'BH')
+print(pairwise)
+```
+
+### Task 8: Beta diversity.
+::: {.callout-note}
+
+1. Look at the PCA plot. Describe the trajectory of the microbiome composition from Day 0 through Day 180. Does the Day 180 community visually overlap with Day 0? What does this imply about microbiome resilience? **(10pts)**
+2. Analyze the pairwise object from the pairwise adonis result. Are the community compositions at Day 0 and Day 180 statistically significantly different from each other? **(5pts)**
+:::
+
 
 <!-- # Metagenomic assembly
 
