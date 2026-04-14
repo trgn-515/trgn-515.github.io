@@ -404,7 +404,7 @@ pairwise = pairwise.adonis(robust_aitchison_dist, times, p.adjust.m = 'BH')
 print(pairwise)
 ```
 
-### Task 8: Beta diversity.
+### Task 8: Beta diversity for compositional data.
 ::: {.callout-note}
 
 1. Look at the PCA plot. Describe the trajectory of the microbiome composition from Day 0 through Day 180. Does the Day 180 community visually overlap with Day 0? What does this imply about microbiome resilience? **(10pts)**
