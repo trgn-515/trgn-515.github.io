@@ -209,7 +209,7 @@ otu_table = t(otu_table$otu.tab.rff)
 
 Alpha diversity measures diversity within a sample.
 
-### Richness
+#### Richness
 
 Richness measures the number of distinct species within a sample.
 
@@ -233,7 +233,7 @@ sp_rich = specnumber(t(otu_table))
 :::
 
 
-### Other measures of diversity
+#### Other measures of diversity
 
 There are multiple diversity measures. Some, like richness, only count presence/absence. Others, like Shannon and Simpson, account for both richness and evenness (how evenly the read counts are distributed among the species).
 
@@ -248,7 +248,7 @@ simpson_div = vegan::diversity(t(otu_table), index = "simpson")
 simpson_div = vegan::fisher.alpha(t(otu_table))
 ```
 
-### Analyze differences in alpha diversity
+#### Analyze differences in alpha diversity
 
 We want to know if the drop in diversity after antibiotic administration is statistically significant.
 
