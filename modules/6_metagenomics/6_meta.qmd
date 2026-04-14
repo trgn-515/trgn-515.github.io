@@ -69,6 +69,8 @@ samtools fastq -1 paired1.fq -2 paired2.fq -0 /dev/null -s /dev/null -n unmapped
 Highly conserved regions can cause missassignments during taxonomic classification. To solve this, we can remove regions in the genome with low entropy. We will use BBduck for this.
 
 ```sh
+conda activate /project2/msalomon_1816/trgn_515/conda_env/bbmap
+
 bbduk.sh
 int=f
 in=stdin.fq
