@@ -316,22 +316,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#rarefaction" id="toc-rarefaction" class="nav-link" data-scroll-target="#rarefaction">Rarefaction</a>
   <ul class="collapse">
+  <li><a href="#task-2-rarefaction-curve." id="toc-task-2-rarefaction-curve." class="nav-link" data-scroll-target="#task-2-rarefaction-curve.">Task 2: Rarefaction curve.</a></li>
   <li><a href="#task-3-rarefaction." id="toc-task-3-rarefaction." class="nav-link" data-scroll-target="#task-3-rarefaction.">Task 3: Rarefaction.</a></li>
   <li><a href="#task-4-rarefaction-curve." id="toc-task-4-rarefaction-curve." class="nav-link" data-scroll-target="#task-4-rarefaction-curve.">Task 4: Rarefaction curve.</a></li>
-  <li><a href="#task-5-rarefaction-number." id="toc-task-5-rarefaction-number." class="nav-link" data-scroll-target="#task-5-rarefaction-number.">Task 5: Rarefaction number.</a></li>
-  <li><a href="#task-6-rarefaction-curve." id="toc-task-6-rarefaction-curve." class="nav-link" data-scroll-target="#task-6-rarefaction-curve.">Task 6: Rarefaction curve.</a></li>
   </ul></li>
   <li><a href="#alpha-diversity" id="toc-alpha-diversity" class="nav-link" data-scroll-target="#alpha-diversity">Alpha diversity</a>
   <ul class="collapse">
   <li><a href="#richness" id="toc-richness" class="nav-link" data-scroll-target="#richness">Richness</a></li>
-  <li><a href="#task-7-species-richness." id="toc-task-7-species-richness." class="nav-link" data-scroll-target="#task-7-species-richness.">Task 7: Species richness.</a></li>
+  <li><a href="#task-5-species-richness." id="toc-task-5-species-richness." class="nav-link" data-scroll-target="#task-5-species-richness.">Task 5: Species richness.</a></li>
   <li><a href="#other-measures-of-diversity" id="toc-other-measures-of-diversity" class="nav-link" data-scroll-target="#other-measures-of-diversity">Other measures of diversity</a></li>
   <li><a href="#analyze-differences-in-alpha-diversity" id="toc-analyze-differences-in-alpha-diversity" class="nav-link" data-scroll-target="#analyze-differences-in-alpha-diversity">Analyze differences in alpha diversity</a></li>
-  <li><a href="#task-8-kruskal-test." id="toc-task-8-kruskal-test." class="nav-link" data-scroll-target="#task-8-kruskal-test.">Task 8: Kruskal test.</a></li>
+  <li><a href="#task-6-kruskal-test." id="toc-task-6-kruskal-test." class="nav-link" data-scroll-target="#task-6-kruskal-test.">Task 6: Kruskal test.</a></li>
   </ul></li>
   <li><a href="#beta-diversity" id="toc-beta-diversity" class="nav-link" data-scroll-target="#beta-diversity">Beta diversity</a>
   <ul class="collapse">
-  <li><a href="#task-9-beta-diversity." id="toc-task-9-beta-diversity." class="nav-link" data-scroll-target="#task-9-beta-diversity.">Task 9: Beta diversity.</a></li>
+  <li><a href="#task-7-beta-diversity." id="toc-task-7-beta-diversity." class="nav-link" data-scroll-target="#task-7-beta-diversity.">Task 7: Beta diversity.</a></li>
+  </ul></li>
+  <li><a href="#beta-diversity-with-compositional-analysis" id="toc-beta-diversity-with-compositional-analysis" class="nav-link" data-scroll-target="#beta-diversity-with-compositional-analysis">Beta Diversity with compositional analysis</a>
+  <ul class="collapse">
+  <li><a href="#task-8-beta-diversity." id="toc-task-8-beta-diversity." class="nav-link" data-scroll-target="#task-8-beta-diversity.">Task 8: Beta diversity.</a></li>
   </ul></li>
   </ul></li>
   </ul>
@@ -372,7 +375,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>For this assignment, we will perform a microbiome composition analysis using shotgun sequencing metagenomics. We will use data generated from human fecal samples to compare the gut microbiota profiles of a healthy adult at baseline (Day 0) against their microbial profile immediately following a 4-day intervention with a cocktail of three last-resort antibiotics (Day 4). In total, we will have samples for days 0, 4, 8, 42, and 180.</p>
-<p>The files used for the assignment follow the sample name structure: subject_timepoint_readpair.fq.gz. For instance, ERAS6_Dag4opt_wHAXPI002161-78.clean.pair.rmhost.1.fq.gz is subject 6, timepoint 4, forward read.</p>
+<p>The files used for the assignment follow the sample name structure: subject_timepoint_readpair.fq.gz. For instance, ERAS6_Dag4_R1.fq.gz is subject 6, timepoint 4, forward read.</p>
 <p>The original reference paper for this dataset:</p>
 <ul>
 <li>Palleja, A., Mikkelsen, K.H., Forslund, S.K. et al.&nbsp;Recovery of gut microbiota of healthy adults following antibiotic exposure. Nat Microbiol 3, 1255–1265 (2018). https://doi.org/10.1038/s41564-018-0257-9</li>
@@ -435,11 +438,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="va">kraken_db</span><span class="op">=</span>/project2/msalomon_1816/trgn_515/6_metagenomics/k2_db</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="ex">kraken2</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--db</span> <span class="va">$kraken_db</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--threads</span> <span class="va">$SLURM_CPUS_PER_TASK</span> <span class="co"># Multithreading</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--paired</span> <span class="op">&lt;</span>fwd.fastq.gz<span class="op">&gt;</span> <span class="op">&lt;</span>rev.fastq.gz<span class="op">&gt;</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--report</span> <span class="op">&lt;</span>sample_name<span class="op">&gt;</span>.kreport.tsv</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--output</span> <span class="op">&lt;</span>sample_name<span class="op">&gt;</span>.kraken.tsv</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--db</span> <span class="va">$kraken_db</span> <span class="co"># Kraken2 database</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--use-names</span> <span class="co"># Use species names</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--threads</span> <span class="va">$SLURM_CPUS_PER_TASK</span> <span class="co"># Multithreading</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--paired</span> <span class="op">&lt;</span>fwd.fastq.gz<span class="op">&gt;</span> <span class="op">&lt;</span>rev.fastq.gz<span class="op">&gt;</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--report</span> <span class="op">&lt;</span>sample_name<span class="op">&gt;</span>.kreport.tsv</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--output</span> <span class="op">&lt;</span>sample_name<span class="op">&gt;</span>.kraken.tsv</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <section id="task-1-kraken2-report-output." class="level3">
 <h3 class="anchored" data-anchor-id="task-1-kraken2-report-output.">Task 1: Kraken2 Report Output.</h3>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -472,32 +476,66 @@ Note
 <section id="taxonomic-analysis-in-r" class="level1">
 <h1>Taxonomic analysis in R</h1>
 <p>We will continue the rest of the taxonomic analysis in R.</p>
-<p>Load the libraries and the data:</p>
+<p>Load the libraries or install them:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(phyloseq)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vegan)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(taxonomizr)</span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(GUniFrac)</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>data<span class="ot">=</span><span class="fu">read.table</span>(<span class="st">"/project/msalomon_1385/TRGN_516/microbiome/metaphlan"</span>, <span class="at">header =</span> F)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>V1 <span class="ot">=</span> <span class="fu">sapply</span>(data<span class="sc">$</span>V1, <span class="cf">function</span>(x) <span class="fu">rev</span>(<span class="fu">strsplit</span>(x, <span class="st">'[|]'</span>)[[<span class="dv">1</span>]])[<span class="dv">1</span>])</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>V1 <span class="ot">=</span> <span class="fu">substring</span>(data<span class="sc">$</span>V1, <span class="dv">4</span>)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(data) <span class="ot">=</span> <span class="fu">c</span>(<span class="st">'taxa'</span>, <span class="st">'sample10_0'</span>,<span class="st">'sample10_180'</span>,<span class="st">'sample10_42'</span>,<span class="st">'sample10_8'</span>,<span class="st">'sample2_0'</span>,</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>                   <span class="st">'sample2_42'</span>,<span class="st">'sample2_4'</span>,<span class="st">'sample2_8'</span>,<span class="st">'sample4_0'</span>,<span class="st">'sample4_180'</span>,<span class="st">'sample4_42'</span>,</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>                   <span class="st">'sample4_4'</span>,<span class="st">'sample4_8'</span>,<span class="st">'sample6_0'</span>,<span class="st">'sample6_180'</span>,<span class="st">'sample6_42'</span>,<span class="st">'sample6_4'</span>,</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>                   <span class="st">'sample6_8'</span>,<span class="st">'sample7_0'</span>,<span class="st">'sample7_180'</span>,<span class="st">'sample7_42'</span>,<span class="st">'sample7_4'</span>,<span class="st">'sample7_8'</span>,</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>                   <span class="st">'sample8_0'</span>,<span class="st">'sample8_180'</span>,<span class="st">'sample8_42'</span>,<span class="st">'sample8_8'</span>,<span class="st">'sample9_0'</span>,<span class="st">'sample9_180'</span>,</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>                   <span class="st">'sample9_42'</span>,<span class="st">'sample9_4'</span>,<span class="st">'sample9_8'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Create taxonomic table</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>otu_table <span class="ot">=</span> <span class="fu">as.matrix</span>(data[,<span class="sc">-</span><span class="dv">1</span>])</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(otu_table) <span class="ot">=</span> data<span class="sc">$</span>taxa</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ade4)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Next we need to format the data. The final output needs to be a species matrix, where rows are samples, columns are species and the values of the matrix are read numbers.</p>
+<p>Follow this steps for each sample:</p>
+<ol type="1">
+<li>Get a list of all Bracken files in that directory</li>
+<li>Create an empty list to store the data from each sample</li>
+<li>Extract the sample name from the filename</li>
+<li>Read the corresponding Bracken file</li>
+<li>Parse species name to remove the Tax id between parenthesis</li>
+<li>Subset to keep only the species name and the estimated read counts</li>
+<li>Add a variable with the sample name</li>
+<li>Store the data frame within the empty list using the sample name</li>
+<li>Transform the list into a matrix</li>
+<li>Replace NA values with 0</li>
+<li>Set the species names as the row names</li>
+</ol>
 <p>Remove low frequency (rare) species:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>otu_table <span class="ot">=</span> otu_table[<span class="fu">apply</span>(otu_table, <span class="dv">1</span>, <span class="cf">function</span>(x) <span class="fu">any</span>(x <span class="sc">&gt;=</span> <span class="dv">100</span>)),]</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>otu_table <span class="ot">=</span> otu_table[<span class="fu">apply</span>(otu_table, <span class="dv">1</span>, <span class="cf">function</span>(x) <span class="fu">length</span>(x[x <span class="sc">!=</span> <span class="dv">0</span>])<span class="sc">&gt;=</span><span class="dv">2</span>),]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ol start="11" type="1">
+<li>Remove species that have more than 100 reads in at least one sample</li>
+<li>Remove species that appear in less than 2 samples</li>
+</ol>
+<!-- ```r
+otu_table = otu_table[apply(otu_table, 1, function(x) any(x >= 100)),]
+otu_table = otu_table[apply(otu_table, 1, function(x) length(x[x != 0])>=2),]
+``` -->
 <section id="rarefaction" class="level2">
 <h2 class="anchored" data-anchor-id="rarefaction">Rarefaction</h2>
-<p>An important step in analyzing sequencing data is rarefaction. Rarefaction involves randomly subsetting samples so that all samples have even sequencing depth.</p>
+<p>A rarefaction curve shows the number of species found as sequencing depth increases. This tells us about whether we’ve sequenced our samples sufficiently to capture all of the diversity within them.</p>
+<p>We can visualize the rarefaction curve of our samples using the <code>vegan</code> package. To do this, we need to create a dataframe that vegan can work with from our OTU table.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rarecurve</span>(<span class="fu">as.data.frame</span>(<span class="fu">t</span>(otu_table)), <span class="at">step=</span><span class="dv">100</span>,<span class="at">cex=</span><span class="fl">0.5</span>,<span class="at">label=</span><span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="task-2-rarefaction-curve." class="level3">
+<h3 class="anchored" data-anchor-id="task-2-rarefaction-curve.">Task 2: Rarefaction curve.</h3>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>Describe the rarefaction plot. What does the x-axis mean? What does the y-axis mean? What’s the main conclusion you get out of the plot? <strong>(10pts)</strong></li>
+<li>Why is this plot important? <strong>(10pts)</strong></li>
+<li>Does the number of species keep increasing with depth or does the curve plateau. Is this a good or a bad thing? Why? <strong>(10pts)</strong></li>
+</ol>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>n_depth<span class="ot">=</span><span class="er">&lt;</span>n<span class="sc">&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>otu_table <span class="ot">=</span> <span class="fu">Rarefy</span>(<span class="fu">t</span>(otu_table), <span class="at">depth =</span> n_depth)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>otu_table <span class="ot">=</span> <span class="fu">t</span>(otu_table<span class="sc">$</span>otu.tab.rff)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
 <section id="task-3-rarefaction." class="level3">
 <h3 class="anchored" data-anchor-id="task-3-rarefaction.">Task 3: Rarefaction.</h3>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -512,57 +550,14 @@ Note
 <div class="callout-body-container callout-body">
 <ol type="1">
 <li>Why is important to have even sequencing depth? <strong>(10pts)</strong></li>
+<li>What number have you chosen for the rarefaction? <strong>(5pts)</strong></li>
+<li>Is this the only number you could have chosen? What’s the highest number you could choose? <strong>(5pts)</strong></li>
 </ol>
 </div>
 </div>
-<p>To rarefy our dataset, we must first visualize the rarefaction curve of our samples using the <code>vegan</code> package. To do this, we need to create a dataframe that vegan can work with from our OTU table.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rarecurve</span>(<span class="fu">as.data.frame</span>(<span class="fu">t</span>(otu_table)), <span class="at">step=</span><span class="dv">100</span>,<span class="at">cex=</span><span class="fl">0.5</span>,<span class="at">label=</span><span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="task-4-rarefaction-curve." class="level3">
 <h3 class="anchored" data-anchor-id="task-4-rarefaction-curve.">Task 4: Rarefaction curve.</h3>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ol type="1">
-<li>Describe the rarefaction plot. What does the x-axis mean? What does the y-axis mean? What’s the main conclusion you get out of the plot? <strong>(10pts)</strong></li>
-<li>Why is this plot important? <strong>(10pts)</strong></li>
-<li>The curve seems to plateau. Is this a good or a bad thing? Why? <strong>(10pts)</strong></li>
-</ol>
-</div>
-</div>
-<p>Based on the rarefaction curve, choose a number to rarefy to and use the package <code>GUniFrac</code>:</p>
-</section>
-<section id="task-5-rarefaction-number." class="level3">
-<h3 class="anchored" data-anchor-id="task-5-rarefaction-number.">Task 5: Rarefaction number.</h3>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ol type="1">
-<li>What number have you chosen for the rarefaction? <strong>(5pts)</strong></li>
-<li>Is this the only number you could have chosen? Could you go lower? Could you go higher? <strong>(5pts)</strong></li>
-</ol>
-</div>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>n_depth<span class="ot">=</span><span class="er">&lt;</span>n<span class="sc">&gt;</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>otu_table <span class="ot">=</span> <span class="fu">Rarefy</span>(<span class="fu">t</span>(otu_table), <span class="at">depth =</span> n_depth)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>otu_table <span class="ot">=</span> <span class="fu">t</span>(otu_table<span class="sc">$</span>otu.tab.rff)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="task-6-rarefaction-curve." class="level3">
-<h3 class="anchored" data-anchor-id="task-6-rarefaction-curve.">Task 6: Rarefaction curve.</h3>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -585,13 +580,20 @@ Note
 <p>Alpha diversity measures diversity within a sample.</p>
 <section id="richness" class="level3">
 <h3 class="anchored" data-anchor-id="richness">Richness</h3>
-<p>Richness measures the number of distinct species within a sample. We can do this within R:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>sp_rich <span class="ot">=</span> <span class="fu">apply</span>(otu_table, <span class="dv">2</span>, <span class="cf">function</span>(x) <span class="fu">length</span>(x[x <span class="sc">!=</span> <span class="dv">0</span>]))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Within the <code>vegan</code> package you can also use:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>sp_rich <span class="ot">=</span> <span class="fu">specnumber</span>(<span class="fu">t</span>(otu_table))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Richness measures the number of distinct species within a sample.</p>
+<!-- We can do this within R: -->
+<!-- ```r
+sp_rich = apply(otu_table, 2, function(x) length(x[x != 0]))
+```
+
+Within the `vegan` package you can also use:
+
+```r
+sp_rich = specnumber(t(otu_table))
+``` -->
 </section>
-<section id="task-7-species-richness." class="level3">
-<h3 class="anchored" data-anchor-id="task-7-species-richness.">Task 7: Species richness.</h3>
+<section id="task-5-species-richness." class="level3">
+<h3 class="anchored" data-anchor-id="task-5-species-richness.">Task 5: Species richness.</h3>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -604,40 +606,42 @@ Note
 <div class="callout-body-container callout-body">
 <ol type="1">
 <li>Plot a boxplot of the richness per time point (0, 4, 8, 42 and 180). X-axis will be each timepoint while y-axis will show richness. <strong>(10pts)</strong></li>
-<li>What are the effects of antibiotic usage on the gut microbiome richness given this plot? <strong>(10pts)</strong></li>
+<li>Based on this plot, what are the effects of antibiotic usage on the gut microbiome’s richness? <strong>(10pts)</strong></li>
 </ol>
 </div>
 </div>
 </section>
 <section id="other-measures-of-diversity" class="level3">
 <h3 class="anchored" data-anchor-id="other-measures-of-diversity">Other measures of diversity</h3>
-<p>There are multiple diversity measures. Some of them will take into account the richness, and others both the richness and the eveness.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Shannon diversity</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>shannon_div <span class="ot">=</span> vegan<span class="sc">::</span><span class="fu">diversity</span>(<span class="fu">t</span>(otu_table), <span class="at">index =</span> <span class="st">"shannon"</span>)</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Simpson diversity</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>simpson_div <span class="ot">=</span> vegan<span class="sc">::</span><span class="fu">diversity</span>(<span class="fu">t</span>(otu_table), <span class="at">index =</span> <span class="st">"simpson"</span>)</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Fisher diversity</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>simpson_div <span class="ot">=</span> vegan<span class="sc">::</span><span class="fu">fisher.alpha</span>(<span class="fu">t</span>(otu_table))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>There are multiple diversity measures. Some, like richness, only count presence/absence. Others, like Shannon and Simpson, account for both richness and evenness (how evenly the read counts are distributed among the species).</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Shannon diversity</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>shannon_div <span class="ot">=</span> vegan<span class="sc">::</span><span class="fu">diversity</span>(<span class="fu">t</span>(otu_table), <span class="at">index =</span> <span class="st">"shannon"</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Simpson diversity</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>simpson_div <span class="ot">=</span> vegan<span class="sc">::</span><span class="fu">diversity</span>(<span class="fu">t</span>(otu_table), <span class="at">index =</span> <span class="st">"simpson"</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Fisher diversity</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>simpson_div <span class="ot">=</span> vegan<span class="sc">::</span><span class="fu">fisher.alpha</span>(<span class="fu">t</span>(otu_table))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="analyze-differences-in-alpha-diversity" class="level3">
 <h3 class="anchored" data-anchor-id="analyze-differences-in-alpha-diversity">Analyze differences in alpha diversity</h3>
-<p>The Mann-Whitney U Test, also called Wilcoxon Rank Sum Test, is a non-parametric statistical test that is used to compare two groups, as we have here in our dataset. Being a non-parametric test, it does not assume normalcy in our data (unlike Student’s test). The test assesses if the two groups are from the same population, i.e.&nbsp;whether they are equal.</p>
-<p>We will do it for the species richness.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>sp_rich <span class="ot">=</span> <span class="fu">apply</span>(otu_table, <span class="dv">2</span>, <span class="cf">function</span>(x) <span class="fu">length</span>(x[x <span class="sc">!=</span> <span class="dv">0</span>]))</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="st">'richness'</span> <span class="ot">=</span> <span class="fu">as.numeric</span>(sp_rich), <span class="st">'time'</span> <span class="ot">=</span> <span class="fu">trimws</span>(<span class="fu">gsub</span>(<span class="st">".*_"</span>,<span class="st">""</span>,<span class="fu">names</span>(sp_rich))))</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>time <span class="ot">=</span> <span class="fu">factor</span>(df<span class="sc">$</span>time, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">42</span>, <span class="dv">180</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>We can only compare two groups using the Mann-Whitney U Test:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">=</span> <span class="fu">wilcox.test</span>(<span class="fu">as.numeric</span>(richness) <span class="sc">~</span> time, <span class="at">data =</span> df[df<span class="sc">$</span>time <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">4</span>),])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>To compare more than two groups,we are going to employ the Kruskal-Wallis test, which is a further extension of the Mann-Whiteny U test for three or more groups. Again, we want to find out if the sample groups are representative of different populations, and therefore different from each other.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">=</span> <span class="fu">kruskal.test</span>(<span class="fu">as.numeric</span>(richness) <span class="sc">~</span> time, <span class="at">data =</span> df)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Using the Kruskal Test, we can only go so far as to say that there are differences between the groups. However, we don’t know exactly which groups are different. And, because we are comparing more than 2 groups, we must incorporate multiple test correction as well.Because the Kruskal-Wallis test uses a rank-sum approach, it is appropriate to use a post-hoc test which preserves these ranks, such as Dunn’s test (but an alternative could be the Conover-Iman test).</p>
-<p>Instead of evaluating whether any of the groups are different, Dunn’s test uses pairwise comparisons to evaluate which groups might be significantly different from each other. And, we will use the Benjamini-Hochberg multiple test correction method to mitigate the false-discovery rate that is inherent to a series of pairwise tests.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>m3 <span class="ot">=</span> rstatix<span class="sc">::</span><span class="fu">dunn_test</span>(<span class="at">data =</span> df, richness <span class="sc">~</span> time, <span class="at">p.adjust.method =</span> <span class="st">"BH"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>We want to know if the drop in diversity after antibiotic administration is statistically significant.</p>
+<p>First, we create a dataframe holding our richness values and their corresponding timepoints. We must explicitly set the factor levels so R doesn’t sort them alphabetically (which would put Day 180 before Day 4).</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">=</span> <span class="fu">data.frame</span>(</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">'richness'</span> <span class="ot">=</span> <span class="fu">as.numeric</span>(sp_rich), </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">'time'</span> <span class="ot">=</span> <span class="fu">sapply</span>(<span class="fu">names</span>(sp_rich), <span class="cf">function</span>(x) <span class="fu">strsplit</span>(x, <span class="st">'_'</span>)[[<span class="dv">1</span>]][<span class="dv">2</span>])</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>time <span class="ot">=</span> <span class="fu">factor</span>(df<span class="sc">$</span>time, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"0"</span>, <span class="st">"4"</span>, <span class="st">"8"</span>, <span class="st">"42"</span>, <span class="st">"180"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The Mann-Whitney U Test (Wilcoxon Rank Sum Test) is a non-parametric test used to compare two groups. Being a non-parametric test, it does not assume normalcy in our data (unlike Student’s test). We will use it to compare baseline (Day 0) directly against the immediate post-antibiotic state (Day 4):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">=</span> <span class="fu">wilcox.test</span>(richness <span class="sc">~</span> time, <span class="at">data =</span> df[df<span class="sc">$</span>time <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"0"</span>, <span class="st">"4"</span>),])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>To compare all timepoints simultaneously, we use the Kruskal-Wallis test, which is a non-parametric alternative to ANOVA:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">=</span> <span class="fu">kruskal.test</span>(<span class="fu">as.numeric</span>(richness) <span class="sc">~</span> time, <span class="at">data =</span> df)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Using the Kruskal Test, we can only say that there are differences between the groups. However, we don’t know exactly which groups are different.</p>
+<p>Instead of evaluating whether any of the groups are different, Dunn’s test uses pairwise comparisons to evaluate which groups might be significantly different from each other. We will use the Benjamini-Hochberg multiple test correction method to mitigate the false-discovery rate that is inherent to a series of pairwise tests.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>m3 <span class="ot">=</span> rstatix<span class="sc">::</span><span class="fu">dunn_test</span>(<span class="at">data =</span> df, richness <span class="sc">~</span> time, <span class="at">p.adjust.method =</span> <span class="st">"BH"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="task-8-kruskal-test." class="level3">
-<h3 class="anchored" data-anchor-id="task-8-kruskal-test.">Task 8: Kruskal test.</h3>
+<section id="task-6-kruskal-test." class="level3">
+<h3 class="anchored" data-anchor-id="task-6-kruskal-test.">Task 6: Kruskal test.</h3>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -649,7 +653,8 @@ Note
 </div>
 <div class="callout-body-container callout-body">
 <ol type="1">
-<li>What groups are significantly different from each other? <strong>(10pts)</strong></li>
+<li>Look at the output of the Dunn’s test. Which specific timepoint comparisons are significantly different from each other? <strong>(10pts)</strong></li>
+<li>Does the gut microbiome richness return to baseline levels by Day 180? Use the statistical output to justify your answer. <strong>(10pts)</strong></li>
 </ol>
 </div>
 </div>
@@ -657,30 +662,27 @@ Note
 </section>
 <section id="beta-diversity" class="level2">
 <h2 class="anchored" data-anchor-id="beta-diversity">Beta diversity</h2>
-<p>Beta diversity measures diversity between samples.</p>
+<p>Beta diversity measures the difference in microbial composition between samples.</p>
 <p>First, let’s transform the abundances into relative abundances. This is not neccesarry with the functions we will use, but other functions may require it:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>otu_rel <span class="ot">=</span> <span class="fu">apply</span>(otu_table, <span class="dv">2</span>, <span class="cf">function</span>(x) x<span class="sc">/</span><span class="fu">sum</span>(x))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>otu_rel <span class="ot">=</span> <span class="fu">apply</span>(otu_table, <span class="dv">2</span>, <span class="cf">function</span>(x) x<span class="sc">/</span><span class="fu">sum</span>(x))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Then we will calculate the Bray-Curtis dissimilarity:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>bray_dist <span class="ot">=</span> <span class="fu">as.matrix</span>(<span class="fu">vegdist</span>(<span class="fu">t</span>(otu_rel), <span class="at">method =</span> <span class="st">"bray"</span>))</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>times <span class="ot">=</span>  <span class="fu">sapply</span>(<span class="fu">colnames</span>(bray_dist), <span class="cf">function</span>(x) <span class="fu">strsplit</span>(x, <span class="st">'_'</span>)[[<span class="dv">1</span>]][<span class="dv">2</span>])</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>times <span class="ot">=</span> <span class="fu">factor</span>(times, <span class="at">levels =</span> <span class="fu">sort</span>(<span class="fu">unique</span>(times)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>bray_dist <span class="ot">=</span> <span class="fu">as.matrix</span>(<span class="fu">vegdist</span>(<span class="fu">t</span>(otu_rel), <span class="at">method =</span> <span class="st">"bray"</span>))</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>times <span class="ot">=</span>  <span class="fu">sapply</span>(<span class="fu">colnames</span>(bray_dist), <span class="cf">function</span>(x) <span class="fu">strsplit</span>(x, <span class="st">'_'</span>)[[<span class="dv">1</span>]][<span class="dv">2</span>])</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>times <span class="ot">=</span> <span class="fu">factor</span>(times, <span class="at">levels =</span> <span class="fu">sort</span>(<span class="fu">unique</span>(times)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Now that we have the raw distance data, we can do a permutational ANOVA (PERMANOVA) to see if there are significant differences. The PERMANOVA is used to analyze multivariate data that uses a dissimilarity metric. It is a consensus-based approach that uses the whole dataset and random subsets of the data to calculate a test statistic. In R, this can be done with the adonis2() function from the vegan package. PERMANOVA and Adonis tend to be used interchangeably to talk about the same test. To run our Adonis, use the following code:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>adonis<span class="ot">=</span><span class="fu">adonis2</span>(<span class="fu">as.dist</span>(bray_dist) <span class="sc">~</span> times)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>adonis<span class="ot">=</span><span class="fu">adonis2</span>(<span class="fu">as.dist</span>(bray_dist) <span class="sc">~</span> times)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Next, we will create an ordination and plot it to first visualize the differences between our groups.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"ade4"</span>)</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"vegan"</span>)</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>meta <span class="ot">=</span> <span class="fu">metaMDS</span>(bray_dist, <span class="at">k=</span><span class="dv">2</span>) <span class="co"># k=2 to keep only 2 ordinations</span></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="fu">s.class</span>(</span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  meta<span class="sc">$</span>points, <span class="at">col =</span> RColorBrewer<span class="sc">::</span><span class="fu">brewer.pal</span>(<span class="fu">length</span>(<span class="fu">levels</span>(times)), <span class="st">'Set1'</span>), <span class="at">cpoint =</span> <span class="dv">2</span>, <span class="at">fac =</span> times)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>meta <span class="ot">=</span> <span class="fu">metaMDS</span>(bray_dist, <span class="at">k=</span><span class="dv">2</span>) <span class="co"># k=2 to keep only 2 ordinations</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">s.class</span>(</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  meta<span class="sc">$</span>points, <span class="at">col =</span> RColorBrewer<span class="sc">::</span><span class="fu">brewer.pal</span>(<span class="fu">length</span>(<span class="fu">levels</span>(times)), <span class="st">'Set1'</span>), <span class="at">cpoint =</span> <span class="dv">2</span>, <span class="at">fac =</span> times)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>We can again conduct our PERMANOVA to compare all the groups in a pairwise manner.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"pmartinezarbizu/pairwiseAdonis/pairwiseAdonis"</span>)</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">'pairwiseAdonis'</span>)</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>pairwise<span class="ot">=</span><span class="fu">pairwise.adonis</span>(<span class="fu">as.dist</span>(bray_dist), times, <span class="at">p.adjust.m =</span> <span class="st">'BH'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<section id="task-9-beta-diversity." class="level3">
-<h3 class="anchored" data-anchor-id="task-9-beta-diversity.">Task 9: Beta diversity.</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"pmartinezarbizu/pairwiseAdonis/pairwiseAdonis"</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">'pairwiseAdonis'</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>pairwise<span class="ot">=</span><span class="fu">pairwise.adonis</span>(<span class="fu">as.dist</span>(bray_dist), times, <span class="at">p.adjust.m =</span> <span class="st">'BH'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="task-7-beta-diversity." class="level3">
+<h3 class="anchored" data-anchor-id="task-7-beta-diversity.">Task 7: Beta diversity.</h3>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -693,7 +695,70 @@ Note
 <div class="callout-body-container callout-body">
 <ol type="1">
 <li>Look at the MDS plot. What conclusion do you get visually? <strong>(10pts)</strong></li>
-<li>Analuze the <code>pairwise</code> object from the pairwise adonis result. What groups are significantly different? <strong>(5pts)</strong></li>
+<li>Analyze the <code>pairwise</code> object from the pairwise adonis result. What groups are significantly different? <strong>(5pts)</strong></li>
+</ol>
+</div>
+</div>
+</section>
+</section>
+<section id="beta-diversity-with-compositional-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="beta-diversity-with-compositional-analysis">Beta Diversity with compositional analysis</h2>
+<p>Because sequencers yield a fixed number of reads regardless of the actual bacterial load in the gut, microbiome data is compositional. An increase in the relative abundance of one species forces a decrease in others. To properly handle this mathematically, we apply a Centered Log-Ratio (CLR) transformation.</p>
+<p>Standard log transformations cannot handle the value 0, and microbiome data is very sparse (full of zeros). To handle that, we will use the Robust Centered Log-Ratio (rCLR) transformation.</p>
+<p>We can apply this transformation directly using the vegan package:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>otu_clr <span class="ot">=</span> vegan<span class="sc">::</span><span class="fu">decostand</span>(<span class="fu">t</span>(otu_table), <span class="at">method =</span> <span class="st">"rclr"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>We can calculate the Euclidean distance on the CLR transformed data. This is the Aitchison distance.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>aitchison_dist <span class="ot">=</span> vegan<span class="sc">::</span><span class="fu">vegdist</span>(otu_rclr, <span class="at">method =</span> <span class="st">"euclidean"</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract timepoints for statistical grouping</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>times <span class="ot">=</span> <span class="fu">sapply</span>(<span class="fu">rownames</span>(otu_clr), <span class="cf">function</span>(x) <span class="fu">strsplit</span>(x, <span class="st">'_'</span>)[[<span class="dv">1</span>]][<span class="dv">2</span>])</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>times <span class="ot">=</span> <span class="fu">factor</span>(times, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"0"</span>, <span class="st">"4"</span>, <span class="st">"8"</span>, <span class="st">"42"</span>, <span class="st">"180"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Now that we have our distance matrix, we perform a permutational ANOVA (PERMANOVA) using <code>adonis2</code> to see if the overall community composition shifts significantly across the timepoints.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Global PERMANOVA test</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>adonis_result <span class="ot">=</span> <span class="fu">adonis2</span>(aitchison_dist <span class="sc">~</span> times)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>We can visualize these differences using Principal Component Analysis (PCA). Because we transformed our data into Euclidean space using CLR, PCA is the correct ordination method (rather than NMDS).</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Perform PCA on the CLR-transformed data</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>pca <span class="ot">=</span> <span class="fu">prcomp</span>(otu_clr)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a dataframe for plotting</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>pca_df <span class="ot">=</span> <span class="fu">data.frame</span>(</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">pc1 =</span> pca<span class="sc">$</span>x[,<span class="dv">1</span>], </span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">pc1 =</span> pca<span class="sc">$</span>x[,<span class="dv">2</span>], </span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">time =</span> times</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate variance explained by the first two PCs</span></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>var_explained <span class="ot">=</span> <span class="fu">round</span>(<span class="dv">100</span> <span class="sc">*</span> pca<span class="sc">$</span>sdev<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> <span class="fu">sum</span>(pca<span class="sc">$</span>sdev<span class="sc">^</span><span class="dv">2</span>), <span class="dv">1</span>)</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the PCA</span></span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pca_df, <span class="fu">aes</span>(<span class="at">x =</span> pc1, <span class="at">y =</span> pc2, <span class="at">color =</span> time)) <span class="sc">+</span></span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">4</span>, <span class="at">alpha =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Set1"</span>) <span class="sc">+</span></span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_ellipse</span>(<span class="at">level =</span> <span class="fl">0.95</span>, <span class="at">linetype =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fu">paste0</span>(<span class="st">"PC1 ("</span>, var_explained[<span class="dv">1</span>], <span class="st">"%)"</span>),</span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="fu">paste0</span>(<span class="st">"PC2 ("</span>, var_explained[<span class="dv">2</span>], <span class="st">"%)"</span>)</span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Finally, we conduct a pairwise PERMANOVA to see exactly which timepoints harbor significantly different community structures compared to baseline and to each other.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pairwise PERMANOVA with Benjamini-Hochberg multiple test correction</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>pairwise <span class="ot">=</span> <span class="fu">pairwise.adonis</span>(robust_aitchison_dist, times, <span class="at">p.adjust.m =</span> <span class="st">'BH'</span>)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(pairwise)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="task-8-beta-diversity." class="level3">
+<h3 class="anchored" data-anchor-id="task-8-beta-diversity.">Task 8: Beta diversity.</h3>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>Look at the PCA plot. Describe the trajectory of the microbiome composition from Day 0 through Day 180. Does the Day 180 community visually overlap with Day 0? What does this imply about microbiome resilience? <strong>(10pts)</strong></li>
+<li>Analyze the pairwise object from the pairwise adonis result. Are the community compositions at Day 0 and Day 180 statistically significantly different from each other? <strong>(5pts)</strong></li>
 </ol>
 </div>
 </div>
