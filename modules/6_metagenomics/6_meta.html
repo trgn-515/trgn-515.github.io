@@ -323,9 +323,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#alpha-diversity" id="toc-alpha-diversity" class="nav-link" data-scroll-target="#alpha-diversity">Alpha diversity</a>
   <ul class="collapse">
   <li><a href="#richness" id="toc-richness" class="nav-link" data-scroll-target="#richness">Richness</a></li>
-  <li><a href="#task-5-species-richness." id="toc-task-5-species-richness." class="nav-link" data-scroll-target="#task-5-species-richness.">Task 5: Species richness.</a></li>
+  <li><a href="#task-5-species-richness." id="toc-task-5-species-richness." class="nav-link" data-scroll-target="#task-5-species-richness.">Task 5: Species richness.</a>
+  <ul class="collapse">
   <li><a href="#other-measures-of-diversity" id="toc-other-measures-of-diversity" class="nav-link" data-scroll-target="#other-measures-of-diversity">Other measures of diversity</a></li>
   <li><a href="#analyze-differences-in-alpha-diversity" id="toc-analyze-differences-in-alpha-diversity" class="nav-link" data-scroll-target="#analyze-differences-in-alpha-diversity">Analyze differences in alpha diversity</a></li>
+  </ul></li>
   <li><a href="#task-6-kruskal-test." id="toc-task-6-kruskal-test." class="nav-link" data-scroll-target="#task-6-kruskal-test.">Task 6: Kruskal test.</a></li>
   </ul></li>
   <li><a href="#beta-diversity" id="toc-beta-diversity" class="nav-link" data-scroll-target="#beta-diversity">Beta diversity</a>
@@ -419,14 +421,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="removing-low-complexity-reads" class="level1">
 <h1>Removing low complexity reads</h1>
 <p>Highly conserved regions can cause missassignments during taxonomic classification. To solve this, we can remove regions in the genome with low entropy. We will use BBduck for this.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bbduk.sh</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="va">int</span><span class="op">=</span>f</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="va">in</span><span class="op">=</span>stdin.fq</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="va">out</span><span class="op">=</span>stdout.fq</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="va">entropy</span><span class="op">=</span>0.6</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="va">entropywindow</span><span class="op">=</span>50</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="va">entropyk</span><span class="op">=</span>5 <span class="kw">|</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="fu">gzip</span> <span class="op">&gt;</span> output.fq.gz</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate /project2/msalomon_1816/trgn_515/conda_env/bbmap</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">bbduk.sh</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="va">int</span><span class="op">=</span>f</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="va">in</span><span class="op">=</span>stdin.fq</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="va">out</span><span class="op">=</span>stdout.fq</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="va">entropy</span><span class="op">=</span>0.6</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="va">entropywindow</span><span class="op">=</span>50</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="va">entropyk</span><span class="op">=</span>5 <span class="kw">|</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="fu">gzip</span> <span class="op">&gt;</span> output.fq.gz</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="read-level-taxonomic-assignment-using-kraken2" class="level1">
 <h1>Read level taxonomic assignment using Kraken2</h1>
@@ -578,8 +582,8 @@ Note
 <section id="alpha-diversity" class="level2">
 <h2 class="anchored" data-anchor-id="alpha-diversity">Alpha diversity</h2>
 <p>Alpha diversity measures diversity within a sample.</p>
-<section id="richness" class="level3">
-<h3 class="anchored" data-anchor-id="richness">Richness</h3>
+<section id="richness" class="level4">
+<h4 class="anchored" data-anchor-id="richness">Richness</h4>
 <p>Richness measures the number of distinct species within a sample.</p>
 <!-- We can do this within R: -->
 <!-- ```r
@@ -610,9 +614,8 @@ Note
 </ol>
 </div>
 </div>
-</section>
-<section id="other-measures-of-diversity" class="level3">
-<h3 class="anchored" data-anchor-id="other-measures-of-diversity">Other measures of diversity</h3>
+<section id="other-measures-of-diversity" class="level4">
+<h4 class="anchored" data-anchor-id="other-measures-of-diversity">Other measures of diversity</h4>
 <p>There are multiple diversity measures. Some, like richness, only count presence/absence. Others, like Shannon and Simpson, account for both richness and evenness (how evenly the read counts are distributed among the species).</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Shannon diversity</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>shannon_div <span class="ot">=</span> vegan<span class="sc">::</span><span class="fu">diversity</span>(<span class="fu">t</span>(otu_table), <span class="at">index =</span> <span class="st">"shannon"</span>)</span>
@@ -623,8 +626,8 @@ Note
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Fisher diversity</span></span>
 <span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>simpson_div <span class="ot">=</span> vegan<span class="sc">::</span><span class="fu">fisher.alpha</span>(<span class="fu">t</span>(otu_table))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="analyze-differences-in-alpha-diversity" class="level3">
-<h3 class="anchored" data-anchor-id="analyze-differences-in-alpha-diversity">Analyze differences in alpha diversity</h3>
+<section id="analyze-differences-in-alpha-diversity" class="level4">
+<h4 class="anchored" data-anchor-id="analyze-differences-in-alpha-diversity">Analyze differences in alpha diversity</h4>
 <p>We want to know if the drop in diversity after antibiotic administration is statistically significant.</p>
 <p>First, we create a dataframe holding our richness values and their corresponding timepoints. We must explicitly set the factor levels so R doesn’t sort them alphabetically (which would put Day 180 before Day 4).</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">=</span> <span class="fu">data.frame</span>(</span>
@@ -639,6 +642,7 @@ Note
 <p>Using the Kruskal Test, we can only say that there are differences between the groups. However, we don’t know exactly which groups are different.</p>
 <p>Instead of evaluating whether any of the groups are different, Dunn’s test uses pairwise comparisons to evaluate which groups might be significantly different from each other. We will use the Benjamini-Hochberg multiple test correction method to mitigate the false-discovery rate that is inherent to a series of pairwise tests.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>m3 <span class="ot">=</span> rstatix<span class="sc">::</span><span class="fu">dunn_test</span>(<span class="at">data =</span> df, richness <span class="sc">~</span> time, <span class="at">p.adjust.method =</span> <span class="st">"BH"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
 </section>
 <section id="task-6-kruskal-test." class="level3">
 <h3 class="anchored" data-anchor-id="task-6-kruskal-test.">Task 6: Kruskal test.</h3>
