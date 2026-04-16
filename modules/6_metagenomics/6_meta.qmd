@@ -92,7 +92,7 @@ First, run Kraken 2 directly on your quality-controlled reads:
 ```sh
 conda activate /project2/msalomon_1816/trgn_515/conda_env/kraken
 
-kraken_db=/project2/msalomon_1816/trgn_515/6_metagenomics/k2_db
+kraken_db=/project2/msalomon_1816/trgn_515/6_metagenomics/k2_standard
 
 kraken2
   --db $kraken_db # Kraken2 database
@@ -102,6 +102,11 @@ kraken2
   --report <sample_name>.kreport.tsv
   --output <sample_name>.kraken.tsv
 ```
+
+::: {.callout-warning}
+Kraken2 stores the DB in memory, so make sure you give 100Gb of memory to your SLURM job!
+:::
+
 
 ### Task 1: Kraken2 Report Output.
 ::: {.callout-note}
@@ -173,10 +178,10 @@ otu_table = otu_table[apply(otu_table, 1, function(x) length(x[x != 0])>=2),]
 
 A rarefaction curve shows the number of species found as sequencing depth increases. This tells us about whether we’ve sequenced our samples sufficiently to capture all of the diversity within them.
 
-We can visualize the rarefaction curve of our samples using the `vegan` package. To do this, we need to create a dataframe that vegan can work with from our OTU table. This command may take some time for large matrices.
+We can visualize the rarefaction curve of our samples using the `vegan` package. To do this, we need to create a dataframe that vegan can work with from our OTU table. This command may take some time for large matrices. Depending on sequencing depth, we can change the "step" used to build the graph.
 
 ```r
-rarecurve(as.data.frame(otu_table), step=100,cex=0.5,label=TRUE)
+rarecurve(as.data.frame(otu_table), step=10000,cex=0.5,label=TRUE)
 ```
 
 ### Task 2: Rarefaction curve.
@@ -191,7 +196,7 @@ rarecurve(as.data.frame(otu_table), step=100,cex=0.5,label=TRUE)
 n_depth=<n>
 
 otu_table = Rarefy(t(otu_table), depth = n_depth)
-otu_table = t(otu_table$otu.tab.rff)
+otu_table = otu_table$otu.tab.rff
 ```
 
 ### Task 3: Rarefaction.
