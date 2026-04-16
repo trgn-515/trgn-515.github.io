@@ -494,16 +494,17 @@ Note
 <li>Create an empty list to store the data from each sample</li>
 <li>Extract the sample name from the filename</li>
 <li>Read the corresponding Bracken file</li>
-<li>Parse species name to remove the Tax id between parenthesis</li>
 <li>Subset to keep only the species name and the estimated read counts</li>
 <li>Add a variable with the sample name</li>
 <li>Store the data frame within the empty list using the sample name</li>
 <li>Transform the list into a matrix</li>
 <li>Replace NA values with 0</li>
 <li>Set the species names as the row names</li>
+<li>Remove the column with the species names from the matrix</li>
+<li>Rows should be samples and columns should be species. Otherwise, transpose the matrix.</li>
 </ol>
 <p>Remove low frequency (rare) species:</p>
-<ol start="11" type="1">
+<ol type="1">
 <li>Remove species that have more than 100 reads in at least one sample</li>
 <li>Remove species that appear in less than 2 samples</li>
 </ol>
@@ -514,8 +515,8 @@ otu_table = otu_table[apply(otu_table, 1, function(x) length(x[x != 0])>=2),]
 <section id="rarefaction" class="level2">
 <h2 class="anchored" data-anchor-id="rarefaction">Rarefaction</h2>
 <p>A rarefaction curve shows the number of species found as sequencing depth increases. This tells us about whether we’ve sequenced our samples sufficiently to capture all of the diversity within them.</p>
-<p>We can visualize the rarefaction curve of our samples using the <code>vegan</code> package. To do this, we need to create a dataframe that vegan can work with from our OTU table.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rarecurve</span>(<span class="fu">as.data.frame</span>(<span class="fu">t</span>(otu_table)), <span class="at">step=</span><span class="dv">100</span>,<span class="at">cex=</span><span class="fl">0.5</span>,<span class="at">label=</span><span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>We can visualize the rarefaction curve of our samples using the <code>vegan</code> package. To do this, we need to create a dataframe that vegan can work with from our OTU table. This command may take some time for large matrices.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rarecurve</span>(<span class="fu">as.data.frame</span>(otu_table), <span class="at">step=</span><span class="dv">100</span>,<span class="at">cex=</span><span class="fl">0.5</span>,<span class="at">label=</span><span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <section id="task-2-rarefaction-curve." class="level3">
 <h3 class="anchored" data-anchor-id="task-2-rarefaction-curve.">Task 2: Rarefaction curve.</h3>
 <div class="callout callout-style-default callout-note callout-titled">
