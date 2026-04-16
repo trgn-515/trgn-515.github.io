@@ -173,7 +173,7 @@ otu_table = otu_table[apply(otu_table, 1, function(x) length(x[x != 0])>=2),]
 
 A rarefaction curve shows the number of species found as sequencing depth increases. This tells us about whether we’ve sequenced our samples sufficiently to capture all of the diversity within them.
 
-We can visualize the rarefaction curve of our samples using the `vegan` package. To do this, we need to create a dataframe that vegan can work with from our OTU table.
+We can visualize the rarefaction curve of our samples using the `vegan` package. To do this, we need to create a dataframe that vegan can work with from our OTU table. This command may take some time for large matrices.
 
 ```r
 rarecurve(as.data.frame(otu_table), step=100,cex=0.5,label=TRUE)
