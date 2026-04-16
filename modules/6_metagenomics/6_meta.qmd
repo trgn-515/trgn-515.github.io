@@ -150,19 +150,19 @@ Follow this steps for each sample:
 2. Create an empty list to store the data from each sample
 3. Extract the sample name from the filename
 4. Read the corresponding Bracken file
-5. Parse species name to remove the Tax id between parenthesis
-6. Subset to keep only the species name and the estimated read counts
-7. Add a variable with the sample name
-8. Store the data frame within the empty list using the sample name
-9. Transform the list into a matrix
-10. Replace NA values with 0
-11. Set the species names as the row names
-
+5. Subset to keep only the species name and the estimated read counts
+6. Add a variable with the sample name
+7. Store the data frame within the empty list using the sample name
+8. Transform the list into a matrix
+9. Replace NA values with 0
+10. Set the species names as the row names
+11. Remove the column with the species names from the matrix
+12. Rows should be samples and columns should be species. Otherwise, transpose the matrix.
 
 Remove low frequency (rare) species:
 
-11. Remove species that have more than 100 reads in at least one sample
-12. Remove species that appear in less than 2 samples
+1.  Remove species that have more than 100 reads in at least one sample
+2.  Remove species that appear in less than 2 samples
 
 <!-- ```r
 otu_table = otu_table[apply(otu_table, 1, function(x) any(x >= 100)),]
@@ -176,7 +176,7 @@ A rarefaction curve shows the number of species found as sequencing depth increa
 We can visualize the rarefaction curve of our samples using the `vegan` package. To do this, we need to create a dataframe that vegan can work with from our OTU table.
 
 ```r
-rarecurve(as.data.frame(t(otu_table)), step=100,cex=0.5,label=TRUE)
+rarecurve(as.data.frame(otu_table), step=100,cex=0.5,label=TRUE)
 ```
 
 ### Task 2: Rarefaction curve.
