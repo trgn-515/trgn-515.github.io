@@ -146,7 +146,10 @@ You can run `MetaPhlAn` directly on your paired-end reads. Make sure you give it
 ```sh
 conda activate /project2/msalomon_1816/trgn_515/conda_env/mpa
 
+db_dir=/project2/msalomon_1816/trgn_515/6_metagenomics/mpa_db
+
 metaphlan <fwd.fastq.gz>,<rev.fastq.gz> # Forward and reverse reads
+  --db_dir $db_dir
   --input_type fastq
   -t rel_ab_w_read_stats # Report absolute abundance
   --mapout <sample_name>.mapout.bz2 # Intermediate mapping file
