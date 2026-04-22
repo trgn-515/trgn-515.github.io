@@ -79,7 +79,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-acf12a64177840b8d86f2d4f01b2e9fb.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-740ceaa7c5257c9597e6d98673e9659d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-03ec9c04378be37c87dba14213eb2222.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -504,12 +504,15 @@ Note
 <p>You can run <code>MetaPhlAn</code> directly on your paired-end reads. Make sure you give it enough memory (35Gb worked for me):</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate /project2/msalomon_1816/trgn_515/conda_env/mpa</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ex">metaphlan</span> <span class="op">&lt;</span>fwd.fastq.gz<span class="op">&gt;</span>,<span class="op">&lt;</span>rev.fastq.gz<span class="op">&gt;</span> <span class="co"># Forward and reverse reads</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--input_type</span> fastq</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="ex">-t</span> rel_ab_w_read_stats <span class="co"># Report absolute abundance</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--mapout</span> <span class="op">&lt;</span>sample_name<span class="op">&gt;</span>.mapout.bz2 <span class="co"># Intermediate mapping file</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--nproc</span> <span class="va">$SLURM_CPUS_PER_TASK</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="ex">-o</span> <span class="op">&lt;</span>sample_name<span class="op">&gt;</span>.mpa <span class="co"># Output file</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="va">db_dir</span><span class="op">=</span>/project2/msalomon_1816/trgn_515/6_metagenomics/mpa_db</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="ex">metaphlan</span> <span class="op">&lt;</span>fwd.fastq.gz<span class="op">&gt;</span>,<span class="op">&lt;</span>rev.fastq.gz<span class="op">&gt;</span> <span class="co"># Forward and reverse reads</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--db_dir</span> <span class="va">$db_dir</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--input_type</span> fastq</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="ex">-t</span> rel_ab_w_read_stats <span class="co"># Report absolute abundance</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--mapout</span> <span class="op">&lt;</span>sample_name<span class="op">&gt;</span>.mapout.bz2 <span class="co"># Intermediate mapping file</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--nproc</span> <span class="va">$SLURM_CPUS_PER_TASK</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="ex">-o</span> <span class="op">&lt;</span>sample_name<span class="op">&gt;</span>.mpa <span class="co"># Output file</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <section id="task-2-metaphlan-output" class="level3">
 <h3 class="anchored" data-anchor-id="task-2-metaphlan-output">Task 2: MetaPhlan output</h3>
 <div class="callout callout-style-default callout-note callout-titled">

@@ -1,43 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://trgn-515.github.io/modules/2_sv/2_sv.html</loc>
-    <lastmod>2026-04-21T23:23:54.095Z</lastmod>
-  </url>
-  <url>
-    <loc>https://trgn-515.github.io/modules/4_assembly/4_assembly.html</loc>
-    <lastmod>2026-04-21T23:23:54.097Z</lastmod>
-  </url>
-  <url>
-    <loc>https://trgn-515.github.io/modules/1_sequencing_techs/1_sequencing_techs.html</loc>
-    <lastmod>2026-04-21T23:23:54.094Z</lastmod>
-  </url>
-  <url>
-    <loc>https://trgn-515.github.io/modules/0_intro_git/assignment_template.html</loc>
-    <lastmod>2026-04-21T23:23:54.094Z</lastmod>
-  </url>
-  <url>
-    <loc>https://trgn-515.github.io/index.html</loc>
-    <lastmod>2026-04-21T23:23:54.094Z</lastmod>
-  </url>
-  <url>
     <loc>https://trgn-515.github.io/modules.html</loc>
-    <lastmod>2026-04-21T23:23:54.094Z</lastmod>
-  </url>
-  <url>
-    <loc>https://trgn-515.github.io/modules/0_intro_git/0_intro_git.html</loc>
-    <lastmod>2026-04-21T23:23:54.094Z</lastmod>
+    <lastmod>2026-04-22T00:33:03.960Z</lastmod>
   </url>
   <url>
     <loc>https://trgn-515.github.io/modules/3_annotation/3_annotation.html</loc>
-    <lastmod>2026-04-21T23:23:54.097Z</lastmod>
+    <lastmod>2026-04-22T00:33:03.963Z</lastmod>
   </url>
   <url>
     <loc>https://trgn-515.github.io/modules/5_base_mods/5_base_mods.html</loc>
-    <lastmod>2026-04-21T23:23:54.102Z</lastmod>
+    <lastmod>2026-04-22T00:33:03.969Z</lastmod>
+  </url>
+  <url>
+    <loc>https://trgn-515.github.io/modules/1_sequencing_techs/1_sequencing_techs.html</loc>
+    <lastmod>2026-04-22T00:33:03.960Z</lastmod>
+  </url>
+  <url>
+    <loc>https://trgn-515.github.io/modules/0_intro_git/0_intro_git.html</loc>
+    <lastmod>2026-04-22T00:33:03.960Z</lastmod>
+  </url>
+  <url>
+    <loc>https://trgn-515.github.io/index.html</loc>
+    <lastmod>2026-04-22T00:33:03.960Z</lastmod>
+  </url>
+  <url>
+    <loc>https://trgn-515.github.io/modules/0_intro_git/assignment_template.html</loc>
+    <lastmod>2026-04-22T00:33:03.960Z</lastmod>
   </url>
   <url>
     <loc>https://trgn-515.github.io/modules/6_metagenomics/6_meta.html</loc>
-    <lastmod>2026-04-21T23:23:54.103Z</lastmod>
+    <lastmod>2026-04-22T00:33:03.970Z</lastmod>
+  </url>
+  <url>
+    <loc>https://trgn-515.github.io/modules/4_assembly/4_assembly.html</loc>
+    <lastmod>2026-04-22T00:33:03.963Z</lastmod>
+  </url>
+  <url>
+    <loc>https://trgn-515.github.io/modules/2_sv/2_sv.html</loc>
+    <lastmod>2026-04-22T00:33:03.962Z</lastmod>
   </url>
 </urlset>
