@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Arturo Torres Ortiz">
+<meta name="dcterms.date" content="2026-04-28">
 
-<title>assignment_template – TRGN-515</title>
+<title>Test dataset: Analysis of COLO-829 – TRGN-515</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -74,10 +76,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-acf12a64177840b8d86f2d4f01b2e9fb.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-d22b584035f135c269abed1b239a31db.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-740ceaa7c5257c9597e6d98673e9659d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -153,7 +155,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../modules/7_colo829/7_colo829.html">Additional dataset: Colo-829</a></li><li class="breadcrumb-item"><a href="../../modules/7_colo829/7_colo829.html">Test dataset: Analysis of COLO-829</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -303,7 +305,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../modules/7_colo829/7_colo829.html" class="sidebar-item-text sidebar-link">
+  <a href="../../modules/7_colo829/7_colo829.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Test dataset: Analysis of COLO-829</span></a>
   </div>
 </li>
@@ -319,136 +321,202 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#assignment-x-topic-name" id="toc-assignment-x-topic-name" class="nav-link active" data-scroll-target="#assignment-x-topic-name">Assignment X: Topic Name</a>
+  <li><a href="#input" id="toc-input" class="nav-link active" data-scroll-target="#input">Input</a></li>
+  <li><a href="#streaming-and-downloading-data" id="toc-streaming-and-downloading-data" class="nav-link" data-scroll-target="#streaming-and-downloading-data">Streaming and downloading data</a></li>
+  <li><a href="#somatic-variant-calling" id="toc-somatic-variant-calling" class="nav-link" data-scroll-target="#somatic-variant-calling">1. Somatic Variant Calling</a>
   <ul>
-  <li><a href="#author-your-name-here" id="toc-author-your-name-here" class="nav-link" data-scroll-target="#author-your-name-here">Author: Your Name Here</a></li>
-  <li><a href="#date-last-modified" id="toc-date-last-modified" class="nav-link" data-scroll-target="#date-last-modified">Date: last-modified</a></li>
+  <li><a href="#task-1-variant-calling" id="toc-task-1-variant-calling" class="nav-link" data-scroll-target="#task-1-variant-calling">Task 1: Variant calling</a></li>
   </ul></li>
-  <li><a href="#task-1-short-title" id="toc-task-1-short-title" class="nav-link" data-scroll-target="#task-1-short-title">Task 1: [Short Title]</a>
+  <li><a href="#mutational-signatures" id="toc-mutational-signatures" class="nav-link" data-scroll-target="#mutational-signatures">2. Mutational signatures</a>
   <ul>
-  <li><a href="#this-is-a-subheader" id="toc-this-is-a-subheader" class="nav-link" data-scroll-target="#this-is-a-subheader">This is a subheader</a></li>
-  <li><a href="#writing-code" id="toc-writing-code" class="nav-link" data-scroll-target="#writing-code">Writing code</a></li>
-  <li><a href="#adding-images" id="toc-adding-images" class="nav-link" data-scroll-target="#adding-images">Adding images</a></li>
-  <li><a href="#other-important-syntax" id="toc-other-important-syntax" class="nav-link" data-scroll-target="#other-important-syntax">Other important syntax</a></li>
+  <li><a href="#task-2-cancer-signatures" id="toc-task-2-cancer-signatures" class="nav-link" data-scroll-target="#task-2-cancer-signatures">Task 2: Cancer signatures</a></li>
   </ul></li>
-  <li><a href="#question-2-short-title" id="toc-question-2-short-title" class="nav-link" data-scroll-target="#question-2-short-title">Question 2: [Short Title]</a>
+  <li><a href="#tumor-heterogeneity" id="toc-tumor-heterogeneity" class="nav-link" data-scroll-target="#tumor-heterogeneity">3. Tumor Heterogeneity</a>
   <ul>
-  <li><a href="#adding-tables" id="toc-adding-tables" class="nav-link" data-scroll-target="#adding-tables">Adding tables</a></li>
+  <li><a href="#task-3-allele-frequency" id="toc-task-3-allele-frequency" class="nav-link" data-scroll-target="#task-3-allele-frequency">Task 3: Allele frequency</a></li>
   </ul></li>
   </ul>
-</nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="7_colo829.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
 
-
-
-
-<section id="assignment-x-topic-name" class="level1">
-<h1>Assignment X: Topic Name</h1>
-<section id="author-your-name-here" class="level2">
-<h2 class="anchored" data-anchor-id="author-your-name-here">Author: Your Name Here</h2>
-</section>
-<section id="date-last-modified" class="level2">
-<h2 class="anchored" data-anchor-id="date-last-modified">Date: last-modified</h2>
-<!-- INSTRUCTIONS:
-1. Rename this file to match the assignment (e.g 1_sequencing_techs.md).
-2. Move the file to the correct folder (e.g 1_sequencing_techs/).
-3. Update the 'title' and 'author' in the YAML header above.
-4. Write your answers below each Question header.
-5. Install the dependency Markdown PDF
-6. Export to PDF before submitting to GitHub (VS Code: Right Click -> Markdown PDF: Export).
--->
-<p>Markdown is a lightweight markup language that allows you to format text using plain text symbols. It is the industry standard for documentation in bioinformatics and data science. It is widely used primarily due to the following characteristics:</p>
-<ul>
-<li>Code-Friendly: It handles code blocks and syntax highlighting natively.</li>
-<li>Git-Friendly: Since it is plain text, Git can track changes line-by-line (unlike Word documents).</li>
-<li>Universal: It renders automatically on GitHub and converts easily to PDF or HTML.</li>
-</ul>
-<div style="page-break-after: always;">
-
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../modules/7_colo829/7_colo829.html">Additional dataset: Colo-829</a></li><li class="breadcrumb-item"><a href="../../modules/7_colo829/7_colo829.html">Test dataset: Analysis of COLO-829</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Test dataset: Analysis of COLO-829</h1>
 </div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Arturo Torres Ortiz </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">April 28, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>You will analyze whole-genome sequencing (WGS) data from COLO-829, a metastatic melanoma cell line (tumor), and COLO-829BL, a matched normal lymphoblastoid cell line derived from the same patient. By comparing these two, we will computationally subtract the patient’s inherited germline background and isolate the acquired somatic mutations driving the cancer.</p>
+<p>The data is stored under accession number PRJEB27698. You can access it in the following EBI repository:</p>
+<blockquote class="blockquote">
+<p>https://www.ebi.ac.uk/ena/browser/view/PRJEB27698</p>
+</blockquote>
+<p>The specific files are accessible through the following links:</p>
+<blockquote class="blockquote">
+<p>Tumor file</p>
+<p>ftp://ftp.sra.ebi.ac.uk/vol1/run/ERR275/ERR2752450/COLO829T_dedup.realigned.bam</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Normal file</p>
+<p>ftp://ftp.sra.ebi.ac.uk/vol1/run/ERR275/ERR2752449/COLO829R_dedup.realigned.bam</p>
+</blockquote>
+<!-- Expected Results
+
+The Driver Mutation: A high-confidence somatic call for the classic BRAF V600E mutation on Chromosome 7.
+
+The UV Mutational Signature: A massive overrepresentation of C>T transitions, the hallmark molecular footprint of ultraviolet radiation damage (COSMIC Signature 7).
+
+Tumor Heterogeneity: A Variant Allele Frequency (VAF) distribution showing distinct clonal and subclonal peaks, representing the evolutionary timeline of the tumor. -->
+<section id="input" class="level1">
+<h1>Input</h1>
+<p>The input for this assignment are the fastq files generated with Illumina from different patients at multiple timepoints. This data is publicly available with accession number ERP022986.</p>
+<blockquote class="blockquote">
+<p>Fastq files:</p>
+<p><code>/project2/msalomon_1816/trgn_515/7_colo829/fastq</code></p>
+</blockquote>
 </section>
-</section>
-<section id="task-1-short-title" class="level1">
-<h1>Task 1: [Short Title]</h1>
-<p>In markdown, headers are specified with the hashtag symbol (“#”). For subheaders, you use two hashtags (“##”). The more hashtag you put, the smaller the header will be.</p>
-<section id="this-is-a-subheader" class="level2">
-<h2 class="anchored" data-anchor-id="this-is-a-subheader">This is a subheader</h2>
-<p>Start each answer pasting the question as given in the pdf. After that, you can add your answer.</p>
-</section>
-<section id="writing-code" class="level2">
-<h2 class="anchored" data-anchor-id="writing-code">Writing code</h2>
-<p>If the answer requires code, use a code block starting and ending with single quotation marks like the one below:</p>
-<pre><code># Write your code here</code></pre>
-<p>You can add language specific code blocks by using the language’s name:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Write your BASH code here</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> view ...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Write your R code here</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">=</span> <span class="fu">glm</span>(...)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Write your Python code here</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="adding-images" class="level2">
-<h2 class="anchored" data-anchor-id="adding-images">Adding images</h2>
-<p>To add an image or plot to your answer, save the image in your folder and use the following code:</p>
-<p><img src="image.png" class="img-fluid"></p>
-<p>To add a caption to your image:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="image.png" class="img-fluid figure-img"></p>
-<figcaption>Caption text</figcaption>
-</figure>
+<section id="streaming-and-downloading-data" class="level1">
+<h1>Streaming and downloading data</h1>
+<p>For this assignment, we will analyze only the human chromosome 7. Instead of downloading massive (~150GB) WGS files, we can use <code>samtools</code> to remotely stream and downsample the BAM files directly from the ENA servers to retrieve only Chromosome 7.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<p>If the image is not in the same folder as your markdown file, you need to put the whole path:</p>
-<p><img src="../../path/to/image.jpg" class="img-fluid"></p>
-<p>The square brackets are used to give the image a specific format. For instance:</p>
-<p><img src="../../path/to/image.jpg" class="img-fluid" style="display: block; margin: 0 auto"></p>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You don’t need to do this, I have already done this for you. There’s a lot of reads in this dataset, so downsampling will take a lot of time!</p>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the ENA FTP links for the Tumor and Normal BAMs</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="va">TUMOR_BAM</span><span class="op">=</span><span class="st">"ftp://ftp.sra.ebi.ac.uk/vol1/run/ERR275/ERR2752450/COLO829T_dedup.realigned.bam"</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="va">NORMAL_BAM</span><span class="op">=</span><span class="st">"ftp://ftp.sra.ebi.ac.uk/vol1/run/ERR275/ERR2752449/COLO829R_dedup.realigned.bam"</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Use samtools to remotely downsample Chromosome 7</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Using '7' to match the @SQ headers in the ENA BAM files</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> view <span class="at">-b</span> <span class="at">-h</span> <span class="va">$TUMOR_BAM</span> 7 <span class="op">&gt;</span> tumor_chr7.bam</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> view <span class="at">-b</span> <span class="at">-h</span> <span class="va">$NORMAL_BAM</span> 7 <span class="op">&gt;</span> normal_chr7.bam</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="other-important-syntax" class="level2">
-<h2 class="anchored" data-anchor-id="other-important-syntax">Other important syntax</h2>
-<p>Your answer can also include lists. You can start a list with the “*” symbol for a bulleted list or with numbers for a numbered list.</p>
-<ul>
-<li>Item 1</li>
-<li>Item 2</li>
-</ul>
-<p>Or</p>
+<section id="somatic-variant-calling" class="level1">
+<h1>1. Somatic Variant Calling</h1>
+<p>Cancer genomes require joint tumor-normal analysis. Variants present in the tumor but absent in the control are somatic mutations.</p>
+<p>We will identifySingle Nucleotide Polymorphisms (SNPs) and delly for Structural Variants (SVs).</p>
+<section id="task-1-variant-calling" class="level3">
+<h3 class="anchored" data-anchor-id="task-1-variant-calling">Task 1: Variant calling</h3>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <ol type="1">
-<li>Item 1</li>
-<li>Item 2</li>
+<li>Identify somatic SNPs and Indels.</li>
+<li>Identify structural variants.</li>
+<li>Annotate your SNPs using a GFF file and the ClinVar database</li>
+<li>Retrieve the variants most likely driving the tumor.</li>
 </ol>
-<p>You can also make a word <em>italic</em> or <strong>bold</strong>.</p>
-Once you finish an answer, put the next question on a different page: <!-- This tag forces the next question to start on a new page -->
-<div style="page-break-after: always;">
-
 </div>
+</div>
+<!-- Gene: BRAF
+Amino Acid Change: V600E -->
 </section>
 </section>
-<section id="question-2-short-title" class="level1">
-<h1>Question 2: [Short Title]</h1>
-<p>This is the second question.</p>
-<section id="adding-tables" class="level2">
-<h2 class="anchored" data-anchor-id="adding-tables">Adding tables</h2>
-<p>If you need to include a table, you can do it like this:</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Column 1</th>
-<th>Column 2</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Text 1</td>
-<td>Text 2</td>
-</tr>
-<tr class="even">
-<td>Text 3</td>
-<td>Text 4</td>
-</tr>
-</tbody>
-</table>
-<p>Making tables can be tedius. My favority online software to turn .csv or excel tables into markdown or latex is https://www.tablesgenerator.com/markdown_tables</p>
+<section id="mutational-signatures" class="level1">
+<h1>2. Mutational signatures</h1>
+<p>Tumors leave distinct molecular footprints based on what caused the DNA damage. For example, smoking leaves a different mutational signature than aging or defective DNA repair mechanisms.</p>
+<section id="task-2-cancer-signatures" class="level3">
+<h3 class="anchored" data-anchor-id="task-2-cancer-signatures">Task 2: Cancer signatures</h3>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>Calculate the exact frequencies of all specific nucleotide substitutions (e.g., C&gt;A, C&gt;G, C&gt;T, T&gt;A, T&gt;C, T&gt;G) within your filtered somatic VCF.</li>
+<li>What is the most frequent substitution in your dataset, and what percentage of the total somatic SNVs does it represent?</li>
+</ol>
+</div>
+</div>
+<!-- Increased C>T 
+C>T (includes G>A)
+
+C>A (includes G>T)
+
+C>G (includes G>C)
+
+T>A (includes A>T)
+
+T>C (includes A>G)
+
+T>G (includes A>C)
+
+They must count 6 distinct mutation classes, ensuring they group reverse complements together because the sequencer cannot distinguish which strand the original mutation occurred on.
+
+C>T (and G>A) transitions. (This will be massively overrepresented, likely >60-70% of all SNVs).
+
+Ultraviolet (UV) radiation damage. UV light causes pyrimidine dimers (covalent links between adjacent cytosines or thymines). When the cell's error-prone repair mechanisms attempt to fix this damage, they frequently insert incorrect bases, overwhelmingly resulting in C>T transitions.
+-->
+</section>
+</section>
+<section id="tumor-heterogeneity" class="level1">
+<h1>3. Tumor Heterogeneity</h1>
+<p>A tumor is not uniform, it is a mixture of subclonal cell populations. We can visualize this by looking at the Variant Allele Frequency (VAF) of the somatic mutations.</p>
+<section id="task-3-allele-frequency" class="level3">
+<h3 class="anchored" data-anchor-id="task-3-allele-frequency">Task 3: Allele frequency</h3>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>Calculate the VAF for every somatic mutation.</li>
+<li>Plot a density histogram of your calculated VAFs.</li>
+</ol>
+</div>
+</div>
 
 
 </section>
