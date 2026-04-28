@@ -1,0 +1,130 @@
+---
+title: "Test dataset: Analysis of COLO-829"
+author: Arturo Torres Ortiz
+date: 04/28/2026
+format:
+  html:
+    toc: true
+    code-copy: true
+    theme: cosmo
+    highlight-style: github
+  pdf:
+    include-in-header: ../../header.tex
+    callout-icon: false
+    callout-appearance: default
+    geometry:
+      - top=30mm
+      - left=20mm
+---
+
+You will analyze whole-genome sequencing (WGS) data from COLO-829, a metastatic melanoma cell line (tumor), and COLO-829BL, a matched normal lymphoblastoid cell line derived from the same patient. By comparing these two, we will computationally subtract the patient's inherited germline background and isolate the acquired somatic mutations driving the cancer.
+
+The data is stored under accession number PRJEB27698. You can access it in the following EBI repository:
+
+> https://www.ebi.ac.uk/ena/browser/view/PRJEB27698
+
+The specific files are accessible through the following links:
+
+> Tumor file
+>
+> ftp://ftp.sra.ebi.ac.uk/vol1/run/ERR275/ERR2752450/COLO829T_dedup.realigned.bam
+
+> Normal file
+> 
+> ftp://ftp.sra.ebi.ac.uk/vol1/run/ERR275/ERR2752449/COLO829R_dedup.realigned.bam
+
+
+<!-- Expected Results
+
+The Driver Mutation: A high-confidence somatic call for the classic BRAF V600E mutation on Chromosome 7.
+
+The UV Mutational Signature: A massive overrepresentation of C>T transitions, the hallmark molecular footprint of ultraviolet radiation damage (COSMIC Signature 7).
+
+Tumor Heterogeneity: A Variant Allele Frequency (VAF) distribution showing distinct clonal and subclonal peaks, representing the evolutionary timeline of the tumor. -->
+
+# Input
+
+The input for this assignment are the fastq files generated with Illumina from different patients at multiple timepoints. This data is publicly available with accession number ERP022986.
+
+> Fastq files:
+>
+> `/project2/msalomon_1816/trgn_515/7_colo829/fastq`
+
+
+# Streaming and downloading data
+For this assignment, we will analyze only the human chromosome 7. Instead of downloading massive (~150GB) WGS files, we can use `samtools` to remotely stream and downsample the BAM files directly from the ENA servers to retrieve only Chromosome 7.
+
+::: {.callout-warning}
+You don't need to do this, I have already done this for you. There's a lot of reads in this dataset, so downsampling will take a lot of time!
+:::
+
+```sh
+# Set the ENA FTP links for the Tumor and Normal BAMs
+TUMOR_BAM="ftp://ftp.sra.ebi.ac.uk/vol1/run/ERR275/ERR2752450/COLO829T_dedup.realigned.bam"
+NORMAL_BAM="ftp://ftp.sra.ebi.ac.uk/vol1/run/ERR275/ERR2752449/COLO829R_dedup.realigned.bam"
+
+# Use samtools to remotely downsample Chromosome 7
+# Using '7' to match the @SQ headers in the ENA BAM files
+samtools view -b -h $TUMOR_BAM 7 > tumor_chr7.bam
+samtools view -b -h $NORMAL_BAM 7 > normal_chr7.bam
+```
+
+# 1. Somatic Variant Calling
+
+Cancer genomes require joint tumor-normal analysis. Variants present in the tumor but absent in the control are somatic mutations.
+
+We will identifySingle Nucleotide Polymorphisms (SNPs) and delly for Structural Variants (SVs).
+
+### Task 1: Variant calling
+::: {.callout-note}
+
+1. Identify somatic SNPs and Indels.
+2. Identify structural variants.
+3. Annotate your SNPs using a GFF file and the ClinVar database
+4. Retrieve the variants most likely driving the tumor.
+:::
+
+<!-- Gene: BRAF
+Amino Acid Change: V600E -->
+
+# 2. Mutational signatures
+Tumors leave distinct molecular footprints based on what caused the DNA damage. For example, smoking leaves a different mutational signature than aging or defective DNA repair mechanisms.
+
+### Task 2: Cancer signatures
+::: {.callout-note}
+
+1. Calculate the exact frequencies of all specific nucleotide substitutions (e.g., C>A, C>G, C>T, T>A, T>C, T>G) within your filtered somatic VCF.
+2. What is the most frequent substitution in your dataset, and what percentage of the total somatic SNVs does it represent?
+:::
+
+
+<!-- Increased C>T 
+C>T (includes G>A)
+
+C>A (includes G>T)
+
+C>G (includes G>C)
+
+T>A (includes A>T)
+
+T>C (includes A>G)
+
+T>G (includes A>C)
+
+They must count 6 distinct mutation classes, ensuring they group reverse complements together because the sequencer cannot distinguish which strand the original mutation occurred on.
+
+C>T (and G>A) transitions. (This will be massively overrepresented, likely >60-70% of all SNVs).
+
+Ultraviolet (UV) radiation damage. UV light causes pyrimidine dimers (covalent links between adjacent cytosines or thymines). When the cell's error-prone repair mechanisms attempt to fix this damage, they frequently insert incorrect bases, overwhelmingly resulting in C>T transitions.
+-->
+
+# 3. Tumor Heterogeneity
+
+A tumor is not uniform, it is a mixture of subclonal cell populations. We can visualize this by looking at the Variant Allele Frequency (VAF) of the somatic mutations.
+
+### Task 3: Allele frequency
+::: {.callout-note}
+
+1. Calculate the VAF for every somatic mutation.
+2. Plot a density histogram of your calculated VAFs.
+:::
