@@ -19,7 +19,7 @@ format:
 
 You will analyze whole-genome sequencing (WGS) data from A549, a lung Adenocarcinoma cell line.
 
-The data is stored under accession number SRR8639173. You can access it in the following EBI repository:
+<!-- The data is stored under accession number SRR8639173. You can access it in the following EBI repository:
 
 > https://www.ebi.ac.uk/ena/browser/view/SRR8639173
 
@@ -32,7 +32,7 @@ The specific files are accessible through the following links:
 
 ::: {.callout-warning}
 You do not need to download these files, this is for information only! Use the local files provided.
-:::
+::: -->
 
 
 <!-- # 1. Download the raw FASTQ files from ENA/SRA
@@ -111,9 +111,14 @@ The bioinformatic pipeline will be based on a reference-based approach, using th
 3. Attach a SLURM job with the entire pipeline **(10pts)**
 :::
 
-
 ### Task 2: SNPs and Indels
 ::: {.callout-note}
+
+Find the following fields in either the QUAL, INFO or the FORMAT columns and filter with the specified value.
+   - QUAL: Minumum of 20
+   - Average mapping quality: Minimum of 20
+   - Raw read depth: Minimum of 20
+   - Allelic depths (high-quality bases): Minimum of 10
 
 1. How many high confident SNPs did you identify? How many high confident Indels? **(5pts)**
 2. Are all these variants causing the cancer? Explain your answer **(5pts)**
@@ -123,15 +128,13 @@ The bioinformatic pipeline will be based on a reference-based approach, using th
 
 ### Task 3: SVs
 ::: {.callout-note}
+Find the following fields in either the INFO or the FORMAT columns and filter with the specified value.
+   - Median mapping quality of paired-ends: Minumum of 20
+   - Paired-end support of the structural variant: Minimum of 10
+   - Split-read support: Minimum of 10
+   - High-quality variant pairs: Minimum of 20
 
-1. Find the following fields in either the INFO or the FORMAT columns and filter with the specified value:
-   1. Median mapping quality of paired-ends: Minumum of 20
-   2. Paired-end support of the structural variant: Minimum of 10
-   3. Split-read support: Minimum of 10
-   4. High-quality variant pairs: Minimum of 20
-
-Paste your filtering command **(10pts)**
-
+1. Paste your filtering command **(10pts)**
 2. Annotate your high confident SVs using VEP. Extract the name of the gene where the SV falls in. Find information about the identified genes. Which gene or genes are most likely to be linked to cancer? **(10pts)**
 :::
 
