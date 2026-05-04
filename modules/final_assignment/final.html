@@ -331,15 +331,20 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p>You will analyze whole-genome sequencing (WGS) data from A549, a lung Adenocarcinoma cell line.</p>
-<p>The data is stored under accession number SRR8639173. You can access it in the following EBI repository:</p>
-<blockquote class="blockquote">
-<p>https://www.ebi.ac.uk/ena/browser/view/SRR8639173</p>
-</blockquote>
-<p>The specific files are accessible through the following links:</p>
-<blockquote class="blockquote">
-<p>Raw Fastq files</p>
-<p>ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR863/003/SRR8639173/SRR8639173_1.fastq.gz ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR863/003/SRR8639173/SRR8639173_2.fastq.gz</p>
-</blockquote>
+<!-- The data is stored under accession number SRR8639173. You can access it in the following EBI repository:
+
+> https://www.ebi.ac.uk/ena/browser/view/SRR8639173
+
+The specific files are accessible through the following links:
+
+> Raw Fastq files
+>
+> ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR863/003/SRR8639173/SRR8639173_1.fastq.gz
+> ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR863/003/SRR8639173/SRR8639173_2.fastq.gz
+
+::: {.callout-warning}
+You do not need to download these files, this is for information only! Use the local files provided.
+::: -->
 <!-- # 1. Download the raw FASTQ files from ENA/SRA
 # (Assuming you use SRA-Toolkit or wget from the ENA link)
 fasterq-dump --split-files SRR8639173
@@ -434,7 +439,9 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
+<p>Find the following fields in either the QUAL, INFO or the FORMAT columns and filter with the specified value. - QUAL: Minumum of 20 - Average mapping quality: Minimum of 20 - Raw read depth: Minimum of 20 - Allelic depths (high-quality bases): Minimum of 10</p>
 <ol type="1">
+<li>Paste your filtering command <strong>(5pts)</strong></li>
 <li>How many high confident SNPs did you identify? How many high confident Indels? <strong>(5pts)</strong></li>
 <li>Are all these variants causing the cancer? Explain your answer <strong>(5pts)</strong></li>
 <li>Annotate your SNPs and Indels using the GnomAD and ClinVar databases. Suggest filters using the information from these databases. Why did you choose those filters? <strong>(10pts)</strong></li>
@@ -455,17 +462,9 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
+<p>Find the following fields in either the INFO or the FORMAT columns and filter with the specified value. - Median mapping quality of paired-ends: Minumum of 20 - Paired-end support of the structural variant: Minimum of 10 - Split-read support: Minimum of 10 - High-quality variant pairs: Minimum of 20</p>
 <ol type="1">
-<li>Find the following fields in either the INFO or the FORMAT columns and filter with the specified value:
-<ol type="1">
-<li>Median mapping quality of paired-ends: Minumum of 20</li>
-<li>Paired-end support of the structural variant: Minimum of 10</li>
-<li>Split-read support: Minimum of 10</li>
-<li>High-quality variant pairs: Minimum of 20</li>
-</ol></li>
-</ol>
-<p>Paste your filtering command <strong>(10pts)</strong></p>
-<ol start="2" type="1">
+<li>Paste your filtering command <strong>(5pts)</strong></li>
 <li>Annotate your high confident SVs using VEP. Extract the name of the gene where the SV falls in. Find information about the identified genes. Which gene or genes are most likely to be linked to cancer? <strong>(10pts)</strong></li>
 </ol>
 </div>
