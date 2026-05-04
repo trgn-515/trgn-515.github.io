@@ -20,6 +20,6 @@ Links will be updated as we progress through the course.
 | **Module 5: Epigenetics - Methylation**<br>Methylation detection with 3rd Generation sequencing. | [{{< fa tv >}} HTML](#)<br>[{{< fa file-pdf >}} PDF](#) | [{{< fa pen-to-square >}} Assignment 5](modules/5_base_mods/5_base_mods.qmd) | **04/21/2026** |
 | **Module 6: Metagenomics**<br>Introduction to metagenomics, 16S amplification, and taxonomy. | [{{< fa tv >}} HTML](#)<br>[{{< fa file-pdf >}} PDF](#) | [{{< fa pen-to-square >}} Assignment 6](modules/6_metagenomics/6_meta.qmd) | **TBD** |
 | **Additional dataset 1: COLO-829**<br>Analysis of cancer dataset. | [{{< fa tv >}} HTML](#)<br>[{{< fa file-pdf >}} PDF](#) | [{{< fa pen-to-square >}} Assignment 7](modules/7_colo829/7_colo829.qmd) | **TBD** |
-| **Final assignment**<br>Dataset for the final assignment. | [{{< fa tv >}} HTML](#)<br>[{{< fa file-pdf >}} PDF](#) | [{{< fa pen-to-square >}} Final assignment](modules/final_assignment/final.qmd) | **TBD** |
+| **Final assignment**<br>Dataset for the final assignment. | [{{< fa tv >}} HTML](#)<br>[{{< fa file-pdf >}} PDF](#) | [{{< fa pen-to-square >}} Final assignment](modules/final_assignment/final.qmd) | **05/11/2026** |
 
 : {tbl-colwidths="[40,15,20,25]" .table .table-hover}

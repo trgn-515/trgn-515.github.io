@@ -47,6 +47,9 @@ website:
       - section: "Additional dataset: Colo-829"
         contents:
           - modules/7_colo829/7_colo829.qmd
+      - section: "Final assignment: Analysis of A549"
+        contents:
+          - modules/final_assignment/final.qmd
 
 
 
