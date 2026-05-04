@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Arturo Torres Ortiz">
+<meta name="dcterms.date" content="2026-05-04">
 
-<title>TRGN 515: Advanced Human Genomic Analysis Methods – TRGN-515</title>
+<title>Final dataset: Analysis of A549 – TRGN-515</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -26,25 +28,23 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-d22b584035f135c269abed1b239a31db.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/quarto-contrib/fontawesome6-6.7.2/all.min.css" rel="stylesheet">
-<link href="site_libs/quarto-contrib/fontawesome6-6.7.2/latex-fontsize.css" rel="stylesheet">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-acf12a64177840b8d86f2d4f01b2e9fb.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-740ceaa7c5257c9597e6d98673e9659d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -74,17 +74,17 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-sidebar docked nav-fixed fullcontent quarto-light">
+<body class="nav-sidebar docked nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">TRGN-515</span>
     </a>
   </div>
@@ -95,11 +95,11 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./modules.html"> 
+    <a class="nav-link" href="../../modules.html"> 
 <span class="menu-text">Modules</span></a>
   </li>  
 </ul>
@@ -120,7 +120,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">TRGN 515: Advanced Human Genomic Analysis Methods</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Final dataset: Analysis of A549</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -151,7 +151,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./modules/0_intro_git/0_intro_git.html" class="sidebar-item-text sidebar-link">
+  <a href="../../modules/0_intro_git/0_intro_git.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Module 0: Git and GitHub</span></a>
   </div>
 </li>
@@ -168,7 +168,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./modules/1_sequencing_techs/1_sequencing_techs.html" class="sidebar-item-text sidebar-link">
+  <a href="../../modules/1_sequencing_techs/1_sequencing_techs.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Assignment 1: Next Generation Sequencing Technologies</span></a>
   </div>
 </li>
@@ -185,7 +185,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./modules/2_sv/2_sv.html" class="sidebar-item-text sidebar-link">
+  <a href="../../modules/2_sv/2_sv.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Assignment 2: Structural variants</span></a>
   </div>
 </li>
@@ -202,7 +202,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./modules/3_annotation/3_annotation.html" class="sidebar-item-text sidebar-link">
+  <a href="../../modules/3_annotation/3_annotation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Assignment 3: Variant consequence annotation</span></a>
   </div>
 </li>
@@ -219,7 +219,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./modules/4_assembly/4_assembly.html" class="sidebar-item-text sidebar-link">
+  <a href="../../modules/4_assembly/4_assembly.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Assignment 4: Genome assembly</span></a>
   </div>
 </li>
@@ -236,7 +236,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./modules/5_base_mods/5_base_mods.html" class="sidebar-item-text sidebar-link">
+  <a href="../../modules/5_base_mods/5_base_mods.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Assignment 5: Nanopore base modifications</span></a>
   </div>
 </li>
@@ -253,7 +253,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./modules/6_metagenomics/6_meta.html" class="sidebar-item-text sidebar-link">
+  <a href="../../modules/6_metagenomics/6_meta.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Assignment 6: Introduction to Metagenomics</span></a>
   </div>
 </li>
@@ -270,7 +270,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./modules/7_colo829/7_colo829.html" class="sidebar-item-text sidebar-link">
+  <a href="../../modules/7_colo829/7_colo829.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Test dataset: Analysis of COLO-829</span></a>
   </div>
 </li>
@@ -281,21 +281,46 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#input" id="toc-input" class="nav-link active" data-scroll-target="#input">Input</a></li>
+  <li><a href="#analysis-of-wgs-of-the-a549-cell-line" id="toc-analysis-of-wgs-of-the-a549-cell-line" class="nav-link" data-scroll-target="#analysis-of-wgs-of-the-a549-cell-line">Analysis of WGS of the A549 cell line</a>
+  <ul>
+  <li><a href="#task-1-bioinformatic-pipeline" id="toc-task-1-bioinformatic-pipeline" class="nav-link" data-scroll-target="#task-1-bioinformatic-pipeline">Task 1: Bioinformatic pipeline</a></li>
+  <li><a href="#task-2-snps-and-indels" id="toc-task-2-snps-and-indels" class="nav-link" data-scroll-target="#task-2-snps-and-indels">Task 2: SNPs and Indels</a></li>
+  <li><a href="#task-3-svs" id="toc-task-3-svs" class="nav-link" data-scroll-target="#task-3-svs">Task 3: SVs</a></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="final.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">TRGN 515: Advanced Human Genomic Analysis Methods</h1>
-<p class="subtitle lead">Spring 2026 | University of Southern California</p>
+<h1 class="title">Final dataset: Analysis of A549</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Arturo Torres Ortiz </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">May 4, 2026</p>
+    </div>
+  </div>
   
     
   </div>
@@ -305,77 +330,149 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="course-content" class="level2">
-<h2 class="anchored" data-anchor-id="course-content">Course content</h2>
-<p>Below is the schedule of modules, slides, and assignments for the semester. Links will be updated as we progress through the course.</p>
-<table class="table table-hover caption-top">
-<colgroup>
-<col style="width: 40%">
-<col style="width: 15%">
-<col style="width: 20%">
-<col style="width: 25%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">Module</th>
-<th style="text-align: center;">Slides</th>
-<th style="text-align: center;">Assignment</th>
-<th style="text-align: left;">Due Date</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;"><strong>Module 1: Sequencing Technologies</strong><br>Overview of NGS, Nanopore, and PacBio.</td>
-<td style="text-align: center;"><a href="slides/1_seq_techs.html"><i class="fa-solid fa-tv" aria-label="tv"></i> HTML</a><br><a href="slides/1_seq_techs.pdf"><i class="fa-solid fa-file-pdf" aria-label="file-pdf"></i> PDF</a></td>
-<td style="text-align: center;"><a href="./modules/1_sequencing_techs/1_sequencing_techs.html"><i class="fa-solid fa-pen-to-square" aria-label="pen-to-square"></i> Assignment 1</a></td>
-<td style="text-align: left;"><strong>02/27/2026</strong></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><strong>Module 2: Structural Variant Detection</strong><br>Definition and types of structural variants (SV), detection of indels and SV.</td>
-<td style="text-align: center;"><a href="slides/2_sv.html"><i class="fa-solid fa-tv" aria-label="tv"></i> HTML</a><br><a href="slides/2_sv.pdf"><i class="fa-solid fa-file-pdf" aria-label="file-pdf"></i> PDF</a></td>
-<td style="text-align: center;"><a href="./modules/2_sv/2_sv.html"><i class="fa-solid fa-pen-to-square" aria-label="pen-to-square"></i> Assignment 2</a></td>
-<td style="text-align: left;"><strong>03/10/2026</strong></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><strong>Module 3: Variant Functional Annotation</strong><br>Variant effect prediction.</td>
-<td style="text-align: center;"><a href="#"><i class="fa-solid fa-tv" aria-label="tv"></i> HTML</a><br><a href="#"><i class="fa-solid fa-file-pdf" aria-label="file-pdf"></i> PDF</a></td>
-<td style="text-align: center;"><a href="./modules/3_annotation/3_annotation.html"><i class="fa-solid fa-pen-to-square" aria-label="pen-to-square"></i> Assignment 3</a></td>
-<td style="text-align: left;"><strong>03/31/2026</strong></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><strong>Module 4: Genome Assembly</strong><br>Introduction to genome assembly.</td>
-<td style="text-align: center;"><a href="#"><i class="fa-solid fa-tv" aria-label="tv"></i> HTML</a><br><a href="#"><i class="fa-solid fa-file-pdf" aria-label="file-pdf"></i> PDF</a></td>
-<td style="text-align: center;"><a href="./modules/4_assembly/4_assembly.html"><i class="fa-solid fa-pen-to-square" aria-label="pen-to-square"></i> Assignment 4</a></td>
-<td style="text-align: left;"><strong>04/10/2026</strong></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><strong>Module 5: Epigenetics - Methylation</strong><br>Methylation detection with 3rd Generation sequencing.</td>
-<td style="text-align: center;"><a href="#"><i class="fa-solid fa-tv" aria-label="tv"></i> HTML</a><br><a href="#"><i class="fa-solid fa-file-pdf" aria-label="file-pdf"></i> PDF</a></td>
-<td style="text-align: center;"><a href="./modules/5_base_mods/5_base_mods.html"><i class="fa-solid fa-pen-to-square" aria-label="pen-to-square"></i> Assignment 5</a></td>
-<td style="text-align: left;"><strong>04/21/2026</strong></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><strong>Module 6: Metagenomics</strong><br>Introduction to metagenomics, 16S amplification, and taxonomy.</td>
-<td style="text-align: center;"><a href="#"><i class="fa-solid fa-tv" aria-label="tv"></i> HTML</a><br><a href="#"><i class="fa-solid fa-file-pdf" aria-label="file-pdf"></i> PDF</a></td>
-<td style="text-align: center;"><a href="./modules/6_metagenomics/6_meta.html"><i class="fa-solid fa-pen-to-square" aria-label="pen-to-square"></i> Assignment 6</a></td>
-<td style="text-align: left;"><strong>TBD</strong></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><strong>Additional dataset 1: COLO-829</strong><br>Analysis of cancer dataset.</td>
-<td style="text-align: center;"><a href="#"><i class="fa-solid fa-tv" aria-label="tv"></i> HTML</a><br><a href="#"><i class="fa-solid fa-file-pdf" aria-label="file-pdf"></i> PDF</a></td>
-<td style="text-align: center;"><a href="./modules/7_colo829/7_colo829.html"><i class="fa-solid fa-pen-to-square" aria-label="pen-to-square"></i> Assignment 7</a></td>
-<td style="text-align: left;"><strong>TBD</strong></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><strong>Final assignment</strong><br>Dataset for the final assignment.</td>
-<td style="text-align: center;"><a href="#"><i class="fa-solid fa-tv" aria-label="tv"></i> HTML</a><br><a href="#"><i class="fa-solid fa-file-pdf" aria-label="file-pdf"></i> PDF</a></td>
-<td style="text-align: center;"><a href="./modules/final_assignment/final.html"><i class="fa-solid fa-pen-to-square" aria-label="pen-to-square"></i> Assignment 8</a></td>
-<td style="text-align: left;"><strong>TBD</strong></td>
-</tr>
-</tbody>
-</table>
+<p>You will analyze whole-genome sequencing (WGS) data from A549, a lung Adenocarcinoma cell line.</p>
+<p>The data is stored under accession number SRR8639173. You can access it in the following EBI repository:</p>
+<blockquote class="blockquote">
+<p>https://www.ebi.ac.uk/ena/browser/view/SRR8639173</p>
+</blockquote>
+<p>The specific files are accessible through the following links:</p>
+<blockquote class="blockquote">
+<p>Raw Fastq files</p>
+<p>ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR863/003/SRR8639173/SRR8639173_1.fastq.gz ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR863/003/SRR8639173/SRR8639173_2.fastq.gz</p>
+</blockquote>
+<!-- # 1. Download the raw FASTQ files from ENA/SRA
+# (Assuming you use SRA-Toolkit or wget from the ENA link)
+fasterq-dump --split-files SRR8639173
+
+# 2. Map the RAW reads to the FULL human reference genome
+ref_fasta="/project2/biodb/genomes/Homo_sapiens/NCBI/GRCh38/Sequence/BWAIndex/genome.fa"
+
+bwa mem -t 16 -R "@RG\tID:TUMOR\tSM:A549" $ref_fasta SRR8639173_1.fastq SRR8639173_2.fastq | \
+samtools view -bS - | samtools sort -@ 8 -o a549_full.bam
+samtools index a549_full.bam
+
+# 3. Slice the targeted Megabase windows (The "Noise" + The "Signal")
+# chr12:24000000-26500000 (2.5 Mb window around KRAS)
+# chr9:20000000-24000000  (4 Mb window around CDKN2A)
+samtools view -b -h a549_full.bam chr12:24000000-26500000 > a549_kras_region.bam
+samtools view -b -h a549_full.bam chr9:20000000-24000000 > a549_cdkn2a_region.bam
+
+# 4. Merge the two regions into a single BAM
+samtools merge a549_merged.bam a549_kras_region.bam a549_cdkn2a_region.bam
+
+# 5. Sort by read name (-n) and convert to perfectly synchronized FASTQs for the students
+# -F 0x900 filters out secondary/supplementary alignments to prevent BWA crashing
+samtools sort -n a549_merged.bam -o a549_namesorted.bam
+
+samtools fastq -F 0x900 \
+  -1 a549_student_1.fq.gz \
+  -2 a549_student_2.fq.gz \
+  -0 /dev/null -s /dev/null \
+  a549_namesorted.bam -->
+<section id="input" class="level1">
+<h1>Input</h1>
+<p>The input for this assignment are the fastq files generated with Illumina.</p>
+<blockquote class="blockquote">
+<p>Fastq files:</p>
+<p><code>/project2/msalomon_1816/trgn_515/8_final/fastq</code></p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Reference Genome for BWA:</p>
+<p><code>/project2/biodb/genomes/Homo_sapiens/NCBI/GRCh38/Sequence/BWAIndex/genome.fa</code></p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Reference Genome for Variant Calling:</p>
+<p><code>/project2/biodb/genomes/Homo_sapiens/NCBI/GRCh38/Sequence/WholeGenomeFasta/genome.fa</code></p>
+</blockquote>
+<blockquote class="blockquote">
+<p>GnomAD Database:</p>
+<p><code>/project2/msalomon_1816/trgn_515/8_final/db/gnomad.regions.vcf.gz</code></p>
+</blockquote>
+<blockquote class="blockquote">
+<p>ClinVar Database:</p>
+<p><code>/project2/msalomon_1816/trgn_515/8_final/db/clinvar.vcf.gz</code></p>
+</blockquote>
+<blockquote class="blockquote">
+<p>VEP Database:</p>
+<p><code>/project2/msalomon_1816/trgn_515/8_final/db/vep_cache</code></p>
+</blockquote>
+</section>
+<section id="analysis-of-wgs-of-the-a549-cell-line" class="level1">
+<h1>Analysis of WGS of the A549 cell line</h1>
+<p>For this final assignment, we will analyze the A549 cell line, especifically chromosomes 9 and 12.</p>
+<p>The final goal of the assignment is to identify genetic variants (SNPs, Indels and SVs) driving the cancer of this cell line.</p>
+<p>The bioinformatic pipeline will be based on a reference-based approach, using the GRCh38 human reference genome.</p>
+<section id="task-1-bioinformatic-pipeline" class="level3">
+<h3 class="anchored" data-anchor-id="task-1-bioinformatic-pipeline">Task 1: Bioinformatic pipeline</h3>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>List the files of the input FastQ folder. Of the sequencing technologies reviewed in this course, what’s the most likely technology used for this dataset? Why? <strong>(5pts)</strong></li>
+<li>Outline the steps of your suggested pipeline to identify and annotate SNPs and SVs of clinical significance and name the bioinformatic software used for each step <strong>(15pts)</strong></li>
+<li>Attach a SLURM job with the entire pipeline <strong>(10pts)</strong></li>
+</ol>
+</div>
+</div>
+</section>
+<section id="task-2-snps-and-indels" class="level3">
+<h3 class="anchored" data-anchor-id="task-2-snps-and-indels">Task 2: SNPs and Indels</h3>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>How many high confident SNPs did you identify? How many high confident Indels? <strong>(5pts)</strong></li>
+<li>Are all these variants causing the cancer? Explain your answer <strong>(5pts)</strong></li>
+<li>Annotate your SNPs and Indels using the GnomAD and ClinVar databases. Suggest filters using the information from these databases. Why did you choose those filters? <strong>(10pts)</strong></li>
+<li>Given your annotations and filters, what are the SNPs/Indels driving this cancer? Search for this position in ClinVar. Report the Gene Name and the genomic coordinates. <strong>(10pts)</strong></li>
+</ol>
+</div>
+</div>
+</section>
+<section id="task-3-svs" class="level3">
+<h3 class="anchored" data-anchor-id="task-3-svs">Task 3: SVs</h3>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>Find the following fields in either the INFO or the FORMAT columns and filter with the specified value:
+<ol type="1">
+<li>Median mapping quality of paired-ends: Minumum of 20</li>
+<li>Paired-end support of the structural variant: Minimum of 10</li>
+<li>Split-read support: Minimum of 10</li>
+<li>High-quality variant pairs: Minimum of 20</li>
+</ol></li>
+</ol>
+<p>Paste your filtering command <strong>(10pts)</strong></p>
+<ol start="2" type="1">
+<li>Annotate your high confident SVs using VEP. Extract the name of the gene where the SV falls in. Find information about the identified genes. Which gene or genes are most likely to be linked to cancer? <strong>(10pts)</strong></li>
+</ol>
+</div>
+</div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
