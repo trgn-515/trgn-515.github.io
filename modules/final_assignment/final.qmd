@@ -30,6 +30,10 @@ The specific files are accessible through the following links:
 > ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR863/003/SRR8639173/SRR8639173_1.fastq.gz
 > ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR863/003/SRR8639173/SRR8639173_2.fastq.gz
 
+::: {.callout-warning}
+You do not need to download these files, this is for information only! Use the local files provided.
+:::
+
 
 <!-- # 1. Download the raw FASTQ files from ENA/SRA
 # (Assuming you use SRA-Toolkit or wget from the ENA link)
