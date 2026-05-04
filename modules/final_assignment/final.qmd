@@ -120,10 +120,11 @@ Find the following fields in either the QUAL, INFO or the FORMAT columns and fil
    - Raw read depth: Minimum of 20
    - Allelic depths (high-quality bases): Minimum of 10
 
-1. How many high confident SNPs did you identify? How many high confident Indels? **(5pts)**
-2. Are all these variants causing the cancer? Explain your answer **(5pts)**
-3. Annotate your SNPs and Indels using the GnomAD and ClinVar databases. Suggest filters using the information from these databases. Why did you choose those filters? **(10pts)**
-4. Given your annotations and filters, what are the SNPs/Indels driving this cancer? Search for this position in ClinVar. Report the Gene Name and the genomic coordinates. **(10pts)**
+1. Paste your filtering command **(5pts)**
+2. How many high confident SNPs did you identify? How many high confident Indels? **(5pts)**
+3. Are all these variants causing the cancer? Explain your answer **(5pts)**
+4. Annotate your SNPs and Indels using the GnomAD and ClinVar databases. Suggest filters using the information from these databases. Why did you choose those filters? **(10pts)**
+5. Given your annotations and filters, what are the SNPs/Indels driving this cancer? Search for this position in ClinVar. Report the Gene Name and the genomic coordinates. **(10pts)**
 :::
 
 ### Task 3: SVs
@@ -134,7 +135,7 @@ Find the following fields in either the INFO or the FORMAT columns and filter wi
    - Split-read support: Minimum of 10
    - High-quality variant pairs: Minimum of 20
 
-1. Paste your filtering command **(10pts)**
+1. Paste your filtering command **(5pts)**
 2. Annotate your high confident SVs using VEP. Extract the name of the gene where the SV falls in. Find information about the identified genes. Which gene or genes are most likely to be linked to cancer? **(10pts)**
 :::
 
