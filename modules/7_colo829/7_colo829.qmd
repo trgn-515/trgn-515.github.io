@@ -128,3 +128,7 @@ A tumor is not uniform, it is a mixture of subclonal cell populations. We can vi
 1. Calculate the VAF for every somatic mutation.
 2. Plot a density histogram of your calculated VAFs.
 :::
+
+
+<!-- (base) bash-4.4$ ref_index="/project2/biodb/genomes/Homo_sapiens/NCBI/GRCh38/Sequence/BWAIndex/genome.fa"
+(base) bash-4.4$ bwa mem -t 30 -R "@RG\tID:TUMOR\tSM:COLO829T" $ref_index fastq/tumor_chr7_1.fq.gz fastq/tumor_chr7_2.fq.gz | samtools view -bS - | samtools sort -o bam/tumor.bam -->

@@ -1,0 +1,140 @@
+---
+title: "Final dataset: Analysis of A549"
+author: Arturo Torres Ortiz
+date: 05/04/2026
+format:
+  html:
+    toc: true
+    code-copy: true
+    theme: cosmo
+    highlight-style: github
+  pdf:
+    include-in-header: ../../header.tex
+    callout-icon: false
+    callout-appearance: default
+    geometry:
+      - top=30mm
+      - left=20mm
+---
+
+You will analyze whole-genome sequencing (WGS) data from A549, a lung Adenocarcinoma cell line.
+
+The data is stored under accession number SRR8639173. You can access it in the following EBI repository:
+
+> https://www.ebi.ac.uk/ena/browser/view/SRR8639173
+
+The specific files are accessible through the following links:
+
+> Raw Fastq files
+>
+> ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR863/003/SRR8639173/SRR8639173_1.fastq.gz
+> ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR863/003/SRR8639173/SRR8639173_2.fastq.gz
+
+
+<!-- # 1. Download the raw FASTQ files from ENA/SRA
+# (Assuming you use SRA-Toolkit or wget from the ENA link)
+fasterq-dump --split-files SRR8639173
+
+# 2. Map the RAW reads to the FULL human reference genome
+ref_fasta="/project2/biodb/genomes/Homo_sapiens/NCBI/GRCh38/Sequence/BWAIndex/genome.fa"
+
+bwa mem -t 16 -R "@RG\tID:TUMOR\tSM:A549" $ref_fasta SRR8639173_1.fastq SRR8639173_2.fastq | \
+samtools view -bS - | samtools sort -@ 8 -o a549_full.bam
+samtools index a549_full.bam
+
+# 3. Slice the targeted Megabase windows (The "Noise" + The "Signal")
+# chr12:24000000-26500000 (2.5 Mb window around KRAS)
+# chr9:20000000-24000000  (4 Mb window around CDKN2A)
+samtools view -b -h a549_full.bam chr12:24000000-26500000 > a549_kras_region.bam
+samtools view -b -h a549_full.bam chr9:20000000-24000000 > a549_cdkn2a_region.bam
+
+# 4. Merge the two regions into a single BAM
+samtools merge a549_merged.bam a549_kras_region.bam a549_cdkn2a_region.bam
+
+# 5. Sort by read name (-n) and convert to perfectly synchronized FASTQs for the students
+# -F 0x900 filters out secondary/supplementary alignments to prevent BWA crashing
+samtools sort -n a549_merged.bam -o a549_namesorted.bam
+
+samtools fastq -F 0x900 \
+  -1 a549_student_1.fq.gz \
+  -2 a549_student_2.fq.gz \
+  -0 /dev/null -s /dev/null \
+  a549_namesorted.bam -->
+
+
+# Input
+
+The input for this assignment are the fastq files generated with Illumina.
+
+> Fastq files:
+>
+> `/project2/msalomon_1816/trgn_515/8_final/fastq`
+
+> Reference Genome for BWA:
+>
+> `/project2/biodb/genomes/Homo_sapiens/NCBI/GRCh38/Sequence/BWAIndex/genome.fa`
+
+> Reference Genome for Variant Calling:
+>
+> `/project2/biodb/genomes/Homo_sapiens/NCBI/GRCh38/Sequence/WholeGenomeFasta/genome.fa`
+
+
+> GnomAD Database:
+>
+> `/project2/msalomon_1816/trgn_515/8_final/db/gnomad.regions.vcf.gz`
+
+> ClinVar Database:
+>
+> `/project2/msalomon_1816/trgn_515/8_final/db/clinvar.vcf.gz`
+
+> VEP Database:
+>
+> `/project2/msalomon_1816/trgn_515/8_final/db/vep_cache`
+
+
+# Analysis of WGS of the A549 cell line
+For this final assignment, we will analyze the A549 cell line, especifically chromosomes 9 and 12.
+
+The final goal of the assignment is to identify genetic variants (SNPs, Indels and SVs) driving the cancer of this cell line. 
+
+The bioinformatic pipeline will be based on a reference-based approach, using the GRCh38 human reference genome.
+
+### Task 1: Bioinformatic pipeline
+::: {.callout-note}
+
+1. List the files of the input FastQ folder. Of the sequencing technologies reviewed in this course, what's the most likely technology used for this dataset? Why? **(5pts)**
+2. Outline the steps of your suggested pipeline to identify and annotate SNPs and SVs of clinical significance and name the bioinformatic software used for each step **(15pts)**
+3. Attach a SLURM job with the entire pipeline **(10pts)**
+:::
+
+
+### Task 2: SNPs and Indels
+::: {.callout-note}
+
+1. How many high confident SNPs did you identify? How many high confident Indels? **(5pts)**
+2. Are all these variants causing the cancer? Explain your answer **(5pts)**
+3. Annotate your SNPs and Indels using the GnomAD and ClinVar databases. Suggest filters using the information from these databases. Why did you choose those filters? **(10pts)**
+4. Given your annotations and filters, what are the SNPs/Indels driving this cancer? Search for this position in ClinVar. Report the Gene Name and the genomic coordinates. **(10pts)**
+:::
+
+### Task 3: SVs
+::: {.callout-note}
+
+1. Find the following fields in either the INFO or the FORMAT columns and filter with the specified value:
+   1. Median mapping quality of paired-ends: Minumum of 20
+   2. Paired-end support of the structural variant: Minimum of 10
+   3. Split-read support: Minimum of 10
+   4. High-quality variant pairs: Minimum of 20
+
+Paste your filtering command **(10pts)**
+
+2. Annotate your high confident SVs using VEP. Extract the name of the gene where the SV falls in. Find information about the identified genes. Which gene or genes are most likely to be linked to cancer? **(10pts)**
+:::
+
+
+
+
+
+
+
+
